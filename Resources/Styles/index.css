@@ -29,6 +29,7 @@ body {
 	padding-bottom: 5em;
 }
 
+/*
 a {
 	font-size: 1.75em;
 	color: #ffffff;
@@ -42,6 +43,7 @@ a:hover {
 	border-bottom-color: #e77e00;
 	padding-bottom: 8px;
 }
+*/
 
 p {
 	font-size: 2em !important;
@@ -78,6 +80,22 @@ p {
 	bottom: 2.5%;
 	left: 0;
 	right: 0;
+}
+
+.nav-btn {
+	background-color: transparent;
+	border: none;
+	font-size: 1.75em;
+	color: #eaeaea;
+	border-bottom: 2px solid transparent;
+	padding-bottom: 4px;
+}
+
+.nav-btn:focus,
+.nav-btn:hover {
+	color: #e77e00;
+	border-bottom: 2px solid;
+	border-bottom-color: #e77e00;
 }
 
 /* alter bootstrap btn styling */
