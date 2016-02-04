@@ -1,3 +1,9 @@
+/*  ----------------------------------------------------------------------------
+
+																					 Copyright 2016 4BSharksWithLasers    
+
+----------------------------------------------------------------------------  */
+
 var config = require("./Assets/Config/config");
 var express = require("express");
 var path = require("path");
@@ -29,3 +35,9 @@ server.get('/registration', function(req, res) {
 server.get('/admin', function(req, res) {
 	res.sendFile(__dirname + '/Views/admin.html');
 });
+
+/*  ----------------------------------------------------------------------------
+
+																					 Copyright 2016 4BSharksWithLasers    
+
+----------------------------------------------------------------------------  */

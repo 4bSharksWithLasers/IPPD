@@ -39,7 +39,7 @@
 
 	</head>
 
-	<body ng-controller="RegistrationController">
+	<body>
 
 		<div class="jumbotron">
 			<div class="container text-center">
@@ -52,48 +52,49 @@
 			</div>
 		</div>
 
-		<div class="container">
+		<div class="container" ng-controller="RegistrationController">
 			<form role="form">
+<article>
 				<div class="form group">
 					<h3> E-mail </h3>
 		      <input type="e-mail" name="e-mail" class="form-control input-lg" placeholder="user@email.com">
 		    </div>
-				<div class="form-group" ng-repeat="x in affiliations">
+</article>
+<article>
+				<div class="form-group">
 					<h3> Affiliation </h3>
 					<select class="form-control input-lg">
-						<option>{{ x.affiliations }}</option>
-						<option>Non-UF Affiliated</option>
-						<option>Student</option>
-						<option>Coach</option>
-						<option>Liason</option>
-						<option>Other UF Affiliated</option>
+						<option ng-repeat="x in affiliation">{{ x.Choice }}</option>
 					</select>
 				</div>
-				<div class="form-group" ng-repeat="x in teams">
+</article>
+<article>
+				<div class="form-group">
 					<h3> Team </h3>
 					<select class="form-control input-lg">
-						<option>{{ x.teams }}</option>
-						<option>Team 1</option>
-						<option>Team 2</option>
+						<option ng-repeat="x in team">{{ x.Choice }}</option>
 					</select>
 				</div>
+</article>
+<article>
 				<div class="form group">
 					<h3> Team Code </h3>
 		      <input type="team-code" name="team-code" class="form-control input-lg" placeholder="Enter your team code">
 		    </div>
-				<div class="form-group" ng-repeat="x in presentations">
+</article>
+<article>
+				<div class="form-group">
 					<h3> Presentation </h3>
 					<select class="form-control input-lg">
-						<option>{{ x.presentations }}</option>
-						<option>QRB</option>
-						<option>SLDR</option>
+						<option ng-repeat="x in presentation">{{ x.Choice }}</option>
 					</select>
 				</div>
+</article>
 			</form>
 		</div>
 
 		<div class="container t-padding">
-			<button class="btn btn-default btn-lg" type="submit">{{test}}Submit</button>
+			<button class="btn btn-default btn-lg" type="submit">Submit</button>
 		</div>
 
 		<div class="container text-center fixed-bottom">
@@ -109,7 +110,7 @@
 		<!-- Bootstrap         -->
 		<script src="" type="text/javascript"></script>
 		<!-- Document Specific -->
-    <script src="../registration-controller.js" type="text/javascript"></script>
+    <script src="../Assets/Controllers/registration-controller.js" type="text/javascript"></script>
 	</body>
 
 <!--  --------------------------------------------------------------------------
