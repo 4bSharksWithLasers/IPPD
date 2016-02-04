@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html ng-app="registration">
+
+<!--  --------------------------------------------------------------------------
+
+																					 Copyright 2016 4BSharksWithLasers    
+
+---------------------------------------------------------------------------  -->
+
+	<head>
+
+		<!-- The following set of tags must be first                             -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- END SET                                                             -->
+
+		<!-- Additional meta information                                         -->
+		<meta name="description" content="IPPD PROJECT">
+		<meta name="author" content="Amy Devries">
+		<meta name="author" content="Steven Williams">
+		<meta name="author" content="Zach Martinez">
+		<meta name="author" content="Justin Pons">
+		<meta name="author" content="Phillip Smith">
+
+		<title>IPPD Design Review Feedback</title>
+
+		<!-- Bootstrap         -->
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+		<!-- Document Specific -->
+		<link href="../Styles/index.css" type="text/css" rel="stylesheet">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+	</head>
+
+	<body ng-controller="RegistrationController">
+
+		<div class="jumbotron">
+			<div class="container text-center">
+				<article>
+					<img src="../Assets/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo">
+				</article>
+				<article>
+					<p><em>Registration</em></p>
+				</article>
+			</div>
+		</div>
+
+		<div class="container">
+			<form role="form">
+				<div class="form group">
+					<h3> E-mail </h3>
+		      <input type="e-mail" name="e-mail" class="form-control input-lg" placeholder="user@email.com">
+		    </div>
+				<div class="form-group" ng-repeat="x in affiliations">
+					<h3> Affiliation </h3>
+					<select class="form-control input-lg">
+						<option>{{ x.affiliations }}</option>
+						<option>Non-UF Affiliated</option>
+						<option>Student</option>
+						<option>Coach</option>
+						<option>Liason</option>
+						<option>Other UF Affiliated</option>
+					</select>
+				</div>
+				<div class="form-group" ng-hide="" ng-repeat="x in teams">
+					<h3> Team </h3>
+					<select class="form-control input-lg">
+						<option>{{ x.teams }}</option>
+						<option>Team 1</option>
+						<option>Team 2</option>
+					</select>
+				</div>
+				<div class="form group" ng-hide="">
+					<h3> Team Code </h3>
+		      <input type="team-code" name="team-code" class="form-control input-lg" placeholder="Enter your team code">
+		    </div>
+				<div class="form-group" ng-hide="" ng-repeat="x in presentations">
+					<h3> Presentation </h3>
+					<select class="form-control input-lg">
+						<option>{{ x.presentations }}</option>
+						<option>QRB</option>
+						<option>SLDR</option>
+					</select>
+				</div>
+			</form>
+		</div>
+
+		<div class="container t-padding">
+			<button class="btn btn-default btn-lg" type="submit">{{test}}Submit</button>
+		</div>
+
+		<div class="container text-center fixed-bottom">
+			<article>
+				Copyright &copy 2016 4bSharksWithLasers
+			</article>
+		</div>
+
+    <!-- Scripts included at the bottom so the page will load faster         -->
+
+    <!-- Angular           -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" type="text/javascript"></script>
+		<!-- Bootstrap         -->
+		<script src="" type="text/javascript"></script>
+		<!-- Document Specific -->
+    <script src="../registration-controller.js" type="text/javascript"></script>
+	</body>
+
+<!--  --------------------------------------------------------------------------
+
+																					 Copyright 2016 4BSharksWithLasers    
+
+---------------------------------------------------------------------------  -->
+
+</html>
