@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 README TEST FILE
 
 JUSTIN
@@ -9,3 +10,6 @@ AMY
 =======
 STEVENJWilliams
 >>>>>>> origin/master
+=======
+README TEST FILE Reset!
+>>>>>>> refs/remotes/origin/Reset-Readme-file
