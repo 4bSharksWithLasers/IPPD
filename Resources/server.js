@@ -21,19 +21,26 @@ server.use('/Assets', express.static(__dirname + '/Assets'));
 
 // set routes
 
+var index = '/Views/index.html';
+var registration = ['/Views/registration.html'];
+var admin = ['/Views/admin.html'];
+
 // index.html
 server.get('/', function(req, res) {
-  res.sendFile(__dirname + '/Views/index.html');
+  res.sendFile(__dirname + index);
+	console.log("Routed to: ", index);
 });
 
 // registration.html
 server.get('/registration', function(req, res) {
-	res.sendFile(__dirname + '/Views/registration.html');
+	res.sendFile(__dirname + registration[0]);
+	console.log("Routed to: ", registration[0]);
 });
 
 // admin.html
 server.get('/admin', function(req, res) {
-	res.sendFile(__dirname + '/Views/admin.html');
+	res.sendFile(__dirname + admin[0]);
+	console.log("Routed to: ", admin[0]);
 });
 
 /*  ----------------------------------------------------------------------------
