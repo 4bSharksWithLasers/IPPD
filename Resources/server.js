@@ -11,19 +11,19 @@ var path = require("path");
 var server = express();
 var port = config.port;
 
-// open port
-server.listen(port);
-console.log("Listening: Port", port);
-
 // set routes to static assets (images and stylesheets)
 server.use('/Styles', express.static(__dirname + '/Styles'));
 server.use('/Assets', express.static(__dirname + '/Assets'));
 
-// set routes
+// open port
+server.listen(port);
+console.log("Listening: Port", port);
 
+// set routes
 var index = '/Views/index.html';
-var registration = ['/Views/registration.html'];
-var admin = ['/Views/admin.html'];
+var registration = '/Views/registration.html';
+var review = '/Views/review.html';
+var admin = '/Views/admin.html';
 
 // index.html
 server.get('/', function(req, res) {
@@ -33,14 +33,20 @@ server.get('/', function(req, res) {
 
 // registration.html
 server.get('/registration', function(req, res) {
-	res.sendFile(__dirname + registration[0]);
-	console.log("Routed to: ", registration[0]);
+	res.sendFile(__dirname + registration);
+	console.log("Routed to: ", registration);
+});
+
+// review.html
+server.get('/review', function(req, res) {
+	res.sendFile(__dirname + review);
+	console.log("Routed to: ", review);
 });
 
 // admin.html
 server.get('/admin', function(req, res) {
-	res.sendFile(__dirname + admin[0]);
-	console.log("Routed to: ", admin[0]);
+	res.sendFile(__dirname + admin);
+	console.log("Routed to: ", admin);
 });
 
 /*  ----------------------------------------------------------------------------

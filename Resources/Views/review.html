@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html ng-app="registration">
+<html>
 
 <!--  --------------------------------------------------------------------------
 
@@ -29,7 +29,7 @@
 		<!-- Bootstrap         -->
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet">
 		<!-- Document Specific -->
-		<link href="../Styles/index.css" type="text/css" rel="stylesheet">
+		<link href="/Styles/index.css" type="text/css" rel="stylesheet">
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -47,46 +47,14 @@
 					<img src="../Assets/Images/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo">
 				</article>
 				<article>
-					<p><em>Registration</em></p>
+					<p><em>Design Review Feedback</em></p>
+				</article>
+				<article>
+        	<h1> REVIEW: DUMMY PAGE </h1>
 				</article>
 			</div>
 		</div>
 
-		<div class="container" ng-controller="RegistrationController">
-			<form role="form" action="/review" method="get">
-				<article>
-					<div class="form group">
-						<h3> E-mail </h3>
-				    <input type="e-mail" name="e-mail" class="form-control input-lg" placeholder="user@email.com">
-				  </div>
-				</article>
-				<article>
-					<div class="form-group">
-						<h3> Affiliation </h3>
-						<select class="form-control input-lg" ng-options="choice as choice.Choice for choice in affiliation track by choice.Choice" ng-model="affiliationChoice">
-						</select>
-					</div>
-				</article>
-				<article>
-					<div class="form-group" ng-show="affiliationChoice.Choice=='Student' || affiliationChoice.Choice=='Coach' || affiliationChoice.Choice=='Liason'">
-						<h3> Team </h3>
-						<select class="form-control input-lg" ng-options="choice as choice.Choice for choice in team track by choice.Choice" ng-model="teamChoice">
-						</select>
-					</div>
-				</article>
-				<article>
-					<div class="form group" ng-show="affiliationChoice.Choice=='Student' || affiliationChoice.Choice=='Coach'">
-						<h3> Team Code </h3>
-				    <input type="team-code" name="team-code" class="form-control input-lg" placeholder="Enter your team code">
-				  </div>
-				</article>
-				<article>
-					<div class="container t-padding">
-						<button class="btn btn-default btn-lg" type="submit" value="Send">Submit</button>
-					</div>
-				</article>
-			</form>
-		</div>
 		<div class="container text-center fixed-bottom">
 			<article>
 				Copyright &copy 2016 4bSharksWithLasers
@@ -100,7 +68,7 @@
 		<!-- Bootstrap         -->
 		<script src="" type="text/javascript"></script>
 		<!-- Document Specific -->
-    <script src="../Assets/Controllers/registration-controller.js" type="text/javascript"></script>
+    <script src="" type="text/javascript"></script>
 	</body>
 
 <!--  --------------------------------------------------------------------------

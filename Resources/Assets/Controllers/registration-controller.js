@@ -10,13 +10,14 @@ app.controller('RegistrationController', function($scope) {
 	$scope.test = "x";
 	console.log($scope.test);
 
+	// list options for each dropdown
 	$scope.affiliation = [
 		{Choice:"Choose your affiliation..."},
 		{Choice:"Student"},
 		{Choice:"Coach"},
 		{Choice:"Liason"},
 		{Choice:"Other UF Affiliated"},
-		{Choice:"Non-UF Affiliated"},
+		{Choice:"Non-UF Affiliated"}
 	];
 
 	$scope.team = [
@@ -25,15 +26,16 @@ app.controller('RegistrationController', function($scope) {
 		{Choice:"Team 2"},
 		{Choice:"Team 3"},
 		{Choice:"Team 4"},
-		{Choice:"Team 5"},
+		{Choice:"Team 5"}
 	];
 
 	$scope.presentation = [
 		{Choice:"Choose your presentation type..."},
 		{Choice:"QRB"},
 		{Choice:"SLDR"},
-		{Choice:"Demo Day"},
+		{Choice:"Demo Day"}
 	];
+
 });
 
 /*  ----------------------------------------------------------------------------
