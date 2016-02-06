@@ -23,7 +23,7 @@ Blue          #0069e7  // active button text
 body {
 	height: 100%;
 	width: 100%;
-	color: white;
+	color: #eaeaea;
 	background-color: #2e2e2e;
   font-family: Georgia, serif;
 	padding-bottom: 5em;

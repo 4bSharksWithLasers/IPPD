@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html ng-app="review">
 
 <!--  --------------------------------------------------------------------------
 
@@ -29,7 +29,7 @@
 		<!-- Bootstrap         -->
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet">
 		<!-- Document Specific -->
-		<link href="/Styles/index.css" type="text/css" rel="stylesheet">
+		<link href="../Styles/index.css" type="text/css" rel="stylesheet">
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -55,6 +55,48 @@
 			</div>
 		</div>
 
+		<div class="container text-center t-padding" ng-controller="ReviewController">
+			<div ng-repeat="x in rubric.topics">
+				<button class="btn btn-default btn-block btn-lg">
+					<span>{{ x.Choice}}</span>
+					<span>
+						<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+					</span>
+				</button>
+			</div>
+		</div>
+
+		<div class="container form-group t-padding">
+			<h3>Issues Identified</h3>
+			<textarea class="form-control" rows="5"></textarea>
+		</div>
+
+		<div class="container form-group t-padding">
+			<div class="row">
+				<div class="col-xs-16 col-sm-10 col-md-10">
+					<h3>Recommendations</h3>
+				</div>
+				<div class="col-md-2 text-right">
+					<h3>Urgent?</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-16 col-sm-10 col-md-10">
+					<textarea class="form-control" rows="1"></textarea>
+				</div>
+				<div class="col-xs-1 col-sm-1 col-md-1 text-center">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				</div>
+				<div class="col-xs-1 col-sm-1 col-md-1 text-center">
+					<input type="checkbox"></input>
+				</div>
+			</div>
+		</div>
+
 		<div class="container text-center fixed-bottom">
 			<article>
 				Copyright &copy 2016 4bSharksWithLasers
@@ -68,7 +110,7 @@
 		<!-- Bootstrap         -->
 		<script src="" type="text/javascript"></script>
 		<!-- Document Specific -->
-    <script src="" type="text/javascript"></script>
+    <script src="../Assets/Controllers/review-controller.js" type="text/javascript"></script>
 	</body>
 
 <!--  --------------------------------------------------------------------------

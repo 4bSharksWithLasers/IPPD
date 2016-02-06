@@ -7,9 +7,6 @@
 var app = angular.module('registration', []);
 
 app.controller('RegistrationController', function($scope) {
-	$scope.test = "x";
-	console.log($scope.test);
-
 	// list options for each dropdown
 	$scope.affiliation = [
 		{Choice:"Choose your affiliation..."},
