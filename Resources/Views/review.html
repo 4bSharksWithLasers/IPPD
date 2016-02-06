@@ -49,24 +49,36 @@
 				<article>
 					<p><em>Design Review Feedback</em></p>
 				</article>
-				<article>
-        	<h1> REVIEW: DUMMY PAGE </h1>
-				</article>
 			</div>
 		</div>
 
 		<div class="container text-center t-padding" ng-controller="ReviewController">
-			<div ng-repeat="x in rubric.topics">
-				<button class="btn btn-default btn-block btn-lg">
-					<span>{{ x.Choice}}</span>
-					<span>
-						<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-						<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-						<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-						<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-						<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-					</span>
-				</button>
+			<div class="panel panel-default" ng-repeat="item in rubric">
+				<a href="">
+					<div class="panel-heading" ng-click="show=!show">
+						<div>
+							<span>{{ item.subject }}</span>
+							<span>
+								<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+							</span>
+						</div>
+					</div>
+				</a>
+				<div class="text-left" ng-show="show">
+					<div class="panel-body">
+						{{ item.star5 }}
+					</div>
+					<div class="panel-body">
+						{{ item.star3 }}
+					</div>
+					<div class="panel-body">
+						{{ item.star1 }}
+					</div>
+				</div>
 			</div>
 		</div>
 

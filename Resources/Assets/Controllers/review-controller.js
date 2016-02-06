@@ -8,22 +8,58 @@ var app = angular.module('review', []);
 
 app.controller('ReviewController', function($scope) {
 	// review types and descriptions
-	$scope.rubric = {topics: [
-		{Choice:"Choose your affiliation..."},
-		{Choice:"Student"},
-		{Choice:"Coach"},
-		{Choice:"Liason"},
-		{Choice:"Other UF Affiliated"},
-		{Choice:"Non-UF Affiliated"}
-	]};/*
-	$scope.rubric = {topics: [
-		{Choice:"Project Goals", 5Star:"5 star spiel x", 3Star:"3 star spiel", 1Star:"1 star spiel"},
-		{Choice:"Prototype", 5Star:"5 star spiel y", 3Star:"3 star spiel", 1Star:"1 star spiel"},
-		{Choice:"Project Plan", 5Star:"5 star spiel z", 3Star:"3 star spiel", 1Star:"1 star spiel"},
-		{Choice:"Project Risks", 5Star:"5 star spiel a", 3Star:"3 star spiel", 1Star:"1 star spiel"},
-		{Choice:"Other rubric fields", 5Star:"5 star spiel b", 3Star:"3 star spiel", 1Star:"1 star spiel"},
-		{Choice:"Overall Assessment", 5Star:"5 star spiel c", 3Star:"3 star spiel", 1Star:"1 star spiel"}
-	]};*/
+	$scope.rubric = [
+		{
+			subject: "Design",
+			star5: "Design spiel 5 star",
+			star3: "Design spiel 3 star",
+			star1: "Design spiel 1 star"
+		},
+		{
+			subject: "Prototypes",
+			star5: "Prototypes spiel 5 star",
+			star3: "Prototypes spiel 3 star",
+			star1: "Prototypes spiel 1 star"
+		},
+		{
+			subject: "Project Goals",
+			star5: "Goals spiel 5 star",
+			star3: "Goals spiel 3 star",
+			star1: "Goals spiel 1 star"
+		},
+		{
+			subject: "Project Plans",
+			star5: "Plans spiel 5 star",
+			star3: "Plans spiel 3 star",
+			star1: "Plans spiel 1 star"
+		},
+		{
+			subject: "Project Risks",
+			star5: "Risks spiel 5 star",
+			star3: "Risks spiel 3 star",
+			star1: "Risks spiel 1 star"
+		},
+		{
+			subject: "Team Member Assignments",
+			star5: "Team spiel 5 star",
+			star3: "Team spiel 3 star",
+			star1: "Team spiel 1 star"
+		},
+		{
+			subject: "Liason Communication",
+			star5: "Liason spiel 5 star",
+			star3: "Liason spiel 3 star",
+			star1: "Liason spiel 1 star"
+		},
+		{
+			subject: "Overall Assessment",
+			star5: "Assessment spiel 5 star",
+			star3: "Assessment spiel 3 star",
+			star1: "Assessment spiel 1 star"
+		}
+	];
+
+	$scope.show = false;
 });
 
 /*  ----------------------------------------------------------------------------
