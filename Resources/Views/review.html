@@ -39,7 +39,7 @@
 
 	</head>
 
-	<body>
+	<body ng-controller="ReviewController">
 
 		<div class="jumbotron">
 			<div class="container text-center">
@@ -52,31 +52,71 @@
 			</div>
 		</div>
 
-		<div class="container text-center t-padding" ng-controller="ReviewController">
+		<div class="container text-center border" ng-repeat="item in session">
+			<h3>{{ item.team }}: {{ item.type }}</h3>
+		</div>
+
+		<div class="container t-padding">
+			<h3>Rubric</h3>
 			<div class="panel panel-default" ng-repeat="item in rubric">
-				<a href="">
-					<div class="panel-heading" ng-click="show=!show">
-						<div>
-							<span>{{ item.subject }}</span>
-							<span>
-								<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-								<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-								<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-								<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-								<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-							</span>
+				<a href="" class="a-spc">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-5" ng-click="show=!show">
+								{{ item.subject }}
+							</div>
+							<div class="col-xs-7">
+								<span class="glyphicon glyphicon-star rating pull-right" style="color: {{colorFive}}" ng-click="changeFive()" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-star rating pull-right" style="color: {{colorFour}}" ng-click="changeFour()" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-star rating pull-right" style="color: {{colorThree}}" ng-click="changeThree()" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-star rating pull-right" style="color: {{colorTwo}}" ng-click="changeTwo()" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-star rating pull-right" style="color: {{colorOne}}" ng-click="changeOne()" aria-hidden="true"></span>
+							</div>
 						</div>
 					</div>
 				</a>
-				<div class="text-left" ng-show="show">
+				<div ng-show="show">
 					<div class="panel-body">
-						{{ item.star5 }}
+						<div class="row">
+							<div class="col-xs-7">
+								<em>{{ item.star5 }}</em>
+							</div>
+							<div class="col-xs-5">
+								<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+							</div>
+						</div>
 					</div>
 					<div class="panel-body">
-						{{ item.star3 }}
+						<div class="row">
+							<div class="col-xs-7">
+								<em>{{ item.star3 }}</em>
+							</div>
+							<div class="col-xs-5">
+								<span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+							</div>
+						</div>
 					</div>
 					<div class="panel-body">
-						{{ item.star1 }}
+						<div class="row">
+							<div class="col-xs-7">
+								<em>{{ item.star1 }}</em>
+							</div>
+							<div class="col-xs-5">
+								<span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -89,21 +129,21 @@
 
 		<div class="container form-group t-padding">
 			<div class="row">
-				<div class="col-xs-16 col-sm-10 col-md-10">
+				<div class="col-xs-10">
 					<h3>Recommendations</h3>
 				</div>
-				<div class="col-md-2 text-right">
+				<div class="col-xs-2 text-right">
 					<h3>Urgent?</h3>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-xs-16 col-sm-10 col-md-10">
+				<div class="col-xs-10">
 					<textarea class="form-control" rows="1"></textarea>
 				</div>
-				<div class="col-xs-1 col-sm-1 col-md-1 text-center">
+				<div class="col-xs-1 text-center">
 					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 				</div>
-				<div class="col-xs-1 col-sm-1 col-md-1 text-center">
+				<div class="col-xs-1 text-center">
 					<input type="checkbox"></input>
 				</div>
 			</div>

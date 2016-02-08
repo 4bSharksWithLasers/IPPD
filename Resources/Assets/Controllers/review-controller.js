@@ -59,7 +59,63 @@ app.controller('ReviewController', function($scope) {
 		}
 	];
 
+	$scope.session = [
+		{
+			team: "Team Name",
+			type: "Presentation Type"
+		}
+	];
+
 	$scope.show = false;
+
+// #ffd700 - gold
+// #daa520 - goldenrod
+
+	$scope.colorOne = "#eaeaea";
+	$scope.colorTwo = "#eaeaea";
+	$scope.colorThree = "#eaeaea";
+	$scope.colorFour = "#eaeaea";
+	$scope.colorFive = "#eaeaea";
+
+	$scope.changeOne = function() {
+		$scope.colorOne = "#ffd700";
+		$scope.colorTwo = "#eaeaea";
+		$scope.colorThree = "#eaeaea";
+		$scope.colorFour = "#eaeaea";
+		$scope.colorFive = "#eaeaea";
+	};
+
+	$scope.changeTwo = function() {
+		$scope.colorOne = "#ffd700";
+		$scope.colorTwo = "#ffd700";
+		$scope.colorThree = "#eaeaea";
+		$scope.colorFour = "#eaeaea";
+		$scope.colorFive = "#eaeaea";
+	};
+
+	$scope.changeThree = function() {
+		$scope.colorOne = "#ffd700";
+		$scope.colorTwo = "#ffd700";
+		$scope.colorThree = "#ffd700";
+		$scope.colorFour = "#eaeaea";
+		$scope.colorFive = "#eaeaea";
+	};
+
+	$scope.changeFour = function() {
+		$scope.colorOne = "#ffd700";
+		$scope.colorTwo = "#ffd700";
+		$scope.colorThree = "#ffd700";
+		$scope.colorFour = "#ffd700";
+		$scope.colorFive = "#eaeaea";
+	};
+
+	$scope.changeFive = function() {
+		$scope.colorOne = "#ffd700";
+		$scope.colorTwo = "#ffd700";
+		$scope.colorThree = "#ffd700";
+		$scope.colorFour = "#ffd700";
+		$scope.colorFive = "#ffd700";
+	};
 });
 
 /*  ----------------------------------------------------------------------------

@@ -32,7 +32,7 @@ body {
 
 a {
 	font-size: 1.5em;
-	color: #ffffff;
+	color: #eaeaea;
 	text-decoration: none !important;
 }
 
@@ -50,6 +50,16 @@ p {
 }
 
 /* class styling */
+.a-spc:focus,
+.a-spc:hover {
+	color: #eaeaea;
+	border: none;
+	padding: none;
+}
+.rating:hover {
+	color: yellow;
+}
+
 .jumbotron {
 	color: #2e2e2e;
 	background-color: #eaeaea;
@@ -67,6 +77,10 @@ p {
 .tb-padding {
 	padding-top: 3em;
 	padding-bottom: 3em;
+}
+
+.border {
+	border-bottom: solid thin #676767;
 }
 
 .logo {
@@ -95,8 +109,9 @@ p {
 }
 
 .panel-body {
-	color: #676767;
+	color: #2e2e2e;
 	background-color: #eaeaea;
+	font-size: 1.25em;
 }
 
 .panel-body + .panel-body {
