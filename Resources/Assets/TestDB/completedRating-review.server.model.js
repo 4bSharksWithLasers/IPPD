@@ -53,8 +53,12 @@ var completedRatingSchema = new Schema({
   }, 
   //not sure if this below, for recommended actions will work... Try and see see
   recommendedActions: {
-    recommendation: String, 
-    urgency: Boolean
+    recommendation: {
+      type: String
+    }, 
+    urgency: {
+      type: Boolean
+    }
   },
   created_at: Date,
   updated_at: Date

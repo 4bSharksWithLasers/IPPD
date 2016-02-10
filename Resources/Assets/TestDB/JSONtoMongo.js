@@ -7,6 +7,9 @@ var fs = require('fs'),
     mongoose = require('mongoose'), 
     Schema = mongoose.Schema, 
     User = require('./user-registration.server.model.js'), 
+    Team = require('./team-registration.server.model.js'),
+    BlankRubric = require('./blankRubric-review.server.model.js'),
+    CompletedRating = require('./completedRating-review.server.model.js'),
     config = require('./config');
     
 /* Connect to your database. DONE*/
@@ -23,14 +26,37 @@ var fs = require('fs'),
        */
 
     var usersToAdd = JSON.parse(fs.readFileSync('./users.json', 'utf8')).userEntries;
-    var callback = function(err){
+    var callback1 = function(err){
+      if(err) throw err;
+    }
+
+    var teamsToAdd = JSON.parse(fs.readFileSync('./teams.json', 'utf8')).teamEntries;
+    var callback2 = function(err){
+      if(err) throw err;
+    }
+
+    var blankRubricToAdd = JSON.parse(fs.readFileSync('./blankRubric.json', 'utf8')).blankRubricEntries;
+    var callback3 = function(err){
+      if(err) throw err;
+    }
+
+    var ratingsToAdd = JSON.parse(fs.readFileSync('./completedRating.json', 'utf8')).completedRatingEntries;
+    var callback4 = function(err){
       if(err) throw err;
     }
 
     for(var i = 0; i < usersToAdd.length; i++){
-        new User(usersToAdd[i]).save(callback);
+        new User(usersToAdd[i]).save(callback1);
     }
-
-    console.log('Users added.');
+    for(var i = 0; i < teamsToAdd.length; i++){
+        new Team(teamsToAdd[i]).save(callback2);
+    }
+    for(var i = 0; i < blankRubricToAdd.length; i++){
+        new BlankRubric(blankRubricToAdd[i]).save(callback3);
+    }
+    for(var i = 0; i < ratingsToAdd.length; i++){
+        new CompletedRating(ratingsToAdd[i]).save(callback4);
+    }
+    
 
   });

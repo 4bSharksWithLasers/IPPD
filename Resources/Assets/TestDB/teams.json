@@ -1,1 +1,17 @@
 
+{
+	"teamEntries": [
+		{
+			"name": "Team1",
+			"code": 1234
+		},
+		{
+			"name": "Team2",
+			"code": 5678
+		},
+		{
+			"name": "Team3",
+			"code": 2468
+		}
+	]
+}

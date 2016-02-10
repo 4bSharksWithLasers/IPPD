@@ -17,10 +17,19 @@ var blankRubricSchema = new Schema({
     itemCategory: {
     	type: String,
     	required: true
-    } 
-    description1: String, 
-    description2: String, 
-    description3: String
+    }, 
+    description1: {
+      type: String,
+      required: true
+    }, 
+    description2: {
+      type: String,
+      required: true
+    }, 
+    description3: {
+      type: String, 
+      required: true
+    }
   },
   created_at: Date,
   updated_at: Date
