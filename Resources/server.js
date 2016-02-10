@@ -15,7 +15,6 @@ var server = express();
 var port = config.port;
 
 // set routes to static assets (images and stylesheets)
-server.use("/Styles", express.static(__dirname + "/Styles"));
 server.use("/Assets", express.static(__dirname + "/Assets"));
 
 // open port
