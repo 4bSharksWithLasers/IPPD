@@ -72,3 +72,7 @@ mongod
 *.ntvs*
 *.njsproj
 *.sln
+
+config/env/development.js
+
+config/env/production.js

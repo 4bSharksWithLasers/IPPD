@@ -29,7 +29,7 @@
 		<!-- Bootstrap         -->
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet">
 		<!-- Document Specific -->
-		<link href="../Styles/index.css" type="text/css" rel="stylesheet">
+		<link href="../Assets/Styles/index.css" type="text/css" rel="stylesheet">
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -58,28 +58,28 @@
 
 		<div class="container t-padding">
 			<h3>Rubric</h3>
-			<div class="panel panel-default" ng-repeat="item in rubric">
+			<div class="panel panel-default" ng-repeat="item in rubric track by $index">
 				<a href="" class="a-spc">
 					<div class="panel-heading">
 						<div class="row">
-							<div class="col-xs-5" ng-click="show=!show">
-								{{ item.subject }}
+							<div class="col-xs-5" ng-click="showDescription=!showDescription">
+								{{ item.subject }} - {{ item.rating }}
 							</div>
 							<div class="col-xs-7">
-								<span class="glyphicon glyphicon-star rating pull-right" style="color: {{colorFive}}" ng-click="changeFive()" aria-hidden="true"></span>
-								<span class="glyphicon glyphicon-star rating pull-right" style="color: {{colorFour}}" ng-click="changeFour()" aria-hidden="true"></span>
-								<span class="glyphicon glyphicon-star rating pull-right" style="color: {{colorThree}}" ng-click="changeThree()" aria-hidden="true"></span>
-								<span class="glyphicon glyphicon-star rating pull-right" style="color: {{colorTwo}}" ng-click="changeTwo()" aria-hidden="true"></span>
-								<span class="glyphicon glyphicon-star rating pull-right" style="color: {{colorOne}}" ng-click="changeOne()" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-star rating pull-right" style="color: {{ item.colorFive }}" ng-click="changeFive($index)" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-star rating pull-right" style="color: {{ item.colorFour }}" ng-click="changeFour($index)" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-star rating pull-right" style="color: {{ item.colorThree }}" ng-click="changeThree($index)" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-star rating pull-right" style="color: {{ item.colorTwo }}" ng-click="changeTwo($index)" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-star rating pull-right" style="color: {{ item.colorOne }}" ng-click="changeOne($index)" aria-hidden="true"></span>
 							</div>
 						</div>
 					</div>
 				</a>
-				<div ng-show="show">
+				<div ng-show="showDescription">
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-xs-7">
-								<em>{{ item.star5 }}</em>
+								<em>{{ item.five }}</em>
 							</div>
 							<div class="col-xs-5">
 								<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
@@ -93,7 +93,7 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-xs-7">
-								<em>{{ item.star3 }}</em>
+								<em>{{ item.three }}</em>
 							</div>
 							<div class="col-xs-5">
 								<span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
@@ -107,7 +107,7 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-xs-7">
-								<em>{{ item.star1 }}</em>
+								<em>{{ item.one }}</em>
 							</div>
 							<div class="col-xs-5">
 								<span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
@@ -132,20 +132,40 @@
 				<div class="col-xs-10">
 					<h3>Recommendations</h3>
 				</div>
-				<div class="col-xs-2 text-right">
+				<div class="col-xs-2 text-center">
 					<h3>Urgent?</h3>
 				</div>
 			</div>
+			<div class="row" ng-repeat="item in recommendations track by $index">
+				<div class="col-xs-8">
+					{{ item.text }}
+				</div>
+					<a class="a-spc" href="" ng-click="rmvRecommendation()" ng-model-instant>
+						<div class="col-xs-2 text-center">
+							<span class="glyphicon glyphicon-minus" aria-hidden="true" ng-show="showMinus"></span>
+						</div>
+					</a>
+				<div class="col-xs-2 text-center" ng-show="showUrgent">
+					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" ng-show="showUrgent"></span>
+				</div>
+			</div>
 			<div class="row">
-				<div class="col-xs-10">
-					<textarea class="form-control" rows="1"></textarea>
-				</div>
-				<div class="col-xs-1 text-center">
-					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-				</div>
-				<div class="col-xs-1 text-center">
-					<input type="checkbox"></input>
-				</div>
+				<form>
+					<div class="col-xs-8">
+						<textarea class="form-control" rows="1" ng-model="recommendationText"></textarea>
+					</div>
+					<a class="a-spc" href="" ng-click="addRecommendation()" ng-model-instant>
+						<div class="col-xs-2 text-center">
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+						</div>
+					</a>
+					<a class="a-spc" href="">
+						<div class="col-xs-2 text-center" ng-click="showChecked=!showChecked">
+							<span class="glyphicon glyphicon-unchecked" aria-hidden="true" ng-show="!showChecked"></span>
+							<span class="glyphicon glyphicon-check" aria-hidden="true" ng-show="showChecked"></span>
+						</div>
+					</a>
+				</form>
 			</div>
 		</div>
 
