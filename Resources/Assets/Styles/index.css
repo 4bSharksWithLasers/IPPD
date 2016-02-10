@@ -21,12 +21,13 @@ Blue          #0069e7  // active button text
 
 /* tag styling   */
 body {
+	position: relative;
 	height: 100%;
 	width: 100%;
 	color: #eaeaea;
 	background-color: #2e2e2e;
   font-family: Georgia, serif;
-	padding-bottom: 5em;
+	padding-bottom: 6em;
 }
 
 
@@ -49,7 +50,16 @@ p {
 	font-size: 2em !important;
 }
 
+h3 + p {
+	font-size: 1.25em !important;
+}
+
 /* class styling */
+.glyphicon-exclamation-sign {
+	color: red;
+	font-size: 1.75em;
+}
+
 .a-spc:focus,
 .a-spc:hover {
 	color: #eaeaea;
@@ -90,7 +100,7 @@ p {
 }
 
 .fixed-bottom {
-	position: fixed;
+	position: absolute;
 	bottom: 2.5%;
 	left: 0;
 	right: 0;
