@@ -1,5 +1,5 @@
 {
-	"userEntries":[
+	"userEntries": [
 		{
 			"email": "amy@ufl.edu",
 			"affiliation": "Student",
@@ -14,6 +14,6 @@
 			"email": "justin@ufl.edu",
 			"affiliation": "IPPD Coach",
 			"teamName": "Team3"
-		},
+		}
 	]
 }

@@ -7,7 +7,7 @@ var fs = require('fs'),
     mongoose = require('mongoose'), 
     Schema = mongoose.Schema, 
     User = require('./user-registration.server.model.js'), 
-    config = require('../config/config');
+    config = require('./config');
     
 /* Connect to your database. DONE*/
   mongoose.connect(config.db.uri);
@@ -22,7 +22,7 @@ var fs = require('fs'),
         and then save it to your Mongo database. DONE 
        */
 
-    var usersToAdd = JSON.parse(fs.readFileSync('./users.json', 'utf8')).entries;
+    var usersToAdd = JSON.parse(fs.readFileSync('./users.json', 'utf8')).userEntries;
     var callback = function(err){
       if(err) throw err;
     }
