@@ -55,6 +55,7 @@ var fs = require('fs'),
         new BlankRubric(blankRubricToAdd[k]).save(callback3);
     }*/
     for(var l = 0; l < completedRatingToAdd.length; l++){
+        console.log(completedRatingToAdd[l]);
         new CompletedRating(completedRatingToAdd[l]).save(callback4);
     }
     
