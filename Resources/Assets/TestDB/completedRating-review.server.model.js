@@ -24,10 +24,10 @@ var completedRatingSchema = new Schema({
     type: Number, 
     required: true 
   },
-  prototype: {
+  /*prototype: {
     type: Number, 
     required: true 
-  },
+  },*/
   projectPlan: {
     type: Number, 
     required: true 
@@ -49,15 +49,18 @@ var completedRatingSchema = new Schema({
     required: true 
   },
   issuesIdentified: {
-    type: String
+    type: String,
+    required: true
   }, 
   //not sure if this below, for recommended actions will work... Try and see see
   recommendedActions: {
     recommendation: {
-      type: String
+      type: String,
+      required: true
     }, 
     urgency: {
-      type: Boolean
+      type: Boolean,
+      required: true
     }
   },
   created_at: Date,

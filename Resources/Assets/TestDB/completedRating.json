@@ -6,7 +6,6 @@
 			"email": "reviewer1@ufl.edu",
 			"projectGoals": 5,
 			"design": 4,
-			"prototype": 3,
 			"projectPlan": 4,
 			"projectRisks": 5,
 			"teamMemberAssignments": 4,
@@ -24,7 +23,6 @@
 			"email": "reviewer2@ufl.edu",
 			"projectGoals": 4,
 			"design": 3,
-			"prototype": 2,
 			"projectPlan": 1,
 			"projectRisks": 3,
 			"teamMemberAssignments": 3,
@@ -33,7 +31,7 @@
 			"issuesIdentified": "Not good at all",
 			"recommended actions":{
 				"recommendation": "Do better",
-				"urgency": false	
+				"urgency": true	
 			}
 		}
 	]
