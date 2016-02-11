@@ -25,7 +25,7 @@ var fs = require('fs'),
         and then save it to your Mongo database. DONE 
        */
 
-  /* var usersToAdd = JSON.parse(fs.readFileSync('./users.json', 'utf8')).userEntries;
+  var usersToAdd = JSON.parse(fs.readFileSync('./users.json', 'utf8')).userEntries;
     var callback1 = function(err){
       if(err) throw err;
     }
@@ -38,14 +38,14 @@ var fs = require('fs'),
     var blankRubricToAdd = JSON.parse(fs.readFileSync('./blankRubric.json', 'utf8')).blankRubricEntries;
     var callback3 = function(err){
       if(err) throw err;
-    }*/
+    }
 
     var completedRatingToAdd = JSON.parse(fs.readFileSync('./completedRating.json', 'utf8')).completedRatingEntries;
     var callback4 = function(err){
       if(err) throw err;
     }
 
-    /*for(var i = 0; i < usersToAdd.length; i++){
+    for(var i = 0; i < usersToAdd.length; i++){
         new User(usersToAdd[i]).save(callback1);
     }
     for(var j = 0; j < teamsToAdd.length; j++){
@@ -53,9 +53,8 @@ var fs = require('fs'),
     }
     for(var k = 0; k < blankRubricToAdd.length; k++){
         new BlankRubric(blankRubricToAdd[k]).save(callback3);
-    }*/
+    }
     for(var l = 0; l < completedRatingToAdd.length; l++){
-        console.log(completedRatingToAdd[l]);
         new CompletedRating(completedRatingToAdd[l]).save(callback4);
     }
     
