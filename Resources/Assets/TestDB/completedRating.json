@@ -5,6 +5,7 @@
 			"presentationType": "QRB", 
 			"email": "reviewer1@ufl.edu",
 			"projectGoals": 5,
+			"thePrototype": 3,
 			"design": 4,
 			"projectPlan": 4,
 			"projectRisks": 5,
@@ -12,8 +13,8 @@
 			"liaisonCommunication": 5,
 			"overallAssessment": 4,
 			"issuesIdentified": "Not enough detail",
-			"recommended actions":{
-				"recommendation": "Use different algorithm",
+			"recommendedActions":{
+				"recommendation": "Do better",
 				"urgency": true	
 			}
 		},
@@ -23,13 +24,14 @@
 			"email": "reviewer2@ufl.edu",
 			"projectGoals": 4,
 			"design": 3,
+			"thePrototype": 3,
 			"projectPlan": 1,
 			"projectRisks": 3,
 			"teamMemberAssignments": 3,
 			"liaisonCommunication": 4,
 			"overallAssessment": 3,
 			"issuesIdentified": "Not good at all",
-			"recommended actions":{
+			"recommendedActions":{
 				"recommendation": "Do better",
 				"urgency": true	
 			}

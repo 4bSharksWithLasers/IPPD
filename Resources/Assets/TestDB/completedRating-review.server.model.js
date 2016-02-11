@@ -20,14 +20,14 @@ var completedRatingSchema = new Schema({
     type: Number, 
     required: true 
   },
+  thePrototype: {
+    type: Number,
+    required: true 
+  },
   design: {
     type: Number, 
     required: true 
   },
-  /*prototype: {
-    type: Number, 
-    required: true 
-  },*/
   projectPlan: {
     type: Number, 
     required: true 
@@ -52,7 +52,6 @@ var completedRatingSchema = new Schema({
     type: String,
     required: true
   }, 
-  //not sure if this below, for recommended actions will work... Try and see see
   recommendedActions: {
     recommendation: {
       type: String,
@@ -63,6 +62,7 @@ var completedRatingSchema = new Schema({
       required: true
     }
   },
+  //not sure if this below, for recommended actions will work... Try and see see
   created_at: Date,
   updated_at: Date
 });
