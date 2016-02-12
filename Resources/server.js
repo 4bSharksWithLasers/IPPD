@@ -26,6 +26,15 @@ var index = "/Views/index.html";
 var registration = "/Views/registration.html";
 var review = "/Views/review.html";
 var admin = "/Views/admin.html";
+var fourohthree = "/Views/403.html";
+
+// authenticate users to prevent direct access to pages
+function isAuthenticated(req, res, next) {
+	if(1===1)
+		return next();
+	else
+		res.sendFile(__dirname + fourohthree);
+};
 
 //--	get routes																														--//
 
@@ -36,19 +45,19 @@ server.get("/", function(req, res) {
 });
 
 // registration.html
-server.get("/registration", function(req, res) {
+server.get("/registration", isAuthenticated, function(req, res) {
 	res.sendFile(__dirname + registration);
 	console.log("Routed to: ", registration);
 });
 
 // review.html
-server.get("/review", function(req, res) {
+server.get("/review", isAuthenticated, function(req, res) {
 	res.sendFile(__dirname + review);
 	console.log("Routed to: ", review);
 });
 
 // admin.html
-server.get("/admin", function(req, res) {
+server.get("/admin", isAuthenticated, function(req, res) {
 	res.sendFile(__dirname + admin);
 	console.log("Routed to: ", admin);
 });
