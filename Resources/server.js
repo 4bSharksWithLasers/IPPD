@@ -5,8 +5,8 @@
 ----------------------------------------------------------------------------  */
 
 //set require variables
-var config = require("./Assets/Config/config");
-var user = require("./Assets/Models/db");
+var config = require("./Server/Config/config");
+var user = require("./Server/Models/db");
 var express = require("express");
 var path = require("path");
 
@@ -15,18 +15,18 @@ var server = express();
 var port = config.port;
 
 // set routes to static assets (images and stylesheets)
-server.use("/Assets", express.static(__dirname + "/Assets"));
+server.use("/Client/Assets", express.static(__dirname + "/Client/Assets"));
 
 // open port
 server.listen(port);
 console.log("Listening: Port", port);
 
 // route variables
-var index = "/Views/index.html";
-var registration = "/Views/registration.html";
-var review = "/Views/review.html";
-var admin = "/Views/admin.html";
-var fourohthree = "/Views/403.html";
+var index = "Client/Views/index.html";
+var registration = "Client/Views/registration.html";
+var review = "Client/Views/review.html";
+var admin = "Client/Views/admin.html";
+var fourohthree = "Client/Views/403.html";
 
 // authenticate users to prevent direct access to pages
 function isAuthenticated(req, res, next) {
