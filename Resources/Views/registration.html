@@ -41,57 +41,48 @@
 
 	<body>
 
-		<div class="jumbotron">
-			<div class="container text-center">
-				<article>
+		<header>
+			<div class="jumbotron">
+				<div class="container text-center">
 					<img src="../Assets/Images/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo">
-				</article>
-				<article>
 					<p><em>Registration</em></p>
-				</article>
+				</div>
 			</div>
-		</div>
+		</header>
 
-		<div class="container" ng-controller="RegistrationController">
-			<form role="form" action="/review" method="get">
-				<article>
+		<main>
+			<div class="container" ng-controller="RegistrationController">
+				<form role="form" action="/review" method="get">
 					<div class="form group">
 						<h3> E-mail </h3>
-				    <input type="e-mail" name="e-mail" class="form-control input-lg" placeholder="user@email.com">
-				  </div>
-				</article>
-				<article>
+					  <input type="e-mail" name="e-mail" class="form-control input-lg" placeholder="user@email.com">
+					</div>
 					<div class="form-group">
 						<h3> Affiliation </h3>
 						<select class="form-control input-lg" ng-options="choice as choice.Choice for choice in affiliation track by choice.Choice" ng-model="affiliationChoice">
 						</select>
 					</div>
-				</article>
-				<article>
 					<div class="form-group" ng-show="affiliationChoice.Choice=='Student' || affiliationChoice.Choice=='Coach' || affiliationChoice.Choice=='Liason'">
 						<h3> Team </h3>
 						<select class="form-control input-lg" ng-options="choice as choice.Choice for choice in team track by choice.Choice" ng-model="teamChoice">
 						</select>
 					</div>
-				</article>
-				<article>
 					<div class="form group" ng-show="affiliationChoice.Choice=='Student' || affiliationChoice.Choice=='Coach'">
 						<h3> Team Code </h3>
-				    <input type="team-code" name="team-code" class="form-control input-lg" placeholder="Enter your team code">
-				  </div>
-				</article>
-				<article>
+					  <input type="team-code" name="team-code" class="form-control input-lg" placeholder="Enter your team code">
+					</div>
 					<div class="container t-padding">
 						<button class="btn btn-default btn-lg" type="submit" value="Send">Submit</button>
 					</div>
-				</article>
-			</form>
-		</div>
-		<div class="container text-center fixed-bottom">
-			<article>
+				</form>
+			</div>
+		</main>
+
+		<footer>
+			<div class="container text-center">
 				Copyright &copy 2016 4bSharksWithLasers
-			</article>
-		</div>
+			</div>
+		</footer>
 
     <!-- Scripts included at the bottom so the page will load faster         -->
 
