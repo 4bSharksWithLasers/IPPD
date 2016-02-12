@@ -22,11 +22,11 @@ server.listen(port);
 console.log("Listening: Port", port);
 
 // route variables
-var index = "Client/Views/index.html";
-var registration = "Client/Views/registration.html";
-var review = "Client/Views/review.html";
-var admin = "Client/Views/admin.html";
-var fourohthree = "Client/Views/403.html";
+var index = "/Client/Views/index.html";
+var registration = "/Client/Views/registration.html";
+var review = "/Client/Views/review.html";
+var admin = "/Client/Views/admin.html";
+var fourohthree = "/Client/Views/403.html";
 
 // authenticate users to prevent direct access to pages
 function isAuthenticated(req, res, next) {
