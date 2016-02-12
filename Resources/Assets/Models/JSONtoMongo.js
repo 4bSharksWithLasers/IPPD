@@ -10,7 +10,7 @@ var fs = require('fs'),
     Team = require('./team-registration.server.model.js'),
     BlankRubric = require('./blankRubric-review.server.model.js'),
     CompletedRating = require('./completedRating-review.server.model.js'),
-    config = require('./config');
+    config = require('../../../config/env/development.js');
     
 /* Connect to your database. DONE*/
   mongoose.connect(config.db.uri);
