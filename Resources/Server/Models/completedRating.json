@@ -4,37 +4,97 @@
 			"team": "Team1",
 			"presentationType": "QRB", 
 			"email": "reviewer1@ufl.edu",
-			"projectGoals": 5,
-			"thePrototype": 3,
-			"design": 4,
-			"projectPlan": 4,
-			"projectRisks": 5,
-			"teamMemberAssignments": 4,
-			"liaisonCommunication": 5,
-			"overallAssessment": 4,
+			"ratedItems":[
+				{
+					"rubricItem": "projectGoals",
+					"rating": 5
+				},
+				{
+					"rubricItem": "thePrototype",
+					"rating": 4
+				},
+				{
+					"rubricItem": "design",
+					"rating": 4
+				},
+				{
+					"rubricItem": "projectPlan",
+					"rating": 4
+				},
+				{
+					"rubricItem": "projectRisks",
+					"rating": 5
+				},
+				{
+					"rubricItem": "teamMemberAssignments",
+					"rating": 4
+				},
+				{
+					"rubricItem": "lisaisonCommunication",
+					"rating": 5
+				},
+				{
+					"rubricItem": "overallAssessment",
+					"rating": 4
+				}
+			],
 			"issuesIdentified": "Not enough detail",
-			"recommendedActions":{
-				"recommendation": "Do better",
-				"urgency": true	
-			}
+			"recommendedActions":[
+				{
+					"recommendation": "Do better",
+					"urgency": true	
+				},
+				{
+					"recommendation": "Visit my lab",
+					"urgency": false	
+				}
+			]
 		},
 		{
 			"team": "Team2",
 			"presentationType": "SLDR", 
 			"email": "reviewer2@ufl.edu",
-			"projectGoals": 4,
-			"design": 3,
-			"thePrototype": 3,
-			"projectPlan": 1,
-			"projectRisks": 3,
-			"teamMemberAssignments": 3,
-			"liaisonCommunication": 4,
-			"overallAssessment": 3,
-			"issuesIdentified": "Not good at all",
-			"recommendedActions":{
-				"recommendation": "Do better",
-				"urgency": true	
-			}
+			"ratedItems":[
+				{
+					"rubricItem": "projectGoals",
+					"rating": 4
+				},
+				{
+					"rubricItem": "thePrototype",
+					"rating": 3
+				},
+				{
+					"rubricItem": "design",
+					"rating": 2
+				},
+				{
+					"rubricItem": "projectPlan",
+					"rating": 1
+				},
+				{
+					"rubricItem": "projectRisks",
+					"rating": 3
+				},
+				{
+					"rubricItem": "teamMemberAssignments",
+					"rating": 4
+				},
+				{
+					"rubricItem": "lisaisonCommunication",
+					"rating": 3
+				},
+				{
+					"rubricItem": "overallAssessment",
+					"rating": 2
+				}
+			],
+			"issuesIdentified": "Not enough detail",
+			"recommendedActions":[
+				{
+					"recommendation": "Use a different algorithm. ",
+					"urgency": true	
+				}
+			]
 		}
 	]
 }
