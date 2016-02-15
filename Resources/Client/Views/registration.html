@@ -29,7 +29,7 @@
 		<!-- Bootstrap         -->
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet">
 		<!-- Document Specific -->
-		<link href="../Assets/Styles/index.css" type="text/css" rel="stylesheet">
+		<link href="../Client/Assets/Styles/index.css" type="text/css" rel="stylesheet">
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -39,19 +39,19 @@
 
 	</head>
 
-	<body>
+	<body ng-controller="RegistrationController">
 
 		<header>
 			<div class="jumbotron">
 				<div class="container text-center">
-					<img src="../Assets/Images/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo">
+					<img src="../Client/Assets/Images/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo">
 					<p><em>Registration</em></p>
 				</div>
 			</div>
 		</header>
 
 		<main>
-			<div class="container" ng-controller="RegistrationController">
+			<div class="container">
 				<form role="form" action="/review" method="get">
 					<div class="form group">
 						<h3> E-mail </h3>
@@ -78,6 +78,16 @@
 			</div>
 		</main>
 
+		<div class="container error-backdrop" ng-show="isError"></div>
+
+		<div class="container error-box text-center" ng-repeat="item in error" ng-show="isError">
+			{{ item.type }}
+			<hr>
+			{{ item.msg }}
+			<hr>
+			<button class="btn btn-default btn-lg" ng-click="closeError()">Got It</button>
+		</div>
+
 		<footer>
 			<div class="container text-center">
 				Copyright &copy 2016 4bSharksWithLasers
@@ -91,7 +101,7 @@
 		<!-- Bootstrap         -->
 		<script src="" type="text/javascript"></script>
 		<!-- Document Specific -->
-    <script src="../Assets/Controllers/registration-controller.js" type="text/javascript"></script>
+    <script src="../Client/Assets/Controllers/registration-controller.js" type="text/javascript"></script>
 	</body>
 
 <!--  --------------------------------------------------------------------------
