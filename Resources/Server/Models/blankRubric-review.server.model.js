@@ -13,7 +13,7 @@ var blankRubricSchema = new Schema({
     required: true 
   },
   //not sure if this below, for ratedItems will work... Try and see see
-  ratedItems: {
+  ratedItems: [{
     itemCategory: {
     	type: String,
     	required: true
@@ -30,7 +30,7 @@ var blankRubricSchema = new Schema({
       type: String, 
       required: true
     }
-  },
+  }],
   created_at: Date,
   updated_at: Date
 });

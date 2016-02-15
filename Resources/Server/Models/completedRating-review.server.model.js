@@ -16,43 +16,21 @@ var completedRatingSchema = new Schema({
     type: String, 
     required: true 
   },
-  projectGoals: {
-    type: Number, 
-    required: true 
-  },
-  thePrototype: {
-    type: Number,
-    required: true 
-  },
-  design: {
-    type: Number, 
-    required: true 
-  },
-  projectPlan: {
-    type: Number, 
-    required: true 
-  },
-  projectRisks: {
-    type: Number, 
-    required: true 
-  },
-  teamMemberAssignments: {
-    type: Number, 
-    required: true 
-  },
-  liaisonCommunication: {
-    type: Number, 
-    required: true 
-  },
-  overallAssessment: {
-    type: Number, 
-    required: true 
-  },
+  ratedItems:[{
+    rubricItem: {
+      type: String,
+      required: true
+    }, 
+    rating: {
+      type: Number,
+      required: true
+    }
+  }],
   issuesIdentified: {
     type: String,
     required: true
   }, 
-  recommendedActions: {
+  recommendedActions: [{
     recommendation: {
       type: String,
       required: true
@@ -61,7 +39,7 @@ var completedRatingSchema = new Schema({
       type: Boolean,
       required: true
     }
-  },
+  }],
   //not sure if this below, for recommended actions will work... Try and see see
   created_at: Date,
   updated_at: Date
