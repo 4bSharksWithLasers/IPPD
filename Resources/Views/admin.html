@@ -72,13 +72,52 @@
 				   </div>
 				   
 					<br>
+					
 					<h4 class="panel-title">
-						<a data-toggle="collapse" href="#collapse2">Edit Site Logo/Coloring</a>
+						<a data-toggle="collapse" href="#collapse2">Edit Team Members/Coaches</a>
 					</h4>
 					<br>
 					<div id="collapse2" class="panel-collapse collapse">
-					<div class="panel-body">logo/color Body</div>
+					<div class="panel-body">coaches/members Body</div>
 				   </div>
+				   
+					<br>
+					
+					<h4 class="panel-title">
+						<a data-toggle="collapse" href="#collapse3">Edit Site Coloring</a>
+					</h4>
+					<br>
+					<div id="collapse3" class="panel-collapse collapse">
+					
+					<div class="panel-body">
+					<script src="jscolor.js"></script>
+					<h4>Choose New Site Coloring:</h4>
+					<input class="jscolor" value="FFAE17" id = "colorChoice">
+					<script>
+	                function setTextColor(picker) {
+					document.getElementsByTagName('body')[0].style.color = '#' + picker.toString()
+					}
+					</script>
+					</div>
+				   </div>
+				   
+				   <br>
+				   
+				   <h4 class="panel-title">
+						<a data-toggle="collapse" href="#collapse4">Edit Site Logo</a>
+					</h4>
+					<br>
+					<div id="collapse4" class="panel-collapse collapse">
+					<div class="panel-body">
+	                <h4>Choose New Site Logo:</h4>
+					<input type="file" value="Upload File" accept="image/*">
+					<br>
+					</div>
+				   </div>
+				   
+				   <br>
+				   <br>
+				   <button class="btn btn-default btn-lg" type="submit" value="Save Changes">Save Changes</button>
 				   
 				</div>
 				</div>
