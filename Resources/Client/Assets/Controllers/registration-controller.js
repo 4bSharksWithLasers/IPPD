@@ -33,6 +33,19 @@ app.controller('RegistrationController', function($scope) {
 		{Choice:"Demo Day"}
 	];
 
+	$scope.isError = true;
+
+	$scope.error = [
+		{
+			type: "Generic",
+			msg: "Some nonsensical text used as a placeholder for the error message box"
+		}
+	];
+
+	$scope.closeError = function() {
+		$scope.isError = false;
+	};
+
 });
 
 /*  ----------------------------------------------------------------------------

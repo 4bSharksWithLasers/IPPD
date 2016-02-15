@@ -77,8 +77,8 @@ app.controller('ReviewController', function($scope) {
 	};
 
 	/*
-		Combines two arrays into one array of tuples.
-			example: a[0, 1, 2] and b[7, 8, 9] become c[(0, 7), (1, 8), (2, 9)]
+		Combines three arrays into one array of tuples.
+			example: a[0, 1, 2] and b[3, 4, 5] and c[6, 7, 8] become d[(0, 3, 6), (1, 4, 7), (2, 5, 8)]
 	*/
 	Array.prototype.zip = function(one, two) {
 		return this.map(function(e, i) {
@@ -86,12 +86,15 @@ app.controller('ReviewController', function($scope) {
 		})
 	};
 
-	// combine rubric[] and star into u[]
+	// combine rubric[] and rating[] and star into u[]
 	$scope.u = $scope.rubric.zip($scope.rating, $scope.star);
 
 /*
 	$scope.rating = [
 		{
+			email: string,
+			team: string,
+			presentation: string,
 			design: 0,
 			prototype: 0,
 			goals: 0,
@@ -110,6 +113,28 @@ app.controller('ReviewController', function($scope) {
 		}
 	];
 */
+/*
+		{
+			"team": "Team1",
+			"presentationType": "QRB", 
+			"email": "reviewer1@ufl.edu",
+			"projectGoals": 5,
+			"thePrototype": 3,
+			"design": 4,
+			"projectPlan": 4,
+			"projectRisks": 5,
+			"teamMemberAssignments": 4,
+			"liaisonCommunication": 5,
+			"overallAssessment": 4,
+			"issuesIdentified": "Not enough detail",
+			"recommendedActions":{
+				"recommendation": "Do better",
+				"urgency": true	
+			}
+*/
+	$scope.submitRating = function() {
+		
+	};
 
 	$scope.recommendations = [{text:"", urgent:0}];
 
@@ -127,6 +152,8 @@ app.controller('ReviewController', function($scope) {
 		$scope.star[index].colorFour = "#eaeaea";
 		$scope.star[index].colorFive = "#eaeaea";
 		$scope.rating[index].rating = 1;
+		console.log($scope.u[index][0].subject);
+		console.log($scope.u[index][1].rating);
 	};
 
 	$scope.changeTwo = function(index) {
@@ -136,6 +163,8 @@ app.controller('ReviewController', function($scope) {
 		$scope.star[index].colorFour = "#eaeaea";
 		$scope.star[index].colorFive = "#eaeaea";
 		$scope.rating[index].rating = 2;
+		console.log($scope.u[index][0].subject);
+		console.log($scope.u[index][1].rating);
 	};
 
 	$scope.changeThree = function(index) {
@@ -145,6 +174,8 @@ app.controller('ReviewController', function($scope) {
 		$scope.star[index].colorFour = "#eaeaea";
 		$scope.star[index].colorFive = "#eaeaea";
 		$scope.rating[index].rating = 3;
+		console.log($scope.u[index][0].subject);
+		console.log($scope.u[index][1].rating);
 	};
 
 	$scope.changeFour = function(index) {
@@ -154,6 +185,8 @@ app.controller('ReviewController', function($scope) {
 		$scope.star[index].colorFour = "#ffd700";
 		$scope.star[index].colorFive = "#eaeaea";
 		$scope.rating[index].rating = 4;
+		console.log($scope.u[index][0].subject);
+		console.log($scope.u[index][1].rating);
 	};
 
 	$scope.changeFive = function(index) {
@@ -163,11 +196,13 @@ app.controller('ReviewController', function($scope) {
 		$scope.star[index].colorFour = "#ffd700";
 		$scope.star[index].colorFive = "#ffd700";
 		$scope.rating[index].rating = 5;
+		console.log($scope.u[index][0].subject);
+		console.log($scope.u[index][1].rating);
 	};
 
 	// Add recommendations in a ToDo list format
 	var first = true;
-  $scope.addRecommendation = function() {
+  $scope.addRecommendation = function(index) {
 		if(first===false)
 			$scope.recommendations.push({text:$scope.recommendationText, urgent:0});
 		else {
@@ -176,15 +211,16 @@ app.controller('ReviewController', function($scope) {
 			$scope.showRecommendation = true;
 			first = false;
 		}
-
     $scope.recommendationText = "";
   };
 
 	// Remove recommendations
 	$scope.rmvRecommendation = function(index) {
 		$scope.recommendations.splice($scope.recommendations[index], 1);
-		if($scope.recommendations.length===0)
+		if($scope.recommendations.length===0) {
 			first = true;
+			$scope.showChecked = false;
+		}
 	};
 
 	// Set urgency
@@ -197,6 +233,8 @@ app.controller('ReviewController', function($scope) {
 			$scope.recommendations[index].urgent = 1;
 			$scope.showChecked = true;
 		}
+		console.log($scope.recommendations[index].text);
+		console.log($scope.recommendations[index].urgent);
 	};
 
 });

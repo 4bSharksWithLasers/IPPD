@@ -29,12 +29,11 @@ body {
   font-family: Georgia, serif;
 	padding-bottom: 6em;
 }
-
+/*
 main {
 	position: relative;
 }
-
-
+*/
 footer {
 	position: absolute;
 	bottom: 2.5%;
@@ -56,6 +55,10 @@ a:hover {
 	padding-bottom: 8px;
 }
 
+hr {
+	border: solid thin #2e2e2e;
+	opacity: 0.45;
+}
 
 p {
 	font-size: 2em !important;
@@ -77,8 +80,35 @@ h3 + p {
 	border: none;
 	padding: none;
 }
+
 .rating:hover {
 	color: yellow;
+}
+
+.error-box {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 2.5%;
+	z-index: 2;
+	background-color: #eaeaea;
+	color: #2e2e2e;
+	width: 35%;
+	border: solid thin #2e2e2e;
+	border-radius: 10px;
+	padding: 1em 2em 1em;
+	font-size: 1.75em;
+}
+
+.error-backdrop {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	min-width: 100%;
+	min-height: 100%;
+	z-index: 1;
+	background-color: #0e0e0e;
+	opacity: 0.85;
 }
 
 .jumbotron {
