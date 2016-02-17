@@ -1,4 +1,4 @@
-angular.module('registrants').factor('registrants', ['$http', 
+angular.module('registrants').factory('registrants', ['$http', 
 	function($http){
 		var methods = {
 			getAll: function(){
