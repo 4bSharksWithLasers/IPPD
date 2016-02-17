@@ -1,6 +1,8 @@
 var config = require('./config'), 
     mongoose = require('mongoose'),   
-    express = require('./express');
+    express = require('./express'), 
+    path = require('path'), 
+    bodyParser = require('body-parser');
 
 module.exports.start = function() {
   var app = express.init();

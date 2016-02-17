@@ -52,10 +52,10 @@
 
 		<main>
 			<div class="container">
-				<form role="form" action="/review" method="get">
+				<form role="form" action="/review" method="get" name ="registrationForm" ng-submit="createUser(registrationForm.$valid)">
 					<div class="form group">
 						<h3> E-mail </h3>
-					  <input type="e-mail" name="e-mail" class="form-control input-lg" placeholder="user@email.com">
+					  <input type="e-mail" name="e-mail" class="form-control input-lg" placeholder="user@email.com" ng-model="e-mail">
 					</div>
 					<div class="form-group">
 						<h3> Affiliation </h3>
@@ -80,13 +80,13 @@
 
 		<div class="container error-backdrop" ng-show="isError"></div>
 
-		<div class="container error-box text-center" ng-repeat="item in error" ng-show="isError">
+		<!-- <div class="container error-box text-center" ng-repeat="item in error" ng-show="isError">
 			{{ item.type }}
 			<hr>
 			{{ item.msg }}
 			<hr>
 			<button class="btn btn-default btn-lg" ng-click="closeError()">Got It</button>
-		</div>
+		</div> -->
 
 		<footer>
 			<div class="container text-center">
@@ -102,6 +102,7 @@
 		<script src="" type="text/javascript"></script>
 		<!-- Document Specific -->
     <script src="../Client/Assets/Controllers/registration-controller.js" type="text/javascript"></script>
+    <script src="../../Client/Assets/Factories/users.client.factory.js" type="text/javascript"></script>
 	</body>
 
 <!--  --------------------------------------------------------------------------

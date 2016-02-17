@@ -5,9 +5,15 @@ var users = require('../Controllers/user.server.controller.js'),
 	express = require('express'),
 	router = express.Router(); 
 
-/*router.route('/')
-Not sure what the exact routes need to be. 
-*/
+//Main page with registration button.
+//router.route('/')
+
+router.route('/registration')
+  .get(teams.list)
+  .post(users.create);
+
+router.route('/admin')
+
 
 /*
   The 'router.param' method allows us to specify middleware we would like to use to handle 
