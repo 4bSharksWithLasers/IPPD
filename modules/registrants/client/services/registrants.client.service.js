@@ -1,24 +1,24 @@
-angular.module('users').factor('Users', ['$http', 
+angular.module('registrants').factor('registrants', ['$http', 
 	function($http){
 		var methods = {
 			getAll: function(){
-				return $http.get('http://localhost:8080/api/users')
+				return $http.get('http://localhost:8080/api/registrants')
 			}, 
 
-			create: function(user){
-				return $http.post('http://localhost:8080/api/users', user);
+			create: function(registrants){
+				return $http.post('http://localhost:8080/api/registrants', user);
 			},
 
 			read: function(id){
-				return $http.get('http://localhost:8080/api/users/' + id);
+				return $http.get('http://localhost:8080/api/registrants/' + id);
 			},
 
-			update: function(id, user){
-				return $http.put('http://localhost:8080/api/users/' + id, user);
+			update: function(id, registrants){
+				return $http.put('http://localhost:8080/api/registrants/' + id, user);
 			}, 
 
 			delete: function(id){
-				return $http.delete('http://localhost:8080/api/users/' + id);
+				return $http.delete('http://localhost:8080/api/registrants/' + id);
 			}
 		};
 
