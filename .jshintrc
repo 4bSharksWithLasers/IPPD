@@ -12,6 +12,7 @@
   "undef": true, // Require all non-global variables be declared before they are used.
   "unused": false, // Warn unused variables.
   "strict": true, // Require `use strict` pragma in every file.
+  "smarttabs": false, // Suppresses warnings about mixed tabs and spaces
   "globals": { // Globals variables.
     "angular": true,
     "io": true,
@@ -23,5 +24,7 @@
     "browser",
     "element"
   ],
-  "devel": true // Allow development statements e.g. `console.log();`.
+  "indent": 4, // Specify indentation spacing
+  "devel": true, // Allow development statements e.g. `console.log();`.
+  "noempty": true // Prohibit use of empty blocks
 }
