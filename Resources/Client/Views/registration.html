@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html ng-app="registration">
+
+<!--  --------------------------------------------------------------------------
+
+																					 Copyright 2016 4BSharksWithLasers    
+
+---------------------------------------------------------------------------  -->
+
+	<head>
+
+		<!-- The following set of tags must be first                             -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- END SET                                                             -->
+
+		<!-- Additional meta information                                         -->
+		<meta name="description" content="IPPD PROJECT">
+		<meta name="author" content="Amy Devries">
+		<meta name="author" content="Steven Williams">
+		<meta name="author" content="Zach Martinez">
+		<meta name="author" content="Justin Pons">
+		<meta name="author" content="Phillip Smith">
+
+		<title>IPPD Design Review Feedback</title>
+
+		<!-- Bootstrap         -->
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+		<!-- Document Specific -->
+		<link href="../Client/Assets/Styles/index.css" type="text/css" rel="stylesheet">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+	</head>
+
+	<body ng-controller="RegistrationController">
+
+<<<<<<< HEAD:Resources/Views/registration.html
+		<div class="jumbotron">
+			<div class="container text-center">
+				<article>
+					<img src="../Assets/Images/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo">
+				</article>
+				<article>
+					<p><em>Design Review Registration</em></p>
+				</article>
+=======
+		<header>
+			<div class="jumbotron">
+				<div class="container text-center">
+					<img src="../Client/Assets/Images/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo">
+					<p><em>Registration</em></p>
+				</div>
+>>>>>>> master:Resources/Client/Views/registration.html
+			</div>
+		</header>
+
+		<main>
+			<div class="container">
+				<form role="form" action="/review" method="get">
+					<div class="form group">
+						<h3> E-mail </h3>
+<<<<<<< HEAD:Resources/Views/registration.html
+				    <input type="e-mail" name="e-mail" class="form-control input-lg" required placeholder="user@email.com">
+				  </div>
+				</article>
+				<article>
+=======
+					  <input type="e-mail" name="e-mail" class="form-control input-lg" placeholder="user@email.com">
+					</div>
+>>>>>>> master:Resources/Client/Views/registration.html
+					<div class="form-group">
+						<h3> Affiliation </h3>
+						<select class="form-control input-lg" ng-options="choice as choice.Choice for choice in affiliation track by choice.Choice" ng-model="affiliationChoice">
+						</select>
+					</div>
+					<div class="form-group" ng-show="affiliationChoice.Choice=='Student' || affiliationChoice.Choice=='Coach' || affiliationChoice.Choice=='Liason'">
+						<h3> Team </h3>
+						<select class="form-control input-lg" ng-options="choice as choice.Choice for choice in team track by choice.Choice" ng-model="teamChoice">
+						</select>
+					</div>
+					<div class="form group" ng-show="affiliationChoice.Choice=='Student' || affiliationChoice.Choice=='Coach'">
+<<<<<<< HEAD:Resources/Views/registration.html
+						<h3> Team Code (4 digit number) </h3>
+				    <input type="team-code" name="team-code" class="form-control input-lg" placeholder="Enter your team code">
+				  </div>
+				</article>
+				<article>
+=======
+						<h3> Team Code </h3>
+					  <input type="team-code" name="team-code" class="form-control input-lg" placeholder="Enter your team code">
+					</div>
+>>>>>>> master:Resources/Client/Views/registration.html
+					<div class="container t-padding">
+						<button class="btn btn-default btn-lg" type="submit" value="Send">Submit</button>
+					</div>
+				</form>
+			</div>
+		</main>
+
+		<div class="container error-backdrop" ng-show="isError"></div>
+
+		<div class="container error-box text-center" ng-repeat="item in error" ng-show="isError">
+			{{ item.type }}
+			<hr>
+			{{ item.msg }}
+			<hr>
+			<button class="btn btn-default btn-lg" ng-click="closeError()">Got It</button>
+		</div>
+
+		<footer>
+			<div class="container text-center">
+				Copyright &copy 2016 4bSharksWithLasers
+			</div>
+		</footer>
+
+    <!-- Scripts included at the bottom so the page will load faster         -->
+
+    <!-- Angular           -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" type="text/javascript"></script>
+		<!-- Bootstrap         -->
+		<script src="" type="text/javascript"></script>
+		<!-- Document Specific -->
+    <script src="../Client/Assets/Controllers/registration-controller.js" type="text/javascript"></script>
+	</body>
+
+<!--  --------------------------------------------------------------------------
+
+																					 Copyright 2016 4BSharksWithLasers    
+
+---------------------------------------------------------------------------  -->
+
+</html>

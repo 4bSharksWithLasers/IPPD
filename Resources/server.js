@@ -5,8 +5,8 @@
 ----------------------------------------------------------------------------  */
 
 //set require variables
-var config = require("./Assets/Config/config");
-var user = require("./Assets/Models/db");
+var config = require("./Server/Config/config");
+var user = require("./Server/Models/db");
 var express = require("express");
 var path = require("path");
 
@@ -15,17 +15,26 @@ var server = express();
 var port = config.port;
 
 // set routes to static assets (images and stylesheets)
-server.use("/Assets", express.static(__dirname + "/Assets"));
+server.use("/Client/Assets", express.static(__dirname + "/Client/Assets"));
 
 // open port
 server.listen(port);
 console.log("Listening: Port", port);
 
 // route variables
-var index = "/Views/index.html";
-var registration = "/Views/registration.html";
-var review = "/Views/review.html";
-var admin = "/Views/admin.html";
+var index = "/Client/Views/index.html";
+var registration = "/Client/Views/registration.html";
+var review = "/Client/Views/review.html";
+var admin = "/Client/Views/admin.html";
+var fourohthree = "/Client/Views/403.html";
+
+// authenticate users to prevent direct access to pages
+function isAuthenticated(req, res, next) {
+	if(1===1)
+		return next();
+	else
+		res.sendFile(__dirname + fourohthree);
+};
 
 //--	get routes																														--//
 
@@ -36,19 +45,19 @@ server.get("/", function(req, res) {
 });
 
 // registration.html
-server.get("/registration", function(req, res) {
+server.get("/registration", isAuthenticated, function(req, res) {
 	res.sendFile(__dirname + registration);
 	console.log("Routed to: ", registration);
 });
 
 // review.html
-server.get("/review", function(req, res) {
+server.get("/review", isAuthenticated, function(req, res) {
 	res.sendFile(__dirname + review);
 	console.log("Routed to: ", review);
 });
 
 // admin.html
-server.get("/admin", function(req, res) {
+server.get("/admin", isAuthenticated, function(req, res) {
 	res.sendFile(__dirname + admin);
 	console.log("Routed to: ", admin);
 });
