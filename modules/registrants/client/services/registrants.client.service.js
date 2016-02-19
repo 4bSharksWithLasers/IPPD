@@ -1,8 +1,10 @@
+'use strict';
+
 angular.module('registrants').factory('registrants', ['$http', 
 	function($http){
 		var methods = {
 			getAll: function(){
-				return $http.get('http://localhost:8080/api/registrants')
+				return $http.get('http://localhost:8080/api/registrants');
 			}, 
 
 			create: function(registrants){

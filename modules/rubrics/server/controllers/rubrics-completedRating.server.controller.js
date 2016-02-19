@@ -1,3 +1,5 @@
+'use strict';
+
 var mongoose = require('mongoose'),
 	CompletedRating = require('../models/rubrics-completedRating.server.model.js');
 

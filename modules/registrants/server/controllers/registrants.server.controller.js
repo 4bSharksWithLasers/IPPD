@@ -1,3 +1,5 @@
+'use strict';
+
 var mongoose = require('mongoose'),
 	Registrant = require('../models/registrant.server.model.js');
 //NEED TO CHANGE THE FILE PATH

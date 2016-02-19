@@ -1,3 +1,5 @@
+'use strict';
+
 var mongoose = require('mongoose'),
 	BlankRubric = require('../models/rubrics-blankRubric.server.model.js');
 
