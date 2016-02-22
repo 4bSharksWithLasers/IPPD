@@ -1,72 +1,109 @@
 'use strict';
 
-var mongoose = require('mongoose'), CompletedRating = require('../models/rubrics-completedRating.server.model.js');
+var mongoose = require('mongoose'),
+  CompletedRating = mongoose.model('CompletedRating'), 
+  path = require('path'),
+  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
-//CREATE a completedRating
-exports.create = function(req, res) //Instantiate a completedRating
-	{ var completedRating = new CompletedRating(req.body); completedRating.save(function(err) //save the completedRating
-	{ if(err)
-		{ console.log(err); res.status(400).send(err);
-		}
-	else
-		{ res.json(completedRating);
-		}
-	});
+//CREATE a completed rating
+exports.create = function(req, res){
+  //Instantiate a completed rating
+  var completedRating = new CompletedRating(req.body);
+
+  //save the completed rating
+  completedRating.save(function(err){
+    if(err){
+      console.log(err);
+      console.log('error in server.controller');
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+      else{
+      res.json(completedRating);
+    }
+  });
 };
 
-//READ a completedRating
-exports.read = function(req, res) //send back the completedRating as json from the request
-	{ res.json(req.completedRating);
+//READ a completed rating
+exports.read = function(req, res){
+  //send back the user as json from the request
+  res.json(req.completedRating);
 };
 
-//UPDATE a completedRating
-exports.update = function(req, res)
-	{ var completedRating = req.completedRating
-		//replace the article's properties with the new properties found in req.body
-		; completedRating.team = req.body.team; completedRating.presentationType = req.body.presentationType; completedRating.email = req.body.email
-		//not sure if the below lines will work, due to the nested nature of the schema. figure this out later?
-		; completedRating.ratedItems = req.body.ratedItems; completedRating.issuesIdentified = req.body.issuesIdentified; completedRating.recommendedActions = req.body.recommendedActions; completedRating.save(function(err) //save the article
-		{ if(err)
-			{ console.log(err); res.status(400).send(err);
-			}
-		else
-			{ res.json(completedRating);
-		}
-	});
+//UPDATE a completed rating
+exports.update = function(req, res){
+  var completedRating = req.completedRating;
+
+  //replace the article's properties with the new properties found in req.body
+  completedRating.team = req.body.team; 
+  completedRating.presentationType = req.body.presentationType;
+  completedRating.email = req.body.email; 
+  completedRating.ratedItems = req.body.ratedItems; 
+  completedRating.issuesIdentified = req.body.issuesIdentified;
+  completedRating.recommendedActions = req.body.recommendedActions;
+
+  //save the article
+  completedRating.save(function(err){
+    if(err){
+      console.log(err);
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+      else{
+      res.json(completedRating);
+    }
+  });
 };
 
-//DELETE a completedRating
-exports.delete = function(req, res)
-	{ var completedRating = req.completedRating; completedRating.remove(function(err) //remove the article
-		{ if(err)
-			{ res.status(400).send(err);
-			}
-		else
-			{ res.end();
-			}
-	});
+//DELETE a completed rating
+exports.delete = function(req, res){
+  var completedRating = req.completedRating; 
+
+  //remove the article
+  completedRating.remove(function(err){
+    if(err){
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+      else{
+      res.end();
+    }
+  });
 };
 
-//Retrieve all completedRatings, sorted alphabetically by team name
-exports.list = function(req, res)
-	{ CompletedRating.find().sort('team').exec(function(err, completedRatings)
-		{ if(err)
-			{ res.status(400).send(err);
-			}
-		else
-			{ res.json(completedRatings);
-			}
-	});
+//Retrieve all completed ratings, sorted alphabetically by team
+exports.list = function(req, res){
+  CompletedRating.find().sort('team').exec(function(err, completedRatings){
+    if(err){
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+      else{
+      res.json(completedRatings);
+    }
+  });
 };
 
-//Find a completedRating by its ID and pass it to the next request handler
-exports.completedRatingById = function(req, res, next, id)
-	{ CompletedRating.findById(id).exec(function(err, completedRating)
-		{ if(err)
-			{ res.status(400).send(err);
-			}
-		else
-			{ req.completedRating = completedRating; next();
-			}
-	});
+//Find a completed rating by its ID and pass it to the next request handler
+exports.completedRatingById = function(req, res, next, id){
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).send({
+      message: 'Completed Rating is invalid'
+    });
+  }
+
+  CompletedRating.findById(id).exec(function(err, completedRating){
+    if(err){
+      res.status(400).send(err);
+    }
+      else{
+      req.completedRating = completedRating;
+      next();
+    }
+  });
 };

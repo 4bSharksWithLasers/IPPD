@@ -1,9 +1,11 @@
 'use strict';
 
 /* Import mongoose and define any variables needed to create the schema */
-var mongoose = require('mongoose'), Schema = mongoose.Schema;
+var mongoose = require('mongoose'), 
+  Schema = mongoose.Schema;
 
 /* Create your schema */
+//all the categories should be required ones. 
 var completedRatingSchema = new Schema({
   team: {
     type: String, 
@@ -20,25 +22,21 @@ var completedRatingSchema = new Schema({
   ratedItems:[{
     rubricItem: {
       type: String,
-      required: true
     }, 
     rating: {
-      type: Number,
-      required: true
+      type: Number
     }
   }],
   issuesIdentified: {
-    type: String,
-    required: true
+    type: String
   }, 
   recommendedActions: [{
     recommendation: {
-      type: String,
-      required: true
+      type: String
     }, 
     urgency: {
-      type: Boolean,
-      required: true
+      //type should be boolean 
+      type: Number
     }
   }],
   //not sure if this below, for recommended actions will work... Try and see see
@@ -56,9 +54,4 @@ completedRatingSchema.pre('save', function(next) {
   }
   next();
 });
-
-/* Use your schema to instantiate a Mongoose model */
-var CompletedRating = mongoose.model('CompletedRating', completedRatingSchema);
-
-/* Export the model to make it avaiable to other parts of your Node application */
-module.exports = CompletedRating;
+mongoose.model('CompletedRating', completedRatingSchema);
