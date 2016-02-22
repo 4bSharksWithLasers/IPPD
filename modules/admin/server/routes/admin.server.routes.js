@@ -10,7 +10,6 @@ var adminPolicy = require('../policies/admin.server.policy'),
 module.exports = function (app) {
   // admin collection routes
   app.route('/api/teams').all(adminPolicy.isAllowed)
-
     .get(teams.list)
     .post(teams.create);
 
