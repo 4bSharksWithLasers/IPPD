@@ -3,7 +3,8 @@
 // Setting up route
 angular.module('admin').config(['$stateProvider',
   function ($stateProvider) {
-    // rubrics state routing
+    
+    // admin state routing
     $stateProvider
       .state('teams', {
         abstract: true,
