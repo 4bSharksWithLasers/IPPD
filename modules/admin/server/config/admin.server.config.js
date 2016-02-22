@@ -1,8 +1,8 @@
 'use strict';
 
 /**
- * Module dependencies.
- */
+* Module dependencies.
+*/
 var passport = require('passport'),
   User = require('mongoose').model('User'),
   path = require('path'),

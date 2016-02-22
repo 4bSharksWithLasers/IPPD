@@ -3,7 +3,6 @@
 // Setting up route
 angular.module('admin').config(['$stateProvider',
   function ($stateProvider) {
-    
     // admin state routing
     $stateProvider
       .state('teams', {
