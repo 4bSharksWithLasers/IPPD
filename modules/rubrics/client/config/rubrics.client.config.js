@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-=======
 'use strict';
 
 // Configuring the registrants module
@@ -21,4 +18,3 @@ angular.module('rubrics').run(['Menus',
     });
   }
 ]);
->>>>>>> AmyRestructuringThatWorks
