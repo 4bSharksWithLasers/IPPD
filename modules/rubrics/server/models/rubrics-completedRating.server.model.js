@@ -54,4 +54,5 @@ completedRatingSchema.pre('save', function(next) {
   }
   next();
 });
+
 mongoose.model('CompletedRating', completedRatingSchema);

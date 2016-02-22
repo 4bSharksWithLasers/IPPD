@@ -5,7 +5,6 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 /* Create your schema */
-//all the categories should be required.
 var blankRubricSchema = new Schema({
   presentationType: {
     type: String, 
