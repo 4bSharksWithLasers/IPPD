@@ -8,6 +8,10 @@ angular.module('admin').factory('Teams', ['$resource',
     }, {
       update: {
         method: 'PUT'
+      },
+      query: {
+        method:'GET',
+        isArray: true
       }
     });
   }

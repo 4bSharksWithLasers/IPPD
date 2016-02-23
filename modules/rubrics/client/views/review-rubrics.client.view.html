@@ -5,13 +5,24 @@
   <div class="col-md-12">
     <form name="completedRatingForm" class="form-horizontal" ng-submit="create(completedRatingForm.$valid)" novalidate>
       <fieldset>
-        <div class="form-group" show-errors>
+
+      <!--   <div class="form-group" show-errors>
           <label for="team">Team Name</label>
           <input name="team" type="text" ng-model="team" id="team" class="form-control" placeholder="Team" required>
           <div ng-messages="completedRatingForm.team.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Team name is required.</p>
           </div>
+
+        </div> -->
+
+        <div class="form-group" show-errors>
+          <label for="team">Team Name</label>
+          <select name="team" ng-options="team.name for team in teamDropdowns | orderBy: 'name'" data-toggle="dropdown" type="button" ng-model="team"id="team" class="btn btn-default dropdown-toggle" placeholder="Team Name" required>
+          <div ng-messages="completedRatingForm.team.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Team name selection is required.</p>
+          </div>
         </div>
+
         <div class="form-group" show-errors>
           <label for="presentationType">Presentation Type</label>
           <input name="apresentationType" type="text" ng-model="presentationType" id="presentationType" class="form-control" placeholder="Presentation Type" required>
@@ -26,21 +37,25 @@
             <p class="help-block error-text" ng-message="required">Email is required.</p>
           </div>
         </div>
-       <!--  <div class="form-group" show-errors>
-          <label for="rubricItem">Rubric Item</label>
+
+       <div class="form-group" show-errors>
+          <label for="rubricItem">Project Goals</label>
           <input name="rubricItem" type="text" ng-model="rubricItem" id="rubricItem" class="form-control" placeholder="Rubric Item">
-          <div ng-messages="completedRatingForm.rubricItem.$error" role="alert"> -->
-            <!-- <p class="help-block error-text" ng-message="required">Rubric Item is required.</p> -->
-          <!-- </div>
+          <div ng-messages="completedRatingForm.rubricItem.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Rubric Item is required.</p> 
+          </div>
+
         </div>
         <div class="form-group" show-errors>
           <label for="rating">Rating</label>
           <input name="rating" type="text" ng-model="rating" id="rating" class="form-control" placeholder="Rating">
-          <div ng-messages="completedRatingForm.rating.$error" role="alert"> -->
-            <!-- <p class="help-block error-text" ng-message="required">Rating is required.</p> -->
-          <!-- </div>
+
+          <div ng-messages="completedRatingForm.rating.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Rating is required.</p>
+          </div>
         </div>
-        <div class="form-group" show-errors>
+        <!-- <div class="form-group" show-errors>
+
           <label for="issuesIdentified">Issues Identified</label>
           <input name="issuesIdentified" type="text" ng-model="issuesIdentified" id="issuesIdentified" class="form-control" placeholder="Issued Identified">
           <div ng-messages="completedRatingForm.issuesIdentified.$error" role="alert"> -->
