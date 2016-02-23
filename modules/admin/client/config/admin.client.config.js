@@ -3,7 +3,7 @@
 // Configuring the registrants module
 angular.module('admin').run(['Menus',
   function (Menus) {
-    // Add the rubrics dropdown item
+    // Add the teams dropdown item
     Menus.addMenuItem('topbar', {
       title: 'Admin',
       state: 'teams',
@@ -15,6 +15,10 @@ angular.module('admin').run(['Menus',
     Menus.addSubMenuItem('topbar', 'teams', {
       title: 'Add Team',
       state: 'addTeam'
+    });
+    Menus.addSubMenuItem('topbar', 'teams', {
+      title: 'Add Affiliation',
+      state: 'addAffiliation'
     });
   }
 ]);

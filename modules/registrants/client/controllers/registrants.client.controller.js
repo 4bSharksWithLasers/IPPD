@@ -1,9 +1,13 @@
 'use strict';
 
 // Registrants controller
-angular.module('registrants').controller('RegistrantsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Registrants', 'Teams',
-  function ($scope, $stateParams, $location, Authentication, Registrants, Teams) {
+angular.module('registrants').controller('RegistrantsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Registrants', 'Teams', 'Affiliations',
+  function ($scope, $stateParams, $location, Authentication, Registrants, Teams, Affiliations) {
     $scope.authentication = Authentication;
+
+    //Pull the list of teams and affiliations from DB
+    $scope.teamDropdowns = Teams.query();
+    $scope.affiliationDropdowns = Affiliations.query();
 
     // Create new Registrant
     $scope.create = function (isValid) {
@@ -35,7 +39,6 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
       });
     };
 
-    $scope.teamDropdowns = Teams.query();
 
     // Remove existing Registrant
     $scope.remove = function (registrant) {
