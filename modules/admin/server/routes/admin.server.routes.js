@@ -4,14 +4,13 @@
  * Module dependencies.
  */
 var adminPolicy = require('../policies/admin.server.policy'),
-  teams = require('../controllers/admin-team.server.controller'), 
-  affiliations = require('../controllers/admin-affiliation.server.controller');
+  admin = require('../controllers/admin-team.server.controller');
 
 module.exports = function (app) {
   // admin collection routes
   app.route('/api/teams').all(adminPolicy.isAllowed)
-    .get(teams.list)
-    .post(teams.create);
+    .get(admin.list)
+    .post(admin.create);
 
   //Route back to admin page after addTeam is complete.
   app.route('/api/addTeam').all(adminPolicy.isAllowed)

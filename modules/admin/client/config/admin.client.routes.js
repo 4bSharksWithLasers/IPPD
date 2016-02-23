@@ -31,5 +31,6 @@ angular.module('admin').config(['$stateProvider',
         url: '/addAffiliation', 
         templateUrl: 'modules/admin/client/views/addAffiliation-admin.client.view.html'
       });
+
   }
 ]);
