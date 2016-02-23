@@ -1,9 +1,22 @@
 'use strict';
 
 // CompletedRatings controller
-angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$stateParams', '$location', 'Authentication', 'CompletedRatings',
-  function ($scope, $stateParams, $location, Authentication, CompletedRatings) {
+angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$stateParams', '$location', 'Authentication', 'CompletedRatings', 'Teams',
+  function ($scope, $stateParams, $location, Authentication, CompletedRatings, Teams) {
     $scope.authentication = Authentication;
+
+    $scope.teamDropdowns = Teams.query();
+
+    //create empty array of objects
+    /*For recommended actions: use ng-repeat and add abject to array each time
+    ng-repeat = "item in ratedItems"
+    set ng-model to item.description, and urgency to item.critical. This sets the field for the array of objects
+    save in controller: ratedItems: $scope.ratedItems 
+
+    for the rubricItems 
+    ng-mode:ratings[$index]
+    */
+    $scope.ratedItems = [{}];
 
     // Create new CompletedRating
     $scope.create = function (isValid) {
@@ -17,11 +30,11 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
 
       // Create new completedRating object
       var completedRating = new CompletedRatings({
-        team: this.team,
+        team: this.team.name,
         presentationType: this.presentationType,
         email: this.email,
-        rubricItem: this.rubricItem,
-        rating: this.rating,
+        ratedItems: [{ rubricItem: this.rubricItem,
+                    rating: this.rating }],
         issuesIdentified: this.issuesIdentified,
         recommendedActions: this.recommendedActions,
         urgency: this.urgency

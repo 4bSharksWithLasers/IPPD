@@ -17,17 +17,26 @@ exports.invokeRolesPolicies = function () {
     allows: [{
       resources: '/api/teams',
       permissions: '*'
+    }, {
+      resources: '/api/affiliations',
+      permissions: '*'
     }]
   }, {
     roles: ['user'],
     allows: [{
       resources: '/api/teams',
       permissions: '*'
+    }, {
+      resources: '/api/affiliations',
+      permissions: '*'
     }]
   }, {
     roles: ['guest'],
     allows: [{
       resources: '/api/teams',
+      permissions: '*'
+    }, {
+      resources: '/api/affiliations',
       permissions: '*'
     }]
   }]);
