@@ -1,0 +1,38 @@
+<section ng-controller="RegistrantsController">
+  <div class="page-header">
+    <h1>Register</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="registrantForm" class="form-horizontal" ng-submit="create(registrantForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label for="email">Email</label>
+          <input name="email" type="text" ng-model="email" id="email" class="form-control" placeholder="Email" required>
+          <div ng-messages="registrantForm.email.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Registrant email is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="affiliation">Affiliation</label>
+          <input name="affiliation" type="text" ng-model="affiliation" id="affiliation" class="form-control" placeholder="Affiliation" required>
+          <div ng-messages="registrantForm.affiliation.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Registrant affiliation is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="teamName">Team Name</label>
+          <input name="teamName" type="text" ng-model="teamName" id="teamName" class="form-control" placeholder="Team Name" required>
+          <div ng-messages="registrantForm.teamName.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Registrant team name is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="submit" class="btn btn-default">
+        </div>
+        <div ng-show="error" class="text-danger">
+          <strong ng-bind="error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>
