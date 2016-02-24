@@ -17,6 +17,19 @@ angular.module('admin').config(['$stateProvider',
       .state('addTeam',{
         url: '/addTeam', 
         templateUrl: 'modules/admin/client/views/addTeam-admin.client.view.html'
+      })
+      .state('affiliations', {
+        abstract: true,
+        url: '/affiliations',
+        template: '<ui-view/>'
+      })
+      .state('affiliations.list', {
+        url: '',
+        templateUrl: 'modules/admin/client/views/listAffiliations-admin.client.view.html'
+      })
+      .state('addAffiliation',{
+        url: '/addAffiliation', 
+        templateUrl: 'modules/admin/client/views/addAffiliation-admin.client.view.html'
       });
   }
 ]);
