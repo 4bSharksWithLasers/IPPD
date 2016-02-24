@@ -1,7 +1,7 @@
 'use strict';
 
 // Setting up route
-angular.module('admin').config(['$stateProvider',
+angular.module('admin').config(['$stateProvider', 
   function ($stateProvider) {
     // admin state routing
     $stateProvider
@@ -13,6 +13,10 @@ angular.module('admin').config(['$stateProvider',
       .state('teams.list', {
         url: '',
         templateUrl: 'modules/admin/client/views/listTeams-admin.client.view.html'
+      })
+      .state('teams.view', {
+        url: '/:teamId',
+        templateUrl: 'modules/admin/client/views/viewTeam-admin.client.view.html'
       })
       .state('addTeam',{
         url: '/addTeam', 
