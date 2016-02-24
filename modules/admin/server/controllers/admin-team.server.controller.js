@@ -56,6 +56,7 @@ exports.update = function(req, res){
 //DELETE a team
 exports.delete = function(req, res){
   var team = req.team; 
+  console.log(team);
 
   //remove the article
   team.remove(function(err){

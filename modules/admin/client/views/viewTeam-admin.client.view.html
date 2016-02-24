@@ -1,0 +1,22 @@
+<div class="row" ng-controller="TeamController" ng-init="findOne()">
+  <div class="col-md-offset-1 col-md-10">
+    <div ng-show="error" class="text-danger">
+      <strong ng-bind="error"></strong>
+    </div>
+    <div class="jumbotron">
+      <img id="loader" ng-show="loading" src="/../../img/484.gif">
+      <div ng-show="team">
+        <h2>{{team.name}}</h2>
+        <p>Team Code: {{team.code}}</p>
+        <!-- <a class="btn btn-primary" ui-sref="teams.edit({ teamId: team._id })">
+          <i class="glyphicon glyphicon-edit"></i>
+          Edit
+        </a> -->
+        <a class="btn btn-danger" ng-click="remove(team);">
+          <i class="glyphicon glyphicon-trash"></i>
+          Remove
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
