@@ -49,4 +49,3 @@ blankRubricSchema.pre('save', function(next) {
 });
 
 mongoose.model('BlankRubric', blankRubricSchema);
-
