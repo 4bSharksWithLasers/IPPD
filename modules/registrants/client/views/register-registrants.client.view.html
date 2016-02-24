@@ -16,23 +16,23 @@
 
         <div class="form-group" show-errors>
           <label for="affiliation">Affiliation</label>
-          <select name="affiliation" ng-options="a.theAffiliation for a in affiliationDropdowns | orderBy: 'theAffiliation'" ng-model="affiliation"id="affiliation" class="btn btn-default dropdown-toggle form-control"required>
+          <select name="affiliation" ng-options="a.theAffiliation for a in affiliationDropdowns | orderBy: 'theAffiliation'" ng-model="affiliation"id="affiliation" class="btn btn-default dropdown-toggle form-control"required></select>
           <div ng-messages="registrantForm.affiliation.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Registrant affiliation is required.</p>
           </div>
         </div>
 
-        <div class="form-group" show-errors>
+        <!-- <div class="form-group" show-errors>
           <label for="affiliation">Affiliation</label>
-          <select name="affiliation" ng-options="a.theAffiliation for a in affiliationDropdowns | orderBy: 'theAffiliation'" ng-model="affiliation"id="affiliation" class="btn btn-default dropdown-toggle form-control"required>
+          <select name="affiliation" ng-options="a.theAffiliation for a in affiliationDropdowns | orderBy: 'theAffiliation'" ng-model="affiliation"id="affiliation" class="btn btn-default dropdown-toggle form-control"required></select>
           <div ng-messages="registrantForm.affiliation.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Registrant affiliation is required.</p>
           </div>
-        </div>
+        </div> -->
 
         <div class="form-group" show-errors>
           <label for="teamName">Team Name</label>
-          <select name="teamName" ng-options="team.name for team in teamDropdowns | orderBy: 'name'" ng-model="teamName"id="teamName" class="btn btn-default dropdown-toggle form-control" placeholder="Team Name" required>
+          <select name="teamName" ng-options="team.name for team in teamDropdowns | orderBy: 'name'" ng-model="teamName"id="teamName" class="btn btn-default dropdown-toggle form-control" placeholder="Team Name" required></select>
           <div ng-messages="registrantForm.teamName.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Registrant team name is required.</p>
           </div>
