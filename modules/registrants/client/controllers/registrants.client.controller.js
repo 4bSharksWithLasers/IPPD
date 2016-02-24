@@ -18,7 +18,7 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
       // Create new Registrant object
       var registrant = new Registrants({
         email: this.email,
-        affiliation: this.affiliation,
+        affiliation: this.affiliation.theAffiliation,
         teamName: this.teamName.name
       });
 
