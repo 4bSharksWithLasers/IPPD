@@ -4,13 +4,14 @@
  * Module dependencies.
  */
 var adminPolicy = require('../policies/admin.server.policy'),
-  admin = require('../controllers/admin-team.server.controller');
+  teams = require('../controllers/admin-team.server.controller'), 
+  affiliations = require('../controllers/admin-affiliation.server.controller');
 
 module.exports = function (app) {
-  // admin collection routes
+  // team collection routes
   app.route('/api/teams').all(adminPolicy.isAllowed)
-    .get(admin.list)
-    .post(admin.create);
+    .get(teams.list)
+    .post(teams.create);
 
   app.route('/api/teams/:teamId').all(adminPolicy.isAllowed)
     .get(teams.read)
@@ -35,13 +36,13 @@ module.exports = function (app) {
     .post(affiliations.create);
 
   app.route('/api/affiliations').all(adminPolicy.isAllowed)
-    .get(admin.list)
-    .post(admin.create);
+    .get(affiliations.list)
+    .post(affiliations.create);
 
   app.route('/api/addAffiliation').all(adminPolicy.isAllowed)
-    .put(admin.create)
-    .get(admin.list)
-    .post(admin.create);
+    .put(affiliations.create)
+    .get(affiliations.list)
+    .post(affiliations.create);
 
   //Single rubric routes
   // app.route('/api/rubrics/:rubricId').all(rubricsPolicy.isAllowed)

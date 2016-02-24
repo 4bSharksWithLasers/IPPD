@@ -1,8 +1,8 @@
 'use strict';
 
 // CompletedRatings controller
-angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$stateParams', '$location', 'Authentication', 'CompletedRatings',
-  function ($scope, $stateParams, $location, Authentication, CompletedRatings) {
+angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$stateParams', '$location', 'Authentication', 'CompletedRatings', 'Teams',
+  function ($scope, $stateParams, $location, Authentication, CompletedRatings, Teams) {
     $scope.authentication = Authentication;
 
     $scope.teamDropdowns = Teams.query();
