@@ -18,6 +18,15 @@ module.exports = function (app) {
     .get(admin.list)
     .post(admin.create);
 
+  app.route('/api/affiliations').all(adminPolicy.isAllowed)
+    .get(admin.list)
+    .post(admin.create);
+
+  app.route('/api/addAffiliation').all(adminPolicy.isAllowed)
+    .put(admin.create)
+    .get(admin.list)
+    .post(admin.create);
+
   //Single rubric routes
   // app.route('/api/rubrics/:rubricId').all(rubricsPolicy.isAllowed)
   //   .get(rubrics.read)
