@@ -1,0 +1,25 @@
+{
+	"blankRubricEntries": [
+		{
+			"presentationType": "Project Plan and Detail Design QRB",
+			"instructions": "Insert instructions here for QRB", 
+			"ratedItems":{
+				"itemCategory": "Project Goals",
+				"description1": "Team can clearly communicate project goals and priorities.",
+				"description2": "Project goals and priorities are available, but cannot be concisely shared.",
+				"description3": "Project goals are unclear"
+			}
+		},
+		{
+			"presentationType": "Project Plan and Detail Design QRB",
+			"instructions": "Insert instructions here for QRB", 
+			"ratedItems":{
+				"itemCategory": "Design",
+				"description1": "Great.",
+				"description2": "OK.",
+				"description3": "Bad"
+			}
+		}
+	]
+}
+

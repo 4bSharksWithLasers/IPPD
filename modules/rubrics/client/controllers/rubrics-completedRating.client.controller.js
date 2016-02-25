@@ -30,7 +30,6 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
 
       // Create new completedRating object
       var completedRating = new CompletedRatings({
-
         team: this.team.name,
         presentationType: this.presentationType,
         email: this.email,

@@ -39,6 +39,7 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
       });
     };
 
+
     // Remove existing Registrant
     $scope.remove = function (registrant) {
       if (registrant) {

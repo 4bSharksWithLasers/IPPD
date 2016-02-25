@@ -1,8 +1,6 @@
-'use strict';
-
 /* Import mongoose and define any variables needed to create the schema */
 var mongoose = require('mongoose'), 
-  Schema = mongoose.Schema;
+    Schema = mongoose.Schema;
 
 /* Create your schema */
 var blankRubricSchema = new Schema({
@@ -15,10 +13,10 @@ var blankRubricSchema = new Schema({
     required: true 
   },
   //not sure if this below, for ratedItems will work... Try and see see
-  ratedItems: [{
+  ratedItems: {
     itemCategory: {
-      type: String,
-      required: true
+    	type: String,
+    	required: true
     }, 
     description1: {
       type: String,
@@ -32,14 +30,14 @@ var blankRubricSchema = new Schema({
       type: String, 
       required: true
     }
-  }],
+  },
   created_at: Date,
   updated_at: Date
 });
 
 /* create a 'pre' function that adds the updated_at (and created_at if not already there) property */
 blankRubricSchema.pre('save', function(next) {
-  var currentTime = new Date();
+  var currentTime = new Date;
   this.updated_at = currentTime;
   if(!this.created_at)
   {
@@ -48,4 +46,10 @@ blankRubricSchema.pre('save', function(next) {
   next();
 });
 
-mongoose.model('BlankRubric', blankRubricSchema);
+/* Use your schema to instantiate a Mongoose model */
+var BlankRubric = mongoose.model('BlankRubric', blankRubricSchema);
+
+/* Export the model to make it avaiable to other parts of your Node application */
+module.exports = BlankRubric;
+
+
