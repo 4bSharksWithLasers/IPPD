@@ -19,7 +19,7 @@
 
         <div class="form-group" show-errors>
           <label for="team">Team Name</label>
-          <select name="team" ng-options="team.name for team in teamDropdowns | orderBy: 'name'" data-toggle="dropdown" type="button" ng-model="team"id="team" class="btn btn-default dropdown-toggle" placeholder="Team Name" required>
+          <select name="team" ng-options="team.name for team in teamDropdowns | orderBy: 'name'" data-toggle="dropdown" type="button" ng-model="team"id="team" class="btn btn-default dropdown-toggle" placeholder="Team Name" required> </select>
           <div ng-messages="completedRatingForm.team.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Team name selection is required.</p>
           </div>
