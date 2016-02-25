@@ -1,8 +1,8 @@
 'use strict';
 
 // Team controller
-angular.module('admin').controller('TeamController', ['$scope', '$stateParams', '$location', 'Authentication', 'Teams', '$state',
-  function ($scope, $stateParams, $location, Authentication, Teams, $state) {
+angular.module('admin').controller('TeamController', ['$scope', '$stateParams', '$location', 'Authentication', 'Teams',
+  function ($scope, $stateParams, $location, Authentication, Teams) {
     $scope.authentication = Authentication;
 
     // Create new Team
@@ -43,9 +43,9 @@ angular.module('admin').controller('TeamController', ['$scope', '$stateParams', 
             $scope.team.splice(i, 1);
           }
         }
-      } else { //not sure what this is doing
+      } else {
         $scope.team.$remove(function () {
-          $location.path('teams');
+          $location.path('team');
         });
       }
     };
