@@ -35,15 +35,16 @@ angular.module('admin').controller('TeamController', ['$scope', '$stateParams', 
 
     // Remove existing team
     $scope.remove = function (team) {
+      console.log('Team is' + team);
       if (team) {
         team.$remove();
 
         for (var i in $scope.team) {
           if ($scope.team[i] === team) {
-            $scope.team.splice(i, 1);
+            $scope.teams.splice(i, 1);
           }
         }
-      } else { //not sure what this is doing
+      } else { 
         $scope.team.$remove(function () {
           $location.path('teams');
         });
@@ -71,11 +72,12 @@ angular.module('admin').controller('TeamController', ['$scope', '$stateParams', 
 
     // Find a list of teams
     $scope.find = function () {
-      $scope.team = Teams.query();
+      $scope.teams = Teams.query();
     };
 
     // Find existing team
     $scope.findOne = function () {
+      console.log('Finding team');
       $scope.team = Teams.get({
         teamId: $stateParams.teamId
       });

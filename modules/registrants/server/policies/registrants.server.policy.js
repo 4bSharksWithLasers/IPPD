@@ -20,6 +20,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/register',
       permissions: '*'
+    }, {
+      resources: '/api/registrants/:registrantId',
+      permissions: ['*']
     }]
   }, {
     roles: ['user'],
@@ -29,6 +32,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/register',
       permissions: ['get', 'post']
+    }, {
+      resources: '/api/registrants/:registrantId',
+      permissions: ['*']
     }]
   }, {
     roles: ['guest'],
@@ -38,6 +44,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/register',
       permissions: ['get', 'post']
+    }, {
+      resources: '/api/registrants/:registrantId',
+      permissions: ['*']
     }]
   }]);
 };

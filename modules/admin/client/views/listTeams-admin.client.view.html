@@ -1,6 +1,6 @@
 <section ng-controller="TeamController" ng-init="find()">
   <div class="page-header">
-    <h1>Admin Team Page</h1>
+    <h1>Manage Teams</h1>
   </div>
 
   <div ng-show="error" class="text-danger">
@@ -26,7 +26,7 @@
           When a user clicks on a table row, the view will display a single listing and the state change will be
           reflected in the browser's URL. 
           -->
-        <tr ng-repeat="x in team | filter: query" ui-sref="teams.view({ teamId: x._id })">
+        <tr ng-repeat="x in teams | filter: query" ui-sref="teams.view({ teamId: x._id })">
           <td>{{x.name}}</td>
           <td>
           	<button class="btn btn-alt" ng-confirm-click="Click to confirm deletion." ng-click="remove(x);" >Delete</button>

@@ -43,12 +43,4 @@ module.exports = function (app) {
     .put(affiliations.create)
     .get(affiliations.list)
     .post(affiliations.create);
-
-  //Single rubric routes
-  // app.route('/api/rubrics/:rubricId').all(rubricsPolicy.isAllowed)
-  //   .get(rubrics.read)
-  //   .put(rubrics.update)
-  //   .delete(rubrics.delete);
-  // Finish by binding the rubric middleware
-  //app.param('rubricId', rubrics.rubricByID);
 };
