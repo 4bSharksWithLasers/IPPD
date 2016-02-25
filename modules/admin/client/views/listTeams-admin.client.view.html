@@ -9,6 +9,11 @@
     <div ng-show="success" class="text-success">
       <strong ng-bind="success"></strong>
     </div>
+      <article>
+              <form role="form" action="/addTeam" method="get">
+            <button class="btn btn-default btn-lg" type="submit" value="Send">Add a Team</button>
+          </form>
+      </article>
     <div class="input-group" id="searchBar">
       <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
       <input type="text" class="form-control" placeholder="Search" ng-model="query">

@@ -98,7 +98,6 @@ exports.teamById = function(req, res, next, id){
       res.status(400).send(err);
     }
       else{
-      console.log('Got team by id');
       req.team = team;
       next();
     }
