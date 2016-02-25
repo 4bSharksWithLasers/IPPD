@@ -8,7 +8,7 @@ var adminPolicy = require('../policies/admin.server.policy'),
   affiliations = require('../controllers/admin-affiliation.server.controller');
 
 module.exports = function (app) {
-  // team collection routes
+  // admin collection routes
   app.route('/api/teams').all(adminPolicy.isAllowed)
     .get(teams.list)
     .post(teams.create);
@@ -49,6 +49,6 @@ module.exports = function (app) {
   //   .get(rubrics.read)
   //   .put(rubrics.update)
   //   .delete(rubrics.delete);
-
-  
+  // Finish by binding the rubric middleware
+  //app.param('rubricId', rubrics.rubricByID);
 };
