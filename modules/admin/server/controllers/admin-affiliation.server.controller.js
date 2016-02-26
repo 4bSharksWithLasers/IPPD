@@ -33,13 +33,13 @@ exports.read = function(req, res){
 
 //UPDATE a affiliation
 exports.update = function(req, res){
-  var addAffiliation = req.affiliation;
+  var affiliation = req.affiliation;
 
   //replace the article's properties with the new properties found in req.body
-  addAffiliation.affiliation = req.body.affiliation; 
+  affiliation.theAffiliation = req.body.theAffiliation; 
 
   //save the article
-  addAffiliation.save(function(err){
+  affiliation.save(function(err){
     if(err){
       console.log(err);
       return res.status(400).send({
@@ -47,7 +47,7 @@ exports.update = function(req, res){
       });
     }
       else{
-      res.json(addAffiliation);
+      res.json(affiliation);
     }
   });
 };

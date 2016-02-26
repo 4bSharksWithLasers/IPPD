@@ -35,15 +35,18 @@ angular.module('admin').controller('TeamController', ['$scope', '$stateParams', 
 
     // Remove existing team
     $scope.remove = function (team) {
+
       if (team) {
         team.$remove();
+        //redirect path after deletion
+        $location.path('/teams');
 
-        for (var i in $scope.team) {
-          if ($scope.team[i] === team) {
-            $scope.team.splice(i, 1);
+        for (var i in $scope.teams) {
+          if ($scope.teams[i] === team) {
+            $scope.teams.splice(i, 1);
           }
         }
-      } else {
+      } else { 
         $scope.team.$remove(function () {
           $location.path('team');
         });
@@ -64,6 +67,8 @@ angular.module('admin').controller('TeamController', ['$scope', '$stateParams', 
 
       team.$update(function () {
         $location.path('team/' + team._id);
+        //redirect path after deletion
+        $location.path('/teams');
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });
@@ -71,7 +76,7 @@ angular.module('admin').controller('TeamController', ['$scope', '$stateParams', 
 
     // Find a list of teams
     $scope.find = function () {
-      $scope.team = Teams.query();
+      $scope.teams = Teams.query();
     };
 
     // Find existing team

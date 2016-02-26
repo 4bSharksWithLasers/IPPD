@@ -1,18 +1,17 @@
-<div class="row" ng-controller="TeamController" ng-init="findOne()">
+<div class="row" ng-controller="AffiliationController" ng-init="findOne()">
   <div class="col-md-offset-1 col-md-10">
     <div ng-show="error" class="text-danger">
       <strong ng-bind="error"></strong>
     </div>
     <div class="jumbotron">
       <img id="loader" ng-show="loading" src="/../../img/484.gif">
-      <div ng-show="team">
-        <h2>Team Name: {{team.name}}</h2>
-        <p>Team Code: {{team.code}}</p>
-        <a class="btn btn-primary" ui-sref="teams.edit({ teamId: team._id })">
+      <div ng-show="affiliation">
+        <p>Affiliation: {{affiliation.theAffiliation}}</p>
+        <a class="btn btn-primary" ui-sref="affiliations.edit({ affiliationId: affiliation._id })">
           <i class="glyphicon glyphicon-edit"></i>
           Edit
         </a>
-        <a class="btn btn-danger" ng-click="remove(team);">
+        <a class="btn btn-danger" ng-click="remove(affiliation);">
           <i class="glyphicon glyphicon-trash"></i>
           Remove
         </a>

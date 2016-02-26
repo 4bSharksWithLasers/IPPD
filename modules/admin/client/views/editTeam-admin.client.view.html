@@ -1,0 +1,33 @@
+<div class="row" ng-controller="TeamController" ng-init="findOne()">
+  <div class="col-md-offset-1 col-md-10 formWrapper">
+    <div class="page-header">
+      <h3>Edit a Team</h3>
+      <form name="teamForm" class="form-horizontal" ng-submit="update(teamForm.$valid)">
+        <fieldset>
+        <div class="form-group" show-errors>
+          <label for="name">Team Name</label>
+          <input name="name" type="text" ng-model="team.name" id="name" class="form-control" placeholder="{{name}}" required>
+          <div ng-messages="teamForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Team name is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="code">Team Code</label>
+          <input name="code" type="text" ng-model="team.code" id="code" class="form-control" placeholder="Team Code" required>
+          <div ng-messages="teamForm.code.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Team Code is required.</p>
+          </div>
+        </div>
+         
+      
+          <div class="form-group">
+            <input type="submit" class="btn btn-default">
+          </div>
+          <div ng-show="error" class="text-danger">
+            <strong ng-bind="error"></strong>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>

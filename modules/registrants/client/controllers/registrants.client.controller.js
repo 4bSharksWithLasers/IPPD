@@ -44,6 +44,8 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
     $scope.remove = function (registrant) {
       if (registrant) {
         registrant.$remove();
+        //redirect path after deletion
+        $location.path('/registrants');
 
         for (var i in $scope.registrants) {
           if ($scope.registrants[i] === registrant) {
@@ -70,7 +72,7 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
       var registrant = $scope.registrant;
 
       registrant.$update(function () {
-        $location.path('registrants/' + registrant._id);
+        $location.path('/registrants');
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });

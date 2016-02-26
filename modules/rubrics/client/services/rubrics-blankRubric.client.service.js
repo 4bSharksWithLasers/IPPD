@@ -4,7 +4,7 @@
 angular.module('rubrics').factory('BlankRubrics', ['$resource',
   function ($resource) {
     return $resource('api/blankRubrics/:blankRubricId', {
-      registrantId: '@_id'
+      blankRubricId: '@_id'
     }, {
       update: {
         method: 'PUT'

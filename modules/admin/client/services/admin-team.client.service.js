@@ -4,7 +4,7 @@
 angular.module('admin').factory('Teams', ['$resource',
   function ($resource) {
     return $resource('api/teams/:teamId', {
-      registrantId: '@_id'
+      teamId: '@_id'
     }, {
       update: {
         method: 'PUT'

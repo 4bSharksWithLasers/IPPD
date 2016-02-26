@@ -4,7 +4,7 @@
 angular.module('admin').factory('Affiliations', ['$resource',
   function ($resource) {
     return $resource('api/affiliations/:affiliationId', {
-      registrantId: '@_id'
+      affiliationId: '@_id'
     }, {
       update: {
         method: 'PUT'

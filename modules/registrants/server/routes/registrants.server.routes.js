@@ -16,12 +16,10 @@ module.exports = function (app) {
   app.route('/api/register').all(registrantsPolicy.isAllowed)
     .put(registrants.create);
 
-  // //Single registrant routes
-  // app.route('/api/registrants/:registrantId').all(registrantsPolicy.isAllowed)
-  //   .get(registrants.read)
-  //   .put(registrants.update)
-  //   .delete(registrants.delete);
-
-  // //Finish by binding the registrant middleware
-  // app.param('registrantId', registrants.registrantByID);
+  app.route('/api/registrants/:registrantId').all(registrantsPolicy.isAllowed)
+    .get(registrants.read)
+    .put(registrants.update)
+    .delete(registrants.delete);
+  // Finish by binding the rubric middleware
+  app.param('registrantId', registrants.registrantById);
 };
