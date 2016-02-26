@@ -7,7 +7,7 @@
         <div class="form-group" show-errors>
           <label for="affiliation">Affiliation</label>
           <input name="affiliation" type="text" ng-model="affiliation.theAffiliation" id="affiliation" class="form-control" placeholder="{{affiliation}}" required>
-          <div ng-messages="affiliationForm.name.$error" role="alert">
+          <div ng-messages="affiliationForm.theAffiliation.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Affiliation is required.</p>
           </div>
         </div>

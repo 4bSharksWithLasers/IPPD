@@ -65,6 +65,8 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$statePa
       console.log(affiliation.theAffiliation);
 
       affiliation.$update(function () {
+        $location.path('affiliation/' + affiliation._id);
+        //redirect path after deletion
         $location.path('/affiliations');
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
