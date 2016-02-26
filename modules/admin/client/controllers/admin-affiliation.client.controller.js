@@ -35,10 +35,12 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$statePa
     $scope.remove = function (affiliation) {
       if (affiliation) {
         affiliation.$remove();
+        //redirect path after deletion
+        $location.path('/affiliations');
 
-        for (var i in $scope.affiliation) {
-          if ($scope.affiliation[i] === affiliation) {
-            $scope.affiliation.splice(i, 1);
+        for (var i in $scope.affiliations) {
+          if ($scope.affiliations[i] === affiliation) {
+            $scope.affiliations.splice(i, 1);
           }
         }
       } else {
@@ -60,8 +62,10 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$statePa
 
       var affiliation = $scope.affiliation;
 
+      console.log(affiliation.theAffiliation);
+
       affiliation.$update(function () {
-        $location.path('affiliation/' + affiliation._id);
+        $location.path('/affiliations');
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });
@@ -69,7 +73,7 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$statePa
 
     // Find a list of affiliations
     $scope.find = function () {
-      $scope.affiliation = Affiliations.query();
+      $scope.affiliations = Affiliations.query();
     };
 
     // Find existing affiliation

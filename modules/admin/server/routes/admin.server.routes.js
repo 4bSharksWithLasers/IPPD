@@ -28,9 +28,12 @@ module.exports = function (app) {
     .get(affiliations.list)
     .post(affiliations.create);
 
-  app.route('/api/affiliations').all(adminPolicy.isAllowed)
-    .get(affiliations.list)
-    .post(affiliations.create);
+  app.route('/api/affiliations/:affiliationId').all(adminPolicy.isAllowed)
+    .get(affiliations.read)
+    .put(affiliations.update)
+    .delete(affiliations.delete);
+  // Finish by binding the rubric middleware
+  app.param('affiliationId', affiliations.affiliationById);
 
   app.route('/api/addAffiliation').all(adminPolicy.isAllowed)
     .put(affiliations.create)

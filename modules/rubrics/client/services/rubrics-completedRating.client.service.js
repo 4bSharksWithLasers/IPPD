@@ -4,7 +4,7 @@
 angular.module('rubrics').factory('CompletedRatings', ['$resource',
   function ($resource) {
     return $resource('api/completedRatings/:completedRatingId', {
-      registrantId: '@_id'
+      completedRatingId: '@_id'
     }, {
       update: {
         method: 'PUT'

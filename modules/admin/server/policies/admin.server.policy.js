@@ -23,6 +23,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/teams/:teamId',
       permissions: '*'
+    }, {
+      resources: '/api/affiliations/:affiliationId',
+      permissions: '*'
     }]
   }, {
     roles: ['user'],
@@ -35,6 +38,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/teams/:teamId',
       permissions: '*'
+    }, {
+      resources: '/api/affiliations/:affiliationId',
+      permissions: '*'
     }]
   }, {
     roles: ['guest'],
@@ -46,6 +52,9 @@ exports.invokeRolesPolicies = function () {
       permissions: '*'
     }, {
       resources: '/api/teams/:teamId',
+      permissions: '*'
+    }, {
+      resources: '/api/affiliations/:affiliationId',
       permissions: '*'
     }]
   }]);
