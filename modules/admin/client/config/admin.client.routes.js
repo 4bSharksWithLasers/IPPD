@@ -18,6 +18,10 @@ angular.module('admin').config(['$stateProvider',
         url: '/:teamId',
         templateUrl: 'modules/admin/client/views/viewTeam-admin.client.view.html'
       })
+      .state('teams.edit', {
+        url: '/:teamId',
+        templateUrl: 'modules/admin/client/views/editTeam-admin.client.view.html'
+      })
       .state('addTeam',{
         url: '/addTeam', 
         templateUrl: 'modules/admin/client/views/addTeam-admin.client.view.html'

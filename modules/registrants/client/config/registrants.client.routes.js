@@ -21,6 +21,10 @@ angular.module('registrants').config(['$stateProvider',
       .state('registrants.view', {
         url: '/:registrantId',
         templateUrl: 'modules/registrants/client/views/viewRegistrant-registrants.client.view.html'
+      })
+      .state('registrants.edit', {
+        url: '/:registrantId',
+        templateUrl: 'modules/registrants/client/views/editRegistrant-registrants.client.view.html'
       });
   }
 ]);

@@ -8,10 +8,11 @@
       <div ng-show="registrant">
         <p>User Email: {{registrant.email}}</p>
         <p>User Affiliation: {{registrant.affiliation}}</p>
-       <!--  <a class="btn btn-primary" ui-sref="teams.edit({ teamId: team._id })">
+        <p>User Team: {{registrant.teamName}}</p>
+        <a class="btn btn-primary" ui-sref="registrants.edit({ registrantId: registrant._id })">
           <i class="glyphicon glyphicon-edit"></i>
           Edit
-        </a> -->
+        </a>
         <a class="btn btn-danger" ng-click="remove(registrant);">
           <i class="glyphicon glyphicon-trash"></i>
           Remove

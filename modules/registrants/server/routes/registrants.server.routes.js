@@ -16,7 +16,7 @@ module.exports = function (app) {
   app.route('/api/register').all(registrantsPolicy.isAllowed)
     .put(registrants.create);
 
-app.route('/api/registrants/:registrantId').all(registrantsPolicy.isAllowed)
+  app.route('/api/registrants/:registrantId').all(registrantsPolicy.isAllowed)
     .get(registrants.read)
     .put(registrants.update)
     .delete(registrants.delete);

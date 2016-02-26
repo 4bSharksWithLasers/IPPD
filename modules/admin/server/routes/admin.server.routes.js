@@ -41,6 +41,6 @@ module.exports = function (app) {
     .get(teams.read)
     .put(teams.update)
     .delete(teams.delete);
-    // Finish by binding the rubric middleware
-    app.param('teamId', teams.teamById);
+  // Finish by binding the rubric middleware
+  app.param('teamId', teams.teamById);
 };

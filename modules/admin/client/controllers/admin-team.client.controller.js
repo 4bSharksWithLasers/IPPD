@@ -67,6 +67,8 @@ angular.module('admin').controller('TeamController', ['$scope', '$stateParams', 
 
       team.$update(function () {
         $location.path('team/' + team._id);
+        //redirect path after deletion
+        $location.path('/teams');
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });

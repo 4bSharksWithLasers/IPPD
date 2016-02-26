@@ -72,7 +72,7 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
       var registrant = $scope.registrant;
 
       registrant.$update(function () {
-        $location.path('registrants/' + registrant._id);
+        $location.path('/registrants');
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });
