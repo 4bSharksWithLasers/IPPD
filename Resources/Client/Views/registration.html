@@ -41,7 +41,6 @@
 
 	<body ng-controller="RegistrationController">
 
-<<<<<<< HEAD:Resources/Views/registration.html
 		<div class="jumbotron">
 			<div class="container text-center">
 				<article>
@@ -50,14 +49,6 @@
 				<article>
 					<p><em>Design Review Registration</em></p>
 				</article>
-=======
-		<header>
-			<div class="jumbotron">
-				<div class="container text-center">
-					<img src="../Client/Assets/Images/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo">
-					<p><em>Registration</em></p>
-				</div>
->>>>>>> master:Resources/Client/Views/registration.html
 			</div>
 		</header>
 
@@ -66,15 +57,10 @@
 				<form role="form" action="/review" method="get">
 					<div class="form group">
 						<h3> E-mail </h3>
-<<<<<<< HEAD:Resources/Views/registration.html
 				    <input type="e-mail" name="e-mail" class="form-control input-lg" required placeholder="user@email.com">
 				  </div>
 				</article>
 				<article>
-=======
-					  <input type="e-mail" name="e-mail" class="form-control input-lg" placeholder="user@email.com">
-					</div>
->>>>>>> master:Resources/Client/Views/registration.html
 					<div class="form-group">
 						<h3> Affiliation </h3>
 						<select class="form-control input-lg" ng-options="choice as choice.Choice for choice in affiliation track by choice.Choice" ng-model="affiliationChoice">
@@ -86,17 +72,11 @@
 						</select>
 					</div>
 					<div class="form group" ng-show="affiliationChoice.Choice=='Student' || affiliationChoice.Choice=='Coach'">
-<<<<<<< HEAD:Resources/Views/registration.html
 						<h3> Team Code (4 digit number) </h3>
 				    <input type="team-code" name="team-code" class="form-control input-lg" placeholder="Enter your team code">
 				  </div>
 				</article>
 				<article>
-=======
-						<h3> Team Code </h3>
-					  <input type="team-code" name="team-code" class="form-control input-lg" placeholder="Enter your team code">
-					</div>
->>>>>>> master:Resources/Client/Views/registration.html
 					<div class="container t-padding">
 						<button class="btn btn-default btn-lg" type="submit" value="Send">Submit</button>
 					</div>
