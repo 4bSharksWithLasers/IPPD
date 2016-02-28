@@ -34,11 +34,11 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
         $scope.email = '';
         $scope.affiliation = '';
         $scope.teamName = '';
+        $scope.teamCode = '';
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });
     };
-
 
     // Remove existing Registrant
     $scope.remove = function (registrant) {
@@ -89,5 +89,9 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
         registrantId: $stateParams.registrantId
       });
     };
+
+    //Phillip
+
+  //
   }
 ]);
