@@ -19,6 +19,13 @@
           <div ng-messages="affiliationForm.codeAssociated.$error" role="alert">
           </div>
         </div>
+
+        <div class="form-group" show-errors>
+          <label for="teamAssociated">Is a team associated with this affiliation?</label>
+          <input name="teamAssociated" type="checkbox" ng-model="teamAssociated" id="teamAssociated" class="form-control" ng-true-value="'Yes'" ng-false-value="'No'">
+          <div ng-messages="affiliationForm.teamAssociated.$error" role="alert">
+          </div>
+        </div>
         
         <div class="form-group">
           <input type="submit" class="btn btn-default">

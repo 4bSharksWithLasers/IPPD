@@ -18,7 +18,8 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$statePa
       // Create new affiliation object
       var affiliation = new Affiliations({
         theAffiliation: this.affiliation, 
-        codeAssociated: this.codeAssociated
+        codeAssociated: this.codeAssociated, 
+        teamAssociated: this.teamAssociated
       });
 
       // Redirect after save
