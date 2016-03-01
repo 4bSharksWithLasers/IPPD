@@ -37,6 +37,7 @@ exports.update = function(req, res){
 
   //replace the article's properties with the new properties found in req.body
   affiliation.theAffiliation = req.body.theAffiliation; 
+  affiliation.codeAssociated = req.body.codeAssociated;
 
   //save the article
   affiliation.save(function(err){

@@ -11,6 +11,13 @@
             <p class="help-block error-text" ng-message="required">Affiliation is required.</p>
           </div>
         </div>
+
+        <div class="form-group" show-errors>
+          <label for="codeAssociated">Team Code Associated?</label>
+          <input name="codeAssociated" type="checkbox" ng-model="affiliation.codeAssociated" id="codeAssociated" class="form-control">
+          <div ng-messages="affiliationForm.codeAssociated.$error" role="alert">
+          </div>
+        </div>
               
           <div class="form-group">
             <input type="submit" class="btn btn-default">
