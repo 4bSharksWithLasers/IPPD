@@ -19,12 +19,26 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
         return false;
       }
 
-      // Create new Registrant object
-      var registrant = new Registrants({
-        email: this.email,
-        affiliation: this.affiliation.theAffiliation,
-        teamName: this.teamName.name
-      });
+      //If there is a team associated with the registrant
+      if(this.affiliation.teamAssociated === true){
+        // Create new Registrant object
+        var registrant = new Registrants({
+          email: this.email,
+          affiliation: this.affiliation.theAffiliation,
+          teamName: this.teamName.name
+        });
+      }
+      //if there is not a team associated with the registrant
+      else{
+        // Create new Registrant object
+        var registrant = new Registrants({
+          email: this.email,
+          affiliation: this.affiliation.theAffiliation,
+          teamName: ""
+        });
+      }
+
+      
 
       // Redirect after save
       registrant.$save(function (response) {
