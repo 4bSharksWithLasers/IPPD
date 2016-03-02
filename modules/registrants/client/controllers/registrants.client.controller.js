@@ -22,10 +22,22 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
       //If there is a team associated with the registrant
       if(this.affiliation.teamAssociated === true){
         // Create new Registrant object
-        var registrant = new Registrants({
+        var registrantTeam = new Registrants({
           email: this.email,
           affiliation: this.affiliation.theAffiliation,
           teamName: this.teamName.name
+        });
+        // Redirect after save
+        registrantTeam.$save(function (response) {
+          $location.path('/register');
+
+        // Clear form fields
+          $scope.email = '';
+          $scope.affiliation = '';
+          $scope.teamName = '';
+          $scope.teamCode = '';
+        }, function (errorResponse) {
+          $scope.error = errorResponse.data.message;
         });
       }
       //if there is not a team associated with the registrant
@@ -34,24 +46,21 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
         var registrant = new Registrants({
           email: this.email,
           affiliation: this.affiliation.theAffiliation,
-          teamName: ""
+          teamName: ''
         });
-      }
-
-      
-
-      // Redirect after save
-      registrant.$save(function (response) {
-        $location.path('/register');
+        // Redirect after save
+        registrant.$save(function (response) {
+          $location.path('/register');
 
         // Clear form fields
-        $scope.email = '';
-        $scope.affiliation = '';
-        $scope.teamName = '';
-        $scope.teamCode = '';
-      }, function (errorResponse) {
-        $scope.error = errorResponse.data.message;
-      });
+          $scope.email = '';
+          $scope.affiliation = '';
+          $scope.teamName = '';
+          $scope.teamCode = '';
+        }, function (errorResponse) {
+          $scope.error = errorResponse.data.message;
+        });
+      }
     };
 
     // Remove existing Registrant
