@@ -8,6 +8,10 @@ angular.module('rubrics').factory('BlankRubrics', ['$resource',
     }, {
       update: {
         method: 'PUT'
+      },
+      query: {
+        method:'GET',
+        isArray: true
       }
     });
   }
