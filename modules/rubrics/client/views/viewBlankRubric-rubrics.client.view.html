@@ -1,0 +1,28 @@
+<div class="row" ng-controller="BlankRubricController" ng-init="findOne()">
+  <div class="col-md-offset-1 col-md-10">
+    <div ng-show="error" class="text-danger">
+      <strong ng-bind="error"></strong>
+    </div>
+    <div class="jumbotron">
+      <img id="loader" ng-show="loading" src="/../../img/484.gif">
+      <div ng-show="blankRubric">
+        <p>Presentation Type: {{blankRubric.presentationType}}</p>
+        <p>Instructions: {{blankRubric.instructions}}</p>
+        <div ng-repeat="x in blankRubric.ratedItems">
+            <p>Item Category: {{x.itemCategory}}</p>
+            <div>Rating 1 Description: {{x.description1}}</div>
+            <div>Rating 3 Description: {{x.description2}}</div>
+            <div>Rating 5 Description: {{x.description3}}</div>
+        </div>
+        <a class="btn btn-primary" ui-sref="blankRubrics.edit({ blankRubricId: blankRubric._id })">
+          <i class="glyphicon glyphicon-edit"></i>
+          Edit
+        </a>
+        <a class="btn btn-danger" ng-click="remove(blankRubric);">
+          <i class="glyphicon glyphicon-trash"></i>
+          Remove
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

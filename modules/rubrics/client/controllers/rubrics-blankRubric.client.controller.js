@@ -71,6 +71,8 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
 
       blankRubric.$update(function () {
         $location.path('blankRubrics/' + blankRubric._id);
+        //redirect after update
+        $location.path('/blankRubrics');
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });
@@ -87,6 +89,7 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
       $scope.blankRubric = BlankRubrics.get({
         blankRubricId: $stateParams.blankRubricId
       });
+      console.log('finding blankRubric');
     };
   }
 ]);
