@@ -90,19 +90,30 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
     //   console.log('initialLength: ' + $scope.initialArrayLength);
     // };
 
-    for(var i = 0; i < 2; i++) {
-      $scope.star.push({ colorOne: '#eaeaea', colorTwo: '#eaeaea', colorThree: '#eaeaea', colorFour: '#eaeaea', colorFive: '#eaeaea' });
-      $scope.rating.push(0);
-      $scope.rubricItems.push('');
-      //$scope.ratedItems.push({ rubricItem:'', rating:0});
-      //console.log('ra items.rating: ' + $scope.ratedItems[i].rating);
-      console.log('initializing arrays');
-    }
+    // for(var i = 0; i < 2; i++) {
+    //   $scope.star.push({ colorOne: '#eaeaea', colorTwo: '#eaeaea', colorThree: '#eaeaea', colorFour: '#eaeaea', colorFive: '#eaeaea' });
+    //   $scope.rating.push(0);
+    //   $scope.rubricItems.push('');
+    //   //$scope.ratedItems.push({ rubricItem:'', rating:0});
+    //   //console.log('ra items.rating: ' + $scope.ratedItems[i].rating);
+    //   console.log('initializing arrays');
+    // }
+    // console.log('star' + $scope.star);
+    // console.log('rating' + $scope.rating);
+    
+    $scope.initializeArrays = function (index){
+      console.log('index is: ' + index);
+      if(!angular.isUndefined(index)){
+        $scope.star[index] = ({ colorOne: '#eaeaea', colorTwo: '#eaeaea', colorThree: '#eaeaea', colorFour: '#eaeaea', colorFive: '#eaeaea' });
+        $scope.rating[index] = (0);
+        $scope.rubricItems[index] = ('');
+        //$scope.ratedItems.push({ rubricItem:'', rating:0});
+        //console.log('ra items.rating: ' + $scope.ratedItems[i].rating);
+        console.log('initializing arrays');
+      }
+    };
     console.log('star' + $scope.star);
     console.log('rating' + $scope.rating);
-    //console.log('ratedItems array ' + $scope.ratedItems);
-    //console.log('ra items.rubricItem: ' + $scope.ratedItems[1].rubricItem);
-    
 
     /*
     Combines three arrays into one array of tuples.

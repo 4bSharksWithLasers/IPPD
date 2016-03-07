@@ -1,6 +1,5 @@
 <section ng-controller="CompletedRatingController" ng-init="findOneBlankRubric()">
   <div ng-init="initializeArrays(blankRubric.ratedItems.length)"></div>
-  {{blankRubric.ratedItems.length}}
   <div class="page-header">
     <h1>Review</h1>
   </div>
@@ -35,8 +34,8 @@
 {{presentationType.presentationType}}
   
       <div class="container t-padding">
+        <h3>Rubric</h3>
           <div ng-repeat="x in blankRubric.ratedItems" class="panel panel-default">
-            index: {{$index}}
             <a href="" class="a-spc">
               <div class="panel-heading">
                 <div class="row">
@@ -55,7 +54,7 @@
               </div>
             </a>
             <div ng-show="showDescription">
-              <div class="panel-body">
+              <div class="panel-body"  ng-init="initializeArrays($index)">
                 <div class="row">
                   <div class="col-xs-7">
                     <em>{{x.description1}}</em>
@@ -101,7 +100,6 @@
               </div>
             </div>
           </div>
-         length: {{blankRubric.ratedItems.length}}
       </div>
 
         <div class="container form-group t-padding">
