@@ -79,6 +79,7 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
     // Find a list of blankRubrics
     $scope.find = function () {
       $scope.blankRubrics = BlankRubrics.query();
+      console.log($scope.blankRubrics);
     };
 
     // Find existing blankRubric
