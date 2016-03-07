@@ -20,6 +20,12 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/review',
       permissions: '*'
+    }, {
+      resources: '/api/blankRubrics',
+      permissions: '*'
+    }, {
+      resources: '/api/blankRubrics/:blankRubricId',
+      permissions: '*'
     }]
   }, {
     roles: ['user'],
@@ -29,6 +35,12 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/review',
       permissions: '*'
+    }, {
+      resources: '/api/blankRubrics',
+      permissions: '*'
+    }, {
+      resources: '/api/blankRubrics/:blankRubricId',
+      permissions: '*'
     }]
   }, {
     roles: ['guest'],
@@ -37,6 +49,12 @@ exports.invokeRolesPolicies = function () {
       permissions: '*'
     }, {
       resources: '/api/review',
+      permissions: '*'
+    }, {
+      resources: '/api/blankRubrics',
+      permissions: '*'
+    }, {
+      resources: '/api/blankRubrics/:blankRubricId',
       permissions: '*'
     }]
   }]);

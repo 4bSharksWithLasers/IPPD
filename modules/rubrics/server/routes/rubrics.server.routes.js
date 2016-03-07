@@ -4,24 +4,28 @@
  * Module dependencies.
  */
 var rubricsPolicy = require('../policies/rubrics.server.policy'),
-  rubrics = require('../controllers/rubrics-completedRating.server.controller');
+  completedRatings = require('../controllers/rubrics-completedRating.server.controller'), 
+  blankRubrics = require('../controllers/rubrics-blankRubric.server.controller');
 
 module.exports = function (app) {
-  // rubrics collection routes
+  // completedRatings collection routes
   app.route('/api/completedRatings').all(rubricsPolicy.isAllowed)
-    .get(rubrics.list)
-    .post(rubrics.create);
+    .get(completedRatings.list)
+    .post(completedRatings.create);
 
   //Route back to register page after registration is complete.
   app.route('/api/review').all(rubricsPolicy.isAllowed)
-    .put(rubrics.create);
+    .put(completedRatings.create);
+
+  app.route('/api/blankRubrics').all(rubricsPolicy.isAllowed)
+    .get(blankRubrics.list)
+    .post(blankRubrics.create);
 
   //Single rubric routes
-  // app.route('/api/rubrics/:rubricId').all(rubricsPolicy.isAllowed)
-  //   .get(rubrics.read)
-  //   .put(rubrics.update)
-  //   .delete(rubrics.delete);
-
+  app.route('/api/blankRubrics/:blankRubricId').all(rubricsPolicy.isAllowed)
+    .get(blankRubrics.read)
+    .put(blankRubrics.update)
+    .delete(blankRubrics.delete);
   // Finish by binding the rubric middleware
-  //app.param('rubricId', rubrics.rubricByID);
+  app.param('blankRubricId', blankRubrics.blankRubricById);
 };

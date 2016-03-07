@@ -35,8 +35,7 @@ var completedRatingSchema = new Schema({
       type: String
     }, 
     urgency: {
-      //type should be boolean 
-      type: Number
+      type: Boolean
     }
   }],
   //not sure if this below, for recommended actions will work... Try and see see
