@@ -1,0 +1,37 @@
+<section ng-controller="CompletedRatingController">
+  <div class="page-header">
+    <h1>Select Team Name and Presentation Type for Review</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="presentationSelectionForm" class="form-horizontal" ng-submit="selectPresentationType(presentationSelectionForm.$valid)" novalidate>
+      <fieldset>
+
+        <div class="form-group" show-errors>
+          <label for="team">Team Name</label>
+          <select name="team" ng-options="team.name for team in teamDropdowns | orderBy: 'name'" data-toggle="dropdown" type="button" ng-model="team"id="team" class="btn btn-default dropdown-toggle" placeholder="Team Name" required> </select>
+          <div ng-messages="presentationSelectionForm.team.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Team name selection is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label for="presentationType">Presentation Type</label>
+          <select name="presentationType" ng-options="p.presentationType for p in blankRubrics" data-toggle="dropdown" type="button" ng-model="presentationType" id="presentationType" class="btn btn-default dropdown-toggle" placeholder="Presentation Type" required></select>
+          <div ng-messages="presentationSelectionForm.presentationType.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Presentation Type is required.</p>
+          </div>
+          {{presentationType._id}}
+        </div>
+
+        <div class="form-group">
+          <a ui-sref="review({blankRubricId:presentationType._id})">
+            <input type="submit" class="btn btn-default">
+          </a>
+        </div>
+        <div ng-show="error" class="text-danger">
+          <strong ng-bind="error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

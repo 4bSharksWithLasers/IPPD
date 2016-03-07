@@ -1,19 +1,11 @@
-<section ng-controller="CompletedRatingController">
+<section ng-controller="CompletedRatingController" ng-init="findOneBlankRubric()">
+  <div ng-init="initializeArrays(blankRubric.ratedItems.length)"></div>
   <div class="page-header">
     <h1>Review</h1>
   </div>
   <div class="col-md-12">
     <form name="completedRatingForm" class="form-horizontal" ng-submit="create(completedRatingForm.$valid)" novalidate>
       <fieldset>
-
-
-      <!--   <div class="form-group" show-errors>
-          <label for="team">Team Name</label>
-          <input name="team" type="text" ng-model="team" id="team" class="form-control" placeholder="Team" required>
-          <div ng-messages="completedRatingForm.team.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Team name is required.</p>
-          </div>
-        </div> -->
 
         <div class="form-group" show-errors>
           <label for="team">Team Name</label>
@@ -22,60 +14,138 @@
             <p class="help-block error-text" ng-message="required">Team name selection is required.</p>
           </div>
         </div>
+        Presentation Type: {{blankRubric.presentationType}}
 
         <div class="form-group" show-errors>
           <label for="presentationType">Presentation Type</label>
-          <input name="apresentationType" type="text" ng-model="presentationType" id="presentationType" class="form-control" placeholder="Presentation Type" required>
+          <select name="presentationType" ng-options="p.presentationType for p in blankRubrics" data-toggle="dropdown" type="button" ng-model="presentationType" id="presentationType" class="btn btn-default dropdown-toggle" placeholder="Presentation Type" required></select>
           <div ng-messages="completedRatingForm.presentationType.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Presentation Type is required.</p>
           </div>
         </div>
+
         <div class="form-group" show-errors>
-          <label for="email">Email</label>
+          <label for="email">Reviewer Email</label>
           <input name="email" type="text" ng-model="email" id="email" class="form-control" placeholder="Email" required>
           <div ng-messages="completedRatingForm.email.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Email is required.</p>
           </div>
         </div>
+{{presentationType.presentationType}}
+  
+      <div class="container t-padding">
+        <h3>Rubric</h3>
+          <div ng-repeat="x in blankRubric.ratedItems" class="panel panel-default">
+            <a href="" class="a-spc">
+              <div class="panel-heading">
+                <div class="row">
+                    <div class = "col-xs-5" ng-click="showDescription=!showDescription">
+                      {{x.itemCategory}}
+                    </div> 
+              
+                    <div class="col-xs-7" >
+                        <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorFive }}" ng-click="changeFive($index, x.itemCategory)" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorFour }}" ng-click="changeFour($index, x.itemCategory)" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorThree }}" ng-click="changeThree($index, x.itemCategory)" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorTwo }}" ng-click="changeTwo($index, x.itemCategory)" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorOne }}" ng-click="changeOne($index, x.itemCategory)" aria-hidden="true"></span>
+                    </div>              
+                </div> 
+              </div>
+            </a>
+            <div ng-show="showDescription">
+              <div class="panel-body"  ng-init="initializeArrays($index)">
+                <div class="row">
+                  <div class="col-xs-7">
+                    <em>{{x.description1}}</em>
+                  </div>
+                  <div class="col-xs-5">
+                    <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+                  </div>
+                </div>
+              </div>
 
-       <div class="form-group" show-errors>
-          <label for="rubricItem">Project Goals</label>
-          <input name="rubricItem" type="text" ng-model="rubricItem" id="rubricItem" class="form-control" placeholder="Rubric Item">
-          <div ng-messages="completedRatingForm.rubricItem.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Rubric Item is required.</p> 
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-xs-7">
+                    <em>{{x.description2}}</em>
+                  </div>
+                  <div class="col-xs-5">
+                    <span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-xs-7">
+                    <em>{{x.description3}}</em>
+                  </div>
+                  <div class="col-xs-5">
+                    <span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+      </div>
 
-        </div>
-        <div class="form-group" show-errors>
-          <label for="rating">Rating</label>
-          <input name="rating" type="text" ng-model="rating" id="rating" class="form-control" placeholder="Rating">
-
-          <div ng-messages="completedRatingForm.rating.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Rating is required.</p>
-          </div>
-        </div>
-        <!-- <div class="form-group" show-errors>
-
+        <div class="container form-group t-padding">
           <label for="issuesIdentified">Issues Identified</label>
-          <input name="issuesIdentified" type="text" ng-model="issuesIdentified" id="issuesIdentified" class="form-control" placeholder="Issued Identified">
-          <div ng-messages="completedRatingForm.issuesIdentified.$error" role="alert"> -->
-           <!--  <p class="help-block error-text" ng-message="required">Issues Identified is required.</p> -->
-        <!--   </div>
+          <input name="issuesIdentified" type="text" rows="5" ng-model="issuesIdentified" id="issuesIdentified" class="form-control">
         </div>
-        <div class="form-group" show-errors>
-          <label for="recommendedActions">Recommended Actions</label>
-          <input name="recommendedActions" type="text" ng-model="recommendedActions" id="recommendedActions" class="form-control" placeholder="Recommended Actions">
-          <div ng-messages="completedRatingForm.recommendedActions.$error" role="alert"> -->
-           <!--  <p class="help-block error-text" ng-message="required">Recommended Actions is required.</p> -->
-<!--           </div>
-        </div>
-        <div class="form-group" show-errors>
-          <label for="urgency">Urgency</label>
-          <input name="urgency" type="text" ng-model="urgency" id="urgency" class="form-control" placeholder="Urgency">
-          <div ng-messages="completedRatingForm.urgency.$error" role="alert"> -->
-            <!-- <p class="help-block error-text" ng-message="required">Urgency is required.</p> -->
-         <!--  </div>
-        </div> -->
+
+        <div class="container form-group t-padding">
+          <div class="row">
+            <div class="col-xs-10">
+              <h3>Recommendations</h3>
+            </div>
+            <div class="col-xs-2 text-center">
+              <h3>Urgent?</h3>
+            </div>
+          </div>
+          <div class="row" ng-repeat="item in recommendations track by $index" ng-show="showRecommendation">
+            <div class="col-xs-8">
+              {{ item.recommendation }}
+            </div>
+            <a class="a-spc" href="" ng-click="rmvRecommendation($index)" ng-model-instant>
+              <div class="col-xs-2 text-center">
+                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+              </div>
+            </a>
+            <a class="a-spc" href="">
+              <div class="col-xs-2 text-center" ng-click="setUrgent($index)">
+                <span class="glyphicon glyphicon-unchecked" aria-hidden="true" ng-show="!showChecked"></span>
+                <span class="glyphicon glyphicon-check" aria-hidden="true" ng-show="showChecked"></span>
+              </div>
+            </a>
+          </div>
+          <div class="row">
+            <form>
+              <div class="col-xs-8">
+                <textarea class="form-control" rows="1" ng-model="recommendationText"></textarea>
+              </div>
+              <a class="a-spc" href="" ng-click="addRecommendation()" ng-model-instant>
+                <div class="col-xs-2 text-center">
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </div>
+              </a>
+            </form>
+          </div>
+      </div>
+
         <div class="form-group">
           <input type="submit" class="btn btn-default">
         </div>
