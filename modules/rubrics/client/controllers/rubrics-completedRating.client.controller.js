@@ -79,27 +79,6 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
     $scope.rubricItems = [];
     $scope.showDescription = false; 
     $scope.ratedItems = [];
-    $scope.blankRubric2 = '';
-    
-    //console.log('blank rubric2: ' + $scope.blankRubric2);
-    //console.log('blankRubric2.ratedItems.length: ' + $scope.blankRubric2.ratedItems.length);
-    
-    // $scope.initializeArrays = function (ratedItemsArrayLength){
-    //   console.log('length:' + ratedItemsArrayLength);
-    //   $scope.initialArrayLength = ratedItemsArrayLength;
-    //   console.log('initialLength: ' + $scope.initialArrayLength);
-    // };
-
-    // for(var i = 0; i < 2; i++) {
-    //   $scope.star.push({ colorOne: '#eaeaea', colorTwo: '#eaeaea', colorThree: '#eaeaea', colorFour: '#eaeaea', colorFive: '#eaeaea' });
-    //   $scope.rating.push(0);
-    //   $scope.rubricItems.push('');
-    //   //$scope.ratedItems.push({ rubricItem:'', rating:0});
-    //   //console.log('ra items.rating: ' + $scope.ratedItems[i].rating);
-    //   console.log('initializing arrays');
-    // }
-    // console.log('star' + $scope.star);
-    // console.log('rating' + $scope.rating);
     
     $scope.initializeArrays = function (index){
       console.log('index is: ' + index);
@@ -107,8 +86,6 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
         $scope.star[index] = ({ colorOne: '#eaeaea', colorTwo: '#eaeaea', colorThree: '#eaeaea', colorFour: '#eaeaea', colorFive: '#eaeaea' });
         $scope.rating[index] = (0);
         $scope.rubricItems[index] = ('');
-        //$scope.ratedItems.push({ rubricItem:'', rating:0});
-        //console.log('ra items.rating: ' + $scope.ratedItems[i].rating);
         console.log('initializing arrays');
       }
     };
@@ -116,8 +93,8 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
     console.log('rating' + $scope.rating);
 
     /*
-    Combines three arrays into one array of tuples.
-      example: a[0, 1, 2] and b[3, 4, 5] and c[6, 7, 8] become d[(0, 3, 6), (1, 4, 7), (2, 5, 8)]
+    Combines two arrays into one array .
+      example: a[0, 1, 2] and b[3, 4, 5] become d[(0, 3), (1, 4), (2, 5)]
     */
     Array.prototype.zip = function(one) {
       return this.map(function(e, i) {
@@ -145,7 +122,6 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
       console.log('changeOne ' + index + ' itemCategory ' + item);
       $scope.rubricItems[index] = item;
       $scope.rating[index] = 1;
-      //$scope.ratedItems[index].rating = 1;
       $scope.rateArr = $scope.ratedArray();
       console.log('rubricItems array: ' + $scope.rubricItems[index]);
       console.log('rubricItems actual array ' + $scope.rubricItems);
@@ -226,15 +202,6 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
       console.log('ratedItems item: ' + $scope.rateArr[index].rubricItem);
       console.log('ratedItems rating: ' + $scope.rateArr[index].rating);
     };
-
-
-
-
-
-
-
-
-
 
 
 
