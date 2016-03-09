@@ -32,7 +32,7 @@
           </div>
         </div>
 {{presentationType.presentationType}}
-
+  
       <div class="container t-padding">
         <h3>Rubric</h3>
           <div ng-repeat="x in blankRubric.ratedItems" class="panel panel-default">
@@ -41,16 +41,16 @@
                 <div class="row">
                     <div class = "col-xs-5" ng-click="showDescription=!showDescription">
                       {{x.itemCategory}}
-                    </div>
-
+                    </div> 
+              
                     <div class="col-xs-7" >
                         <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorFive }}" ng-click="changeFive($index, x.itemCategory)" aria-hidden="true"></span>
                         <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorFour }}" ng-click="changeFour($index, x.itemCategory)" aria-hidden="true"></span>
                         <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorThree }}" ng-click="changeThree($index, x.itemCategory)" aria-hidden="true"></span>
                         <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorTwo }}" ng-click="changeTwo($index, x.itemCategory)" aria-hidden="true"></span>
                         <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorOne }}" ng-click="changeOne($index, x.itemCategory)" aria-hidden="true"></span>
-                    </div>
-                </div>
+                    </div>              
+                </div> 
               </div>
             </a>
             <div ng-show="showDescription">
@@ -84,11 +84,6 @@
                 </div>
               </div>
 
-       <div class="form-group" show-errors>
-          <label for="rubricItem">Project Goals</label>
-          <input name="rubricItem" type="text" ng-model="rubricItem" id="rubricItem" class="form-control" placeholder="Rubric Item">
-          <div ng-messages="completedRatingForm.rubricItem.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Rubric Item is required.</p>
               <div class="panel-body">
                 <div class="row">
                   <div class="col-xs-7">
