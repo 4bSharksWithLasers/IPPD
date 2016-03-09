@@ -295,8 +295,6 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
       $scope.blankRubric = BlankRubrics.get({
         blankRubricId: $stateParams.blankRubricId
       });
-      $scope.blankRubric2 = $scope.blankRubric;
-      console.log($scope.blankRubric);
     };
 
     // Find existing completedRating

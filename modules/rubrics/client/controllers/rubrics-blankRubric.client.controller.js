@@ -99,7 +99,12 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
       }
 
       var blankRubric = $scope.blankRubric;
-      blankRubric.ratedItems = $scope.rubricItemsArray; 
+      if($scope.rubricItemsArray.length !== 0){
+        $scope.rubricItemsArray.push.apply($scope.rubricItemsArray, $scope.blankRubric.ratedItems);
+        blankRubric.ratedItems = $scope.rubricItemsArray; 
+        console.log('concatenating arrays');
+      }
+      
 
       blankRubric.$update(function () {
         $location.path('blankRubrics/' + blankRubric._id);
