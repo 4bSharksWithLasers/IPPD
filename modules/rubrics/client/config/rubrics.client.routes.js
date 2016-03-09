@@ -38,6 +38,10 @@ angular.module('rubrics').config(['$stateProvider',
       .state('blankRubrics.edit',{
         url: '/:blankRubricId', 
         templateUrl: 'modules/rubrics/client/views/editBlankRubric-rubrics.client.view.html'
+      })
+      .state('addBlankRubric',{
+        url: '/addBlankRubric', 
+        templateUrl: 'modules/rubrics/client/views/addBlankRubric-rubrics.client.view.html'
       });
 
       // .state('blankRubrics.review',{
