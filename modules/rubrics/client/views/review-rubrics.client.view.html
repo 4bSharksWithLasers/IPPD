@@ -116,22 +116,47 @@
               <h3>Urgent?</h3>
             </div>
           </div>
-          <div class="row" ng-repeat="item in recommendations track by $index" ng-show="showRecommendation">
-            <div class="col-xs-8">
+          <div class="row" ng-repeat="item in recommendations track by $index">
+            <div class="col-xs-8" ng-show="showRecommendation">
               {{ item.recommendation }}
             </div>
+
+            <div ng-show="editing">
+
+              <form>
+                <div class="col-xs-8">
+                  <textarea class="form-control" rows="1" ng-model="item.recommendation" placeholder="{{item.recommendation}}"></textarea>
+                </div>
+              </form>
+
+              <a class="a-spc" href="" ng-click="saveEdit()">
+                <div class="col-xs-1 text-center">
+                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </div>
+              </a>
+
+            </div>
+
             <a class="a-spc" href="" ng-click="rmvRecommendation($index)" ng-model-instant>
-              <div class="col-xs-2 text-center">
+              <div class="col-xs-1 text-center">
                 <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
               </div>
             </a>
+
             <a class="a-spc" href="">
-              <div class="col-xs-2 text-center" ng-click="setUrgent($index)" >
+              <div class="col-xs-1 text-center" ng-click="setUrgent($index)" >
                 <span class="glyphicon glyphicon-unchecked" aria-hidden="true" ng-show="!item.urgency"></span>
                 <span class="glyphicon glyphicon-check" aria-hidden="true" ng-show="item.urgency"></span>
               </div>
             </a>
+
+            <a class="a-spc" href="" >
+              <div class="col-xs-1 text-center">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="editRecommendation()"></span>
+              </div>
+            </a>
           </div>
+
           <div class="row">
             <form>
               <div class="col-xs-8">
@@ -144,6 +169,7 @@
               </a>
             </form>
           </div>
+
       </div>
 
         <div class="form-group">
@@ -156,3 +182,4 @@
     </form>
   </div>
 </section>
+

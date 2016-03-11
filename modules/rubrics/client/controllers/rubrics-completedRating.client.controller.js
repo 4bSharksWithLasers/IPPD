@@ -1,7 +1,7 @@
 'use strict';
 
 // CompletedRatings controller
-angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$stateParams', '$location', 'Authentication', 'CompletedRatings', 'Teams', 'BlankRubrics',
+angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$stateParams', '$location', 'Authentication', 'CompletedRatings', 'Teams', 'BlankRubrics', 
   function ($scope, $stateParams, $location, Authentication, CompletedRatings, Teams, BlankRubrics) {
     $scope.authentication = Authentication;
 
@@ -30,6 +30,19 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
     //array to hold recommended actions
     $scope.recommendations = [ { recommendation:'', urgency:false } ];
     $scope.showRecommendation = false; 
+    $scope.editing = false; 
+
+    $scope.editRecommendation = function(){
+      console.log('edit clicked');
+      $scope.editing = true; 
+      console.log($scope.editing);
+    };
+
+    $scope.saveEdit = function(){
+      console.log('edit save clicked');
+      $scope.editing = false; 
+      console.log($scope.editing);
+    };
 
     //Add recommendations in a ToDo list format
     var first = true; 
@@ -64,6 +77,8 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
       console.log($scope.recommendations[index].recommendation);
       console.log($scope.recommendations[index].urgency);
     };
+
+    
 
     // Build star and rating arrays based on the length of the rubric array
     $scope.star = [];
