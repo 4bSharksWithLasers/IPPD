@@ -31,18 +31,7 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
     $scope.recommendations = [ { recommendation:'', urgency:false } ];
     $scope.showRecommendation = false; 
     $scope.editing = false; 
-
-    $scope.editRecommendation = function(){
-      console.log('edit clicked');
-      $scope.editing = true; 
-      console.log($scope.editing);
-    };
-
-    $scope.saveEdit = function(){
-      console.log('edit save clicked');
-      $scope.editing = false; 
-      console.log($scope.editing);
-    };
+    $scope.test = false; 
 
     //Add recommendations in a ToDo list format
     var first = true; 
