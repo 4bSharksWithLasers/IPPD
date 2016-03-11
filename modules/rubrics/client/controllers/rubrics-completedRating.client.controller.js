@@ -59,8 +59,8 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
     };
 
     //Remove recommendations
-    $scope.rmvRecommendation = function(index){ 
-      $scope.recommendations.splice($scope.recommendations[index], 1);
+    $scope.rmvRecommendation = function(item){ 
+      $scope.recommendations.splice($scope.recommendations.indexOf(item), 1);
       if($scope.recommendations.length===0){
         first = true;
       }
