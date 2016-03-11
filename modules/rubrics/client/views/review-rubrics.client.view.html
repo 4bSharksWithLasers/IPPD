@@ -37,7 +37,7 @@
             <p class="help-block error-text" ng-message="required">Email is required.</p>
           </div>
         </div>
-{{presentationType.presentationType}}
+        {{presentationType.presentationType}}
       </div>
 
       <div class="container t-padding">
@@ -60,6 +60,7 @@
               </div>
             </div>
           </a>
+
           <div ng-show="showDescription">
             <div class="panel-body"  ng-init="initializeArrays($index)">
               <div class="row">
@@ -105,6 +106,7 @@
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -125,7 +127,7 @@
             <h3>Urgent?</h3>
           </div>
         </div>
-      
+
           <div class="row" ng-repeat="item in recommendations track by $index"  ng-show="showRecommendation">
             <div class="col-xs-8">
               {{ item.recommendation }}
@@ -192,4 +194,3 @@
     </form>
   </main>
 </section>
-
