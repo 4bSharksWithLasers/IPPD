@@ -126,9 +126,9 @@
               </div>
             </a>
             <a class="a-spc" href="">
-              <div class="col-xs-2 text-center" ng-click="setUrgent($index)">
-                <span class="glyphicon glyphicon-unchecked" aria-hidden="true" ng-show="!showChecked"></span>
-                <span class="glyphicon glyphicon-check" aria-hidden="true" ng-show="showChecked"></span>
+              <div class="col-xs-2 text-center" ng-click="setUrgent($index)" >
+                <span class="glyphicon glyphicon-unchecked" aria-hidden="true" ng-show="!item.urgency"></span>
+                <span class="glyphicon glyphicon-check" aria-hidden="true" ng-show="item.urgency"></span>
               </div>
             </a>
           </div>

@@ -29,7 +29,6 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
 
     //array to hold recommended actions
     $scope.recommendations = [ { recommendation:'', urgency:false } ];
-    $scope.showChecked = false; 
     $scope.showRecommendation = false; 
 
     //Add recommendations in a ToDo list format
@@ -51,7 +50,6 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
       $scope.recommendations.splice($scope.recommendations[index], 1);
       if($scope.recommendations.length===0){
         first = true;
-        $scope.showChecked = false;
       }
     };
 
@@ -59,19 +57,13 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
     $scope.setUrgent = function(index){
       if($scope.recommendations[index].urgency===true){
         $scope.recommendations[index].urgency = false;
-        $scope.showChecked = false;
       }
       else{
         $scope.recommendations[index].urgency=true; 
-        $scope.showChecked = true;
       }
       console.log($scope.recommendations[index].recommendation);
       console.log($scope.recommendations[index].urgency);
     };
-
-    
-    
-
 
     // Build star and rating arrays based on the length of the rubric array
     $scope.star = [];
