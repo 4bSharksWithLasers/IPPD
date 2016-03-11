@@ -125,17 +125,9 @@
             <h3>Urgent?</h3>
           </div>
         </div>
-        <div class="row" ng-repeat="item in recommendations track by $index" ng-show="showRecommendation">
-          <div class="col-xs-8">
-            {{ item.recommendation }}
-          </div>
-          <a class="a-spc" href="" ng-click="rmvRecommendation($index)" ng-model-instant>
-            <div class="col-xs-2 text-center">
-              <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-            </div>
-          </div>
-          <div class="row" ng-repeat="item in recommendations track by $index">
-            <div class="col-xs-8" ng-show="showRecommendation">
+      
+          <div class="row" ng-repeat="item in recommendations track by $index"  ng-show="showRecommendation">
+            <div class="col-xs-8">
               {{ item.recommendation }}
             </div>
 
@@ -174,7 +166,7 @@
               </div>
             </a>
           </div>
-
+          <br/>
           <div class="row">
             <form>
               <div class="col-xs-8">
