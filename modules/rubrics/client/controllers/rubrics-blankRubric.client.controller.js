@@ -8,6 +8,7 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
 
     $scope.rubricItemsArray = [ { itemCategory:'', description1:'', description2:'', description3:'' } ];
     $scope.showRubricItem = false;
+    $scope.editing = false; 
 
     var first = true;
 
@@ -26,11 +27,10 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
       $scope.description3 = '';
     };
 
-    $scope.rmvRubricItem = function(index){
-      $scope.rubricItemsArray.splice($scope.rubricItemsArray[index], 1);
+    $scope.rmvRubricItem = function(item){
+      $scope.rubricItemsArray.splice($scope.rubricItemsArray.indexOf(item), 1);
       if($scope.rubricItemsArray.length===0){
         first = true;
-        $scope.showRubricItem = false;
       }
     };
 
