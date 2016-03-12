@@ -64,12 +64,6 @@ h3 + p {
 	font-size: 1.25em !important;
 }
 
-/* class styling */
-.glyphicon-exclamation-sign {
-	color: red;
-	font-size: 1.75em;
-}
-
 .a-spc:focus,
 .a-spc:hover {
 	color: #eaeaea;
@@ -110,11 +104,6 @@ h3 + p {
 .jumbotron {
 	color: #2e2e2e;
 	background-color: #eaeaea;
-}
-
-.jumbotron:hover {
-	color: #0069e7;
-	background-color: #e77e00;
 }
 
 .t-padding {
