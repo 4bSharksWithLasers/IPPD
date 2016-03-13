@@ -9,6 +9,7 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
     $scope.teamDropdowns = Teams.query();
     $scope.affiliationDropdowns = Affiliations.query();
 
+
     // Create new Registrant
     $scope.create = function (isValid) {
       $scope.error = null;
