@@ -158,17 +158,20 @@
               </div>
             </a>
 
-            <a class="a-spc" href="">
-              <div class="col-xs-2">
-                <div ng-click="rmvRecommendation(item)">
+            <div class="col-xs-2">
+              <a class="a-spc" href="" ng-click="rmvRecommendation(item)">
+                <div>
                   <span class="glyphicon glyphicon-minus" title="Remove this item" aria-hidden="true" ng-show="editing"></span>
                 </div>
-                <div ng-click="setUrgent($index)" ng-show="!editing">
+              </a>
+              <a class="a-spc" href="" ng-click="setUrgent($index)">
+                <div ng-show="!editing">
                   <span class="glyphicon glyphicon-unchecked" title="Click if this item is urgent" aria-hidden="true" ng-show="!item.urgency"></span>
                   <span class="glyphicon glyphicon-check" title="Click if this item is not urgent" aria-hidden="true" ng-show="item.urgency"></span>
                 </div>
-              </div>
-            </a>
+              </a>
+            </div>
+
           </div>
 
           <br/>
