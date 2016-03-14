@@ -67,13 +67,15 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
     // Remove existing Registrant
     $scope.remove = function (registrant) {
       if (registrant) {
-        registrant.$remove();
-        //redirect path after deletion
-        $location.path('/registrants');
+        if(confirm("Press OK to confirm deletion.")){
+          registrant.$remove();
+          //redirect path after deletion
+          $location.path('/registrants');
 
-        for (var i in $scope.registrants) {
-          if ($scope.registrants[i] === registrant) {
-            $scope.registrants.splice(i, 1);
+          for (var i in $scope.registrants) {
+            if ($scope.registrants[i] === registrant) {
+              $scope.registrants.splice(i, 1);
+            }
           }
         }
       } else {
