@@ -19,6 +19,11 @@
             <button class="btn btn-default btn-lg" type="submit" value="Send">Add a Team</button>
           </form>
       </article>
+      <article>
+        <form role="form" ng-click="removeAll()">
+          <button class="btn btn-default btn-lg">Delete all Teams</button>
+        </form>
+      </article>
     <div class="input-group" id="searchBar">
       <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
       <input type="text" class="form-control" placeholder="Search" ng-model="query">
