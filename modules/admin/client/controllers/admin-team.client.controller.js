@@ -37,13 +37,15 @@ angular.module('admin').controller('TeamController', ['$scope', '$stateParams', 
     $scope.remove = function (team) {
 
       if (team) {
-        team.$remove();
-        //redirect path after deletion
-        $location.path('/teams');
+        if(confirm("Press OK to confirm deletion.")){
+          team.$remove();
+          //redirect path after deletion
+          $location.path('/teams');
 
-        for (var i in $scope.teams) {
-          if ($scope.teams[i] === team) {
-            $scope.teams.splice(i, 1);
+          for (var i in $scope.teams) {
+            if ($scope.teams[i] === team) {
+              $scope.teams.splice(i, 1);
+            }
           }
         }
       } else { 

@@ -21,10 +21,9 @@
             <p class="help-block error-text" ng-message="required">Registrant affiliation is required.</p>
           </div>
         </div>
-
-        <div class="form-group" show-errors>
+        <div class="form-group" ng-show="registrant.teamName" show-errors>
           <label for="teamName">Team Name</label>
-          <select name="teamName" ng-options="team.name as team.name for team in teamDropdowns | orderBy: 'name'" pre-selected="registrant.teamName" ng-model="registrant.teamName" id="teamName" class="btn btn-default dropdown-toggle form-control" placeholder="Team Name" required></select>
+          <select name="teamName" ng-options="team.name as team.name for team in teamDropdowns | orderBy: 'name'" pre-selected="registrant.teamName" ng-model="registrant.teamName" id="teamName" class="btn btn-default dropdown-toggle form-control" placeholder="Team Name" ng-required='registrant.affiliation.teamAssociated===true'></select>
           <div ng-messages="registrantForm.teamName.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Registrant team name is required.</p>
           </div>

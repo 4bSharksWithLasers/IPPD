@@ -97,12 +97,14 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
     // Remove existing blankRubric
     $scope.remove = function (blankRubric) {
       if (blankRubric) {
-        blankRubric.$remove();
-        $location.path('/blankRubrics');
+        if(confirm("Press OK to confirm deletion.")){
+          blankRubric.$remove();
+          $location.path('/blankRubrics');
 
-        for (var i in $scope.blankRubrics) {
-          if ($scope.blankRubrics[i] === blankRubric) {
-            $scope.blankRubrics.splice(i, 1);
+          for (var i in $scope.blankRubrics) {
+            if ($scope.blankRubrics[i] === blankRubric) {
+              $scope.blankRubrics.splice(i, 1);
+            }
           }
         }
       } else {

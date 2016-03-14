@@ -8,7 +8,7 @@
       <div ng-show="registrant">
         <p>User Email: {{registrant.email}}</p>
         <p>User Affiliation: {{registrant.affiliation}}</p>
-        <p>User Team: {{registrant.teamName}}</p>
+        <p ng-show="registrant.teamName">User Team: {{registrant.teamName}}</p>
         <a class="btn btn-primary" ui-sref="registrants.edit({ registrantId: registrant._id })">
           <i class="glyphicon glyphicon-edit"></i>
           Edit
