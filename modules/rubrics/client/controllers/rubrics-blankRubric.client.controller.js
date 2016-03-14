@@ -8,6 +8,7 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
 
     $scope.rubricItemsArray = [ { itemCategory:'', description1:'', description2:'', description3:'' } ];
     $scope.showRubricItem = false;
+    $scope.editing = false; 
 
     var first = true;
 
@@ -26,11 +27,34 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
       $scope.description3 = '';
     };
 
-    $scope.rmvRubricItem = function(index){
-      $scope.rubricItemsArray.splice($scope.rubricItemsArray[index], 1);
+    $scope.rmvRubricItem = function(item){
+      $scope.rubricItemsArray.splice($scope.rubricItemsArray.indexOf(item), 1);
       if($scope.rubricItemsArray.length===0){
         first = true;
-        $scope.showRubricItem = false;
+      }
+    };
+
+    $scope.addRubricItemArray = function(rubricArray){
+      console.log(rubricArray);
+      if(first===false)
+        rubricArray.push({ itemCategory:$scope.itemCategory, description1:$scope.description1, description2:$scope.description2, description3:$scope.description3 });
+      else{
+        rubricArray.push({ itemCategory:$scope.itemCategory, description1:$scope.description1, description2:$scope.description2, description3:$scope.description3 });
+        $scope.showRubricItem = true;
+        first = false;
+      }
+      $scope.itemCategory = '';
+      $scope.description1 = '';
+      $scope.description2 = '';
+      $scope.description3 = '';
+    };
+
+    $scope.rmvRubricItemArray = function(item, rubricArray){
+      console.log(item);
+      console.log(rubricArray);
+      rubricArray.splice(rubricArray.indexOf(item), 1);
+      if(rubricArray.length===0){
+        first = true;
       }
     };
 
@@ -99,13 +123,7 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
       }
 
       var blankRubric = $scope.blankRubric;
-      if($scope.rubricItemsArray.length !== 0){
-        $scope.rubricItemsArray.push.apply($scope.rubricItemsArray, $scope.blankRubric.ratedItems);
-        blankRubric.ratedItems = $scope.rubricItemsArray; 
-        console.log('concatenating arrays');
-      }
       
-
       blankRubric.$update(function () {
         $location.path('blankRubrics/' + blankRubric._id);
         //redirect after update

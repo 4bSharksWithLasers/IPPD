@@ -1,7 +1,7 @@
 'use strict';
 
 // CompletedRatings controller
-angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$stateParams', '$location', 'Authentication', 'CompletedRatings', 'Teams', 'BlankRubrics',
+angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$stateParams', '$location', 'Authentication', 'CompletedRatings', 'Teams', 'BlankRubrics', 
   function ($scope, $stateParams, $location, Authentication, CompletedRatings, Teams, BlankRubrics) {
     $scope.authentication = Authentication;
 
@@ -29,8 +29,8 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
 
     //array to hold recommended actions
     $scope.recommendations = [ { recommendation:'', urgency:false } ];
-    $scope.showChecked = false; 
     $scope.showRecommendation = false; 
+    $scope.editing = false; 
 
     //Add recommendations in a ToDo list format
     var first = true; 
@@ -47,11 +47,10 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
     };
 
     //Remove recommendations
-    $scope.rmvRecommendation = function(index){ 
-      $scope.recommendations.splice($scope.recommendations[index], 1);
+    $scope.rmvRecommendation = function(item){ 
+      $scope.recommendations.splice($scope.recommendations.indexOf(item), 1);
       if($scope.recommendations.length===0){
         first = true;
-        $scope.showChecked = false;
       }
     };
 
@@ -59,19 +58,15 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
     $scope.setUrgent = function(index){
       if($scope.recommendations[index].urgency===true){
         $scope.recommendations[index].urgency = false;
-        $scope.showChecked = false;
       }
       else{
         $scope.recommendations[index].urgency=true; 
-        $scope.showChecked = true;
       }
       console.log($scope.recommendations[index].recommendation);
       console.log($scope.recommendations[index].urgency);
     };
 
     
-    
-
 
     // Build star and rating arrays based on the length of the rubric array
     $scope.star = [];

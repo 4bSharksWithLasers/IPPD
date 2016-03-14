@@ -4,7 +4,7 @@
   <header>
   	<div class="jumbotron">
   		<div class="container text-center">
-  			<img src="modules/core/client/img/brand/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo">
+  			<img src="modules/core/client/img/brand/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo"></img>
   			<p><em>Review</em></p>
   		</div>
   	</div>
@@ -12,6 +12,7 @@
 
   <main>
     <form name="completedRatingForm" class="form-horizontal" ng-submit="create(completedRatingForm.$valid)" novalidate>
+      <fieldset>
       <div class="container">
         <div class="form-group" show-errors>
           <h3>Team Name</h3>
@@ -37,7 +38,7 @@
             <p class="help-block error-text" ng-message="required">Email is required.</p>
           </div>
         </div>
-{{presentationType.presentationType}}
+        {{presentationType.presentationType}}
       </div>
 
       <div class="container t-padding">
@@ -60,6 +61,7 @@
               </div>
             </div>
           </a>
+
           <div ng-show="showDescription">
             <div class="panel-body"  ng-init="initializeArrays($index)">
               <div class="row">
@@ -105,6 +107,7 @@
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -125,33 +128,59 @@
             <h3>Urgent?</h3>
           </div>
         </div>
-        <div class="row" ng-repeat="item in recommendations track by $index" ng-show="showRecommendation">
-          <div class="col-xs-8">
-            {{ item.recommendation }}
+
+          <div class="row" ng-repeat="item in recommendations track by $index"  ng-show="showRecommendation">
+            <div class="col-xs-8" ng-hide="editing">
+              {{ item.recommendation }}
+            </div>
+
+            <div ng-show="editing">
+              <form>
+                <div class="col-xs-8">
+                  <textarea class="form-control" rows="1" ng-model="item.recommendation" placeholder="{{item.recommendation}}"></textarea>
+                </div>
+              </form>
+                <div class="col-xs-1 text-center" ng-click="editing = false">
+                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </div>
+            </div>
+
+            <a class="a-spc" href="" ng-click="rmvRecommendation(item)">
+              <div class="col-xs-1 text-center">
+                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+              </div>
+            </a>
+
+            <a class="a-spc" href="">
+              <div class="col-xs-1 text-center" ng-click="setUrgent($index)" >
+                <span class="glyphicon glyphicon-unchecked" aria-hidden="true" ng-show="!item.urgency"></span>
+                <span class="glyphicon glyphicon-check" aria-hidden="true" ng-show="item.urgency"></span>
+              </div>
+            </a>
+
+            <a class="a-spc" href="" >
+              <div class="col-xs-1 text-center">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="editing = true"></span>
+              </div>
+            </a>
           </div>
-          <a class="a-spc" href="" ng-click="rmvRecommendation($index)" ng-model-instant>
-            <div class="col-xs-2 text-center">
-              <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-            </div>
-          </a>
-          <a class="a-spc" href="">
-            <div class="col-xs-2 text-center" ng-click="setUrgent($index)">
-              <span class="glyphicon glyphicon-unchecked" aria-hidden="true" ng-show="!showChecked"></span>
-              <span class="glyphicon glyphicon-check" aria-hidden="true" ng-show="showChecked"></span>
-            </div>
-          </a>
-        </div>
-        <div class="row form-group">
-          <div class="col-xs-8">
-            <textarea class="form-control" rows="1" ng-model="recommendationText"></textarea>
+
+          <br/>
+
+          <div class="row">
+            <form>
+              <div class="col-xs-8">
+                <textarea class="form-control" rows="1" ng-model="recommendationText"></textarea>
+              </div>
+              <a class="a-spc" href="" ng-click="addRecommendation()" ng-model-instant>
+                <div class="col-xs-2 text-center">
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </div>
+              </a>
+            </form>
           </div>
-          <a class="a-spc" href="" ng-click="addRecommendation()" ng-model-instant>
-            <div class="col-xs-2 text-center">
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-            </div>
-          </a>
-        </div>
       </div>
+
       <div class="container t-padding">
         <div class="form-group">
           <input type="submit" class="btn btn-lg btn-default">
@@ -160,7 +189,7 @@
           <strong ng-bind="error"></strong>
         </div>
       </div>
-
+    </fieldset>
     </form>
   </main>
 </section>

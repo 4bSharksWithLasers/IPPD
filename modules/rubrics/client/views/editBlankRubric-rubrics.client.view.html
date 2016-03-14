@@ -19,7 +19,9 @@
           </div>
         </div>
 
-        <div ng-repeat="x in blankRubric.ratedItems">
+
+
+        <!-- <div ng-repeat="x in blankRubric.ratedItems">
 
           <div class="form-group" show-errors>
             <label for="itemCategory">Item Category</label>
@@ -50,32 +52,72 @@
             </div>
           </div>
 
-        </div>
+        </div> -->
 
         <div class="container form-group t-padding">
           <div class="row">
             <div class="col-xs-10">
-              <h3>Add a Rubric Item</h3>
+              <h3>Rubric Items</h3>
             </div>
           </div>
-          <div class="row" ng-repeat="item in rubricItemsArray track by $index" ng-show="showRubricItem">
-            <div class="col-xs-8">
+          <div class="row" ng-repeat="item in blankRubric.ratedItems">
+            <div class="col-xs-8" ng-hide="editing">
               {{ item.itemCategory }}
             </div>
-            <div class="col-xs-8">
+            <div class="col-xs-8" ng-hide="editing">
               {{ item.description1 }}
             </div>
-            <div class="col-xs-8">
+            <div class="col-xs-8" ng-hide="editing">
               {{ item.description2 }}
             </div>
-            <div class="col-xs-8">
+            <div class="col-xs-8" ng-hide="editing">
               {{ item.description3 }}
             </div>
-            <a class="a-spc" href="" ng-click="rmvRubricItem($index)" ng-model-instant>
+
+            <div ng-show="editing">
+              <form>
+                <div class="col-xs-8">
+                  <textarea class="form-control" rows="1" ng-model="item.itemCategory" placeholder="{{item.itemCategory}}"></textarea>
+                </div>
+              </form>
+              <form>
+                <div class="col-xs-8">
+                  <textarea class="form-control" rows="1" ng-model="item.description1" placeholder="{{item.description1}}"></textarea>
+                </div>
+              </form>
+              <form>
+                <div class="col-xs-8">
+                  <textarea class="form-control" rows="1" ng-model="item.description2" placeholder="{{item.description2}}"></textarea>
+                </div>
+              </form>
+              <form>
+                <div class="col-xs-8">
+                  <textarea class="form-control" rows="1" ng-model="item.description3" placeholder="{{item.description3}}"></textarea>
+                </div>
+              </form>
+                <div class="col-xs-1 text-center" ng-click="editing = false">
+                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </div>
+            </div>
+
+            <a class="a-spc" href="" ng-click="rmvRubricItemArray(item, blankRubric.ratedItems)" ng-model-instant>
               <div class="col-xs-2 text-center">
                 <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
               </div>
             </a>
+
+            <a class="a-spc" href="" >
+              <div class="col-xs-1 text-center">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="editing = true"></span>
+              </div>
+            </a>
+
+          </div>
+
+          <br/>
+
+          <div class="col-xs-10">
+              <h3>Add a Rubric Item</h3>
           </div>
           <div class="row">
             <form>
@@ -91,7 +133,7 @@
               <div class="col-xs-8">
                 <textarea class="form-control" rows="1" ng-model="description3" placeholder="Rating 5 Description"></textarea>
               </div>
-              <a class="a-spc" href="" ng-click="addRubricItem()" ng-model-instant>
+              <a class="a-spc" href="" ng-click="addRubricItemArray(blankRubric.ratedItems)" ng-model-instant>
                 <div class="col-xs-2 text-center">
                   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 </div>
