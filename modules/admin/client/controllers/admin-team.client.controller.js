@@ -37,7 +37,7 @@ angular.module('admin').controller('TeamController', ['$scope', '$stateParams', 
     $scope.remove = function (team) {
 
       if (team) {
-        if(confirm("Press OK to confirm deletion.")){
+        if(confirm('Press OK to confirm deletion.')){
           team.$remove();
           //redirect path after deletion
           $location.path('/teams');

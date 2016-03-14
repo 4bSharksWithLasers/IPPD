@@ -67,7 +67,7 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
     // Remove existing Registrant
     $scope.remove = function (registrant) {
       if (registrant) {
-        if(confirm("Press OK to confirm deletion.")){
+        if(confirm('Press OK to confirm deletion.')){
           registrant.$remove();
           //redirect path after deletion
           $location.path('/registrants');

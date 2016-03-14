@@ -36,7 +36,7 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$statePa
     // Remove existing affiliation
     $scope.remove = function (affiliation) {
       if (affiliation) {
-        if(confirm("Press OK to confirm deletion.")){
+        if(confirm('Press OK to confirm deletion.')){
           affiliation.$remove();
           //redirect path after deletion
           $location.path('/affiliations');
