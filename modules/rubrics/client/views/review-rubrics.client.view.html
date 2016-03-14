@@ -13,6 +13,9 @@
   <main>
     <form name="completedRatingForm" class="form-horizontal" ng-submit="create(completedRatingForm.$valid)" novalidate>
       <fieldset>
+
+<div class="container">
+
       <div class="container">
         <div class="form-group" show-errors>
           <h3>Team Name</h3>
@@ -40,6 +43,8 @@
         </div>
         {{presentationType.presentationType}}
       </div>
+
+</div>
 
       <div class="container t-padding">
         <h3>Rubric</h3>
@@ -112,6 +117,8 @@
         </div>
       </div>
 
+<div class="container">
+
       <div class="container">
           <div class ="form-group t-padding">
           <h3>Issues Identified</h3>
@@ -119,19 +126,21 @@
         </div>
       </div>
 
+</div>
+
       <div class="container t-padding">
         <div class="row">
-          <div class="col-xs-10">
+          <div class="col-xs-9">
             <h3>Recommendations</h3>
           </div>
-          <div class="col-xs-2 text-center">
-            <h3>Urgent?</h3>
+          <div class="col-xs-3 text-center">
+            <!--<h3>Urgent?</h3>-->
           </div>
         </div>
 
           <div class="row" ng-repeat="item in recommendations track by $index"  ng-show="showRecommendation">
             <div class="col-xs-8" ng-hide="editing">
-              {{ item.recommendation }}
+              <h4> {{ item.recommendation }} </h4>
             </div>
 
             <div ng-show="editing">
@@ -140,27 +149,24 @@
                   <textarea class="form-control" rows="1" ng-model="item.recommendation" placeholder="{{item.recommendation}}"></textarea>
                 </div>
               </form>
-                <div class="col-xs-1 text-center" ng-click="editing = false">
-                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                </div>
             </div>
 
-            <a class="a-spc" href="" ng-click="rmvRecommendation(item)">
-              <div class="col-xs-1 text-center">
-                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+            <a class="a-spc" href="" ng-click="editing=!editing">
+              <div class="col-xs-2 text-center">
+                <span class="glyphicon glyphicon-pencil" title="Edit this item" aria-hidden="true" ng-show="!editing"></span>
+                <span class="glyphicon glyphicon-ok" title="Accept this change" aria-hidden="true" ng-show="editing"></span>
               </div>
             </a>
 
             <a class="a-spc" href="">
-              <div class="col-xs-1 text-center" ng-click="setUrgent($index)" >
-                <span class="glyphicon glyphicon-unchecked" aria-hidden="true" ng-show="!item.urgency"></span>
-                <span class="glyphicon glyphicon-check" aria-hidden="true" ng-show="item.urgency"></span>
-              </div>
-            </a>
-
-            <a class="a-spc" href="" >
-              <div class="col-xs-1 text-center">
-                <span class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="editing = true"></span>
+              <div class="col-xs-2">
+                <div ng-click="rmvRecommendation(item)">
+                  <span class="glyphicon glyphicon-minus" title="Remove this item" aria-hidden="true" ng-show="editing"></span>
+                </div>
+                <div ng-click="setUrgent($index)" ng-show="!editing">
+                  <span class="glyphicon glyphicon-unchecked" title="Click if this item is urgent" aria-hidden="true" ng-show="!item.urgency"></span>
+                  <span class="glyphicon glyphicon-check" title="Click if this item is not urgent" aria-hidden="true" ng-show="item.urgency"></span>
+                </div>
               </div>
             </a>
           </div>
@@ -174,12 +180,14 @@
               </div>
               <a class="a-spc" href="" ng-click="addRecommendation()" ng-model-instant>
                 <div class="col-xs-2 text-center">
-                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-plus" title="Add item to recommendations" aria-hidden="true"></span>
                 </div>
               </a>
             </form>
           </div>
       </div>
+
+<div class="container">
 
       <div class="container t-padding">
         <div class="form-group">
@@ -189,6 +197,9 @@
           <strong ng-bind="error"></strong>
         </div>
       </div>
+
+</div>
+
     </fieldset>
     </form>
   </main>
