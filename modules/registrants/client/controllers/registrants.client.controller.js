@@ -64,6 +64,18 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
       }
     };
 
+    $scope.removeAll = function(){
+      if(confirm('Press OK to confirm deletion.')){
+        console.log($scope.registrants.length);
+        
+        for(var i=0; i < $scope.registrants.length; i++){
+          console.log($scope.registrants[i]);
+          $scope.registrants[i].$remove();
+        }
+        $scope.registrants.splice(0, $scope.registrants.length);
+      }
+    };
+
     // Remove existing Registrant
     $scope.remove = function (registrant) {
       if (registrant) {
