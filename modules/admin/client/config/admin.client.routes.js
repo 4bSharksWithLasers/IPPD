@@ -47,6 +47,10 @@ angular.module('admin').config(['$stateProvider',
         url: '/addAffiliation', 
         templateUrl: 'modules/admin/client/views/addAffiliation-admin.client.view.html'
       })
+	  .state('theme', {
+        url:'/theme', 
+        templateUrl: 'modules/admin/client/views/editTheme-admin.client.view.html'
+      })
       .state('adminHome', {
         url:'/adminHome', 
         templateUrl: 'modules/admin/client/views/adminHome-admin.client.view.html'
