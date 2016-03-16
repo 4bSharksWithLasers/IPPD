@@ -31,31 +31,31 @@ exports.invokeRolesPolicies = function () {
     roles: ['user'],
     allows: [{
       resources: '/api/teams',
-      permissions: '*'
+      permissions: ''
     }, {
       resources: '/api/affiliations',
-      permissions: '*'
+      permissions: ''
     }, {
       resources: '/api/teams/:teamId',
-      permissions: '*'
+      permissions: ''
     }, {
       resources: '/api/affiliations/:affiliationId',
-      permissions: '*'
+      permissions: ''
     }]
   }, {
     roles: ['guest'],
     allows: [{
       resources: '/api/teams',
-      permissions: '*'
+      permissions: ['get']
     }, {
       resources: '/api/affiliations',
-      permissions: '*'
+      permissions: ['get']
     }, {
       resources: '/api/teams/:teamId',
-      permissions: '*'
+      permissions: ['']
     }, {
       resources: '/api/affiliations/:affiliationId',
-      permissions: '*'
+      permissions: ['']
     }]
   }]);
 };
