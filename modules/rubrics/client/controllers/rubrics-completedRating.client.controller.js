@@ -1,7 +1,7 @@
 'use strict';
 
 // CompletedRatings controller
-angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$stateParams', '$location', 'Authentication', 'CompletedRatings', 'Teams', 'BlankRubrics', 
+angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$stateParams', '$location', 'Authentication', 'CompletedRatings', 'Teams', 'BlankRubrics',
   function ($scope, $stateParams, $location, Authentication, CompletedRatings, Teams, BlankRubrics) {
     $scope.authentication = Authentication;
 
@@ -14,7 +14,7 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
 
         return false;
       }
-      //save the presentation type and team name. 
+      //save the presentation type and team name.
       $scope.selectedTeam = this.team.name;
       $scope.selectedPresentationType = this.presentationType.presentationType;
 
@@ -29,11 +29,11 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
 
     //array to hold recommended actions
     $scope.recommendations = [ { recommendation:'', urgency:false } ];
-    $scope.showRecommendation = false; 
-    $scope.editing = false; 
+    $scope.showRecommendation = false;
+    $scope.editing = false;
 
     //Add recommendations in a ToDo list format
-    var first = true; 
+    var first = true;
     $scope.addRecommendation = function(index){
       if(first===false)
         $scope.recommendations.push({ recommendation:$scope.recommendationText, urgency:false });
@@ -41,13 +41,13 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
         $scope.recommendations.splice($scope.recommendations[0], 1);
         $scope.recommendations.push({ recommendation:$scope.recommendationText, urgency:false });
         $scope.showRecommendation = true;
-        first = false; 
+        first = false;
       }
       $scope.recommendationText = '';
     };
 
     //Remove recommendations
-    $scope.rmvRecommendation = function(item){ 
+    $scope.rmvRecommendation = function(item){
       $scope.recommendations.splice($scope.recommendations.indexOf(item), 1);
       if($scope.recommendations.length===0){
         first = true;
@@ -60,21 +60,21 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
         $scope.recommendations[index].urgency = false;
       }
       else{
-        $scope.recommendations[index].urgency=true; 
+        $scope.recommendations[index].urgency=true;
       }
       console.log($scope.recommendations[index].recommendation);
       console.log($scope.recommendations[index].urgency);
     };
 
-    
+
 
     // Build star and rating arrays based on the length of the rubric array
     $scope.star = [];
     $scope.rating = [];
     $scope.rubricItems = [];
-    $scope.showDescription = false; 
+    $scope.showDescription = false;
     $scope.ratedItems = [];
-    
+
     $scope.initializeArrays = function (index){
       console.log('index is: ' + index);
       if(!angular.isUndefined(index)){
@@ -207,7 +207,7 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
 
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'completedRatingForm');
-        
+
         return false;
       }
 

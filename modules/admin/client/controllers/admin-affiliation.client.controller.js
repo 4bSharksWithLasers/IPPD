@@ -36,13 +36,15 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$statePa
     // Remove existing affiliation
     $scope.remove = function (affiliation) {
       if (affiliation) {
-        affiliation.$remove();
-        //redirect path after deletion
-        $location.path('/affiliations');
+        if(confirm('Press OK to confirm deletion.')){
+          affiliation.$remove();
+          //redirect path after deletion
+          $location.path('/affiliations');
 
-        for (var i in $scope.affiliations) {
-          if ($scope.affiliations[i] === affiliation) {
-            $scope.affiliations.splice(i, 1);
+          for (var i in $scope.affiliations) {
+            if ($scope.affiliations[i] === affiliation) {
+              $scope.affiliations.splice(i, 1);
+            }
           }
         }
       } else {
