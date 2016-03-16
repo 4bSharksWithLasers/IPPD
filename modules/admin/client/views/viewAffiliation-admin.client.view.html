@@ -7,6 +7,8 @@
       <img id="loader" ng-show="loading" src="/../../img/484.gif">
       <div ng-show="affiliation">
         <p>Affiliation: {{affiliation.theAffiliation}}</p>
+        <p>Team Code Associated with this Affiliation?: {{affiliation.codeAssociated?'yes':'no'}}</p>
+        <p>Team Associated with this Affiliation?: {{affiliation.teamAssociated?'yes':'no'}}</p>
         <a class="btn btn-primary" ui-sref="affiliations.edit({ affiliationId: affiliation._id })">
           <i class="glyphicon glyphicon-edit"></i>
           Edit

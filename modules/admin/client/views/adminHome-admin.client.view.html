@@ -1,69 +1,66 @@
-<!DOCTYPE html>
+<header>
+	<div class="jumbotron">
+		<div class="container text-center">
+			<img src="modules/core/client/img/brand/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo">
+			<p><em>Admin Home</em></p>
+		</div>
+	</div>
+</header>
 
-<html>
+<main>
+  <div class="container">
 
-	<head>
+    <div class="row t-padding">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <form role="form" action="/teams" method="get">
+          <button class="btn btn-default btn-lg btn-block" type="submit" value="Send">Manage Teams</button>
+        </form>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
 
-		<!-- The following set of tags must be first                             -->
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- END SET                                                             -->
+    <div class="row t-padding">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <form role="form" action="/registrants" method="get">
+          <button class="btn btn-default btn-lg btn-block" type="submit" value="Send">Manage Users</button>
+        </form>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
 
-		<!-- Additional meta information                                         -->
-		<meta name="description" content="IPPD PROJECT">
-		<meta name="author" content="Amy Devries">
-		<meta name="author" content="Steven Williams">
-		<meta name="author" content="Zach Martinez">
-		<meta name="author" content="Justin Pons">
-		<meta name="author" content="Phillip Smith">
+    <div class="row t-padding">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <form role="form" action="/affiliations" method="get">
+          <button class="btn btn-default btn-lg btn-block" type="submit" value="Send">Manage Affiliations</button>
+        </form>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
 
-		<title>IPPD Design Review Feedback</title>
+    <div class="row t-padding">
+      <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <form role="form" action="/blankRubrics" method="get">
+            <button class="btn btn-default btn-lg btn-block" type="submit" value="Send">Manage Rubrics</button>
+          </form>
+        </div>
+      <div class="col-md-4">
+        <form role="form" action="/api/auth/signout" method="get">
+          <button class="btn btn-default btn-lg btn-block" type="submit" value="Send">Signout</button>
+        </form>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
 
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
+  </div>
+</main>
 
-	</head>
 
-	<body>
-
-		<header>
-			<div class="jumbotron">
-				<div class="container text-center">
-					<img src="modules/core/client/img/brand/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo">
-					<p><em>Design Review Feedback</em></p>
-	      	
-					<main>
-						<article>
-			    			<form role="form" action="/teams" method="get">
-								<button class="btn btn-default btn-lg" type="submit" value="Send">Manage Teams</button>
-							</form>
-						</article>
-						<article>
-		        			<form role="form" action="/registrants" method="get">
-								<button class="btn btn-default btn-lg" type="submit" value="Send">Manage Users</button>
-							</form>
-						</article>
-						<article>
-		        			<form role="form" action="/affiliations" method="get">
-								<button class="btn btn-default btn-lg" type="submit" value="Send">Manage Affiliations</button>
-							</form>
-						</article>
-					</main>
-
-				</div>
-			</div>
-		</header>
-
-		
-
-		<footer>
-			<div class="container text-center">
-				Copyright &copy 2016 4bSharksWithLasers
-			</div>
-		</footer>
-	</body>
-</html>
+<footer>
+	<div class="container text-center">
+		Copyright &copy 2016 4bSharksWithLasers
+	</div>
+</footer>

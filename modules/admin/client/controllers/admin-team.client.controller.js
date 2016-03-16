@@ -33,17 +33,31 @@ angular.module('admin').controller('TeamController', ['$scope', '$stateParams', 
       });
     };
 
+    $scope.removeAll = function(){
+      if(confirm('Press OK to confirm deletion.')){
+        console.log($scope.teams.length);
+        
+        for(var i=0; i < $scope.teams.length; i++){
+          console.log($scope.teams[i]);
+          $scope.teams[i].$remove();
+        }
+        $scope.teams.splice(0, $scope.teams.length);
+      }
+    };
+
     // Remove existing team
     $scope.remove = function (team) {
 
       if (team) {
-        team.$remove();
-        //redirect path after deletion
-        $location.path('/teams');
+        if(confirm('Press OK to confirm deletion.')){
+          team.$remove();
+          //redirect path after deletion
+          $location.path('/teams');
 
-        for (var i in $scope.teams) {
-          if ($scope.teams[i] === team) {
-            $scope.teams.splice(i, 1);
+          for (var i in $scope.teams) {
+            if ($scope.teams[i] === team) {
+              $scope.teams.splice(i, 1);
+            }
           }
         }
       } else { 

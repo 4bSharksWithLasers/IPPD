@@ -1,61 +1,38 @@
-<!DOCTYPE html>
+<header>
+	<div class="jumbotron">
+		<div class="container text-center">
+			<img src="modules/core/client/img/brand/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo">
+			<p><em>Admin Login</em></p>
+		</div>
+	</div>
+</header>
 
-<html>
+<main>
+  <div class="container">
+    <form role="form" action="/adminHome" method="get">
+      <fieldset>
 
-	<head>
+        <div class="form-group" show-errors>
+				  <h3> User Name </h3>
+          <input name="user" type="text" ng-model="user" id="user" class="form-control input-lg" placeholder="user name" required>
+        </div>
 
-		<!-- The following set of tags must be first                             -->
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- END SET                                                             -->
+        <div class="form-group" show-errors>
+          <h3> Password </h3>
+          <input type="text" name="password" id="password" class="form-control input-lg" ng-model="password" placeholder="password" required>
+        </div>
 
-		<!-- Additional meta information                                         -->
-		<meta name="description" content="IPPD PROJECT">
-		<meta name="author" content="Amy Devries">
-		<meta name="author" content="Steven Williams">
-		<meta name="author" content="Zach Martinez">
-		<meta name="author" content="Justin Pons">
-		<meta name="author" content="Phillip Smith">
+        <div class="form-group t-padding">
+          <button class="btn btn-default btn-lg" type="submit" value="Send">Go to Admin Home</button>
+        </div>
 
-		<title>IPPD Design Review Feedback</title>
+      </fieldset>
+    </form>
+  </div>
+</main>
 
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
-
-	</head>
-
-	<body>
-
-		<header>
-			<div class="jumbotron">
-				<div class="container text-center">
-					<img src="modules/core/client/img/brand/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo">
-					<p><em>Design Review Feedback</em></p>
-
-					<h1>ADMIN LOGIN</h1>
-	      	
-					<main>
-						<article>
-			    			<form role="form" action="/adminHome" method="get">
-								<button class="btn btn-default btn-lg" type="submit" value="Send">Go to Admin Home</button>
-							</form>
-						</article>
-					</main>
-
-				</div>
-			</div>
-		</header>
-
-		
-
-		<footer>
-			<div class="container text-center">
-				Copyright &copy 2016 4bSharksWithLasers
-			</div>
-		</footer>
-	</body>
-</html>
+<footer>
+	<div class="container text-center">
+		Copyright &copy 2016 4bSharksWithLasers
+	</div>
+</footer>

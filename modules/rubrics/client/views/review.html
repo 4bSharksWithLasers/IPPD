@@ -1,189 +1,130 @@
-<!DOCTYPE html>
+<header>
+	<div class="jumbotron">
+		<div class="container text-center">
+			<img src="../Client/Assets/Images/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo">
+			<p><em>Design Review Feedback</em></p>
+		</div>
+	</div>
+</header>
 
-<html ng-app="review">
+<main ng-controller="ReviewController">
+	<div class="container text-center border" ng-repeat="item in session">
+		<h3>{{ item.team }}: {{ item.type }}</h3>
+	</div>
 
-<!--  --------------------------------------------------------------------------
-																					 Copyright 2016 4BSharksWithLasers    
----------------------------------------------------------------------------  -->
-
-	<head>
-
-		<!-- The following set of tags must be first                             -->
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- END SET                                                             -->
-
-		<!-- Additional meta information                                         -->
-		<meta name="description" content="IPPD PROJECT">
-		<meta name="author" content="Amy Devries">
-		<meta name="author" content="Steven Williams">
-		<meta name="author" content="Zach Martinez">
-		<meta name="author" content="Justin Pons">
-		<meta name="author" content="Phillip Smith">
-
-		<title>IPPD Design Review Feedback</title>
-
-		<!-- Bootstrap         -->
-		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet">
-		<!-- Document Specific -->
-		<link href="../Client/Assets/Styles/index.css" type="text/css" rel="stylesheet">
-
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
-
-	</head>
-
-	<body ng-controller="ReviewController">
-
-		<header>
-			<div class="jumbotron">
-				<div class="container text-center">
-					<img src="../Client/Assets/Images/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo">
-					<p><em>Design Review Feedback</em></p>
+	<div class="container t-padding">
+		<h3>Rubric</h3>
+		<div class="panel panel-default" ng-repeat="item in u track by $index">
+			<a href="" class="a-spc">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-xs-5" ng-click="showDescription=!showDescription">
+							{{ item[0].subject }} - {{ item[1].rating }}
+						</div>
+						<div class="col-xs-7">
+							<span class="glyphicon glyphicon-star rating pull-right" style="color: {{ item[2].colorFive }}" ng-click="changeFive($index)" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-star rating pull-right" style="color: {{ item[2].colorFour }}" ng-click="changeFour($index)" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-star rating pull-right" style="color: {{ item[2].colorThree }}" ng-click="changeThree($index)" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-star rating pull-right" style="color: {{ item[2].colorTwo }}" ng-click="changeTwo($index)" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-star rating pull-right" style="color: {{ item[2].colorOne }}" ng-click="changeOne($index)" aria-hidden="true"></span>
+						</div>
+					</div>
 				</div>
-			</div>
-		</header>
-
-		<main>
-			<div class="container text-center border" ng-repeat="item in session">
-				<h3>{{ item.team }}: {{ item.type }}</h3>
-			</div>
-
-			<div class="container t-padding">
-				<h3>Rubric</h3>
-				<div class="panel panel-default" ng-repeat="item in u track by $index">
-					<a href="" class="a-spc">
-						<div class="panel-heading">
-							<div class="row">
-								<div class="col-xs-5" ng-click="showDescription=!showDescription">
-									{{ item[0].subject }} - {{ item[1].rating }}
-								</div>
-								<div class="col-xs-7">
-									<span class="glyphicon glyphicon-star rating pull-right" style="color: {{ item[2].colorFive }}" ng-click="changeFive($index)" aria-hidden="true"></span>
-									<span class="glyphicon glyphicon-star rating pull-right" style="color: {{ item[2].colorFour }}" ng-click="changeFour($index)" aria-hidden="true"></span>
-									<span class="glyphicon glyphicon-star rating pull-right" style="color: {{ item[2].colorThree }}" ng-click="changeThree($index)" aria-hidden="true"></span>
-									<span class="glyphicon glyphicon-star rating pull-right" style="color: {{ item[2].colorTwo }}" ng-click="changeTwo($index)" aria-hidden="true"></span>
-									<span class="glyphicon glyphicon-star rating pull-right" style="color: {{ item[2].colorOne }}" ng-click="changeOne($index)" aria-hidden="true"></span>
-								</div>
-							</div>
+			</a>
+			<div ng-show="showDescription">
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-xs-7">
+							<em>{{ item[0].five }}</em>
 						</div>
-					</a>
-					<div ng-show="showDescription">
-						<div class="panel-body">
-							<div class="row">
-								<div class="col-xs-7">
-									<em>{{ item[0].five }}</em>
-								</div>
-								<div class="col-xs-5">
-									<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
-									<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
-									<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
-									<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
-									<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
-								</div>
-							</div>
+						<div class="col-xs-5">
+							<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
 						</div>
-						<div class="panel-body">
-							<div class="row">
-								<div class="col-xs-7">
-									<em>{{ item[0].three }}</em>
-								</div>
-								<div class="col-xs-5">
-									<span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
-									<span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
-									<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
-									<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
-									<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
-								</div>
-							</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-xs-7">
+							<em>{{ item[0].three }}</em>
 						</div>
-						<div class="panel-body">
-							<div class="row">
-								<div class="col-xs-7">
-									<em>{{ item[0].one }}</em>
-								</div>
-								<div class="col-xs-5">
-									<span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
-									<span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
-									<span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
-									<span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
-									<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
-								</div>
-							</div>
+						<div class="col-xs-5">
+							<span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-xs-7">
+							<em>{{ item[0].one }}</em>
+						</div>
+						<div class="col-xs-5">
+							<span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
 
-			<div class="container form-group t-padding">
-				<h3>Issues Identified</h3>
-				<textarea class="form-control" rows="5"></textarea>
+	<div class="container form-group t-padding">
+		<h3>Issues Identified</h3>
+		<textarea class="form-control" rows="5"></textarea>
+	</div>
+
+	<div class="container form-group t-padding">
+		<div class="row">
+			<div class="col-xs-10">
+				<h3>Recommendations</h3>
 			</div>
-
-			<div class="container form-group t-padding">
-				<div class="row">
-					<div class="col-xs-10">
-						<h3>Recommendations</h3>
-					</div>
+			<div class="col-xs-2 text-center">
+				<h3>Urgent?</h3>
+			</div>
+		</div>
+		<div class="row" ng-repeat="item in recommendations track by $index" ng-show="showRecommendation">
+			<div class="col-xs-8">
+				{{ item.text }}
+			</div>
+			<a class="a-spc" href="" ng-click="rmvRecommendation($index)" ng-model-instant>
+				<div class="col-xs-2 text-center">
+					<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+				</div>
+			</a>
+			<a class="a-spc" href="">
+				<div class="col-xs-2 text-center" ng-click="setUrgent($index)">
+					<span class="glyphicon glyphicon-unchecked" aria-hidden="true" ng-show="!showChecked"></span>
+					<span class="glyphicon glyphicon-check" aria-hidden="true" ng-show="showChecked"></span>
+				</div>
+			</a>
+		</div>
+		<div class="row">
+			<form>
+				<div class="col-xs-8">
+					<textarea class="form-control" rows="1" ng-model="recommendationText"></textarea>
+				</div>
+				<a class="a-spc" href="" ng-click="addRecommendation()" ng-model-instant>
 					<div class="col-xs-2 text-center">
-						<h3>Urgent?</h3>
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 					</div>
-				</div>
-				<div class="row" ng-repeat="item in recommendations track by $index" ng-show="showRecommendation">
-					<div class="col-xs-8">
-						{{ item.text }}
-					</div>
-					<a class="a-spc" href="" ng-click="rmvRecommendation($index)" ng-model-instant>
-						<div class="col-xs-2 text-center">
-							<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-						</div>
-					</a>
-					<a class="a-spc" href="">
-						<div class="col-xs-2 text-center" ng-click="setUrgent($index)">
-							<span class="glyphicon glyphicon-unchecked" aria-hidden="true" ng-show="!showChecked"></span>
-							<span class="glyphicon glyphicon-check" aria-hidden="true" ng-show="showChecked"></span>
-						</div>
-					</a>
-				</div>
-				<div class="row">
-					<form>
-						<div class="col-xs-8">
-							<textarea class="form-control" rows="1" ng-model="recommendationText"></textarea>
-						</div>
-						<a class="a-spc" href="" ng-click="addRecommendation()" ng-model-instant>
-							<div class="col-xs-2 text-center">
-								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-							</div>
-						</a>
-					</form>
-				</div>
-			</div>
-		</main>
+				</a>
+			</form>
+		</div>
+	</div>
+</main>
 
-		<footer>
-			<div class="container text-center">
-				<article>
-					Copyright &copy 2016 4bSharksWithLasers
-				</article>
-			</div>
-		</footer>
-
-    <!-- Scripts included at the bottom so the page will load faster         -->
-
-    <!-- Angular           -->
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" type="text/javascript"></script>
-		<!-- Bootstrap         -->
-		<script src="" type="text/javascript"></script>
-		<!-- Document Specific -->
-    <script src="../Client/Assets/Controllers/review-controller.js" type="text/javascript"></script>
-	</body>
-
-<!--  --------------------------------------------------------------------------
-																					 Copyright 2016 4BSharksWithLasers    
----------------------------------------------------------------------------  -->
-
-</html>
+<footer>
+	<div class="container text-center">
+		Copyright &copy 2016 4bSharksWithLasers
+	</div>
+</footer>

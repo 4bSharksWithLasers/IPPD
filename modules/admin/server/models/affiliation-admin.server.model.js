@@ -10,6 +10,12 @@ var affiliationSchema = new Schema({
     type: String, 
     required: true
   }, 
+  codeAssociated:{
+    type: Boolean
+  },
+  teamAssociated:{
+    type: Boolean
+  },
   created_at: Date,
   updated_at: Date
 });

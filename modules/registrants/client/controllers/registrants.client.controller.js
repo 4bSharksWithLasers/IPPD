@@ -19,37 +19,74 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
         return false;
       }
 
-      // Create new Registrant object
-      var registrant = new Registrants({
-        email: this.email,
-        affiliation: this.affiliation.theAffiliation,
-        teamName: this.teamName.name
-      });
-
-      // Redirect after save
-      registrant.$save(function (response) {
-        $location.path('/register');
+      //If there is a team associated with the registrant
+      if(this.affiliation.teamAssociated === true){
+        // Create new Registrant object
+        var registrantTeam = new Registrants({
+          email: this.email,
+          affiliation: this.affiliation.theAffiliation,
+          teamName: this.teamName.name
+        });
+        // Redirect after save
+        registrantTeam.$save(function (response) {
+          $location.path('/selectPresentation');
 
         // Clear form fields
-        $scope.email = '';
-        $scope.affiliation = '';
-        $scope.teamName = '';
-      }, function (errorResponse) {
-        $scope.error = errorResponse.data.message;
-      });
+          $scope.email = '';
+          $scope.affiliation = '';
+          $scope.teamName = '';
+          $scope.teamCode = '';
+        }, function (errorResponse) {
+          $scope.error = errorResponse.data.message;
+        });
+      }
+      //if there is not a team associated with the registrant
+      else{
+        // Create new Registrant object
+        var registrant = new Registrants({
+          email: this.email,
+          affiliation: this.affiliation.theAffiliation,
+          teamName: ''
+        });
+        // Redirect after save
+        registrant.$save(function (response) {
+          $location.path('/selectPresentation');
+
+        // Clear form fields
+          $scope.email = '';
+          $scope.affiliation = '';
+          $scope.teamName = '';
+          $scope.teamCode = '';
+        }, function (errorResponse) {
+          $scope.error = errorResponse.data.message;
+        });
+      }
     };
 
+    $scope.removeAll = function(){
+      if(confirm('Press OK to confirm deletion.')){
+        console.log($scope.registrants.length);
+
+        for(var i=0; i < $scope.registrants.length; i++){
+          console.log($scope.registrants[i]);
+          $scope.registrants[i].$remove();
+        }
+        $scope.registrants.splice(0, $scope.registrants.length);
+      }
+    };
 
     // Remove existing Registrant
     $scope.remove = function (registrant) {
       if (registrant) {
-        registrant.$remove();
-        //redirect path after deletion
-        $location.path('/registrants');
+        if(confirm('Press OK to confirm deletion.')){
+          registrant.$remove();
+          //redirect path after deletion
+          $location.path('/registrants');
 
-        for (var i in $scope.registrants) {
-          if ($scope.registrants[i] === registrant) {
-            $scope.registrants.splice(i, 1);
+          for (var i in $scope.registrants) {
+            if ($scope.registrants[i] === registrant) {
+              $scope.registrants.splice(i, 1);
+            }
           }
         }
       } else {
@@ -89,5 +126,9 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
         registrantId: $stateParams.registrantId
       });
     };
+
+    //Phillip
+
+  //
   }
 ]);

@@ -20,24 +20,45 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/review',
       permissions: '*'
+    }, {
+      resources: '/api/blankRubrics',
+      permissions: '*'
+    }, {
+      resources: '/api/blankRubrics/:blankRubricId',
+      permissions: '*'
     }]
   }, {
     roles: ['user'],
     allows: [{
       resources: '/api/completedRatings',
-      permissions: '*'
+      permissions: ''
     }, {
       resources: '/api/review',
-      permissions: '*'
+      permissions: ''
+    }, {
+      resources: '/api/blankRubrics',
+      permissions: ''
+    }, {
+      resources: '/api/blankRubrics/:blankRubricId',
+      permissions: ''
     }]
   }, {
     roles: ['guest'],
     allows: [{
       resources: '/api/completedRatings',
-      permissions: '*'
+      permissions: 'post'
+    }, {
+      resources: '/api/completedRatings/:ratingId',
+      permissions: ''
     }, {
       resources: '/api/review',
-      permissions: '*'
+      permissions: ''
+    }, {
+      resources: '/api/blankRubrics',
+      permissions: 'get'
+    }, {
+      resources: '/api/blankRubrics/:blankRubricId',
+      permissions: 'get'
     }]
   }]);
 };

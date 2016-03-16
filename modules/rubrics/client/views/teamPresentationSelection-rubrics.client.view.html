@@ -1,0 +1,43 @@
+<section ng-controller="CompletedRatingController">
+
+  <header>
+  	<div class="jumbotron">
+  		<div class="container text-center">
+  			<img src="modules/core/client/img/brand/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo">
+  			<p><em>Registration</em></p>
+  		</div>
+  	</div>
+  </header>
+
+  <div class="container">
+    <form name="presentationSelectionForm" class="form-horizontal" ng-submit="selectPresentationType(presentationSelectionForm.$valid)" novalidate>
+      <fieldset>
+
+        <div class="form-group" show-errors>
+          <h3>Team Name</h3>
+          <select name="team" ng-options="team.name for team in teamDropdowns | orderBy: 'name'" data-toggle="dropdown" type="button" ng-model="team"id="team" class="btn btn-default btn-lg btn-block dropdown-toggle" placeholder="Team Name" required> </select>
+          <div ng-messages="presentationSelectionForm.team.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Team name selection is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <h3>Presentation Type</h3>
+          <select name="presentationType" ng-options="p.presentationType for p in blankRubrics" data-toggle="dropdown" type="button" ng-model="presentationType" id="presentationType" class="btn btn-default btn-lg btn-block dropdown-toggle" placeholder="Presentation Type" required></select>
+          <div ng-messages="presentationSelectionForm.presentationType.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Presentation Type is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group t-padding">
+          <a ui-sref="review({blankRubricId:presentationType._id})">
+            <input type="submit" class="btn btn-lg btn-default">
+          </a>
+        </div>
+        <div ng-show="error" class="text-danger">
+          <strong ng-bind="error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>
