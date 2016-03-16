@@ -28,25 +28,25 @@ exports.invokeRolesPolicies = function () {
     roles: ['user'],
     allows: [{
       resources: '/api/registrants',
-      permissions: ['get', 'post']
+      permissions: ['']
     }, {
       resources: '/api/register',
-      permissions: ['get', 'post']
+      permissions: ['']
     }, {
       resources: '/api/registrants/:registrantId',
-      permissions: ['*']
+      permissions: ['']
     }]
   }, {
     roles: ['guest'],
     allows: [{
       resources: '/api/registrants',
-      permissions: ['get', 'post']
+      permissions: ['post']
     }, {
       resources: '/api/register',
-      permissions: ['get', 'post']
+      permissions: ['']
     }, {
       resources: '/api/registrants/:registrantId',
-      permissions: ['*']
+      permissions: ['']
     }]
   }]);
 };
