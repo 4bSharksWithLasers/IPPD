@@ -13,100 +13,84 @@
     <form name="blankRubricForm" class="form-horizontal" ng-submit="create(blankRubricForm.$valid)" novalidate>
       <fieldset>
 
-        <div class="form-group" show-errors>
-          <label for="presentationType">Presentation Type</label>
-          <input name="presentationType" type="text" ng-model="presentationType" id="presentationType" class="form-control" placeholder="Presentation Type" required></input>
-          <div ng-messages="blankRubricForm.presentationType.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Presentation Type is required.</p>
+        <div class="container">
+          <div class="form-group" show-errors>
+            <h3>Presentation Type</h3>
+            <input name="presentationType" type="text" ng-model="presentationType" id="presentationType" class="form-control input-lg" placeholder="Presentation Type" required></input>
+            <div ng-messages="blankRubricForm.presentationType.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">Presentation Type is required.</p>
+            </div>
           </div>
         </div>
-        <div class="form-group" show-errors>
-          <label for="instructions">Instructions</label>
-          <input name="instructions" type="text" ng-model="instructions" id="instructions" class="form-control" placeholder="Instructions" required></input>
-          <div ng-messages="blankRubricForm.instructions.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Instructions are required.</p>
+        <div class="container">
+          <div class="form-group" show-errors>
+            <h3>Instructions</h3>
+            <input name="instructions" type="text" ng-model="instructions" id="instructions" class="form-control input-lg" placeholder="Instructions" required></input>
+            <div ng-messages="blankRubricForm.instructions.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">Instructions are required.</p>
+            </div>
           </div>
         </div>
 
-          <div class="row">
-            <div class="col-xs-10">
-              <h3>Rubric Items</h3>
+        <div class="container">
+          <div class="form-group">
+            <h3>Rubric Items</h3>
+  <!-- this is the portion that shows after stuff has been added -->
+            <div class="row" ng-repeat="item in rubricItemsArray track by $index" ng-show="showRubricItem">
+              <div class="col-xs-2" ng-show="!editing"><h4> {{ item.itemCategory }} </h4></div>
+              <div class="col-xs-2" ng-show="!editing"><h4> {{ item.description1 }} </h4></div>
+              <div class="col-xs-2" ng-show="!editing"><h4> {{ item.description2 }} </h4></div>
+              <div class="col-xs-2" ng-show="!editing"><h4> {{ item.description3 }} </h4></div>
+              <a class="a-spc" href="" ng-click="editing=true" ng-show="!editing">
+                <div class="col-xs-2 text-center t-padding-row">
+                  <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                </div>
+              </a>
+            </div>
+  <!-- this portion should show during editing phase -->
+            <div class="t-padding-row" ng-show="editing">
+              <form>
+                <div class="col-xs-8">
+                  <textarea class="form-control input-lg" rows="1" ng-model="item.itemCategory" placeholder="{{item.itemCategory}}"></textarea>
+                </div>
+              </form>
+              <form>
+                <div class="col-xs-8">
+                  <textarea class="form-control input-lg" rows="1" ng-model="item.description1" placeholder="{{item.description1}}"></textarea>
+                </div>
+              </form>
+              <form>
+                <div class="col-xs-8">
+                  <textarea class="form-control input-lg" rows="1" ng-model="item.description2" placeholder="{{item.description2}}"></textarea>
+                </div>
+              </form>
+              <form>
+                <div class="col-xs-8">
+                  <textarea class="form-control input-lg" rows="1" ng-model="item.description3" placeholder="{{item.description3}}"></textarea>
+                </div>
+              </form>
+
+              <a class="a-spc" href="" ng-show="editing" ng-click="editing=!editing">
+                <div class="col-xs-2 text-center">
+                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </div>
+              </a>
+
+              <a class="a-spc" href="" ng-show="editing" ng-click="rmvRubricItem(item)" ng-model-instant>
+                <div class="col-xs-2 text-center t-padding-row">
+                  <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                </div>
+              </a>
             </div>
           </div>
-          <div class="row" ng-repeat="item in rubricItemsArray track by $index" ng-show="showRubricItem">
-            <div class="col-xs-8" ng-hide="editing">
-              {{ item.itemCategory }}
-            </div>
-            <div class="col-xs-8" ng-hide="editing">
-              {{ item.description1 }}
-            </div>
-            <div class="col-xs-8" ng-hide="editing">
-              {{ item.description2 }}
-            </div>
-            <div class="col-xs-8" ng-hide="editing">
-              {{ item.description3 }}
-            </div>
-
-            <div ng-show="editing">
-              <div class="col-xs-8 form-group" show-errors>
-                <input name="item.itemCategory" type="text" ng-model="item.itemCategory" id="item.itemCategory" class="form-control" placeholder="{{item.itemCategory}}" required></input>
-                <div ng-messages="blankRubricForm.item.itemCategory.$error" role="alert">
-                  <p class="help-block error-text" ng-message="required">Item Category is required.</p>
+        </div>
+  <!-- this portion should always show -->
+          <div class="container">
+            <form>
+              <div class="row">
+                <div class="col-xs-8 t-padding-row">
+                  <textarea class="form-control input-lg" rows="1" ng-model="itemCategory" placeholder="Rubric Item"></textarea>
                 </div>
-              </div>
-
-              <div class="col-xs-8 form-group" show-errors>
-                <input name="item.description1" type="text" ng-model="item.description1" id="item.description1" class="form-control" placeholder="{{item.description1}}" required></input>
-                <div ng-messages="blankRubricForm.item.description1.$error" role="alert">
-                  <p class="help-block error-text" ng-message="required">Description is required.</p>
-                </div>
-              </div>
-
-              <div class="col-xs-8 form-group" show-errors>
-                <input name="item.description2" type="text" ng-model="item.description2" id="item.description2" class="form-control" placeholder="{{item.description2}}" required></input>
-                <div ng-messages="blankRubricForm.item.description2.$error" role="alert">
-                  <p class="help-block error-text" ng-message="required">Description is required.</p>
-                </div>
-              </div>
-
-              <div class="col-xs-8 form-group" show-errors>
-                <input name="item.description3" type="text" ng-model="item.description3" id="item.description3" class="form-control" placeholder="{{item.description3}}" required></input>
-                <div ng-messages="blankRubricForm.item.description3.$error" role="alert">
-                  <p class="help-block error-text" ng-message="required">Description is required.</p>
-                </div>
-              </div>
-
-              <div class="col-xs-1 text-center" ng-show="!editItemCheck($index)" ng-click="editing = false">
-                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-              </div>
-              <div class="col-xs-8" ng-if="editItemCheck($index)">
-                <h5>Please complete all four fields before adding a rubric item.</h5>
-              </div>
-            </div>
-
-            <a class="a-spc" href="" ng-click="rmvRubricItem(item)" ng-model-instant>
-              <div class="col-xs-2 text-center">
-                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-              </div>
-            </a>
-
-            <a class="a-spc" href="" >
-              <div class="col-xs-1 text-center">
-                <span class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="editing = true"></span>
-              </div>
-            </a>
-          </div>
-
-          <br/>
-
-          <div class="row">
-
-              <div class="col-xs-8">
-                <textarea class="form-control" rows="1" ng-model="itemCategory" placeholder="Rubric Item"></textarea>
-
-              </div>
-              <div class="col-xs-8">
-                <textarea class="form-control" rows="1" ng-model="description1" placeholder="Rating 1 Description"></textarea>
               </div>
 
               <div class="row">
@@ -119,6 +103,7 @@
                 <div class="col-xs-8 t-padding-row">
                   <textarea class="form-control input-lg" rows="1" ng-model="description2" placeholder="Rating 3 Description"></textarea>
                 </div>
+
               </div>
               <div class="row">
                 <div class="col-xs-8 t-padding-row">
@@ -132,16 +117,7 @@
               </div>
             </form>
           </div>
-
-              <a class="a-spc" href="" ng-click="addRubricItem()" ng-model-instant>
-                <div class="col-xs-2 text-center">
-                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                </div>
-              </a>
-              <div class="col-xs-8" ng-show="rubricItemError">
-                <h5>Please complete all four fields before adding a rubric item.</h5>
-              </div>
-          </div>
+        </div>
 
         <div class="container t-padding">
           <div class="form-group">
