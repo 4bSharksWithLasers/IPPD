@@ -31,23 +31,46 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
     $scope.recommendations = [ { recommendation:'', urgency:false } ];
     $scope.showRecommendation = false;
     $scope.editing = false;
+    $scope.recommendationError = false; 
+
+    $scope.editItemCheck = function($index){
+      if($scope.recommendations[$index].recommendation === '' || $scope.recommendations[$index].recommendation === undefined){
+        console.log($scope.recommendations[$index].recommendationText);
+        console.log('invalid edit');
+        return true; 
+      }
+      else{
+        $scope.editing = false; 
+        return false; 
+      }
+    };
 
     //Add recommendations in a ToDo list format
     var first = true;
     $scope.addRecommendation = function(index){
-      if(first===false)
-        $scope.recommendations.push({ recommendation:$scope.recommendationText, urgency:false });
-      else{
-        $scope.recommendations.splice($scope.recommendations[0], 1);
-        $scope.recommendations.push({ recommendation:$scope.recommendationText, urgency:false });
-        $scope.showRecommendation = true;
-        first = false;
+      if($scope.recommendationText === '' || $scope.recommendationText === undefined){
+        $scope.recommendationError = true; 
+        console.log('recomm error');
+        console.log($scope.recommendationText);
       }
-      $scope.recommendationText = '';
+      else{
+        $scope.recommendationError = false; 
+        if(first===false)
+          $scope.recommendations.push({ recommendation:$scope.recommendationText, urgency:false });
+        else{
+          $scope.recommendations.splice($scope.recommendations[0], 1);
+          $scope.recommendations.push({ recommendation:$scope.recommendationText, urgency:false });
+          $scope.showRecommendation = true;
+          first = false;
+        }
+        $scope.recommendationText = '';
+      }
+      
     };
 
     //Remove recommendations
     $scope.rmvRecommendation = function(item){
+      $scope.editing = false; 
       $scope.recommendations.splice($scope.recommendations.indexOf(item), 1);
       if($scope.recommendations.length===0){
         first = true;
