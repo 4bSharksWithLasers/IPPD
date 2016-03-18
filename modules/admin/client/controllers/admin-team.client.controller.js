@@ -33,6 +33,18 @@ angular.module('admin').controller('TeamController', ['$scope', '$stateParams', 
       });
     };
 
+    $scope.removeAll = function(){
+      if(confirm('Press OK to confirm deletion.')){
+        console.log($scope.teams.length);
+        
+        for(var i=0; i < $scope.teams.length; i++){
+          console.log($scope.teams[i]);
+          $scope.teams[i].$remove();
+        }
+        $scope.teams.splice(0, $scope.teams.length);
+      }
+    };
+
     // Remove existing team
     $scope.remove = function (team) {
 

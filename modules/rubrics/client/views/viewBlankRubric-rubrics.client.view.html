@@ -6,13 +6,13 @@
     <div class="jumbotron">
       <img id="loader" ng-show="loading" src="/../../img/484.gif">
       <div ng-show="blankRubric">
-        <p>Presentation Type: {{blankRubric.presentationType}}</p>
-        <p>Instructions: {{blankRubric.instructions}}</p>
+        <p><u>Presentation Type:</u> {{blankRubric.presentationType}}</p>
+        <p><u>Instructions:</u> {{blankRubric.instructions}}</p>
         <div ng-repeat="x in blankRubric.ratedItems">
-            <div>Item Category: {{x.itemCategory}}</div>
-            <div>Rating 1 Description: {{x.description1}}</div>
-            <div>Rating 3 Description: {{x.description2}}</div>
-            <div>Rating 5 Description: {{x.description3}}</div>
+            <div><u>Item Category:</u> {{x.itemCategory}}</div>
+            <div><u>Rating 1 Description:</u> {{x.description1}}</div>
+            <div><u>Rating 3 Description:</u> {{x.description2}}</div>
+            <div><u>Rating 5 Description:</u> {{x.description3}}</div>
         </div>
         <a class="btn btn-primary" ui-sref="blankRubrics.edit({ blankRubricId: blankRubric._id })">
           <i class="glyphicon glyphicon-edit"></i>

@@ -6,8 +6,8 @@
     <div class="jumbotron">
       <img id="loader" ng-show="loading" src="/../../img/484.gif">
       <div ng-show="registrant">
-        <p>User Email: {{registrant.email}}</p>
-        <p>User Affiliation: {{registrant.affiliation}}</p>
+        <p><u>User Email:</u> {{registrant.email}}</p>
+        <p><u>User Affiliation:</u> {{registrant.affiliation}}</p>
         <p ng-show="registrant.teamName">User Team: {{registrant.teamName}}</p>
         <a class="btn btn-primary" ui-sref="registrants.edit({ registrantId: registrant._id })">
           <i class="glyphicon glyphicon-edit"></i>
