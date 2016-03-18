@@ -74,7 +74,7 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
       else{
         $scope.rubricItemError = false; 
         if(first===false){
-        rubricArray.push({ itemCategory:$scope.itemCategory, description1:$scope.description1, description2:$scope.description2, description3:$scope.description3 });
+          rubricArray.push({ itemCategory:$scope.itemCategory, description1:$scope.description1, description2:$scope.description2, description3:$scope.description3 });
         }
         else{
           rubricArray.push({ itemCategory:$scope.itemCategory, description1:$scope.description1, description2:$scope.description2, description3:$scope.description3 });
