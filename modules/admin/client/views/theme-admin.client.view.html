@@ -1,10 +1,39 @@
 
   <div class="page-header">
-    <h1><u>Manage Theme</u></h1>
-    <article>
+       <article>
         <form role="form" action="/adminHome" method="get">
-          <button class="nav-btn" type="submit" value="Send">Return to Admin Home</button>
+          <button class="nav-btn" type="submit" value="Send" style="float: right;">Return to Admin Home</button>
         </form>
-      </article>
+      </article> 
+    <h1><u>Manage Theme</u></h1>
   </div>
-
+  
+					<h1>
+					<u>Edit Site Coloring</u>
+					</h1>
+					<div>
+					<script src="../../../../jscolor.js"></script>
+					<h6><b>Choose New Top Color:</b></h6>
+					<input class="jscolor" value="FFAE17" id = "colorChoice">
+					<script>
+	                function setTextColor(picker) {
+					document.getElementsByTagName('body')[0].style.color = '#' + picker.toString()
+					}
+					</script>
+					</div>
+				   </div>
+				   
+				   <br>
+				   
+				   <h1>
+				   <u>Edit Site Logo</u>
+					</h1>
+					<br>
+					<div>
+	                <h6><b>Choose New Site Logo:</b></h6>
+					<input type="file" value="Upload File" accept="image/*">
+					<br>
+					</div>
+				   
+				   <br>
+  
