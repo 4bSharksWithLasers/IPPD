@@ -149,12 +149,18 @@
               </form>
             </div>
 
-            <a class="a-spc" href="" ng-click="editing=!editing">
+            <a class="a-spc" href="">
               <div class="col-xs-2 text-center">
-                <span class="glyphicon glyphicon-pencil" title="Edit this item" aria-hidden="true" ng-show="!editing"></span>
-                <span class="glyphicon glyphicon-ok" title="Accept this change" aria-hidden="true" ng-show="editing"></span>
+                <span class="glyphicon glyphicon-pencil" title="Edit this item" aria-hidden="true" ng-show="!editing" ng-click="editing=true"></span>
+                <div ng-show="editing">
+                  <span class="glyphicon glyphicon-ok" title="Accept this change" aria-hidden="true" ng-show="!editItemCheck($index)" ng-click="editing = false"></span>
+                </div>
               </div>
             </a>
+
+            <div class="col-xs-8" ng-if="editItemCheck($index)">
+              <h5>Please enter text or remove recommendation.</h5>
+            </div>
 
             <div class="col-xs-2">
               <a class="a-spc" href="" ng-click="rmvRecommendation(item)">
@@ -176,11 +182,14 @@
               <div class="col-xs-8">
                 <textarea class="form-control" rows="1" ng-model="recommendationText"></textarea>
               </div>
-              <a class="a-spc" href="" ng-click="addRecommendation()" ng-model-instant>
+              <a class="a-spc" href="" ng-click="addRecommendation($index)" ng-model-instant>
                 <div class="col-xs-2 text-center">
                   <span class="glyphicon glyphicon-plus" title="Add item to recommendations" aria-hidden="true"></span>
                 </div>
               </a>
+              <div class="col-xs-8" ng-show="recommendationError">
+                <h5>Please enter text before adding a recommendation.</h5>
+              </div>
             </form>
           </div>
         </div>
