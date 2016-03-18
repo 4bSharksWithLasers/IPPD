@@ -41,10 +41,6 @@ angular.module('admin').config(['$stateProvider',
           roles:['admin']
         }
       })
-      .state('theme', {
-        url: '/theme',
-        templateUrl: 'modules/admin/client/views/theme-admin.client.view.html'
-      })	  
       .state('affiliations', {
         abstract: true,
         url: '/affiliations',
