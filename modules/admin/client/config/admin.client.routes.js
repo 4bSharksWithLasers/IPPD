@@ -26,13 +26,6 @@ angular.module('admin').config(['$stateProvider',
         url: '/addTeam', 
         templateUrl: 'modules/admin/client/views/addTeam-admin.client.view.html'
       })
-<<<<<<< HEAD
-       .state('theme', {
-        url: '/theme',
-        templateUrl: 'modules/admin/client/views/theme-admin.client.view.html'
-      }) 		  
-=======
->>>>>>> 22737191a4d2e74248d09e465e20e736a3ab6388
       .state('affiliations', {
         abstract: true,
         url: '/affiliations',
