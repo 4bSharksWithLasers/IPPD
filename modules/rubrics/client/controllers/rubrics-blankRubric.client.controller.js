@@ -9,22 +9,54 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
     $scope.rubricItemsArray = [ { itemCategory:'', description1:'', description2:'', description3:'' } ];
     $scope.showRubricItem = false;
     $scope.editing = false; 
-
+    $scope.rubricItemError = false;  
     var first = true;
 
-    $scope.addRubricItem = function($index){
-      if(first===false)
-        $scope.rubricItemsArray.push({ itemCategory:$scope.itemCategory, description1:$scope.description1, description2:$scope.description2, description3:$scope.description3 });
-      else{
-        $scope.rubricItemsArray.splice($scope.rubricItemsArray[0], 1);
-        $scope.rubricItemsArray.push({ itemCategory:$scope.itemCategory, description1:$scope.description1, description2:$scope.description2, description3:$scope.description3 });
-        $scope.showRubricItem = true;
-        first = false;
+    $scope.editItemCheck = function($index){
+      if($scope.rubricItemsArray[$index].itemCategory === '' || $scope.rubricItemsArray[$index].description1 === '' || $scope.rubricItemsArray[$index].description2 === '' || $scope.rubricItemsArray[$index].description3 === '' || $scope.rubricItemsArray[$index].itemCategory === undefined || $scope.rubricItemsArray[$index].description1 === undefined || $scope.rubricItemsArray[$index].description2 === undefined || $scope.rubricItemsArray[$index].description3 === undefined){
+        console.log('invalid edit');
+        return true; 
       }
-      $scope.itemCategory = '';
-      $scope.description1 = '';
-      $scope.description2 = '';
-      $scope.description3 = '';
+      else{
+        $scope.editing = false; 
+        return false; 
+      }
+    };
+
+    $scope.editItemCheckArray = function(item, rubricArray){
+      console.log(rubricArray[rubricArray.indexOf(item)]);
+      if(rubricArray[rubricArray.indexOf(item)].itemCategory === '' || rubricArray[rubricArray.indexOf(item)].description1 === '' || rubricArray[rubricArray.indexOf(item)].description2 === '' || rubricArray[rubricArray.indexOf(item)].description3 === '' || rubricArray[rubricArray.indexOf(item)].itemCategory === undefined || rubricArray[rubricArray.indexOf(item)].description1 === undefined || rubricArray[rubricArray.indexOf(item)].description2 === undefined || rubricArray[rubricArray.indexOf(item)].description3 === undefined){
+        console.log('invalid edit');
+        return true; 
+      }
+      else{
+        $scope.editing = false; 
+        return false; 
+      }
+    };
+
+    $scope.addRubricItem = function(){
+      if($scope.itemCategory === '' || $scope.description1 === '' || $scope.description2 === '' || $scope.description3 === '' || $scope.itemCategory === undefined || $scope.description1 === undefined || $scope.description2 === undefined || $scope.description3 === undefined){
+        console.log('invalid item category');
+        $scope.rubricItemError = true; 
+      }
+      else{
+        $scope.rubricItemError = false; 
+        if(first===false){
+          $scope.rubricItemsArray.push({ itemCategory:$scope.itemCategory, description1:$scope.description1, description2:$scope.description2, description3:$scope.description3 });
+        }
+        else{
+          $scope.rubricItemsArray.splice($scope.rubricItemsArray[0], 1);
+          $scope.rubricItemsArray.push({ itemCategory:$scope.itemCategory, description1:$scope.description1, description2:$scope.description2, description3:$scope.description3 });
+          $scope.showRubricItem = true;
+          first = false;
+        }
+        $scope.itemCategory = '';
+        $scope.description1 = '';
+        $scope.description2 = '';
+        $scope.description3 = '';
+      }
+      
     };
 
     $scope.rmvRubricItem = function(item){
@@ -35,18 +67,26 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
     };
 
     $scope.addRubricItemArray = function(rubricArray){
-      console.log(rubricArray);
-      if(first===false)
-        rubricArray.push({ itemCategory:$scope.itemCategory, description1:$scope.description1, description2:$scope.description2, description3:$scope.description3 });
-      else{
-        rubricArray.push({ itemCategory:$scope.itemCategory, description1:$scope.description1, description2:$scope.description2, description3:$scope.description3 });
-        $scope.showRubricItem = true;
-        first = false;
+      if($scope.itemCategory === '' || $scope.description1 === '' || $scope.description2 === '' || $scope.description3 === '' || $scope.itemCategory === undefined || $scope.description1 === undefined || $scope.description2 === undefined || $scope.description3 === undefined){
+        console.log('invalid item category');
+        $scope.rubricItemError = true; 
       }
-      $scope.itemCategory = '';
-      $scope.description1 = '';
-      $scope.description2 = '';
-      $scope.description3 = '';
+      else{
+        $scope.rubricItemError = false; 
+        if(first===false){
+        rubricArray.push({ itemCategory:$scope.itemCategory, description1:$scope.description1, description2:$scope.description2, description3:$scope.description3 });
+        }
+        else{
+          rubricArray.push({ itemCategory:$scope.itemCategory, description1:$scope.description1, description2:$scope.description2, description3:$scope.description3 });
+          $scope.showRubricItem = true;
+          first = false;
+        }
+        $scope.itemCategory = '';
+        $scope.description1 = '';
+        $scope.description2 = '';
+        $scope.description3 = '';
+      }
+      
     };
 
     $scope.rmvRubricItemArray = function(item, rubricArray){
@@ -65,6 +105,8 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
     // Create new blankRubric
     $scope.create = function (isValid) {
       $scope.error = null;
+      console.log(isValid);
+      console.log($scope.blankRubricForm);
 
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'blankRubricForm');
