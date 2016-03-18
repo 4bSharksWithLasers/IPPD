@@ -1,12 +1,18 @@
 <section ng-controller="RegistrantsController" ng-init="find()">
   <div class="page-header">
-    <h1>Manage Users</h1>
-    <article>
+      <article>
         <form role="form" action="/adminHome" method="get">
-          <button class="nav-btn" type="submit" value="Send">Admin</button>
+          <button class="nav-btn" type="submit" value="Send" style="float: right;">Return to Admin Home</button>
         </form>
-      </article>
+      </article>  
+    <h1><u>Manage Users</u></h1>
   </div>
+
+  <article>
+    <form role="form" ng-click="removeAll()">
+      <button class="btn btn-default btn-lg">Delete all Users</button>
+    </form>
+  </article>
 
   <div ng-show="error" class="text-danger">
       <strong ng-bind="error"></strong>
@@ -18,18 +24,19 @@
       <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
       <input type="text" class="form-control" placeholder="Search" ng-model="query">
     </div>
+	<br>
     <div class="tableWrapper">
-      <table class="table table-striped table-hover">
+      <table class="table" style="color:#FFFFFF">
         <tr>
-          <th>User email</th>
-          <th>User affiliation</th>
-          <th>Delete</th>
+          <th><u>User email (click on an entry to edit)</u></th>
+          <th><u>User affiliation</u></th>
+          <th><u>Delete</u></th>
         </tr>
         <tr ng-repeat="x in registrants | filter: query" ui-sref="registrants.view({ registrantId: x._id })">
           <td>{{x.email}}</td>
           <td>{{x.affiliation}}</td>
           <td>
-          	<button class="btn btn-alt" ng-confirm-click="Click to confirm deletion." ng-click="remove(x);" >Delete</button>
+          	<button class="btn btn-alt" ng-confirm-click="Click to confirm deletion." ng-click="remove(x);" style="color:#000000">Delete</button>
           </td>
         </tr>
       </table>
