@@ -31,34 +31,31 @@ exports.invokeRolesPolicies = function () {
     roles: ['user'],
     allows: [{
       resources: '/api/completedRatings',
-      permissions: ''
+      permissions: '*'
     }, {
       resources: '/api/review',
-      permissions: ''
+      permissions: '*'
     }, {
       resources: '/api/blankRubrics',
-      permissions: ''
+      permissions: '*'
     }, {
       resources: '/api/blankRubrics/:blankRubricId',
-      permissions: ''
+      permissions: '*'
     }]
   }, {
     roles: ['guest'],
     allows: [{
       resources: '/api/completedRatings',
-      permissions: 'post'
-    }, {
-      resources: '/api/completedRatings/:ratingId',
-      permissions: ''
+      permissions: '*'
     }, {
       resources: '/api/review',
-      permissions: ''
+      permissions: '*'
     }, {
       resources: '/api/blankRubrics',
-      permissions: 'get'
+      permissions: '*'
     }, {
       resources: '/api/blankRubrics/:blankRubricId',
-      permissions: 'get'
+      permissions: '*'
     }]
   }]);
 };

@@ -8,17 +8,11 @@ angular.module('registrants').config(['$stateProvider',
       .state('registrants', {
         abstract: true,
         url: '/registrants',
-        template: '<ui-view/>',
-        data:{
-          roles:['admin']
-        }
+        template: '<ui-view/>'
       })
       .state('registrants.list', {
         url: '',
-        templateUrl: 'modules/registrants/client/views/list-registrants.client.view.html',
-        data:{
-          roles:['admin']
-        }
+        templateUrl: 'modules/registrants/client/views/list-registrants.client.view.html'
       })
       .state('register',{
         url: '/register', 
@@ -26,17 +20,11 @@ angular.module('registrants').config(['$stateProvider',
       })
       .state('registrants.view', {
         url: '/:registrantId',
-        templateUrl: 'modules/registrants/client/views/viewRegistrant-registrants.client.view.html',
-        data:{
-          roles:['admin']
-        }
+        templateUrl: 'modules/registrants/client/views/viewRegistrant-registrants.client.view.html'
       })
       .state('registrants.edit', {
         url: '/:registrantId',
-        templateUrl: 'modules/registrants/client/views/editRegistrant-registrants.client.view.html',
-        data:{
-          roles:['admin']
-        }
+        templateUrl: 'modules/registrants/client/views/editRegistrant-registrants.client.view.html'
       });
   }
 ]);

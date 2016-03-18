@@ -33,11 +33,7 @@ exports.read = function(req, res){
 
 //UPDATE a completed rating
 exports.update = function(req, res){
-
   var completedRating = req.completedRating;
-
-  // if (completedRating.created_by == thisUser)
-  //REQUIRES USER SYSTEM TO CHECK IF USER OWNS THE COMPLETED RUBRIC AND IF SO ALLOW THEM TO MAKE CHANGES.
 
   //replace the article's properties with the new properties found in req.body
   completedRating.team = req.body.team; 

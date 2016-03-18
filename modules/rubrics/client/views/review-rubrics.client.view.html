@@ -1,4 +1,5 @@
-<section>
+<section ng-controller="CompletedRatingController" ng-init="findOneBlankRubric()">
+  <div ng-init="initializeArrays(blankRubric.ratedItems.length)"></div>
 
   <header>
   	<div class="jumbotron">
@@ -9,136 +10,128 @@
   	</div>
   </header>
 
-  <div>{{$storage.test}}</div>
-
-  <main ng-controller="CompletedRatingController" ng-init="findOneBlankRubric()">
-    <div ng-init="initializeArrays(blankRubric.ratedItems.length)"></div>
-
+  <main>
     <form name="completedRatingForm" class="form-horizontal" ng-submit="create(completedRatingForm.$valid)" novalidate>
       <fieldset>
+      <div class="container">
+        <div class="form-group" show-errors>
+          <h3>Team Name</h3>
+          <select name="team" ng-options="team.name for team in teamDropdowns | orderBy: 'name'" data-toggle="dropdown" ng-model="team"id="team" class="form-control input-lg" placeholder="Team Name" required> </select>
+          <div ng-messages="completedRatingForm.team.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Team name selection is required.</p>
+          </div>
+        </div>
+        Presentation Type: {{blankRubric.presentationType}}
 
-        <div class="container">
-          <div class="container r-padding">
-            <div class="form-group" show-errors>
-              <h3>Team Name</h3>
-              <select name="team" ng-options="team.name for team in teamDropdowns | orderBy: 'name'" data-toggle="dropdown" ng-model="team"id="team" class="form-control input-lg" placeholder="Team Name" required> </select>
-              <div ng-messages="completedRatingForm.team.$error" role="alert">
-                <p class="help-block error-text" ng-message="required">Team name selection is required.</p>
-              </div>
-            </div>
-            Presentation Type: {{blankRubric.presentationType}}
-
-            <div class="form-group" show-errors>
-              <h3>Presentation Type</h3>
-              <select name="presentationType" ng-options="p.presentationType for p in blankRubrics" data-toggle="dropdown" ng-model="presentationType" id="presentationType" class="form-control input-lg" placeholder="Presentation Type" required></select>
-              <div ng-messages="completedRatingForm.presentationType.$error" role="alert">
-                <p class="help-block error-text" ng-message="required">Presentation Type is required.</p>
-              </div>
-            </div>
-
-            <div class="form-group" show-errors>
-              <h3>Reviewer Email</h3>
-              <input name="email" type="text" ng-model="email" id="email" class="form-control input-lg" placeholder="Email" required></input>
-              <div ng-messages="completedRatingForm.email.$error" role="alert">
-                <p class="help-block error-text" ng-message="required">Email is required.</p>
-              </div>
-            </div>
-            {{presentationType.presentationType}}
+        <div class="form-group" show-errors>
+          <h3>Presentation Type</h3>
+          <select name="presentationType" ng-options="p.presentationType for p in blankRubrics" data-toggle="dropdown" ng-model="presentationType" id="presentationType" class="form-control input-lg" placeholder="Presentation Type" required></select>
+          <div ng-messages="completedRatingForm.presentationType.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Presentation Type is required.</p>
           </div>
         </div>
 
-        <div class="container t-padding">
-          <h3>Rubric</h3>
-          <div ng-repeat="x in blankRubric.ratedItems" class="panel panel-default">
-            <a href="" class="a-spc">
-              <div class="panel-heading">
-                <div class="row">
-                  <div class = "col-xs-5" ng-click="showDescription=!showDescription">
-                    {{x.itemCategory}}
-                  </div>
-
-                  <div class="col-xs-7" >
-                      <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorFive }}" ng-click="changeFive($index, x.itemCategory)" aria-hidden="true"></span>
-                      <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorFour }}" ng-click="changeFour($index, x.itemCategory)" aria-hidden="true"></span>
-                      <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorThree }}" ng-click="changeThree($index, x.itemCategory)" aria-hidden="true"></span>
-                      <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorTwo }}" ng-click="changeTwo($index, x.itemCategory)" aria-hidden="true"></span>
-                      <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorOne }}" ng-click="changeOne($index, x.itemCategory)" aria-hidden="true"></span>
-                  </div>
-                </div>
-              </div>
-            </a>
-
-            <div ng-show="showDescription">
-              <div class="panel-body"  ng-init="initializeArrays($index)">
-                <div class="row">
-                  <div class="col-xs-7">
-                    <em>{{x.description1}}</em>
-                  </div>
-                  <div class="col-xs-5">
-                    <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="panel-body">
-                <div class="row">
-                  <div class="col-xs-7">
-                    <em>{{x.description2}}</em>
-                  </div>
-                  <div class="col-xs-5">
-                    <span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="panel-body">
-                <div class="row">
-                  <div class="col-xs-7">
-                    <em>{{x.description3}}</em>
-                  </div>
-                  <div class="col-xs-5">
-                    <span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div class="form-group" show-errors>
+          <h3>Reviewer Email</h3>
+          <input name="email" type="text" ng-model="email" id="email" class="form-control input-lg" placeholder="Email" required></input>
+          <div ng-messages="completedRatingForm.email.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Email is required.</p>
           </div>
         </div>
+        {{presentationType.presentationType}}
+      </div>
 
-        <div class="container">
-          <div class="container r-padding">
-              <div class ="form-group t-padding">
-              <h3>Issues Identified</h3>
-              <textarea name="issuesIdentified" type="text" rows="5" ng-model="issuesIdentified" id="issuesIdentified" class="form-control"></textarea>
+      <div class="container t-padding">
+        <h3>Rubric</h3>
+        <div ng-repeat="x in blankRubric.ratedItems" class="panel panel-default">
+          <a href="" class="a-spc">
+            <div class="panel-heading">
+              <div class="row">
+                <div class = "col-xs-5" ng-click="showDescription=!showDescription">
+                  {{x.itemCategory}}
+                </div>
+
+                <div class="col-xs-7" >
+                    <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorFive }}" ng-click="changeFive($index, x.itemCategory)" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorFour }}" ng-click="changeFour($index, x.itemCategory)" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorThree }}" ng-click="changeThree($index, x.itemCategory)" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorTwo }}" ng-click="changeTwo($index, x.itemCategory)" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorOne }}" ng-click="changeOne($index, x.itemCategory)" aria-hidden="true"></span>
+                </div>
+              </div>
             </div>
+          </a>
+
+          <div ng-show="showDescription">
+            <div class="panel-body"  ng-init="initializeArrays($index)">
+              <div class="row">
+                <div class="col-xs-7">
+                  <em>{{x.description1}}</em>
+                </div>
+                <div class="col-xs-5">
+                  <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-xs-7">
+                  <em>{{x.description2}}</em>
+                </div>
+                <div class="col-xs-5">
+                  <span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-xs-7">
+                  <em>{{x.description3}}</em>
+                </div>
+                <div class="col-xs-5">
+                  <span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
+      </div>
 
-        <div class="container t-padding">
-          <div class="row">
-            <div class="col-xs-9">
-              <h3>Recommendations</h3>
-            </div>
-            <div class="col-xs-3 text-center">
-              <!--<h3>Urgent?</h3>-->
-            </div>
+      <div class="container">
+          <div class ="form-group t-padding">
+          <h3>Issues Identified</h3>
+          <textarea name="issuesIdentified" type="text" rows="5" ng-model="issuesIdentified" id="issuesIdentified" class="form-control"></textarea>
+        </div>
+      </div>
+
+      <div class="container t-padding">
+        <div class="row">
+          <div class="col-xs-10">
+            <h3>Recommendations</h3>
           </div>
+          <div class="col-xs-2 text-center">
+            <h3>Urgent?</h3>
+          </div>
+        </div>
 
           <div class="row" ng-repeat="item in recommendations track by $index"  ng-show="showRecommendation">
             <div class="col-xs-8" ng-hide="editing">
-              <h4> {{ item.recommendation }} </h4>
+              {{ item.recommendation }}
             </div>
 
             <div ng-show="editing">
@@ -147,64 +140,56 @@
                   <textarea class="form-control" rows="1" ng-model="item.recommendation" placeholder="{{item.recommendation}}"></textarea>
                 </div>
               </form>
+                <div class="col-xs-1 text-center" ng-click="editing = false">
+                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </div>
             </div>
 
-            <a class="a-spc" href="">
-              <div class="col-xs-2 text-center">
-                <span class="glyphicon glyphicon-pencil" title="Edit this item" aria-hidden="true" ng-show="!editing" ng-click="editing=true"></span>
-                <div ng-show="editing">
-                  <span class="glyphicon glyphicon-ok" title="Accept this change" aria-hidden="true" ng-show="!editItemCheck($index)" ng-click="editing = false"></span>
-                </div>
+            <a class="a-spc" href="" ng-click="rmvRecommendation(item)">
+              <div class="col-xs-1 text-center">
+                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
               </div>
             </a>
 
-            <div class="col-xs-8" ng-if="editItemCheck($index)">
-              <h5>Please enter text or remove recommendation.</h5>
-            </div>
+            <a class="a-spc" href="">
+              <div class="col-xs-1 text-center" ng-click="setUrgent($index)" >
+                <span class="glyphicon glyphicon-unchecked" aria-hidden="true" ng-show="!item.urgency"></span>
+                <span class="glyphicon glyphicon-check" aria-hidden="true" ng-show="item.urgency"></span>
+              </div>
+            </a>
 
-            <div class="col-xs-2">
-              <a class="a-spc" href="" ng-click="rmvRecommendation(item)">
-                <div>
-                  <span class="glyphicon glyphicon-minus" title="Remove this item" aria-hidden="true" ng-show="editing"></span>
-                </div>
-              </a>
-              <a class="a-spc" href="" ng-click="setUrgent($index)">
-                <div ng-show="!editing">
-                  <span class="glyphicon glyphicon-unchecked" title="Click if this item is urgent" aria-hidden="true" ng-show="!item.urgency"></span>
-                  <span class="glyphicon glyphicon-check" title="Click if this item is not urgent" aria-hidden="true" ng-show="item.urgency"></span>
-                </div>
-              </a>
-            </div>
+            <a class="a-spc" href="" >
+              <div class="col-xs-1 text-center">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="editing = true"></span>
+              </div>
+            </a>
           </div>
+
+          <br/>
 
           <div class="row">
             <form>
               <div class="col-xs-8">
                 <textarea class="form-control" rows="1" ng-model="recommendationText"></textarea>
               </div>
-              <a class="a-spc" href="" ng-click="addRecommendation($index)" ng-model-instant>
+              <a class="a-spc" href="" ng-click="addRecommendation()" ng-model-instant>
                 <div class="col-xs-2 text-center">
-                  <span class="glyphicon glyphicon-plus" title="Add item to recommendations" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 </div>
               </a>
-              <div class="col-xs-8" ng-show="recommendationError">
-                <h5>Please enter text before adding a recommendation.</h5>
-              </div>
             </form>
           </div>
-        </div>
+      </div>
 
-        <div class="container">
-          <div class="container t-padding">
-            <div class="form-group">
-              <input type="submit" class="btn btn-lg btn-default">
-            </div>
-            <div ng-show="error" class="text-danger">
-              <strong ng-bind="error"></strong>
-            </div>
-          </div>
+      <div class="container t-padding">
+        <div class="form-group">
+          <input type="submit" class="btn btn-lg btn-default">
         </div>
-      </fieldset>
+        <div ng-show="error" class="text-danger">
+          <strong ng-bind="error"></strong>
+        </div>
+      </div>
+    </fieldset>
     </form>
   </main>
 </section>

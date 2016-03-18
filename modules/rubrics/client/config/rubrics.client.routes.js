@@ -8,17 +8,11 @@ angular.module('rubrics').config(['$stateProvider',
       .state('rubrics', {
         abstract: true,
         url: '/rubrics',
-        template: '<ui-view/>',
-        data:{
-          roles:['admin']
-        }
+        template: '<ui-view/>'
       })
       .state('rubrics.list', {
         url: '',
-        templateUrl: 'modules/rubrics/client/views/list-rubrics.client.view.html',
-        data:{
-          roles:['admin']
-        }
+        templateUrl: 'modules/rubrics/client/views/list-rubrics.client.view.html'
       })
       .state('review',{
         url: '/review/:blankRubricId', 
@@ -31,38 +25,23 @@ angular.module('rubrics').config(['$stateProvider',
       .state('blankRubrics',{
         abstract: true,
         url: '/blankRubrics',
-        template: '<ui-view/>',
-        data:{
-          roles:['admin']
-        }
+        template: '<ui-view/>'
       })
       .state('blankRubrics.list',{
         url: '', 
-        templateUrl: 'modules/rubrics/client/views/listBlankRubrics-rubrics.client.view.html',
-        data:{
-          roles:['admin']
-        }
+        templateUrl: 'modules/rubrics/client/views/listBlankRubrics-rubrics.client.view.html'
       })
       .state('blankRubrics.view',{
         url: '/:blankRubricId', 
-        templateUrl: 'modules/rubrics/client/views/viewBlankRubric-rubrics.client.view.html',
-        data:{
-          roles:['admin']
-        }
+        templateUrl: 'modules/rubrics/client/views/viewBlankRubric-rubrics.client.view.html'
       })
       .state('blankRubrics.edit',{
         url: '/:blankRubricId', 
-        templateUrl: 'modules/rubrics/client/views/editBlankRubric-rubrics.client.view.html',
-        data:{
-          roles:['admin']
-        }
+        templateUrl: 'modules/rubrics/client/views/editBlankRubric-rubrics.client.view.html'
       })
       .state('addBlankRubric',{
         url: '/addBlankRubric', 
-        templateUrl: 'modules/rubrics/client/views/addBlankRubric-rubrics.client.view.html',
-        data:{
-          roles:['admin']
-        }
+        templateUrl: 'modules/rubrics/client/views/addBlankRubric-rubrics.client.view.html'
       });
 
       // .state('blankRubrics.review',{
