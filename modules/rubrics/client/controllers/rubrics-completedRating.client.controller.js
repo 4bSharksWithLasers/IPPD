@@ -56,7 +56,7 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
       else{
         $scope.recommendationError = false; 
         if(first===false)
-        $scope.recommendations.push({ recommendation:$scope.recommendationText, urgency:false });
+          $scope.recommendations.push({ recommendation:$scope.recommendationText, urgency:false });
         else{
           $scope.recommendations.splice($scope.recommendations[0], 1);
           $scope.recommendations.push({ recommendation:$scope.recommendationText, urgency:false });
