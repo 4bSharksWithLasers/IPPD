@@ -1,11 +1,11 @@
 <section ng-controller="RegistrantsController" ng-init="find()">
   <div class="page-header">
-      <article>
+    <h1>Manage Users</h1>
+    <article>
         <form role="form" action="/adminHome" method="get">
-          <button class="nav-btn" type="submit" value="Send" style="float: right;">Return to Admin Home</button>
+          <button class="nav-btn" type="submit" value="Send">Admin</button>
         </form>
-      </article>  
-    <h1><u>Manage Users</u></h1>
+      </article>
   </div>
 
   <div ng-show="error" class="text-danger">
@@ -18,19 +18,18 @@
       <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
       <input type="text" class="form-control" placeholder="Search" ng-model="query">
     </div>
-	<br>
     <div class="tableWrapper">
-      <table class="table" style="color:#FFFFFF">
+      <table class="table table-striped table-hover">
         <tr>
-          <th><u>User email (click on an entry to edit)</u></th>
-          <th><u>User affiliation</u></th>
-          <th><u>Delete</u></th>
+          <th>User email</th>
+          <th>User affiliation</th>
+          <th>Delete</th>
         </tr>
         <tr ng-repeat="x in registrants | filter: query" ui-sref="registrants.view({ registrantId: x._id })">
           <td>{{x.email}}</td>
           <td>{{x.affiliation}}</td>
           <td>
-          	<button class="btn btn-alt" ng-confirm-click="Click to confirm deletion." ng-click="remove(x);" style="color:#000000">Delete</button>
+          	<button class="btn btn-alt" ng-confirm-click="Click to confirm deletion." ng-click="remove(x);" >Delete</button>
           </td>
         </tr>
       </table>
