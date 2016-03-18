@@ -4,7 +4,7 @@ var defaultEnvConfig = require('./default');
 
 module.exports = {
   db: {
-    uri: 'mongodb://SWLdb:SWLdb@ds045795.mongolab.com:45795/sharkswithlasers',
+    uri: 'mongodb://test:test@ds023418.mlab.com:23418/swltestdb',
     options: {
       user: '',
       pass: ''
