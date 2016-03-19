@@ -1,0 +1,39 @@
+
+  <div class="page-header">
+      <article>
+        <form role="form" action="/adminHome" method="get">
+          <button class="nav-btn" type="submit" value="Send" style="float: right;">Return to Admin Home</button>
+        </form>
+      </article>
+    <h1><u>Manage Theme</u></h1>
+  </div>
+
+
+  <h2 class="panel-title">
+						<b><u>Edit Site Coloring</u></b>
+					</h2>
+					<script src="../../../jscolor.js"></script>
+					<h4><b>Choose New Site Coloring:</b></h4>
+					<input class="jscolor" value="FFAE17" id = "colorChoice">
+					<script>
+	                function setTextColor(picker) {
+					document.getElementsByTagName('body')[0].style.color = '#' + picker.toString()
+					}
+					</script>
+
+				   
+				   <br>
+				   
+				   <h2 class="panel-title">
+						<b><u>Edit Site Logo</u></b>
+					</h2>
+					<br>
+	                <h4><b>Choose New Site Logo:</b></h4>
+					<input type="file" value="Upload File" accept="image/*">
+					<br>
+
+				   
+		 <br>
+				   <br>
+				   <button class="btn btn-default btn-lg" type="submit" value="Save Changes">Save Changes</button>
+				   
