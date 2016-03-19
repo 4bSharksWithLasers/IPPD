@@ -21,7 +21,7 @@ angular.module('registrants').config(['$stateProvider',
         }
       })
       .state('register',{
-        url: '/register', 
+        url: '/register',
         templateUrl: 'modules/registrants/client/views/register-registrants.client.view.html'
       })
       .state('registrants.view', {

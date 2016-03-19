@@ -129,9 +129,6 @@
             <div class="col-xs-9">
               <h3>Recommendations</h3>
             </div>
-            <div class="col-xs-3 text-center">
-              <!--<h3>Urgent?</h3>-->
-            </div>
           </div>
 
           <div class="row" ng-repeat="item in recommendations track by $index"  ng-show="showRecommendation">
@@ -141,7 +138,7 @@
 
             <div ng-show="editing">
               <form>
-                <div class="col-xs-8">
+                <div class="col-xs-8 b-padding-row">
                   <textarea class="form-control" rows="1" ng-model="item.recommendation" placeholder="{{item.recommendation}}"></textarea>
                 </div>
               </form>
@@ -157,7 +154,7 @@
             </a>
 
             <div class="col-xs-8" ng-if="editItemCheck($index)">
-              <h5>Please enter text or remove recommendation.</h5>
+              <h4>Please enter text or remove recommendation.</h4>
             </div>
 
             <div class="col-xs-2">
@@ -186,7 +183,7 @@
                 </div>
               </a>
               <div class="col-xs-8" ng-show="recommendationError">
-                <h5>Please enter text before adding a recommendation.</h5>
+                <h4>Please enter text before adding a recommendation.</h4>
               </div>
             </form>
           </div>
