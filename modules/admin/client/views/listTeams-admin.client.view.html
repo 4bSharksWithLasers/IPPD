@@ -8,21 +8,27 @@
       </article>
   </div>
 
-  <div ng-show="error" class="text-danger">
+    <div id="alert" class = "alert alert-success" ng-show="showTeamAdded">
+      <button class="close" data-hide="alert" aria-label="close" ng-click="showTeamAdded=!showTeamAdded">&times;</button>
+      <strong>Team successfully added!</strong>
+    </div>
+    <div id="alert" class = "alert alert-success" ng-show="showTeamDeleted">
+      <button class="close" data-hide="alert" aria-label="close" ng-click="showTeamDeleted=!showTeamDeleted">&times;</button>
+      <strong>Team successfully deleted!</strong>
+    </div>
+    <div ng-show="error" class="text-danger">
       <strong ng-bind="error"></strong>
     </div>
     <div ng-show="success" class="text-success">
       <strong ng-bind="success"></strong>
     </div>
       <article>
-              <form role="form" action="/addTeam" method="get">
-            <button class="btn btn-default btn-lg" type="submit" value="Send">Add a Team</button>
-          </form>
+          <form role="form" action="/addTeam" method="get">
+          <button class="btn btn-default btn-lg" type="submit" value="Send">Add a Team</button>
+        </form>
       </article>
       <article>
-        <form role="form" ng-click="removeAll()">
-          <button class="btn btn-default btn-lg">Delete all Teams</button>
-        </form>
+          <button class="btn btn-default btn-lg" ng-click="removeAll()">Delete all Teams</button>
       </article>
     <div class="input-group" id="searchBar">
       <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>

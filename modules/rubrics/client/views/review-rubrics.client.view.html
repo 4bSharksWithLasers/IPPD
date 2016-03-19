@@ -17,6 +17,26 @@
     <form name="completedRatingForm" class="form-horizontal" ng-submit="create(completedRatingForm.$valid)" novalidate>
       <fieldset>
 
+      <div ng-show="previewRubricSubmission">
+        <h3>Team Name</h3>
+        {{team.name}}
+        <h3>Presentation Type</h3>
+        {{presentationType.presentationType}}
+        <h3>Reviewer Email</h3>
+        {{email}}
+        <h3>Rubric Items</h3>
+        <div ng-repeat="x in blankRubric.ratedItems">
+          {{x.itemCategory}} : {{rating[$index]}}
+        </div>
+        <h3>Issues Identified</h3>
+        {{issuesIdentified}}
+        <h3>Recommended Actions</h3>
+        <div ng-repeat="item in recommendations track by $index">
+          {{item.recommendation}} : {{item.urgency?'urgent':'not urgent'}}
+        </div>
+      </div>
+
+      <div ng-show="!previewRubricSubmission">
         <div class="container">
           <div class="container r-padding">
             <div class="form-group" show-errors>
@@ -193,18 +213,26 @@
             </form>
           </div>
         </div>
+      </div>
 
-        <div class="container">
+
+        <div class="container" ng-show="previewRubricSubmission">
           <div class="container t-padding">
-            <div class="form-group">
               <input type="submit" class="btn btn-lg btn-default">
-            </div>
             <div ng-show="error" class="text-danger">
               <strong ng-bind="error"></strong>
             </div>
           </div>
-        </div>
+        </div>      
+
       </fieldset>
     </form>
+
+    <div ng-show="previewRubricSubmission" class="container t-padding">
+      <button ng-click="togglePreviewSubmission()" class="btn btn-lg btn-default">Edit Submission</button>
+    </div>
+    <div ng-show="!previewRubricSubmission" class="container t-padding">
+      <button ng-click="togglePreviewSubmission()" class="btn btn-lg btn-default">Preview Submission</button>
+    </div>
   </main>
 </section>

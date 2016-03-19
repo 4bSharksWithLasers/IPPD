@@ -2,6 +2,10 @@
   <div class="page-header">
     <h1>Add Team</h1>
   </div>
+  <div id="alert" class = "alert alert-success" ng-show="showTeamAdded">
+    <button class="close" data-hide="alert" aria-label="close" ng-click="showTeamAdded=!showTeamAdded">&times;</button>
+    <strong>Team successfully added!</strong>
+  </div>
   <div class="col-md-12">
     <form name="teamForm" class="form-horizontal" ng-submit="create(teamForm.$valid)" novalidate>
       <fieldset>
