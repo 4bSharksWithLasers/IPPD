@@ -114,6 +114,9 @@ h3 + p {
   padding-top: .25em;
 }
 
+.b-padding-row {
+  padding-bottom: .25em;
+}
 .tb-padding {
 	padding-top: 3em;
 	padding-bottom: 3em;

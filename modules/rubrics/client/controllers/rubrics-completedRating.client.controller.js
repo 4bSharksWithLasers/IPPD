@@ -1,8 +1,8 @@
 'use strict';
 
 // CompletedRatings controller
-angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$stateParams', '$location', 'Authentication', 'CompletedRatings', 'Teams', 'BlankRubrics',
-  function ($scope, $stateParams, $location, Authentication, CompletedRatings, Teams, BlankRubrics) {
+angular.module('rubrics', ['ngStorage']).controller('CompletedRatingController', ['$scope', '$localStorage', '$sessionStorage', '$stateParams', '$location', 'Authentication', 'CompletedRatings', 'Teams', 'BlankRubrics',
+  function ($scope, $localStorage, $sessionStorage, $stateParams, $location, Authentication, CompletedRatings, Teams, BlankRubrics) {
     $scope.authentication = Authentication;
 
 
@@ -31,17 +31,17 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
     $scope.recommendations = [ { recommendation:'', urgency:false } ];
     $scope.showRecommendation = false;
     $scope.editing = false;
-    $scope.recommendationError = false; 
+    $scope.recommendationError = false;
 
     $scope.editItemCheck = function($index){
       if($scope.recommendations[$index].recommendation === '' || $scope.recommendations[$index].recommendation === undefined){
         console.log($scope.recommendations[$index].recommendationText);
         console.log('invalid edit');
-        return true; 
+        return true;
       }
       else{
-        $scope.editing = false; 
-        return false; 
+        $scope.editing = false;
+        return false;
       }
     };
 
@@ -49,12 +49,12 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
     var first = true;
     $scope.addRecommendation = function(index){
       if($scope.recommendationText === '' || $scope.recommendationText === undefined){
-        $scope.recommendationError = true; 
+        $scope.recommendationError = true;
         console.log('recomm error');
         console.log($scope.recommendationText);
       }
       else{
-        $scope.recommendationError = false; 
+        $scope.recommendationError = false;
         if(first===false)
           $scope.recommendations.push({ recommendation:$scope.recommendationText, urgency:false });
         else{
@@ -65,12 +65,12 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
         }
         $scope.recommendationText = '';
       }
-      
+
     };
 
     //Remove recommendations
     $scope.rmvRecommendation = function(item){
-      $scope.editing = false; 
+      $scope.editing = false;
       $scope.recommendations.splice($scope.recommendations.indexOf(item), 1);
       if($scope.recommendations.length===0){
         first = true;
