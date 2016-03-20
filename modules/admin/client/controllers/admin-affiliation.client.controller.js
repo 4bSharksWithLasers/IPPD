@@ -33,20 +33,29 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$statePa
       });
     };
 
+    $scope.updateAffiliations = function(){
+      Affiliations.query(function(refreshedAffiliations){
+        $scope.affiliations = refreshedAffiliations;
+      });
+    };
+
     // Remove existing affiliation
     $scope.remove = function (affiliation) {
+      $scope.splicing = false;
       if (affiliation) {
         if(confirm('Press OK to confirm deletion.')){
           affiliation.$remove();
-          //redirect path after deletion
-          $location.path('/affiliations');
-
           for (var i in $scope.affiliations) {
             if ($scope.affiliations[i] === affiliation) {
               $scope.affiliations.splice(i, 1);
+              $scope.splicing = true;
             }
           }
         }
+        if($scope.splicing === false)
+          $scope.updateAffiliations();
+        //redirect path after deletion
+        $location.path('/affiliations');
       } else {
         $scope.affiliation.$remove(function () {
           $location.path('affiliation');
