@@ -1,10 +1,11 @@
 'use strict';
 
 // CompletedRatings controller
-angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$stateParams', '$location', 'Authentication', 'CompletedRatings', 'Teams', 'BlankRubrics',
-  function ($scope, $stateParams, $location, Authentication, CompletedRatings, Teams, BlankRubrics) {
+angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$state', '$stateParams', '$location', 'Authentication', 'CompletedRatings', 'Teams', 'BlankRubrics',
+  function ($scope, $state, $stateParams, $location, Authentication, CompletedRatings, Teams, BlankRubrics) {
     $scope.authentication = Authentication;
 
+    $scope.previewRubricSubmission = false; 
 
     $scope.selectPresentationType = function (isValid){
       $scope.error = null;
@@ -89,7 +90,9 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
       console.log($scope.recommendations[index].urgency);
     };
 
-
+    $scope.togglePreviewSubmission = function(){
+      $scope.previewRubricSubmission = !$scope.previewRubricSubmission; 
+    };
 
     // Build star and rating arrays based on the length of the rubric array
     $scope.star = [];

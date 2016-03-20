@@ -4,6 +4,8 @@
 angular.module('admin').controller('TeamController', ['$scope', '$stateParams', '$location', 'Authentication', 'Teams',
   function ($scope, $stateParams, $location, Authentication, Teams) {
     $scope.authentication = Authentication;
+    $scope.showTeamAdded = false; 
+    $scope.showTeamDeleted = false; 
 
     // Create new Team
     $scope.create = function (isValid) {
@@ -24,6 +26,8 @@ angular.module('admin').controller('TeamController', ['$scope', '$stateParams', 
       // Redirect after save
       team.$save(function (response) {
         $location.path('/teams');
+
+        $scope.showTeamAdded = true;
 
         // Clear form fields
         $scope.name = '';
@@ -59,6 +63,7 @@ angular.module('admin').controller('TeamController', ['$scope', '$stateParams', 
               $scope.teams.splice(i, 1);
             }
           }
+          $scope.showTeamDeleted = true; 
         }
       } else { 
         $scope.team.$remove(function () {
