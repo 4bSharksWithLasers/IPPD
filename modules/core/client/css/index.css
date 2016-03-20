@@ -57,13 +57,17 @@ hr {
 }
 
 p {
-	font-size: 2em !important;
+  font-size: 1.25em;
 }
 
+.jumbotron p {
+	font-size: 2em !important;
+}
+/*
 h3 + p {
 	font-size: 1.25em !important;
 }
-
+*/
 .a-spc:focus,
 .a-spc:hover {
 	color: #eaeaea;
