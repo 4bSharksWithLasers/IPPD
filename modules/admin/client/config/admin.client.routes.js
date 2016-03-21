@@ -44,7 +44,7 @@ angular.module('admin').config(['$stateProvider',
       .state('theme', {
         url: '/theme',
         templateUrl: 'modules/admin/client/views/theme-admin.client.view.html',
-		        data:{
+        data:{
           roles:['admin']
         }
       })		  
