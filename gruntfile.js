@@ -16,7 +16,8 @@ module.exports = function (grunt) {
     pkg: grunt.file.readJSON('package.json'),
     env: {
       test: {
-        NODE_ENV: 'test'
+        NODE_ENV: 'test',
+      //  MONGOLAB_URI: 'mongodb://test:test@ds023418.mlab.com:23418/swltestdb'
       },
       dev: {
         NODE_ENV: 'development'
