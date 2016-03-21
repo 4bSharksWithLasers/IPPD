@@ -56,22 +56,14 @@ hr {
 	opacity: 0.45;
 }
 
-p {
-  font-size: 1.25em;
-}
-
-blockquote {
-  font-size: 1.30em;
-}
-
 .jumbotron p {
 	font-size: 2em !important;
 }
-/*
+
 h3 + p {
 	font-size: 1.25em !important;
 }
-*/
+
 .a-spc:focus,
 .a-spc:hover {
 	color: #eaeaea;
@@ -103,9 +95,7 @@ h3 + p {
 	padding-top: 3em;
 	padding-bottom: 3em;
 }
-.l-padding {
-  
-}
+
 .r-padding {
   padding-right: 3em;
 }

@@ -136,19 +136,29 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
       });
     };
 
+    $scope.updateBlankRubrics = function(){
+      BlankRubrics.query(function(refreshedBlankRubrics){
+        $scope.blankRubrics = refreshedBlankRubrics;
+      });
+    };
+
     // Remove existing blankRubric
     $scope.remove = function (blankRubric) {
+      $scope.splicing = false; 
       if (blankRubric) {
         if(confirm('Press OK to confirm deletion.')){
           blankRubric.$remove();
-          $location.path('/blankRubrics');
 
           for (var i in $scope.blankRubrics) {
             if ($scope.blankRubrics[i] === blankRubric) {
               $scope.blankRubrics.splice(i, 1);
+              $scope.splicing = true;
             }
           }
         }
+        if($scope.splicing === false)
+          $scope.updateBlankRubrics();
+        $location.path('/blankRubrics');
       } else {
         $scope.blankRubric.$remove(function () {
           $location.path('/blankRubrics');

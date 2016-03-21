@@ -75,20 +75,29 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
       }
     };
 
+    $scope.updateRegistrants = function(){
+      Registrants.query(function(refreshedRegistrants){
+        $scope.registrants = refreshedRegistrants;
+      });
+    };
+
     // Remove existing Registrant
     $scope.remove = function (registrant) {
+      $scope.splicing = false;
       if (registrant) {
         if(confirm('Press OK to confirm deletion.')){
           registrant.$remove();
-          //redirect path after deletion
-          $location.path('/registrants');
-
           for (var i in $scope.registrants) {
             if ($scope.registrants[i] === registrant) {
               $scope.registrants.splice(i, 1);
+              $scope.splicing = true;
             }
           }
         }
+        if($scope.splicing === false)
+          $scope.updateRegistrants();
+        //redirect path after deletion
+        $location.path('/registrants');
       } else {
         $scope.registrant.$remove(function () {
           $location.path('registrants');
