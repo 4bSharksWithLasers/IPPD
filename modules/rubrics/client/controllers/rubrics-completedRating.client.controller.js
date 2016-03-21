@@ -1,10 +1,11 @@
 'use strict';
 
 // CompletedRatings controller
-angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$stateParams', '$location', 'Authentication', 'CompletedRatings', 'Teams', 'BlankRubrics',
-  function ($scope, $stateParams, $location, Authentication, CompletedRatings, Teams, BlankRubrics) {
+angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$state', '$stateParams', '$location', 'Authentication', 'CompletedRatings', 'Teams', 'BlankRubrics',
+  function ($scope, $state, $stateParams, $location, Authentication, CompletedRatings, Teams, BlankRubrics) {
     $scope.authentication = Authentication;
 
+    $scope.previewRubricSubmission = false; 
 
     $scope.selectPresentationType = function (isValid){
       $scope.error = null;
@@ -31,17 +32,17 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
     $scope.recommendations = [ { recommendation:'', urgency:false } ];
     $scope.showRecommendation = false;
     $scope.editing = false;
-    $scope.recommendationError = false; 
+    $scope.recommendationError = false;
 
     $scope.editItemCheck = function($index){
       if($scope.recommendations[$index].recommendation === '' || $scope.recommendations[$index].recommendation === undefined){
         console.log($scope.recommendations[$index].recommendationText);
         console.log('invalid edit');
-        return true; 
+        return true;
       }
       else{
-        $scope.editing = false; 
-        return false; 
+        $scope.editing = false;
+        return false;
       }
     };
 
@@ -49,12 +50,12 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
     var first = true;
     $scope.addRecommendation = function(index){
       if($scope.recommendationText === '' || $scope.recommendationText === undefined){
-        $scope.recommendationError = true; 
+        $scope.recommendationError = true;
         console.log('recomm error');
         console.log($scope.recommendationText);
       }
       else{
-        $scope.recommendationError = false; 
+        $scope.recommendationError = false;
         if(first===false)
           $scope.recommendations.push({ recommendation:$scope.recommendationText, urgency:false });
         else{
@@ -65,12 +66,12 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
         }
         $scope.recommendationText = '';
       }
-      
+
     };
 
     //Remove recommendations
     $scope.rmvRecommendation = function(item){
-      $scope.editing = false; 
+      $scope.editing = false;
       $scope.recommendations.splice($scope.recommendations.indexOf(item), 1);
       if($scope.recommendations.length===0){
         first = true;
@@ -89,7 +90,9 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
       console.log($scope.recommendations[index].urgency);
     };
 
-
+    $scope.togglePreviewSubmission = function(){
+      $scope.previewRubricSubmission = !$scope.previewRubricSubmission; 
+    };
 
     // Build star and rating arrays based on the length of the rubric array
     $scope.star = [];

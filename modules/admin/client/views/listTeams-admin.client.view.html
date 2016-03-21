@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <section ng-controller="TeamController" ng-init="find()">
   <div class="page-header">
       <article>
@@ -7,13 +8,50 @@
       </article>
     <h1><u>Manage Teams</u></h1>
   </div>
+=======
+<section>
+  <header>
+    <div class="container text-right tb-padding">
+      <div class="row">
+        <div class="col-md-10"></div>
+        <div class="col-md-2">
+          <form role="form" action="/adminHome" method="get">
+            <button class="nav-btn" type="submit" value="Send">AdminHome</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  	<div class="jumbotron">
+  		<div class="container text-center">
+  			<img src="modules/core/client/img/brand/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo">
+  			<p><em>Manage Teams</em></p>
+  		</div>
+  	</div>
+  </header>
+>>>>>>> f82fa38e446068eb64321c9bb1a472a0fa376f55
 
-  <div ng-show="error" class="text-danger">
-      <strong ng-bind="error"></strong>
+  <main ng-controller="TeamController" ng-init="find()">
+    <div class="container t-padding">
+      <div class="row">
+        <div class="col-md-4">
+          <form role="form" action="/addTeam" method="get">
+            <button class="btn btn-default btn-lg btn-block" type="submit" value="Send">Add Team</button>
+          </form>
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <button class="btn btn-danger btn-lg btn-block" ng-click="removeAll()">Delete All</button>
+        </div>
+      </div>
     </div>
-    <div ng-show="success" class="text-success">
-      <strong ng-bind="success"></strong>
+
+    <div class="container t-padding">
+      <div class="input-group" id="searchBar">
+        <span class="input-group-addon input-lg" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
+        <input type="text" class="form-control input-lg" placeholder="Search" ng-model="query">
+      </div>
     </div>
+<<<<<<< HEAD
       <article>
               <form role="form" action="/addTeam" method="get">
             <button class="btn btn-default btn-lg" type="submit" value="Send">Add a Team</button>
@@ -47,6 +85,44 @@
           </td>
         </tr>
       </table>
+=======
+    <!-- Success Messages -->
+    <div class="container">
+      <div id="alert" class="alert alert-success" ng-show="showTeamAdded">
+        <button class="close" data-hide="alert" aria-label="close" ng-click="showTeamAdded=!showTeamAdded">&times;</button>
+        <h4><strong>Team successfully added!</strong></h4>
+      </div>
+      <div id="alert" class="alert alert-success" ng-show="showTeamDeleted">
+        <button class="close" data-hide="alert" aria-label="close" ng-click="showTeamDeleted=!showTeamDeleted">&times;</button>
+        <h4><strong>Team successfully deleted!</strong></h4>
+      </div>
+      <div ng-show="error" class="text-danger">
+        <strong ng-bind="error"></strong>
+      </div>
+      <div ng-show="success" class="text-success">
+        <strong ng-bind="success"></strong>
+      </div>
     </div>
-
+    <!-- End Messages -->
+    <div class="container t-padding">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3>Team Listing</h3>
+        </div>
+        <div class="panel-body" ng-repeat="x in teams | filter: query" ui-sref="teams.view({ teamId: x._id })">
+          <div class="row">
+            <a href="" class="a-spc">
+              <div class="col-md-10"> {{ x.name }} </div>
+            </a>
+            <div class="col-md-2">
+              <button class="btn btn-danger btn-lg btn-block" ng-confirm-click="Click to confirm deletion." ng-click="remove(x);" >
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+>>>>>>> f82fa38e446068eb64321c9bb1a472a0fa376f55
+    </div>
+  </main>
 </section>

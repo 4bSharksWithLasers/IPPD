@@ -9,14 +9,32 @@
   	</div>
   </header>
 
-  <div>{{$storage.test}}</div>
-
   <main ng-controller="CompletedRatingController" ng-init="findOneBlankRubric()">
     <div ng-init="initializeArrays(blankRubric.ratedItems.length)"></div>
 
     <form name="completedRatingForm" class="form-horizontal" ng-submit="create(completedRatingForm.$valid)" novalidate>
       <fieldset>
 
+      <div ng-show="previewRubricSubmission">
+        <h3>Team Name</h3>
+        {{team.name}}
+        <h3>Presentation Type</h3>
+        {{presentationType.presentationType}}
+        <h3>Reviewer Email</h3>
+        {{email}}
+        <h3>Rubric Items</h3>
+        <div ng-repeat="x in blankRubric.ratedItems">
+          {{x.itemCategory}} : {{rating[$index]}}
+        </div>
+        <h3>Issues Identified</h3>
+        {{issuesIdentified}}
+        <h3>Recommended Actions</h3>
+        <div ng-repeat="item in recommendations track by $index">
+          {{item.recommendation}} : {{item.urgency?'urgent':'not urgent'}}
+        </div>
+      </div>
+
+      <div ng-show="!previewRubricSubmission">
         <div class="container">
           <div class="container r-padding">
             <div class="form-group" show-errors>
@@ -131,9 +149,6 @@
             <div class="col-xs-9">
               <h3>Recommendations</h3>
             </div>
-            <div class="col-xs-3 text-center">
-              <!--<h3>Urgent?</h3>-->
-            </div>
           </div>
 
           <div class="row" ng-repeat="item in recommendations track by $index"  ng-show="showRecommendation">
@@ -143,7 +158,7 @@
 
             <div ng-show="editing">
               <form>
-                <div class="col-xs-8">
+                <div class="col-xs-8 b-padding-row">
                   <textarea class="form-control" rows="1" ng-model="item.recommendation" placeholder="{{item.recommendation}}"></textarea>
                 </div>
               </form>
@@ -159,7 +174,7 @@
             </a>
 
             <div class="col-xs-8" ng-if="editItemCheck($index)">
-              <h5>Please enter text or remove recommendation.</h5>
+              <h4>Please enter text or remove recommendation.</h4>
             </div>
 
             <div class="col-xs-2">
@@ -188,23 +203,31 @@
                 </div>
               </a>
               <div class="col-xs-8" ng-show="recommendationError">
-                <h5>Please enter text before adding a recommendation.</h5>
+                <h4>Please enter text before adding a recommendation.</h4>
               </div>
             </form>
           </div>
         </div>
+      </div>
 
-        <div class="container">
+
+        <div class="container" ng-show="previewRubricSubmission">
           <div class="container t-padding">
-            <div class="form-group">
               <input type="submit" class="btn btn-lg btn-default">
-            </div>
             <div ng-show="error" class="text-danger">
               <strong ng-bind="error"></strong>
             </div>
           </div>
-        </div>
+        </div>      
+
       </fieldset>
     </form>
+
+    <div ng-show="previewRubricSubmission" class="container t-padding">
+      <button ng-click="togglePreviewSubmission()" class="btn btn-lg btn-default">Edit Submission</button>
+    </div>
+    <div ng-show="!previewRubricSubmission" class="container t-padding">
+      <button ng-click="togglePreviewSubmission()" class="btn btn-lg btn-default">Preview Submission</button>
+    </div>
   </main>
 </section>

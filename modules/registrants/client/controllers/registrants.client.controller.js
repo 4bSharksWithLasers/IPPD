@@ -20,7 +20,7 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
       }
 
       //If there is a team associated with the registrant
-      if(this.affiliation.teamAssociated === true){
+/*      if(this.affiliation.teamAssociated === true){
         // Create new Registrant object
         var registrantTeam = new Registrants({
           email: this.email,
@@ -41,26 +41,26 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
         });
       }
       //if there is not a team associated with the registrant
-      else{
+      else{ */
         // Create new Registrant object
-        var registrant = new Registrants({
-          email: this.email,
-          affiliation: this.affiliation.theAffiliation,
-          teamName: ''
-        });
-        // Redirect after save
-        registrant.$save(function (response) {
-          $location.path('/selectPresentation');
+      var registrant = new Registrants({
+        email: this.email,
+        affiliation: this.affiliation.theAffiliation,
+        teamName: ''
+      });
+      // Redirect after save
+      registrant.$save(function (response) {
+        $location.path('/selectPresentation');
 
-        // Clear form fields
-          $scope.email = '';
-          $scope.affiliation = '';
-          $scope.teamName = '';
-          $scope.teamCode = '';
-        }, function (errorResponse) {
-          $scope.error = errorResponse.data.message;
-        });
-      }
+      // Clear form fields
+        $scope.email = '';
+        $scope.affiliation = '';
+        $scope.teamName = '';
+        $scope.teamCode = '';
+      }, function (errorResponse) {
+        $scope.error = errorResponse.data.message;
+      });
+/*      }*/
     };
 
     $scope.removeAll = function(){
@@ -75,20 +75,29 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
       }
     };
 
+    $scope.updateRegistrants = function(){
+      Registrants.query(function(refreshedRegistrants){
+        $scope.registrants = refreshedRegistrants;
+      });
+    };
+
     // Remove existing Registrant
     $scope.remove = function (registrant) {
+      $scope.splicing = false;
       if (registrant) {
         if(confirm('Press OK to confirm deletion.')){
           registrant.$remove();
-          //redirect path after deletion
-          $location.path('/registrants');
-
           for (var i in $scope.registrants) {
             if ($scope.registrants[i] === registrant) {
               $scope.registrants.splice(i, 1);
+              $scope.splicing = true;
             }
           }
         }
+        if($scope.splicing === false)
+          $scope.updateRegistrants();
+        //redirect path after deletion
+        $location.path('/registrants');
       } else {
         $scope.registrant.$remove(function () {
           $location.path('registrants');
