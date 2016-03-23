@@ -20,7 +20,7 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
       }
 
       //If there is a team associated with the registrant
-/*      if(this.affiliation.teamAssociated === true){
+      if(this.affiliation.teamAssociated === true){
         // Create new Registrant object
         var registrantTeam = new Registrants({
           email: this.email,
@@ -35,32 +35,31 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
           $scope.email = '';
           $scope.affiliation = '';
           $scope.teamName = '';
-          $scope.teamCode = '';
         }, function (errorResponse) {
           $scope.error = errorResponse.data.message;
         });
       }
       //if there is not a team associated with the registrant
-      else{ */
+      else{ 
         // Create new Registrant object
-      var registrant = new Registrants({
-        email: this.email,
-        affiliation: this.affiliation.theAffiliation,
-        teamName: ''
-      });
-      // Redirect after save
-      registrant.$save(function (response) {
-        $location.path('/selectPresentation');
+        var registrant = new Registrants({
+          email: this.email,
+          affiliation: this.affiliation.theAffiliation,
+          teamName: ''
+        });
+        // Redirect after save
+        registrant.$save(function (response) {
+          $location.path('/selectPresentation');
 
-      // Clear form fields
-        $scope.email = '';
-        $scope.affiliation = '';
-        $scope.teamName = '';
-        $scope.teamCode = '';
-      }, function (errorResponse) {
-        $scope.error = errorResponse.data.message;
-      });
-/*      }*/
+        // Clear form fields
+          $scope.email = '';
+          $scope.affiliation = '';
+          $scope.teamName = '';
+          $scope.teamCode = '';
+        }, function (errorResponse) {
+          $scope.error = errorResponse.data.message;
+        });
+      }
     };
 
     $scope.removeAll = function(){
@@ -135,9 +134,5 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
         registrantId: $stateParams.registrantId
       });
     };
-
-    //Phillip
-
-  //
   }
 ]);
