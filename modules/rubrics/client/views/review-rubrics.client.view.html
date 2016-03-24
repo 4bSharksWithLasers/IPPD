@@ -16,12 +16,9 @@
       <fieldset>
 
       <div ng-show="previewRubricSubmission">
-        <h3>Team Name</h3>
-        {{team.name}}
-        <h3>Presentation Type</h3>
-        {{presentationType.presentationType}}
-        <h3>Reviewer Email</h3>
-        {{email}}
+        <h3>Team Name: {{ forwarded_team }}</h3>
+        <h3>Presentation Type: {{ forwarded_presentation }}</h3>
+        <h3>Reviewer Email: {{ forwarded_email }}</h3>
         <h3>Rubric Items</h3>
         <div ng-repeat="x in blankRubric.ratedItems">
           {{x.itemCategory}} : {{rating[$index]}}
@@ -37,31 +34,30 @@
       <div ng-show="!previewRubricSubmission">
         <div class="container">
           <div class="container r-padding">
-            <div class="form-group" show-errors>
-              <h3>Team Name</h3>
-              <select name="team" ng-options="team.name for team in teamDropdowns | orderBy: 'name'" data-toggle="dropdown" ng-model="team"id="team" class="form-control input-lg" placeholder="Team Name" required> </select>
+            <div class="form-group"> <!-- show-errors>-->
+              <h3>Team Name: {{ forwarded_team }}</h3>
+              <!--<select name="team" ng-options="team.name for team in teamDropdowns | orderBy: 'name'" data-toggle="dropdown" ng-model="team"id="team" class="form-control input-lg" placeholder="Team Name" required> </select>
               <div ng-messages="completedRatingForm.team.$error" role="alert">
-                <p class="help-block error-text" ng-message="required">Team name selection is required.</p>
+                <p class="help-block error-text" ng-message="required">Team name selection is required.</p>-->
               </div>
             </div>
-            Presentation Type: {{blankRubric.presentationType}}
+            <!--Presentation Type: {{blankRubric.presentationType}}-->
 
-            <div class="form-group" show-errors>
-              <h3>Presentation Type</h3>
-              <select name="presentationType" ng-options="p.presentationType for p in blankRubrics" data-toggle="dropdown" ng-model="presentationType" id="presentationType" class="form-control input-lg" placeholder="Presentation Type" required></select>
+            <div class="form-group"> <!--show-errors>-->
+              <h3>Presentation Type: {{ forwarded_presentation }}</h3>
+              <!--<select name="presentationType" ng-options="p.presentationType for p in blankRubrics" data-toggle="dropdown" ng-model="presentationType" id="presentationType" class="form-control input-lg" placeholder="Presentation Type" required></select>
               <div ng-messages="completedRatingForm.presentationType.$error" role="alert">
-                <p class="help-block error-text" ng-message="required">Presentation Type is required.</p>
+                <p class="help-block error-text" ng-message="required">Presentation Type is required.</p>-->
               </div>
             </div>
 
-            <div class="form-group" show-errors>
-              <h3>Reviewer Email</h3>
-              <input name="email" type="text" ng-model="email" id="email" class="form-control input-lg" placeholder="Email" required></input>
+            <div class="form-group"> <!--show-errors>-->
+              <h3>Reviewer Email: {{ forwarded_email }}</h3>
+              <!--<input name="email" type="text" ng-model="email" id="email" class="form-control input-lg" placeholder="Email" required></input>
               <div ng-messages="completedRatingForm.email.$error" role="alert">
-                <p class="help-block error-text" ng-message="required">Email is required.</p>
+                <p class="help-block error-text" ng-message="required">Email is required.</p>-->
               </div>
             </div>
-            {{presentationType.presentationType}}
           </div>
         </div>
 

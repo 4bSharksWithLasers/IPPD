@@ -1,8 +1,8 @@
 'use strict';
 
 // Registrants controller
-angular.module('registrants').controller('RegistrantsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Registrants', 'Teams', 'Affiliations',
-  function ($scope, $stateParams, $location, Authentication, Registrants, Teams, Affiliations) {
+angular.module('registrants').controller('RegistrantsController', ['$scope', '$state', '$stateParams', '$location', 'Authentication', 'Registrants', 'Teams', 'Affiliations',
+  function ($scope, $state, $stateParams, $location, Authentication, Registrants, Teams, Affiliations) {
     $scope.authentication = Authentication;
 
     //Pull the list of teams and affiliations from DB
@@ -29,7 +29,8 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
         });
         // Redirect after save
         registrantTeam.$save(function (response) {
-          $location.path('/selectPresentation');
+          //$location.path('/selectPresentation');
+          $state.go('selectPresentation', {email: $scope.email, affiliation: $scope.affiliation.theAffiliation});
 
         // Clear form fields
           $scope.email = '';
@@ -40,7 +41,7 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
         });
       }
       //if there is not a team associated with the registrant
-      else{ 
+      else{
         // Create new Registrant object
         var registrant = new Registrants({
           email: this.email,
@@ -49,7 +50,8 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
         });
         // Redirect after save
         registrant.$save(function (response) {
-          $location.path('/selectPresentation');
+          //$location.path('/selectPresentation');
+          $state.go('selectPresentation', {email: $scope.email, affiliation: $scope.affiliation.theAffiliation});
 
         // Clear form fields
           $scope.email = '';

@@ -5,7 +5,12 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
   function ($scope, $state, $stateParams, $location, Authentication, CompletedRatings, Teams, BlankRubrics) {
     $scope.authentication = Authentication;
 
-    $scope.previewRubricSubmission = false; 
+    console.log($stateParams.team, $stateParams.presentation, $stateParams.email);
+    $scope.forwarded_team = $stateParams.team;
+    $scope.forwarded_presentation = $stateParams.presentation;
+    $scope.forwarded_email = $stateParams.email;
+
+    $scope.previewRubricSubmission = false;
 
     $scope.selectPresentationType = function (isValid){
       $scope.error = null;
@@ -23,6 +28,7 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
 
       // Redirect after submission of form
       //$location.path('/:blankRubricId');
+      $state.go('review', {blankRubricId: $scope.presentationType._id, team: $scope.selectedTeam, presentation: $scope.selectedPresentationType, email: $scope.forwarded_email});
     };
 
     $scope.teamDropdowns = Teams.query();
@@ -91,7 +97,7 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
     };
 
     $scope.togglePreviewSubmission = function(){
-      $scope.previewRubricSubmission = !$scope.previewRubricSubmission; 
+      $scope.previewRubricSubmission = !$scope.previewRubricSubmission;
     };
 
     // Build star and rating arrays based on the length of the rubric array

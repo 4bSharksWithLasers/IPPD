@@ -21,11 +21,20 @@ angular.module('rubrics').config(['$stateProvider',
         }
       })
       .state('review',{
-        url: '/review/:blankRubricId', 
+        url: '/review/:blankRubricId',
+        params: {
+          team: null,
+          presentation: null,
+          email: null
+        },
         templateUrl: 'modules/rubrics/client/views/review-rubrics.client.view.html'
       })
       .state('selectPresentation',{
-        url: '/selectPresentation', 
+        url: '/selectPresentation',
+        params: {
+          email: null,
+          affiliation: null
+        },
         templateUrl: 'modules/rubrics/client/views/teamPresentationSelection-rubrics.client.view.html'
       })
       .state('blankRubrics',{
@@ -37,28 +46,28 @@ angular.module('rubrics').config(['$stateProvider',
         }
       })
       .state('blankRubrics.list',{
-        url: '', 
+        url: '',
         templateUrl: 'modules/rubrics/client/views/listBlankRubrics-rubrics.client.view.html',
         data:{
           roles:['admin']
         }
       })
       .state('blankRubrics.view',{
-        url: '/:blankRubricId', 
+        url: '/:blankRubricId',
         templateUrl: 'modules/rubrics/client/views/viewBlankRubric-rubrics.client.view.html',
         data:{
           roles:['admin']
         }
       })
       .state('blankRubrics.edit',{
-        url: '/:blankRubricId', 
+        url: '/:blankRubricId',
         templateUrl: 'modules/rubrics/client/views/editBlankRubric-rubrics.client.view.html',
         data:{
           roles:['admin']
         }
       })
       .state('addBlankRubric',{
-        url: '/addBlankRubric', 
+        url: '/addBlankRubric',
         templateUrl: 'modules/rubrics/client/views/addBlankRubric-rubrics.client.view.html',
         data:{
           roles:['admin']
@@ -66,7 +75,7 @@ angular.module('rubrics').config(['$stateProvider',
       });
 
       // .state('blankRubrics.review',{
-      //   url: '/:blankRubricId', 
+      //   url: '/:blankRubricId',
       //   templateUrl: 'modules/rubrics/client/views/review-rubrics.client.view.html'
       // });
   }
