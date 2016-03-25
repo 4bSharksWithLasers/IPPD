@@ -28,7 +28,7 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
 
       // Redirect after submission of form
       //$location.path('/:blankRubricId');
-      $state.go('review', {blankRubricId: $scope.presentationType._id, team: $scope.selectedTeam, presentation: $scope.selectedPresentationType, email: $scope.forwarded_email});
+      $state.go('review', { blankRubricId: $scope.presentationType._id, team: $scope.selectedTeam, presentation: $scope.selectedPresentationType, email: $scope.forwarded_email });
     };
 
     $scope.teamDropdowns = Teams.query();

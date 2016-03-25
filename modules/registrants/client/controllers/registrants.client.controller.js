@@ -30,7 +30,7 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
         // Redirect after save
         registrantTeam.$save(function (response) {
           //$location.path('/selectPresentation');
-          $state.go('selectPresentation', {email: $scope.email, affiliation: $scope.affiliation.theAffiliation});
+          $state.go('selectPresentation', { email: $scope.email, affiliation: $scope.affiliation.theAffiliation });
 
         // Clear form fields
           $scope.email = '';
@@ -51,7 +51,7 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
         // Redirect after save
         registrant.$save(function (response) {
           //$location.path('/selectPresentation');
-          $state.go('selectPresentation', {email: $scope.email, affiliation: $scope.affiliation.theAffiliation});
+          $state.go('selectPresentation', { email: $scope.email, affiliation: $scope.affiliation.theAffiliation });
 
         // Clear form fields
           $scope.email = '';
