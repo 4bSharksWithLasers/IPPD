@@ -25,7 +25,7 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
         var registrantTeam = new Registrants({
           email: this.email,
           affiliation: this.affiliation.theAffiliation,
-          teamName: this.teamName.name
+          //teamName: this.teamName.name
         });
         // Redirect after save
         registrantTeam.$save(function (response) {

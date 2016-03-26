@@ -17,7 +17,7 @@
   				  <h3> E-mail </h3>
             <input name="email" type="text" ng-model="email" id="email" class="form-control input-lg" placeholder="Email" required>
             <div ng-messages="registrantForm.email.$error" role="alert">
-              <p class="help-block error-text" ng-message="required">E-mail required</p>
+              <p class="text-danger error-text" ng-message="required">E-mail required</p>
             </div>
           </div>
 
@@ -25,20 +25,20 @@
     				<h3> Affiliation </h3>
             <select name="affiliation" ng-options="a.theAffiliation for a in affiliationDropdowns | orderBy: 'theAffiliation'" ng-model="affiliation" id="affiliation" class="form-control input-lg" required></select>
             <div ng-messages="registrantForm.affiliation.$error" role="alert">
-              <p class="help-block error-text" ng-message="required">Affiliation required</p>
+              <p class="text-danger error-text" ng-message="required">Affiliation required</p>
             </div>
           </div>
 
 
-          <div class="form-group" ng-show="affiliation.teamAssociated===true"  show-errors>
+          <!--<div class="form-group" ng-show="affiliation.teamAssociated===true"  show-errors>
             <h3>Team Name</h3>
             <select name="teamName" ng-options="team.name for team in teamDropdowns | orderBy: 'name'" ng-model="teamName"id="teamName" class="form-control input-lg" placeholder="Team Name" ng-required='affiliation.teamAssociated===true'></select>
             <div ng-messages="registrantForm.teamName.$error" role="alert">
-              <p class="help-block error-text" ng-message="required">Team Name required</p>
+              <p class="text-danger error-text" ng-message="required">Team Name required</p>
             </div>
           </div>
 
-          <!-- <div class="form-group" ng-show="affiliation.codeAssociated===true" show-errors>
+          <div class="form-group" ng-show="affiliation.codeAssociated===true" show-errors>
             <h3>Team Code</h3>
             <input name="teamCode" type="text" ng-model="teamCode" id="teamCode" class="form-control input-lg" placeholder="Team Code" ng-required='affiliation.codeAssociated===true'>
             <div ng-messages="registrantForm.teamCode.$error" role="alert">
