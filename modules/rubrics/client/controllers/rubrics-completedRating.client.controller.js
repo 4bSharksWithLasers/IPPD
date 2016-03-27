@@ -42,8 +42,6 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
 
     $scope.editItemCheck = function($index){
       if($scope.recommendations[$index].recommendation === '' || $scope.recommendations[$index].recommendation === undefined){
-        console.log($scope.recommendations[$index].recommendationText);
-        console.log('invalid edit');
         return true;
       }
       else{
@@ -243,35 +241,27 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
         return false;
       }
 
-      console.log('team: ' + this.team.name);
-      console.log('presentationType: ' + this.presentationType.presentationType);
-      console.log('email: ' + this.email);
       console.log('rubricItem: ' + this.rubricItem);
       console.log('rating: ' + this.rating);
 
       // Create new completedRating object
       var completedRating = new CompletedRatings({
-        team: this.team.name,
-        presentationType:  this.presentationType.presentationType,
-        email: this.email,
+        team: $scope.forwarded_team,
+        presentationType:  $scope.forwarded_presentation,
+        email: $scope.forwarded_email,
         ratedItems: $scope.rateArr,
         issuesIdentified: this.issuesIdentified,
         recommendedActions: $scope.recommendations
       });
 
+
       // Redirect after save
       completedRating.$save(function (response) {
-        $location.path('/selectPresentation');
+        $state.go('selectPresentation', { presentation: $scope.forwarded_presentation, email: $scope.forwarded_email });
+        //$location.path('/selectPresentation');
 
         // Clear form fields
-        $scope.team = '';
-        $scope.presentationType = '';
-        $scope.email = '';
-        $scope.rubricItem = '';
-        $scope.rating = '';
         $scope.issuesIdentified = '';
-        $scope.recommendedActions = '';
-        $scope.urgency = '';
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });
@@ -330,5 +320,12 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
         completedRatingId: $stateParams.completedRatingId
       });
     };
+
+     /* Bind the success message to the scope if it exists as part of the current state */
+    if($stateParams.successMessage) {
+      $scope.success = $stateParams.successMessage;
+      console.log($scope.success);
+    }
+
   }
 ]);
