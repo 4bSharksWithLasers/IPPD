@@ -13,13 +13,6 @@ angular.module('rubrics').config(['$stateProvider',
           roles:['admin']
         }
       })
-      .state('rubrics.list', {
-        url: '',
-        templateUrl: 'modules/rubrics/client/views/list-rubrics.client.view.html',
-        data:{
-          roles:['admin']
-        }
-      })
       .state('review',{
         url: '/review/:blankRubricId',
         params: {
