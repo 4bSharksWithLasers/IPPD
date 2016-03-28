@@ -1,44 +1,89 @@
-<section ng-controller="RegistrantsController" ng-init="find()">
-  <div class="page-header">
-    <h1>Manage Users</h1>
-    <article>
-        <form role="form" action="/adminHome" method="get">
-          <button class="nav-btn" type="submit" value="Send">Admin</button>
-        </form>
-      </article>
-  </div>
-
-  <article>
-    <form role="form" ng-click="removeAll()">
-      <button class="btn btn-default btn-lg">Delete all Users</button>
-    </form>
-  </article>
-
-  <div ng-show="error" class="text-danger">
-      <strong ng-bind="error"></strong>
+<section>
+  <header>
+    <div class="container text-right tb-padding">
+      <div class="row">
+        <div class="col-md-10"></div>
+        <div class="col-md-2">
+          <form role="form" action="/adminHome" method="get">
+            <button class="nav-btn" type="submit" value="Send">AdminHome</button>
+          </form>
+        </div>
+      </div>
     </div>
-    <div ng-show="success" class="text-success">
-      <strong ng-bind="success"></strong>
-    </div>
-    <div class="input-group" id="searchBar">
-      <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
-      <input type="text" class="form-control" placeholder="Search" ng-model="query">
-    </div>
-    <div class="tableWrapper">
-      <table class="table table-striped table-hover">
-        <tr>
-          <th>User email</th>
-          <th>User affiliation</th>
-          <th>Delete</th>
-        </tr>
-        <tr ng-repeat="x in registrants | filter: query" ui-sref="registrants.view({ registrantId: x._id })">
-          <td>{{x.email}}</td>
-          <td>{{x.affiliation}}</td>
-          <td>
-          	<button class="btn btn-alt" ng-confirm-click="Click to confirm deletion." ng-click="remove(x);" >Delete</button>
-          </td>
-        </tr>
-      </table>
-    </div>  
+  	<div class="jumbotron">
+  		<div class="container text-center">
+  			<img src="modules/core/client/img/brand/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo">
+  			<p><em>Manage Users</em></p>
+  		</div>
+  	</div>
+  </header>
 
+  <main ng-controller="RegistrantsController" ng-init="find()">
+    <div class="container t-padding">
+      <div class="row">
+        <div class="col-md-4"><!--
+          <form role="form" action="/addTeam" method="get">
+            <button class="btn btn-default btn-lg btn-block" type="submit" value="Send">Add Team</button>
+          </form>-->
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <button class="btn btn-danger btn-lg btn-block" ng-click="removeAll()">Delete All</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container t-padding">
+      <div class="input-group" id="searchBar">
+        <span class="input-group-addon input-lg" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
+        <input type="text" class="form-control input-lg" placeholder="Search" ng-model="query">
+      </div>
+    </div>
+    <!-- Success Messages --><!--
+    <div id="alert" class="alert alert-success" ng-show="showTeamAdded">
+      <button class="close" data-hide="alert" aria-label="close" ng-click="showTeamAdded=!showTeamAdded">&times;</button>
+      <h4><strong>Team successfully added!</strong></h4>
+    </div>
+    <div id="alert" class="alert alert-success" ng-show="showTeamDeleted">
+      <button class="close" data-hide="alert" aria-label="close" ng-click="showTeamDeleted=!showTeamDeleted">&times;</button>
+      <h4><strong>Team successfully deleted!</strong></h4>
+    </div>-->
+    <div class="container">
+      <div ng-show="error" class="text-danger">
+        <strong ng-bind="error"></strong>
+      </div>
+      <div ng-show="success" class="text-success">
+        <strong ng-bind="success"></strong>
+      </div>
+    </div>
+    <!-- End Messages -->
+    <div class="container t-padding">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-5">
+              <h3>User email</h3>
+            </div>
+            <div class="col-md-5">
+              <h3>User affiliation</h3>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+        </div>
+        <div class="panel-body" ng-repeat="x in registrants | filter: query" ui-sref="registrants.view({ registrantId: x._id })">
+          <div class="row">
+            <a href="" class="a-spc">
+              <div class="col-md-5"> {{ x.email }} </div>
+              <div class="col-md-5"> {{ x.affiliation }} </div>
+            </a>
+            <div class="col-md-2">
+              <button class="btn btn-danger btn-lg btn-block" ng-confirm-click="Click to confirm deletion." ng-click="remove(x);" >
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 </section>

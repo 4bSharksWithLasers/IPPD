@@ -1,8 +1,8 @@
 'use strict';
 
 // Registrants controller
-angular.module('registrants').controller('RegistrantsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Registrants', 'Teams', 'Affiliations',
-  function ($scope, $stateParams, $location, Authentication, Registrants, Teams, Affiliations) {
+angular.module('registrants').controller('RegistrantsController', ['$scope', '$state', '$stateParams', '$location', 'Authentication', 'Registrants', 'Teams', 'Affiliations',
+  function ($scope, $state, $stateParams, $location, Authentication, Registrants, Teams, Affiliations) {
     $scope.authentication = Authentication;
 
     //Pull the list of teams and affiliations from DB
@@ -25,17 +25,17 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
         var registrantTeam = new Registrants({
           email: this.email,
           affiliation: this.affiliation.theAffiliation,
-          teamName: this.teamName.name
+          //teamName: this.teamName.name
         });
         // Redirect after save
         registrantTeam.$save(function (response) {
-          $location.path('/selectPresentation');
+          //$location.path('/selectPresentation');
+          $state.go('selectPresentation', { email: $scope.email, affiliation: $scope.affiliation.theAffiliation });
 
         // Clear form fields
           $scope.email = '';
           $scope.affiliation = '';
           $scope.teamName = '';
-          $scope.teamCode = '';
         }, function (errorResponse) {
           $scope.error = errorResponse.data.message;
         });
@@ -50,7 +50,8 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
         });
         // Redirect after save
         registrant.$save(function (response) {
-          $location.path('/selectPresentation');
+          //$location.path('/selectPresentation');
+          $state.go('selectPresentation', { email: $scope.email, affiliation: $scope.affiliation.theAffiliation });
 
         // Clear form fields
           $scope.email = '';
@@ -75,20 +76,29 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
       }
     };
 
+    $scope.updateRegistrants = function(){
+      Registrants.query(function(refreshedRegistrants){
+        $scope.registrants = refreshedRegistrants;
+      });
+    };
+
     // Remove existing Registrant
     $scope.remove = function (registrant) {
+      $scope.splicing = false;
       if (registrant) {
         if(confirm('Press OK to confirm deletion.')){
           registrant.$remove();
-          //redirect path after deletion
-          $location.path('/registrants');
-
           for (var i in $scope.registrants) {
             if ($scope.registrants[i] === registrant) {
               $scope.registrants.splice(i, 1);
+              $scope.splicing = true;
             }
           }
         }
+        if($scope.splicing === false)
+          $scope.updateRegistrants();
+        //redirect path after deletion
+        $location.path('/registrants');
       } else {
         $scope.registrant.$remove(function () {
           $location.path('registrants');
@@ -126,9 +136,5 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
         registrantId: $stateParams.registrantId
       });
     };
-
-    //Phillip
-
-  //
   }
 ]);

@@ -9,41 +9,56 @@
   	</div>
   </header>
 
-  <div>{{$storage.test}}</div>
-
   <main ng-controller="CompletedRatingController" ng-init="findOneBlankRubric()">
     <div ng-init="initializeArrays(blankRubric.ratedItems.length)"></div>
 
     <form name="completedRatingForm" class="form-horizontal" ng-submit="create(completedRatingForm.$valid)" novalidate>
       <fieldset>
 
+      <div ng-show="previewRubricSubmission">
+        <div class="container">
+          <h3>Team Name: {{ forwarded_team }}</h3>
+          <h3>Presentation Type: {{ forwarded_presentation }}</h3>
+          <h3>Reviewer Email: {{ forwarded_email }}</h3>
+          <h3>Rubric Items</h3>
+          <div ng-repeat="x in blankRubric.ratedItems">
+            {{x.itemCategory}} : {{rating[$index]}}
+          </div>
+          <h3>Issues Identified</h3>
+          {{issuesIdentified}}
+          <h3>Recommended Actions</h3>
+          <div ng-repeat="item in recommendations track by $index">
+            {{item.recommendation}} : {{item.urgency?'urgent':'not urgent'}}
+          </div>
+        </div>
+      </div>
+
+      <div ng-show="!previewRubricSubmission">
         <div class="container">
           <div class="container r-padding">
-            <div class="form-group" show-errors>
-              <h3>Team Name</h3>
-              <select name="team" ng-options="team.name for team in teamDropdowns | orderBy: 'name'" data-toggle="dropdown" ng-model="team"id="team" class="form-control input-lg" placeholder="Team Name" required> </select>
+            <div class="form-group"> <!-- show-errors>-->
+              <h3>Team Name: {{ forwarded_team }}</h3>
+              <!--<select name="team" ng-options="team.name for team in teamDropdowns | orderBy: 'name'" data-toggle="dropdown" ng-model="team"id="team" class="form-control input-lg" placeholder="Team Name" required> </select>
               <div ng-messages="completedRatingForm.team.$error" role="alert">
-                <p class="help-block error-text" ng-message="required">Team name selection is required.</p>
-              </div>
+                <p class="help-block error-text" ng-message="required">Team name selection is required.</p>-->
             </div>
-            Presentation Type: {{blankRubric.presentationType}}
 
-            <div class="form-group" show-errors>
-              <h3>Presentation Type</h3>
-              <select name="presentationType" ng-options="p.presentationType for p in blankRubrics" data-toggle="dropdown" ng-model="presentationType" id="presentationType" class="form-control input-lg" placeholder="Presentation Type" required></select>
+            <!--Presentation Type: {{blankRubric.presentationType}}-->
+
+            <div class="form-group"> <!--show-errors>-->
+              <h3>Presentation Type: {{ forwarded_presentation }}</h3>
+              <!--<select name="presentationType" ng-options="p.presentationType for p in blankRubrics" data-toggle="dropdown" ng-model="presentationType" id="presentationType" class="form-control input-lg" placeholder="Presentation Type" required></select>
               <div ng-messages="completedRatingForm.presentationType.$error" role="alert">
-                <p class="help-block error-text" ng-message="required">Presentation Type is required.</p>
-              </div>
+                <p class="help-block error-text" ng-message="required">Presentation Type is required.</p>-->
             </div>
 
-            <div class="form-group" show-errors>
-              <h3>Reviewer Email</h3>
-              <input name="email" type="text" ng-model="email" id="email" class="form-control input-lg" placeholder="Email" required></input>
+
+            <div class="form-group"> <!--show-errors>-->
+              <h3>Reviewer Email: {{ forwarded_email }}</h3>
+              <!--<input name="email" type="text" ng-model="email" id="email" class="form-control input-lg" placeholder="Email" required></input>
               <div ng-messages="completedRatingForm.email.$error" role="alert">
-                <p class="help-block error-text" ng-message="required">Email is required.</p>
-              </div>
+                <p class="help-block error-text" ng-message="required">Email is required.</p>-->
             </div>
-            {{presentationType.presentationType}}
           </div>
         </div>
 
@@ -131,26 +146,23 @@
             <div class="col-xs-9">
               <h3>Recommendations</h3>
             </div>
-            <div class="col-xs-3 text-center">
-              <!--<h3>Urgent?</h3>-->
-            </div>
           </div>
 
-          <div class="row" ng-repeat="item in recommendations track by $index"  ng-show="showRecommendation">
-            <div class="col-xs-8" ng-hide="editing">
+          <div class="row" ng-repeat="item in recommendations track by $index" ng-show="showRecommendation">
+            <div class="col-xs-10" ng-hide="editing">
               <h4> {{ item.recommendation }} </h4>
             </div>
 
             <div ng-show="editing">
               <form>
-                <div class="col-xs-8">
+                <div class="col-xs-10 b-padding-row">
                   <textarea class="form-control" rows="1" ng-model="item.recommendation" placeholder="{{item.recommendation}}"></textarea>
                 </div>
               </form>
             </div>
 
             <a class="a-spc" href="">
-              <div class="col-xs-2 text-center">
+              <div class="col-xs-1 text-center">
                 <span class="glyphicon glyphicon-pencil" title="Edit this item" aria-hidden="true" ng-show="!editing" ng-click="editing=true"></span>
                 <div ng-show="editing">
                   <span class="glyphicon glyphicon-ok" title="Accept this change" aria-hidden="true" ng-show="!editItemCheck($index)" ng-click="editing = false"></span>
@@ -158,11 +170,11 @@
               </div>
             </a>
 
-            <div class="col-xs-8" ng-if="editItemCheck($index)">
-              <h5>Please enter text or remove recommendation.</h5>
+            <div class="col-xs-10" ng-if="editItemCheck($index)">
+              <h4>Please enter text or remove recommendation.</h4>
             </div>
 
-            <div class="col-xs-2">
+            <div class="col-xs-1 text-center">
               <a class="a-spc" href="" ng-click="rmvRecommendation(item)">
                 <div>
                   <span class="glyphicon glyphicon-minus" title="Remove this item" aria-hidden="true" ng-show="editing"></span>
@@ -179,32 +191,43 @@
 
           <div class="row">
             <form>
-              <div class="col-xs-8">
+              <div class="col-xs-10">
                 <textarea class="form-control" rows="1" ng-model="recommendationText"></textarea>
               </div>
+              <div class="col-xs-1"></div>
               <a class="a-spc" href="" ng-click="addRecommendation($index)" ng-model-instant>
-                <div class="col-xs-2 text-center">
+                <div class="col-xs-1 text-center">
                   <span class="glyphicon glyphicon-plus" title="Add item to recommendations" aria-hidden="true"></span>
                 </div>
               </a>
               <div class="col-xs-8" ng-show="recommendationError">
-                <h5>Please enter text before adding a recommendation.</h5>
+                <h4>Please enter text before adding a recommendation.</h4>
               </div>
             </form>
           </div>
         </div>
+      </div>
 
-        <div class="container">
+
+        <div class="container" ng-show="previewRubricSubmission">
           <div class="container t-padding">
-            <div class="form-group">
               <input type="submit" class="btn btn-lg btn-default">
-            </div>
             <div ng-show="error" class="text-danger">
               <strong ng-bind="error"></strong>
             </div>
           </div>
         </div>
+
       </fieldset>
     </form>
+
+    <div class="container t-padding">
+      <div ng-show="previewRubricSubmission">
+        <button ng-click="togglePreviewSubmission()" class="btn btn-lg btn-default">Edit Submission</button>
+      </div>
+      <div ng-show="!previewRubricSubmission">
+        <button ng-click="togglePreviewSubmission()" class="btn btn-lg btn-default">Preview Submission</button>
+      </div>
+    </div>
   </main>
 </section>

@@ -4,6 +4,8 @@
 angular.module('admin').controller('TeamController', ['$scope', '$stateParams', '$location', 'Authentication', 'Teams',
   function ($scope, $stateParams, $location, Authentication, Teams) {
     $scope.authentication = Authentication;
+    $scope.showTeamAdded = false; 
+    $scope.showTeamDeleted = false; 
 
     // Create new Team
     $scope.create = function (isValid) {
@@ -25,6 +27,8 @@ angular.module('admin').controller('TeamController', ['$scope', '$stateParams', 
       team.$save(function (response) {
         $location.path('/teams');
 
+        $scope.showTeamAdded = true;
+
         // Clear form fields
         $scope.name = '';
         $scope.code = '';
@@ -45,20 +49,32 @@ angular.module('admin').controller('TeamController', ['$scope', '$stateParams', 
       }
     };
 
+    $scope.updateTeams = function(){
+      Teams.query(function(refreshedTeams){
+        $scope.teams = refreshedTeams;
+      });
+    };
+
     // Remove existing team
     $scope.remove = function (team) {
-
+      $scope.splicing = false; 
       if (team) {
         if(confirm('Press OK to confirm deletion.')){
           team.$remove();
-          //redirect path after deletion
-          $location.path('/teams');
-
           for (var i in $scope.teams) {
+            console.log('in splice for loop');
             if ($scope.teams[i] === team) {
+              console.log('splicing');
+              $scope.splicing = true; 
               $scope.teams.splice(i, 1);
             }
           }
+          $scope.showTeamDeleted = true; 
+          if($scope.splicing === false)
+            $scope.updateTeams();
+          //redirect path after deletion
+          $location.path('/teams');
+          
         }
       } else { 
         $scope.team.$remove(function () {
