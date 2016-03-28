@@ -26,7 +26,8 @@ angular.module('rubrics').config(['$stateProvider',
         url: '/selectPresentation',
         params: {
           email: null,
-          affiliation: null
+          affiliation: null, 
+          presentation: null
         },
         templateUrl: 'modules/rubrics/client/views/teamPresentationSelection-rubrics.client.view.html'
       })
