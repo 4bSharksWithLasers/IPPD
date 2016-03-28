@@ -5,10 +5,11 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
   function ($scope, $state, $stateParams, $location, Authentication, CompletedRatings, Teams, BlankRubrics) {
     $scope.authentication = Authentication;
 
-    console.log($stateParams.team, $stateParams.presentation, $stateParams.email);
+    console.log($stateParams.team, $stateParams.presentation, $stateParams.email, $stateParams.forwarded_id);
     $scope.forwarded_team = $stateParams.team;
     $scope.forwarded_presentation = $stateParams.presentation;
     $scope.forwarded_email = $stateParams.email;
+    $scope.forwarded_id = $state.params.theId; 
 
     $scope.previewRubricSubmission = false;
 
@@ -24,11 +25,11 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
       $scope.selectedTeam = this.team.name;
       $scope.selectedPresentationType = this.presentationType.presentationType;
 
-      console.log($scope.selectedTeam + ' ' + $scope.selectedPresentationType);
+      console.log($scope.selectedTeam + ' ' + $scope.selectedPresentationType + ' ' + $scope.presentationType._id);
 
       // Redirect after submission of form
       //$location.path('/:blankRubricId');
-      $state.go('review', { blankRubricId: $scope.presentationType._id, team: $scope.selectedTeam, presentation: $scope.selectedPresentationType, email: $scope.forwarded_email });
+      $state.go('review', { blankRubricId: $scope.presentationType._id, team: $scope.selectedTeam, presentation: $scope.selectedPresentationType, email: $scope.forwarded_email, theId: $scope.presentationType._id });
     };
 
     $scope.teamDropdowns = Teams.query();
@@ -257,7 +258,7 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
 
       // Redirect after save
       completedRating.$save(function (response) {
-        $state.go('selectPresentation', { presentation: $scope.forwarded_presentation, email: $scope.forwarded_email });
+        $state.go('selectPresentation', { presentation: $scope.forwarded_presentation, email: $scope.forwarded_email, theId: $scope.forwarded_id });
         //$location.path('/selectPresentation');
 
         // Clear form fields
