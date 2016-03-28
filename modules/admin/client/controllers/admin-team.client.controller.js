@@ -7,6 +7,21 @@ angular.module('admin').controller('TeamController', ['$scope', '$stateParams', 
     $scope.showTeamAdded = false; 
     $scope.showTeamDeleted = false; 
 
+    $scope.checkUniqueness = function(){
+      console.log('in checkUniqueness');
+      $scope.find(); 
+      console.log($scope.teams);
+      console.log('length ' + $scope.teams.length);
+      //check to see if a team with that name already exists
+      for(var i=0; i < $scope.teams.length; i++){
+        if($scope.teams[i].name === this.name){
+          console.log('duplicate entry encountered');
+          return false; 
+        }
+      }
+      return true;
+    };
+
     // Create new Team
     $scope.create = function (isValid) {
       $scope.error = null;
@@ -16,6 +31,8 @@ angular.module('admin').controller('TeamController', ['$scope', '$stateParams', 
         
         return false;
       }
+
+      
 
       // Create new team object
       var team = new Teams({

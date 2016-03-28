@@ -9,6 +9,7 @@ var mongoose = require('mongoose'),
 exports.create = function(req, res){
   //Instantiate a team
   var team = new Team(req.body);
+  console.log('team in serverCtrl ' + team);
 
   //save the team
   team.save(function(err){
@@ -20,6 +21,7 @@ exports.create = function(req, res){
       });
     }
       else{
+      console.log('in else statement');
       res.json(team);
     }
   });
