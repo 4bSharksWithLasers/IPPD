@@ -8,6 +8,7 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
     //Pull the list of teams and affiliations from DB
     $scope.teamDropdowns = Teams.query();
     $scope.affiliationDropdowns = Affiliations.query();
+    $scope.error = null; 
 
     // Create new Registrant
     $scope.create = function (isValid) {
