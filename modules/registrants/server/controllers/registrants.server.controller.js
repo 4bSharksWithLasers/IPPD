@@ -9,6 +9,7 @@ var mongoose = require('mongoose'),
 exports.create = function(req, res){
   //Instantiate a Registrant
   var registrant = new Registrant(req.body);
+  var message = null; 
 
   //save the registrant
   registrant.save(function(err){

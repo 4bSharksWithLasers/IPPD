@@ -8,13 +8,8 @@ var mongoose = require('mongoose'),
 var affiliationSchema = new Schema({
   theAffiliation: {
     type: String, 
-    required: true
-  }, 
-  codeAssociated:{
-    type: Boolean
-  },
-  teamAssociated:{
-    type: Boolean
+    required: true,
+    unique: true
   },
   created_at: Date,
   updated_at: Date

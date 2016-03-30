@@ -21,7 +21,7 @@
             <h3>Presentation Type</h3>
             <input name="presentationType" type="text" ng-model="presentationType" id="presentationType" class="form-control input-lg" placeholder="Presentation Type" required></input>
             <div ng-messages="blankRubricForm.presentationType.$error" role="alert">
-              <p class="error-text text-danger" ng-message="required">Presentation Type is required.</p>
+              <p class="help-block error-text" ng-message="required">Presentation Type is required.</p>
             </div>
           </div>
         </div>
@@ -31,7 +31,7 @@
             <h3>Instructions</h3>
             <input name="instructions" type="text" ng-model="instructions" id="instructions" class="form-control input-lg" placeholder="Instructions" required></input>
             <div ng-messages="blankRubricForm.instructions.$error" role="alert">
-              <p class="error-text text-danger" ng-message="required">Instructions are required.</p>
+              <p class="help-block error-text" ng-message="required">Instructions are required.</p>
             </div>
           </div>
         </div>

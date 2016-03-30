@@ -14,7 +14,6 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
 
     $scope.editItemCheck = function($index){
       if($scope.rubricItemsArray[$index].itemCategory === '' || $scope.rubricItemsArray[$index].description1 === '' || $scope.rubricItemsArray[$index].description2 === '' || $scope.rubricItemsArray[$index].description3 === '' || $scope.rubricItemsArray[$index].itemCategory === undefined || $scope.rubricItemsArray[$index].description1 === undefined || $scope.rubricItemsArray[$index].description2 === undefined || $scope.rubricItemsArray[$index].description3 === undefined){
-        console.log('invalid edit');
         return true; 
       }
       else{
@@ -26,7 +25,6 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
     $scope.editItemCheckArray = function(item, rubricArray){
       console.log(rubricArray[rubricArray.indexOf(item)]);
       if(rubricArray[rubricArray.indexOf(item)].itemCategory === '' || rubricArray[rubricArray.indexOf(item)].description1 === '' || rubricArray[rubricArray.indexOf(item)].description2 === '' || rubricArray[rubricArray.indexOf(item)].description3 === '' || rubricArray[rubricArray.indexOf(item)].itemCategory === undefined || rubricArray[rubricArray.indexOf(item)].description1 === undefined || rubricArray[rubricArray.indexOf(item)].description2 === undefined || rubricArray[rubricArray.indexOf(item)].description3 === undefined){
-        console.log('invalid edit');
         return true; 
       }
       else{
@@ -100,13 +98,13 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
 
 
 
-
+    $scope.blankRubrics = null;
 
     // Create new blankRubric
     $scope.create = function (isValid) {
       $scope.error = null;
-      console.log(isValid);
-      console.log($scope.blankRubricForm);
+      $scope.presentationTypeToSave = this.presentationType;
+      $scope.instructionsToSave = this.instructions; 
 
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'blankRubricForm');
@@ -114,25 +112,39 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
         return false;
       }
 
-      // Create new blankRubric object
-      var blankRubric = new BlankRubrics({
-        presentationType: this.presentationType,
-        instructions: this.instructions,
-        ratedItems: $scope.rubricItemsArray
-      });
+      $scope.find();
+      $scope.blankRubrics.$promise.then(function(data){
+        console.log(data);
+        console.log($scope.blankRubrics.length);
+        for(var i=0; i < $scope.blankRubrics.length; i++){
+          console.log($scope.blankRubrics[i].presentationType);
+          if($scope.blankRubrics[i].presentationType === $scope.presentationTypeToSave){
+            console.log('duplicate name encountered');
+            confirm('A rubric already exists with this name. Please choose another name.');
+            return false; 
+          }
+        }
 
-      // Redirect after save
-      blankRubric.$save(function (response) {
-        $location.path('/blankRubrics');
+        // Create new blankRubric object
+        var blankRubric = new BlankRubrics({
+          presentationType: $scope.presentationTypeToSave,
+          instructions: $scope.instructionsToSave,
+          ratedItems: $scope.rubricItemsArray
+        });
 
-        // Clear form fields
-        $scope.presentationType = '';
-        $scope.instructions = '';
-        $scope.description1 = '';
-        $scope.description2 = '';
-        $scope.description3 = '';
-      }, function (errorResponse) {
-        $scope.error = errorResponse.data.message;
+        // Redirect after save
+        blankRubric.$save(function (response) {
+          $location.path('/blankRubrics');
+
+          // Clear form fields
+          $scope.presentationType = '';
+          $scope.instructions = '';
+          $scope.description1 = '';
+          $scope.description2 = '';
+          $scope.description3 = '';
+        }, function (errorResponse) {
+          $scope.error = errorResponse.data.message;
+        });
       });
     };
 

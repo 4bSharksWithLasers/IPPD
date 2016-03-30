@@ -26,14 +26,7 @@
           <h3>Team Name</h3>
           <input name="name" type="text" ng-model="name" id="name" class="form-control input-lg" placeholder="Team Name" required>
           <div ng-messages="teamForm.name.$error" role="alert">
-            <p class="error-text text-danger" ng-message="required">Team name is required.</p>
-          </div>
-        </div>
-        <div class="form-group" show-errors>
-          <h3>Team Code</h3>
-          <input name="code" type="text" ng-model="code" id="code" class="form-control input-lg" placeholder="Team Code" required>
-          <div ng-messages="teamForm.code.$error" role="alert">
-            <p class="error-text text-danger" ng-message="required">Team code is required.</p>
+            <p class="help-block error-text" ng-message="required">Team name is required.</p>
           </div>
         </div>
       </div>

@@ -5,10 +5,11 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
   function ($scope, $state, $stateParams, $location, Authentication, CompletedRatings, Teams, BlankRubrics) {
     $scope.authentication = Authentication;
 
-    console.log($stateParams.team, $stateParams.presentation, $stateParams.email);
+    console.log($stateParams.team, $stateParams.presentation, $stateParams.email, $stateParams.forwarded_id);
     $scope.forwarded_team = $stateParams.team;
     $scope.forwarded_presentation = $stateParams.presentation;
     $scope.forwarded_email = $stateParams.email;
+    $scope.forwarded_id = $state.params.theId; 
 
     $scope.previewRubricSubmission = false;
 
@@ -24,11 +25,11 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
       $scope.selectedTeam = this.team.name;
       $scope.selectedPresentationType = this.presentationType.presentationType;
 
-      console.log($scope.selectedTeam + ' ' + $scope.selectedPresentationType);
+      console.log($scope.selectedTeam + ' ' + $scope.selectedPresentationType + ' ' + $scope.presentationType._id);
 
       // Redirect after submission of form
       //$location.path('/:blankRubricId');
-      $state.go('review', { blankRubricId: $scope.presentationType._id, team: $scope.selectedTeam, presentation: $scope.selectedPresentationType, email: $scope.forwarded_email });
+      $state.go('review', { blankRubricId: $scope.presentationType._id, team: $scope.selectedTeam, presentation: $scope.selectedPresentationType, email: $scope.forwarded_email, theId: $scope.presentationType._id });
     };
 
     $scope.teamDropdowns = Teams.query();
@@ -42,8 +43,6 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
 
     $scope.editItemCheck = function($index){
       if($scope.recommendations[$index].recommendation === '' || $scope.recommendations[$index].recommendation === undefined){
-        console.log($scope.recommendations[$index].recommendationText);
-        console.log('invalid edit');
         return true;
       }
       else{
@@ -243,35 +242,27 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
         return false;
       }
 
-      console.log('team: ' + this.team.name);
-      console.log('presentationType: ' + this.presentationType.presentationType);
-      console.log('email: ' + this.email);
       console.log('rubricItem: ' + this.rubricItem);
       console.log('rating: ' + this.rating);
 
       // Create new completedRating object
       var completedRating = new CompletedRatings({
-        team: this.team.name,
-        presentationType:  this.presentationType.presentationType,
-        email: this.email,
+        team: $scope.forwarded_team,
+        presentationType:  $scope.forwarded_presentation,
+        email: $scope.forwarded_email,
         ratedItems: $scope.rateArr,
         issuesIdentified: this.issuesIdentified,
         recommendedActions: $scope.recommendations
       });
 
+
       // Redirect after save
       completedRating.$save(function (response) {
-        $location.path('/selectPresentation');
+        $state.go('selectPresentation', { presentation: $scope.forwarded_presentation, email: $scope.forwarded_email, theId: $scope.forwarded_id });
+        //$location.path('/selectPresentation');
 
         // Clear form fields
-        $scope.team = '';
-        $scope.presentationType = '';
-        $scope.email = '';
-        $scope.rubricItem = '';
-        $scope.rating = '';
         $scope.issuesIdentified = '';
-        $scope.recommendedActions = '';
-        $scope.urgency = '';
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });
@@ -330,5 +321,12 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
         completedRatingId: $stateParams.completedRatingId
       });
     };
+
+     /* Bind the success message to the scope if it exists as part of the current state */
+    if($stateParams.successMessage) {
+      $scope.success = $stateParams.successMessage;
+      console.log($scope.success);
+    }
+
   }
 ]);

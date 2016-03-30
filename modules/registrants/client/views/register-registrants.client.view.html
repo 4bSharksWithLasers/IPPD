@@ -15,9 +15,10 @@
         <fieldset>
           <div class="form-group" show-errors>
   				  <h3> E-mail </h3>
-            <input name="email" type="text" ng-model="email" id="email" class="form-control input-lg" placeholder="Email" required>
+            <input name="email" type="email" ng-model="email" id="email" class="form-control input-lg" placeholder="Email" required>
             <div ng-messages="registrantForm.email.$error" role="alert">
-              <p class="text-danger error-text" ng-message="required">E-mail required</p>
+              <p class="help-block error-text" ng-message="required">E-mail required</p>
+              <p class="help-block error-text" ng-message="email">Email address is invalid.</p>
             </div>
           </div>
 
@@ -25,7 +26,7 @@
     				<h3> Affiliation </h3>
             <select name="affiliation" ng-options="a.theAffiliation for a in affiliationDropdowns | orderBy: 'theAffiliation'" ng-model="affiliation" id="affiliation" class="form-control input-lg" required></select>
             <div ng-messages="registrantForm.affiliation.$error" role="alert">
-              <p class="text-danger error-text" ng-message="required">Affiliation required</p>
+              <p class="help-block error-text" ng-message="required">Affiliation required</p>
             </div>
           </div>
 

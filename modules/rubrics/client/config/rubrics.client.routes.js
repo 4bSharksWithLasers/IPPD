@@ -13,19 +13,13 @@ angular.module('rubrics').config(['$stateProvider',
           roles:['admin']
         }
       })
-      .state('rubrics.list', {
-        url: '',
-        templateUrl: 'modules/rubrics/client/views/list-rubrics.client.view.html',
-        data:{
-          roles:['admin']
-        }
-      })
       .state('review',{
         url: '/review/:blankRubricId',
         params: {
           team: null,
           presentation: null,
-          email: null
+          email: null, 
+          theId: null
         },
         templateUrl: 'modules/rubrics/client/views/review-rubrics.client.view.html'
       })
@@ -33,7 +27,9 @@ angular.module('rubrics').config(['$stateProvider',
         url: '/selectPresentation',
         params: {
           email: null,
-          affiliation: null
+          affiliation: null, 
+          presentation: null, 
+          theId: null
         },
         templateUrl: 'modules/rubrics/client/views/teamPresentationSelection-rubrics.client.view.html'
       })
