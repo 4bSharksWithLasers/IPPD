@@ -4,177 +4,20 @@ var should = require('should'),
   request = require('supertest'),
   path = require('path'),
   mongoose = require('mongoose'),
-  express = require(path.resolve('./config/lib/express')),
-  Registrant = mongoose.model('Registrant'),
   User = mongoose.model('User'),
-  Rubric = mongoose.model('CompletedRating');
+  express = require(path.resolve('./config/lib/express'));
 
-var app, agent, registrant, _registrant, reg_id, new_reg_id, _rubric, rub_id, user, _user, credentials;
+/**
+ * Globals
+ */
+var app, agent, credentials, user, _user, admin;
 
-_rubric = {
-  team: "new_unitRubricTeam",
-  presentationType: "new_unitPresentTest",
-  email: "new_unitRubricEmailTest",
-  ratedItems: [{
-    rubricItem: "new_unitItemTest",
-    rating: 3
-  }],
-  issuesIdentified: "new_unitTestIssue",
-  recommendedActions: [{
-    recommendation: "new_unitTestRecommendation",
-    urgency: false
-  }]
-
-};
-
-describe('Registrant CRUD tests', function(){
-
-  before(function(done){
-    app = express.init(mongoose);
-    agent = request.agent(app);
-
-    done();
-  });
-
-  beforeEach(function(done) {
-
-    //create new registrant
-
-    _registrant = {
-      email: "unit@unitEmail.com",
-      affiliation: "unitAffiliation",
-      teamName: "unit team"
-    };
-
-    registrant = new Registrant(_registrant);
-
-
-
-    //save registrant into the db
-
-    registrant.save(function (err) {
-      should.not.exist(err);
-      reg_id = registrant._id;
-      done();
-    });
-
-
-  });
-
-  //registrant should be able to see team names and presentation types.
-
-  it('Should be able to register a new registrant', function(done) {
-
-    _registrant.email = "new_unit_registrant@unitEmail.com";
-    _registrant.affiliation = "new_unit_affiliation";
-    _registrant.teamName = "new_unit_team";
-
-    agent.post('/api/registrants')
-      .send(_registrant)
-      .expect(200)
-      .end(function(err, res){
-        if(err){
-          return done(err);
-        }
-
-        res.body.email.should.equal(_registrant.email);
-        res.body.affiliation.should.equal(_registrant.affiliation);
-        res.body.teamName.should.equal(_registrant.teamName);
-        new_reg_id = res.body._id;
-        return done();
-
-      });
-
-  });
-
-  it('Should be able to submit a completed Rubric', function(done){
-
-
-    agent.post('/api/completedRatings')
-      .send(_rubric)
-      .expect(200)
-      .end(function(err, res){
-        if(err){
-          return done(err);
-        }
-
-        res.body.team.should.equal(_rubric.team);
-        res.body.presentationType.should.equal(_rubric.presentationType);
-        res.body.email.should.equal(_rubric.email);
-        rub_id = res.body._id;
-        return done();
-
-      });
-  });
-/*
-  it('Admin should be able to add teams', function(done){
-
-  });
-
-  it('Admin should be able to update teams', function(done){
-
-  });
-
-  it('Admin should be able to remove teams', function(done){
-
-  });
-
-  it('Admin should be able to add affiliations', function(done){
-
-  });
-
-  it('Admin should be able to update affiliations', function(done){
-
-  });
-
-  it('Admin should be able to remove affiliation', function(done){
-
-  });
-*/
-
-  //removes registrant from database
-
-  afterEach(function(done){
-    if(reg_id) {
-      Registrant.remove({ _id: reg_id }).exec(function(){
-        reg_id = null;
-        done();
-      });
-    } else {
-      done();
-    }
-  });
-
-  //removes submitted registrants
-
-  afterEach(function(done){
-    if(new_reg_id) {
-      Registrant.remove({ _id: new_reg_id }).exec(function(){
-        new_reg_id = null;
-        done();
-      });
-    } else {
-      done();
-    }
-  });
-
-  //TODO figure out api paths
-  //removes submitted rubrics
-
-  afterEach(function(done){
-    if(rub_id) {
-      Rubric.remove({ _id: rub_id }).exec(function(){
-        rub_id = null;
-        done();
-      });
-    } else {
-      done();
-    }
-  });
-
-});
-
+/**
+ * User routes tests
+ */
 describe('User CRUD tests', function () {
+
+  this.timeout(10000);
 
   before(function (done) {
     // Get application
@@ -216,7 +59,7 @@ describe('User CRUD tests', function () {
     _user.username = 'register_new_user';
     _user.email = 'register_new_user_@test.com';
 
-    agent.post('/api/auth/signup')
+    agent.post('/api/registrants')
       .send(_user)
       .expect(200)
       .end(function (signupErr, signupRes) {
@@ -267,115 +110,6 @@ describe('User CRUD tests', function () {
             return done();
           });
       });
-  });
-
-  //TODO
-  it('should not be able to retreive a list of registrants if not admin', function(done){
-    agent.post('/api/auth/signin')
-      .send(credentials)
-      .expect(200)
-      .end(function (signinErr, signinRes) {
-        // Handle signin error
-        if (signinErr) {
-          return done(signinErr);
-        }
-
-        // Request list of registrants
-        agent.get('/api/registrants')
-          .expect(403)
-          .end(function (usersGetErr, usersGetRes) {
-            if (usersGetErr) {
-              return done(usersGetErr);
-            }
-
-            return done();
-          });
-      });
-  });
-
-//TODO
-/*
-  it('should not be able to update blankRubrics if not admin', function(done) {
-
-  });
-*/
-  it('should not be able to update affiliations if not admin', function(done) {
-    user.roles = ['user'];
-
-    user.save(function (err) {
-      should.not.exist(err);
-      agent.post('/api/auth/signin')
-        .send(credentials)
-        .expect(200)
-        .end(function (signinErr, signinRes) {
-          // Handle signin error
-          if (signinErr) {
-            return done(signinErr);
-          }
-
-          var affiliationUpdate = {
-            theAffiliation: 'UnitAffiliation',
-            codeAssociated: 'true',
-            teamAssociated: 'true'
-          };
-
-          agent.put('/api/affiliations')
-            .send(affiliationUpdate)
-            .expect(404)
-            .end(function (userInfoErr, userInfoRes) {
-              if (userInfoErr) {
-                return done(userInfoErr);
-              }
-
-              // Call the assertion callback
-          //    userInfoRes.body.message.should.equal('Access not allowed');
-
-              return done();
-            });
-        });
-    });
-  });
-
-  it('should be able to update affiliations if admin', function(done) {
-    user.roles = ['user', 'admin'];
-
-    user.save(function (err) {
-      should.not.exist(err);
-      agent.post('/api/auth/signin')
-        .send(credentials)
-        .expect(200)
-        .end(function (signinErr, signinRes) {
-          // Handle signin error
-          if (signinErr) {
-            return done(signinErr);
-          }
-
-          var affiliationUpdate = {
-            theAffiliation: 'UnitAffiliationTest',
-            codeAssociated: 'true',
-            teamAssociated: 'true'
-          };
-
-          agent.post('/api/affiliations')
-            .send(affiliationUpdate)
-            .expect(200)
-            .end(function (userInfoErr, userInfoRes) {
-              if (userInfoErr) {
-                return done(userInfoErr);
-              }
-
-              userInfoRes.body.should.be.instanceof(Object);
-              userInfoRes.body.theAffiliation.should.be.equal('UnitAffiliation');
-              userInfoRes.body.codeAssociated.should.be.equal(true);
-              //userInfoRes.body.roles.should.be.instanceof(Array).and.have.lengthOf(1);
-
-              userInfoRes.body.teamAssociated.should.be.equal(true);
-
-              // Call the assertion callback
-              return done();
-            });
-        });
-    });
   });
 
   it('should not be able to retrieve a list of users if not admin', function (done) {
