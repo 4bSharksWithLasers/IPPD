@@ -5,37 +5,50 @@ angular.module('admin').controller('TeamController', ['$scope', '$stateParams', 
   function ($scope, $stateParams, $location, Authentication, Teams) {
     $scope.authentication = Authentication;
     $scope.showTeamAdded = false; 
-    $scope.showTeamDeleted = false; 
+    $scope.showTeamDeleted = false;
+    $scope.teams = null;  
 
 
     // Create new Team
     $scope.create = function (isValid) {
       $scope.error = null;
+      $scope.teamToSave = this.name; 
 
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'teamForm');
         
         return false;
       }
+      $scope.find(); 
+      $scope.teams.$promise.then(function(data){
+        console.log(data);
+        console.log($scope.teams.length);
+        for(var i=0; i < $scope.teams.length; i++){
+          console.log($scope.teams[i].name);
+          if($scope.teams[i].name === $scope.teamToSave){
+            console.log('duplicate name encountered');
+            confirm('A team already exists with this name. Please choose another name.');
+            return false; 
+          }
+        }
+        // Create new team object
+        var team = new Teams({
+          name: $scope.teamToSave
+        });
 
-      
+        // Redirect after save
+        team.$save(function (response) {
+          $location.path('/teams');
 
-      // Create new team object
-      var team = new Teams({
-        name: this.name
+          $scope.showTeamAdded = true;
+
+          // Clear form fields
+          $scope.name = '';
+        }, function (errorResponse) {
+          $scope.error = errorResponse.data.message;
+        });
       });
 
-      // Redirect after save
-      team.$save(function (response) {
-        $location.path('/teams');
-
-        $scope.showTeamAdded = true;
-
-        // Clear form fields
-        $scope.name = '';
-      }, function (errorResponse) {
-        $scope.error = errorResponse.data.message;
-      });
     };
 
     $scope.removeAll = function(){
