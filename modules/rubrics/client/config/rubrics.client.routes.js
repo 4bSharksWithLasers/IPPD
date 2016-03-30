@@ -18,8 +18,7 @@ angular.module('rubrics').config(['$stateProvider',
         params: {
           team: null,
           presentation: null,
-          email: null, 
-          theId: null
+          email: null,
         },
         templateUrl: 'modules/rubrics/client/views/review-rubrics.client.view.html'
       })
@@ -27,8 +26,7 @@ angular.module('rubrics').config(['$stateProvider',
         url: '/selectPresentation',
         params: {
           email: null,
-          affiliation: null, 
-          presentation: null, 
+          presentation: null,
           theId: null
         },
         templateUrl: 'modules/rubrics/client/views/teamPresentationSelection-rubrics.client.view.html'

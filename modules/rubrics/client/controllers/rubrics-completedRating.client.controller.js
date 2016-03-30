@@ -5,11 +5,11 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
   function ($scope, $state, $stateParams, $location, Authentication, CompletedRatings, Teams, BlankRubrics) {
     $scope.authentication = Authentication;
 
-    console.log($stateParams.team, $stateParams.presentation, $stateParams.email, $stateParams.forwarded_id);
+    console.log("Team: ", $stateParams.team, "Presentation: ", $stateParams.presentation, "Email: ", $stateParams.email, "PresID: ", $stateParams.theId);
     $scope.forwarded_team = $stateParams.team;
     $scope.forwarded_presentation = $stateParams.presentation;
     $scope.forwarded_email = $stateParams.email;
-    $scope.forwarded_id = $state.params.theId; 
+    $scope.forwarded_id = $stateParams.blankRubricId;
 
     $scope.previewRubricSubmission = false;
 
@@ -23,13 +23,19 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
       }
       //save the presentation type and team name.
       $scope.selectedTeam = this.team.name;
-      $scope.selectedPresentationType = this.presentationType.presentationType;
 
-      console.log($scope.selectedTeam + ' ' + $scope.selectedPresentationType + ' ' + $scope.presentationType._id);
+      //console.log($scope.selectedTeam + ' ' + $scope.selectedPresentationType + ' ' + $scope.presentationType._id);
 
       // Redirect after submission of form
       //$location.path('/:blankRubricId');
-      $state.go('review', { blankRubricId: $scope.presentationType._id, team: $scope.selectedTeam, presentation: $scope.selectedPresentationType, email: $scope.forwarded_email, theId: $scope.presentationType._id });
+      if($scope.forwarded_presentation === null || $scope.forwarded_presentation === undefined) {
+        $scope.selectedPresentationType = this.presentationType.presentationType;
+        $state.go('review', { blankRubricId: $scope.presentationType._id, team: $scope.selectedTeam, presentation: $scope.selectedPresentationType, email: $scope.forwarded_email });
+      }
+      else {
+        $scope.selectedPresentationType = $scope.forwarded_presentation;
+        $state.go('review', { blankRubricId: $scope.presentationType._id, team: $scope.selectedTeam, presentation: $scope.selectedPresentationType, email: $scope.forwarded_email });
+      }
     };
 
     $scope.teamDropdowns = Teams.query();
@@ -56,8 +62,8 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
     $scope.addRecommendation = function(index){
       if($scope.recommendationText === '' || $scope.recommendationText === undefined){
         $scope.recommendationError = true;
-        console.log('recomm error');
-        console.log($scope.recommendationText);
+        //console.log('recomm error');
+        //console.log($scope.recommendationText);
       }
       else{
         $scope.recommendationError = false;
@@ -91,8 +97,8 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
       else{
         $scope.recommendations[index].urgency=true;
       }
-      console.log($scope.recommendations[index].recommendation);
-      console.log($scope.recommendations[index].urgency);
+      //console.log($scope.recommendations[index].recommendation);
+      //console.log($scope.recommendations[index].urgency);
     };
 
     $scope.togglePreviewSubmission = function(){
@@ -107,16 +113,16 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
     $scope.ratedItems = [];
 
     $scope.initializeArrays = function (index){
-      console.log('index is: ' + index);
+      //console.log('index is: ' + index);
       if(!angular.isUndefined(index)){
         $scope.star[index] = ({ colorOne: '#eaeaea', colorTwo: '#eaeaea', colorThree: '#eaeaea', colorFour: '#eaeaea', colorFive: '#eaeaea' });
         $scope.rating[index] = (0);
         $scope.rubricItems[index] = ('');
-        console.log('initializing arrays');
+        //console.log('initializing arrays');
       }
     };
-    console.log('star' + $scope.star);
-    console.log('rating' + $scope.rating);
+    //console.log('star' + $scope.star);
+    //console.log('rating' + $scope.rating);
 
     /*
     Combines two arrays into one array .
@@ -145,16 +151,16 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
       $scope.star[index].colorThree = '#eaeaea';
       $scope.star[index].colorFour = '#eaeaea';
       $scope.star[index].colorFive = '#eaeaea';
-      console.log('changeOne ' + index + ' itemCategory ' + item);
+      //console.log('changeOne ' + index + ' itemCategory ' + item);
       $scope.rubricItems[index] = item;
       $scope.rating[index] = 1;
       $scope.rateArr = $scope.ratedArray();
-      console.log('rubricItems array: ' + $scope.rubricItems[index]);
-      console.log('rubricItems actual array ' + $scope.rubricItems);
-      console.log('ratings array: ' + $scope.rating[index]);
-      console.log('ratings actual array: ' + $scope.rating);
-      console.log('ratedItems item: ' + $scope.rateArr[index].rubricItem);
-      console.log('ratedItems rating: ' + $scope.rateArr[index].rating);
+      //console.log('rubricItems array: ' + $scope.rubricItems[index]);
+      //console.log('rubricItems actual array ' + $scope.rubricItems);
+      //console.log('ratings array: ' + $scope.rating[index]);
+      //console.log('ratings actual array: ' + $scope.rating);
+      //console.log('ratedItems item: ' + $scope.rateArr[index].rubricItem);
+      //console.log('ratedItems rating: ' + $scope.rateArr[index].rating);
     };
 
     $scope.changeTwo = function(index, item) {
@@ -163,16 +169,16 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
       $scope.star[index].colorThree = '#eaeaea';
       $scope.star[index].colorFour = '#eaeaea';
       $scope.star[index].colorFive = '#eaeaea';
-      console.log('changeTwo ' + index + ' itemCategory ' + item);
+      //console.log('changeTwo ' + index + ' itemCategory ' + item);
       $scope.rubricItems[index] = item;
       $scope.rating[index] = 2;
       $scope.rateArr = $scope.ratedArray();
-      console.log('rubricItems array: ' + $scope.rubricItems[index]);
-      console.log('rubricItems actual array ' + $scope.rubricItems);
-      console.log('ratings array: ' + $scope.rating[index]);
-      console.log('ratings actual array: ' + $scope.rating);
-      console.log('ratedItems item: ' + $scope.rateArr[index].rubricItem);
-      console.log('ratedItems rating: ' + $scope.rateArr[index].rating);
+      //console.log('rubricItems array: ' + $scope.rubricItems[index]);
+      //console.log('rubricItems actual array ' + $scope.rubricItems);
+      // console.log('ratings array: ' + $scope.rating[index]);
+      // console.log('ratings actual array: ' + $scope.rating);
+      // console.log('ratedItems item: ' + $scope.rateArr[index].rubricItem);
+      // console.log('ratedItems rating: ' + $scope.rateArr[index].rating);
     };
 
     $scope.changeThree = function(index, item) {
@@ -181,16 +187,16 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
       $scope.star[index].colorThree = '#ffd700';
       $scope.star[index].colorFour = '#eaeaea';
       $scope.star[index].colorFive = '#eaeaea';
-      console.log('changeThree ' + index + ' itemCategory ' + item);
+      // console.log('changeThree ' + index + ' itemCategory ' + item);
       $scope.rubricItems[index] = item;
       $scope.rating[index] = 3;
       $scope.rateArr = $scope.ratedArray();
-      console.log('rubricItems array: ' + $scope.rubricItems[index]);
-      console.log('rubricItems actual array ' + $scope.rubricItems);
-      console.log('ratings array: ' + $scope.rating[index]);
-      console.log('ratings actual array: ' + $scope.rating);
-      console.log('ratedItems item: ' + $scope.rateArr[index].rubricItem);
-      console.log('ratedItems rating: ' + $scope.rateArr[index].rating);
+      // console.log('rubricItems array: ' + $scope.rubricItems[index]);
+      // console.log('rubricItems actual array ' + $scope.rubricItems);
+      // console.log('ratings array: ' + $scope.rating[index]);
+      // console.log('ratings actual array: ' + $scope.rating);
+      // console.log('ratedItems item: ' + $scope.rateArr[index].rubricItem);
+      // console.log('ratedItems rating: ' + $scope.rateArr[index].rating);
     };
 
     $scope.changeFour = function(index, item) {
@@ -199,16 +205,16 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
       $scope.star[index].colorThree = '#ffd700';
       $scope.star[index].colorFour = '#ffd700';
       $scope.star[index].colorFive = '#eaeaea';
-      console.log('changeFour ' + index + ' itemCategory ' + item);
+      // console.log('changeFour ' + index + ' itemCategory ' + item);
       $scope.rubricItems[index] = item;
       $scope.rating[index] = 4;
       $scope.rateArr = $scope.ratedArray();
-      console.log('rubricItems array: ' + $scope.rubricItems[index]);
-      console.log('rubricItems actual array ' + $scope.rubricItems);
-      console.log('ratings array: ' + $scope.rating[index]);
-      console.log('ratings actual array: ' + $scope.rating);
-      console.log('ratedItems item: ' + $scope.rateArr[index].rubricItem);
-      console.log('ratedItems rating: ' + $scope.rateArr[index].rating);
+      // console.log('rubricItems array: ' + $scope.rubricItems[index]);
+      // console.log('rubricItems actual array ' + $scope.rubricItems);
+      // console.log('ratings array: ' + $scope.rating[index]);
+      // console.log('ratings actual array: ' + $scope.rating);
+      // console.log('ratedItems item: ' + $scope.rateArr[index].rubricItem);
+      // console.log('ratedItems rating: ' + $scope.rateArr[index].rating);
     };
 
     $scope.changeFive = function(index, item) {
@@ -217,16 +223,16 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
       $scope.star[index].colorThree = '#ffd700';
       $scope.star[index].colorFour = '#ffd700';
       $scope.star[index].colorFive = '#ffd700';
-      console.log('changeFive ' + index + ' itemCategory ' + item);
+      // console.log('changeFive ' + index + ' itemCategory ' + item);
       $scope.rubricItems[index] = item;
       $scope.rating[index] = 5;
       $scope.rateArr = $scope.ratedArray();
-      console.log('rubricItems array: ' + $scope.rubricItems[index]);
-      console.log('rubricItems actual array ' + $scope.rubricItems);
-      console.log('ratings array: ' + $scope.rating[index]);
-      console.log('ratings actual array: ' + $scope.rating);
-      console.log('ratedItems item: ' + $scope.rateArr[index].rubricItem);
-      console.log('ratedItems rating: ' + $scope.rateArr[index].rating);
+      // console.log('rubricItems array: ' + $scope.rubricItems[index]);
+      // console.log('rubricItems actual array ' + $scope.rubricItems);
+      // console.log('ratings array: ' + $scope.rating[index]);
+      // console.log('ratings actual array: ' + $scope.rating);
+      // console.log('ratedItems item: ' + $scope.rateArr[index].rubricItem);
+      // console.log('ratedItems rating: ' + $scope.rateArr[index].rating);
     };
 
 
@@ -241,9 +247,9 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
 
         return false;
       }
-
-      console.log('rubricItem: ' + this.rubricItem);
-      console.log('rating: ' + this.rating);
+      //
+      // console.log('rubricItem: ' + this.rubricItem);
+      // console.log('rating: ' + this.rating);
 
       // Create new completedRating object
       var completedRating = new CompletedRatings({
@@ -325,7 +331,7 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
      /* Bind the success message to the scope if it exists as part of the current state */
     if($stateParams.successMessage) {
       $scope.success = $stateParams.successMessage;
-      console.log($scope.success);
+      // console.log($scope.success);
     }
 
   }
