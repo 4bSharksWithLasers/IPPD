@@ -48,7 +48,6 @@ angular.module('admin').controller('TeamController', ['$scope', '$stateParams', 
           $scope.error = errorResponse.data.message;
         });
       });
-
     };
 
     $scope.removeAll = function(){

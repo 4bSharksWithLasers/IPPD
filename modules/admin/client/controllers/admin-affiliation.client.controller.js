@@ -4,30 +4,44 @@
 angular.module('admin').controller('AffiliationController', ['$scope', '$stateParams', '$location', 'Authentication', 'Affiliations',
   function ($scope, $stateParams, $location, Authentication, Affiliations) {
     $scope.authentication = Authentication;
+    $scope.affiliations = null;
 
     // Create new Affiliation
     $scope.create = function (isValid) {
       $scope.error = null;
+      $scope.affiliationToSave = this.affiliation; 
 
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'affiliationForm');
         
         return false;
       }
+      $scope.find();
+      $scope.affiliations.$promise.then(function(data){
+        console.log(data);
+        console.log($scope.affiliations.length);
+        for(var i=0; i < $scope.affiliations.length; i++){
+          console.log($scope.affiliations[i].theAffiliation);
+          if($scope.affiliations[i].theAffiliation === $scope.affiliationToSave){
+            console.log('duplicate name encountered');
+            confirm('An affiliation already exists with this name. Please choose another name.');
+            return false; 
+          }
+        }
+        // Create new affiliation object
+        var affiliation = new Affiliations({
+          theAffiliation: $scope.affiliationToSave
+        });
 
-      // Create new affiliation object
-      var affiliation = new Affiliations({
-        theAffiliation: this.affiliation
-      });
+        // Redirect after save
+        affiliation.$save(function (response) {
+          $location.path('/affiliations');
 
-      // Redirect after save
-      affiliation.$save(function (response) {
-        $location.path('/affiliations');
-
-        // Clear form fields
-        $scope.affiliation = '';
-      }, function (errorResponse) {
-        $scope.error = errorResponse.data.message;
+          // Clear form fields
+          $scope.affiliation = '';
+        }, function (errorResponse) {
+          $scope.error = errorResponse.data.message;
+        });
       });
     };
 
