@@ -14,7 +14,11 @@ team = {
 
 describe('Team model Unit Tests', function(done){
 
+  this.timeout(10000);
+
   describe('Saving teams to the database', function(done){
+
+    this.timeout(10000);
 
     it('Should save if type and code are both provided', function(done){
       new Team({

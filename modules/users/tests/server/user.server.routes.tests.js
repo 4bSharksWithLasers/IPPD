@@ -17,6 +17,8 @@ var app, agent, credentials, user, _user, admin;
  */
 describe('User CRUD tests', function () {
 
+  this.timeout(10000);
+
   before(function (done) {
     // Get application
     app = express.init(mongoose);

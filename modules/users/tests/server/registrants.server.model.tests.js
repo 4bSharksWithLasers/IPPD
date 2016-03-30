@@ -14,7 +14,11 @@ registrant = {
 
 describe('Registrants Model Unit Tests', function(done){
 
+  this.timeout(10000);
+
   describe('Saving Registrants to database',function(done) {
+
+    this.timeout(10000);
 
     it('Should save to the database when email, affiliation, and teamName provided', function(done){
       new Registrant({

@@ -14,7 +14,11 @@ affiliation = {
 
 describe('Affiliation Model Unit tests', function(done){
 
+  this.timeout(10000);
+
   describe('Saving affiliations to the database', function(done){
+
+    this.timeout(10000);
 
     it('Should save to the db if theAffiliation is provided', function(done){
       new Affiliation({

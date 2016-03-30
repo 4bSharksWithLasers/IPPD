@@ -17,6 +17,8 @@ var user1, user2, user3;
  */
 describe('User Model Unit Tests:', function () {
 
+  this.timeout(10000);
+
   before(function () {
     user1 = {
       firstName: 'Full',
@@ -41,6 +43,9 @@ describe('User Model Unit Tests:', function () {
   });
 
   describe('Method Save', function () {
+
+    this.timeout(10000);
+
     it('should begin with no users', function (done) {
       User.find({}, function (err, users) {
         users.should.have.length(0);
@@ -220,6 +225,9 @@ describe('User Model Unit Tests:', function () {
   });
 
   describe('User Password Validation Tests', function() {
+
+    this.timeout(10000);
+
     it('should validate when the password strength passes - "P@$$w0rd!!"', function () {
       var _user1 = new User(user1);
       _user1.password = 'P@$$w0rd!!';
@@ -325,6 +333,9 @@ describe('User Model Unit Tests:', function () {
   });
 
   describe('User E-mail Validation Tests', function() {
+
+    this.timeout(10000);
+
     it('should not allow invalid email address - "123"', function (done) {
       var _user1 = new User(user1);
 
