@@ -22,8 +22,8 @@
 
 	<main ng-controller="ThemeController">	
 	
-			<div class="panel-body">
-			<h3><b><u>Choose New Site Coloring:</u></b></h3>
+			<div style="padding-left:1cm;border:2px">
+			<h2><b><u>Choose New Site Coloring:</u></b></h2>
 				  
 			<input type="button" value="Revert to Default Color" ng-click="myStyle={'background-color': '#eaeaea'}" style="color:black">
 			or Enter 6-Character Color Hex Code: &nbsp;&nbsp;&nbsp;
@@ -36,44 +36,18 @@
    
      				   <br><br><br>
 							
-					<div class="panel-body">
-	                <h3><b><u>Choose New Site Logo:</u></b></h3>
-					<input type="file" value="Upload File" accept="image/*">
-					<br>					   
+					<div style="padding-left:1cm">
+	                <h2><b><u>Choose New Site Logo:</u></b></h2>
+				    <form id="form1" runat="server">
+					<img ng-src="{{image_source}}">
+                    <input type="file" value="Upload Image" id="trigger"  onchange="angular.element(this).scope().setFile(this)" accept="image/*">
+				
+					</form>
+										<br>					   
 				   <button class="btn btn-default btn-lg" type="submit" value="Save Changes">Save New Logo</button>
 					</div>
 					
 	</main>
 </section>
 
- 
- 
- 
- 
- 
-<!--  <html>
-<head runat="server">
-    <title></title>
-    <script src="angular.min.js"></script>
-    <style>
-        .changeColor {
-              color:blue;
-        }
-        .changeSize {
-                font-size:30px;
-        }
-        .italic {
-                font-style:italic;
-        }
-    </style>
-</head>
-  <body>
-    <p ng-class="{changeColor: Color, changeSize: Size, italic: Italic}">Changes Will be Seen in Me</p>
-    <input type="checkbox" ng-model="Color"> Change Color (apply "changeColor" class)<br>
-    <input type="checkbox" ng-model="Size"> Change Size (apply "changeSize" class)<br>
-    <input type="checkbox" ng-model="Italic"> Make it Italic (apply "italic" class)
-    <hr>
-   
-  </body>
-</html> -->
 
