@@ -67,10 +67,5 @@ angular.module('rubrics').config(['$stateProvider',
           roles:['admin']
         }
       });
-
-      // .state('blankRubrics.review',{
-      //   url: '/:blankRubricId',
-      //   templateUrl: 'modules/rubrics/client/views/review-rubrics.client.view.html'
-      // });
   }
 ]);

@@ -4,11 +4,13 @@
 angular.module('admin').controller('AffiliationController', ['$scope', '$stateParams', '$location', 'Authentication', 'Affiliations',
   function ($scope, $stateParams, $location, Authentication, Affiliations) {
     $scope.authentication = Authentication;
+    // variable to store array of affiliations
     $scope.affiliations = null;
 
-    // Create new Affiliation
+    // Create new Affiliation. only creates a new one if the form is valid and if it is not a duplicate entry 
     $scope.create = function (isValid) {
       $scope.error = null;
+      // saves the information from the from
       $scope.affiliationToSave = this.affiliation; 
 
       if (!isValid) {
@@ -16,19 +18,21 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$statePa
         
         return false;
       }
+      // uses the find() function to grab list of affiliations, to check if duplicate
       $scope.find();
       $scope.affiliations.$promise.then(function(data){
         console.log(data);
         console.log($scope.affiliations.length);
         for(var i=0; i < $scope.affiliations.length; i++){
           console.log($scope.affiliations[i].theAffiliation);
+          // if the affiliation is a duplicate entry, present message and do not save
           if($scope.affiliations[i].theAffiliation === $scope.affiliationToSave){
             console.log('duplicate name encountered');
             confirm('An affiliation already exists with this name. Please choose another name.');
             return false; 
           }
         }
-        // Create new affiliation object
+        // Create new affiliation object if not a duplicate
         var affiliation = new Affiliations({
           theAffiliation: $scope.affiliationToSave
         });
@@ -45,13 +49,14 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$statePa
       });
     };
 
+    //function to 'refresh' list of affiliations for admin panel, so it's always updated when one is deleted/added
     $scope.updateAffiliations = function(){
       Affiliations.query(function(refreshedAffiliations){
         $scope.affiliations = refreshedAffiliations;
       });
     };
 
-    // Remove existing affiliation
+    // Remove existing affiliation after user confirms the action 
     $scope.remove = function (affiliation) {
       $scope.splicing = false;
       if (affiliation) {
