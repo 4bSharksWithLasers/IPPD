@@ -33,7 +33,7 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
       }
       else {
         $scope.selectedPresentationType = $scope.forwarded_presentation;
-        $state.go('review', { blankRubricId: $scope.presentationType._id, team: $scope.selectedTeam, presentation: $scope.selectedPresentationType, email: $scope.forwarded_email });
+        $state.go('review', { blankRubricId: $scope.forwarded_id, team: $scope.selectedTeam, presentation: $scope.forwarded_presentation, email: $scope.forwarded_email });
       }
     };
 
@@ -109,7 +109,7 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
     $scope.star = [];
     $scope.rating = [];
     $scope.rubricItems = [];
-    // variable that tracks whether the description should be showing 
+    // variable that tracks whether the description should be showing
     $scope.showDescription = false;
 
     // function that initializes each array, to populate the requested rubric with the corresponding data from the database
@@ -262,7 +262,7 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
       $scope.completedRatings = CompletedRatings.query();
     };
 
-    // function that returns the specified blankRubric 
+    // function that returns the specified blankRubric
     $scope.findOneBlankRubric = function (){
       $scope.blankRubric = BlankRubrics.get({
         blankRubricId: $stateParams.blankRubricId
