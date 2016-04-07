@@ -20,49 +20,7 @@ angular.module('registrants').controller('RegistrantsController', ['$scope', '$s
         return false;
       }
 
-      //If there is a team associated with the registrant
-      if(this.affiliation.teamAssociated === true){
-        // Create new Registrant object
-        var registrantTeam = new Registrants({
-          email: this.email,
-          affiliation: this.affiliation.theAffiliation,
-          //teamName: this.teamName.name
-        });
-        // Redirect after save
-        registrantTeam.$save(function (response) {
-          //$location.path('/selectPresentation');
-          $state.go('selectPresentation', { email: $scope.email, affiliation: $scope.affiliation.theAffiliation });
-
-        // Clear form fields
-          $scope.email = '';
-          $scope.affiliation = '';
-          $scope.teamName = '';
-        }, function (errorResponse) {
-          $scope.error = errorResponse.data.message;
-        });
-      }
-      //if there is not a team associated with the registrant
-      else{
-        // Create new Registrant object
-        var registrant = new Registrants({
-          email: this.email,
-          affiliation: this.affiliation.theAffiliation,
-          teamName: ''
-        });
-        // Redirect after save
-        registrant.$save(function (response) {
-          //$location.path('/selectPresentation');
-          $state.go('selectPresentation', { email: $scope.email, affiliation: $scope.affiliation.theAffiliation });
-
-        // Clear form fields
-          $scope.email = '';
-          $scope.affiliation = '';
-          $scope.teamName = '';
-          $scope.teamCode = '';
-        }, function (errorResponse) {
-          $scope.error = errorResponse.data.message;
-        });
-      }
+      $state.go('selectPresentation', { email: $scope.email, affiliation: $scope.affiliation.theAffiliation });
     };
 
     $scope.removeAll = function(){
