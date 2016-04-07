@@ -31,7 +31,6 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
     // function (for editBlankRubric view) to make sure that it a rubric item is edited, the user cannot submit a blank field to crash the app. 
     // if the field is blank, the check button to submit changes is disabled
     $scope.editItemCheckArray = function(item, rubricArray){
-      console.log(rubricArray[rubricArray.indexOf(item)]);
       if(rubricArray[rubricArray.indexOf(item)].itemCategory === '' || rubricArray[rubricArray.indexOf(item)].description1 === '' || rubricArray[rubricArray.indexOf(item)].description2 === '' || rubricArray[rubricArray.indexOf(item)].description3 === '' || rubricArray[rubricArray.indexOf(item)].itemCategory === undefined || rubricArray[rubricArray.indexOf(item)].description1 === undefined || rubricArray[rubricArray.indexOf(item)].description2 === undefined || rubricArray[rubricArray.indexOf(item)].description3 === undefined){
         return true; 
       }
@@ -136,7 +135,7 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
           // if the blankRubric is a duplicate, present message and do not save blankRubric
           if($scope.blankRubrics[i].presentationType === $scope.presentationTypeToSave){
             console.log('duplicate name encountered');
-            confirm('A rubric already exists with this name. Please choose another name.');
+            confirm('A rubric already exists with this name. Please choose another presentation type.');
             return false; 
           }
         }
@@ -195,10 +194,10 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
       }
     };
 
-    // Update existing blankRubric
+    // Update existing blankRubric only if the name isn't a duplicate
     $scope.update = function (isValid) {
       $scope.error = null;
-
+          
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'blankRubricForm');
 
@@ -206,14 +205,25 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
       }
 
       var blankRubric = $scope.blankRubric;
-      
-      blankRubric.$update(function () {
-        $location.path('blankRubrics/' + blankRubric._id);
-        //redirect after update
-        $location.path('/blankRubrics');
-      }, function (errorResponse) {
-        $scope.error = errorResponse.data.message;
+
+      $scope.find();
+      $scope.blankRubrics.$promise.then(function(data){
+        for(var i = 0; i < $scope.blankRubrics.length; i++){
+          if($scope.blankRubrics[i].presentationType === $scope.blankRubric.presentationType){
+            console.log('duplicate name encountered');
+            confirm('A rubric already exists with this name. Please choose another presentation type.');
+            return false; 
+          }
+        }
+        blankRubric.$update(function () {
+          $location.path('blankRubrics/' + blankRubric._id);
+          //redirect after update
+          $location.path('/blankRubrics');
+        }, function (errorResponse) {
+          $scope.error = errorResponse.data.message;
+        });
       });
+ 
     };
 
     // Find a list of blankRubrics

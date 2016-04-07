@@ -103,7 +103,7 @@ angular.module('admin').controller('TeamController', ['$scope', '$stateParams', 
       }
     };
 
-    // Update existing team
+    // Update existing team only if the name isn't a duplicate
     $scope.update = function (isValid) {
       $scope.error = null;
 
@@ -115,13 +115,24 @@ angular.module('admin').controller('TeamController', ['$scope', '$stateParams', 
 
       var team = $scope.team;
 
-      team.$update(function () {
-        $location.path('team/' + team._id);
-        //redirect path after deletion
-        $location.path('/teams');
-      }, function (errorResponse) {
-        $scope.error = errorResponse.data.message;
+      $scope.find();
+      $scope.teams.$promise.then(function(data){
+        for(var i = 0; i < $scope.teams.length; i++){
+          if($scope.teams[i].name === $scope.team.name){
+            console.log('duplicate name encountered');
+            confirm('A team already exists with this name. Please choose another presentation type.');
+            return false; 
+          }
+        }
+        team.$update(function () {
+          $location.path('team/' + team._id);
+          //redirect path after deletion
+          $location.path('/teams');
+        }, function (errorResponse) {
+          $scope.error = errorResponse.data.message;
+        });
       });
+      
     };
 
     // Find a list of teams

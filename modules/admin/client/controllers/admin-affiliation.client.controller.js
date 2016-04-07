@@ -80,7 +80,7 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$statePa
       }
     };
 
-    // Update existing affiliation
+    // Update existing affiliation only if the name isn't a duplicate
     $scope.update = function (isValid) {
       $scope.error = null;
 
@@ -94,13 +94,24 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$statePa
 
       console.log(affiliation.theAffiliation);
 
-      affiliation.$update(function () {
-        $location.path('affiliation/' + affiliation._id);
-        //redirect path after deletion
-        $location.path('/affiliations');
-      }, function (errorResponse) {
-        $scope.error = errorResponse.data.message;
+      $scope.find(); 
+      $scope.affiliations.$promise.then(function(data){
+        for(var i = 0; i < $scope.affiliations.length; i++){
+          if($scope.affiliations[i].theAffiliation === $scope.affiliation.theAffiliation){
+            console.log('duplicate name encountered');
+            confirm('An affiliation already exists with this name. Please choose another presentation type.');
+            return false; 
+          }
+        }
+        affiliation.$update(function () {
+          $location.path('affiliation/' + affiliation._id);
+          //redirect path after deletion
+          $location.path('/affiliations');
+        }, function (errorResponse) {
+          $scope.error = errorResponse.data.message;
+        });
       });
+
     };
 
     // Find a list of affiliations
