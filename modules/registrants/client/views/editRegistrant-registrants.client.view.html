@@ -16,6 +16,7 @@
   <form name="registrantForm" class="form-horizontal" ng-submit="update(registrantForm.$valid)">
     <fieldset>
       <div class="container t-padding">
+        <!-- Fields for editing registrant information -->
         <div class="form-group" show-errors>
           <h3>Team Name</h3>
           <input name="name" type="text" ng-model="registrant.email" id="email" class="form-control input-lg" placeholder="{{email}}" required>
@@ -40,7 +41,7 @@
           </div>
         </div>
       </div>
-
+      <!-- Button to submit changes -->
       <div class="container t-padding">
         <div class="form-group">
           <input type="submit" class="btn btn-default btn-lg">

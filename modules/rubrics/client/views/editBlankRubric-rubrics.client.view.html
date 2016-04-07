@@ -39,7 +39,8 @@
         <div class="container">
           <div class="form-group" show-errors>
             <h3>Rubric Items</h3>
-            <!--  -->
+            <!-- Current value of rubric items displayed when not editing -->
+            <!-- Current value of rubric items displayed in text boxes when editing -->
             <div ng-repeat="item in blankRubric.ratedItems">
               <div class="row" ng-show="!editing">
                 <div class="col-md-8"><h4> {{ item.itemCategory }} </h4></div>
@@ -130,7 +131,7 @@
           </div>
         </div>
       </div>
-      <!-- Add rubric items -->
+      <!-- Fields for adding rubric items -->
       <div class="container">
         <div class="row">
           <div class="col-md-8 t-padding-row">
@@ -140,20 +141,21 @@
         </div>
         <div class="row">
           <div class="col-md-8 t-padding-row">
-            <textarea class="form-control" rows="1" ng-model="description1" placeholder="Rating 1 Description"></textarea>
+            <textarea class="form-control" rows="1" ng-model="description1" placeholder="1 Star Description"></textarea>
           </div>
           <div class="col-md-4"></div>
         </div>
         <div class="row">
           <div class="col-md-8 t-padding-row">
-            <textarea class="form-control" rows="1" ng-model="description2" placeholder="Rating 3 Description"></textarea>
+            <textarea class="form-control" rows="1" ng-model="description2" placeholder="3 Star Description"></textarea>
           </div>
           <div class="col-md-4"></div>
         </div>
         <div class="row">
           <div class="col-md-8 t-padding-row">
-            <textarea class="form-control" rows="1" ng-model="description3" placeholder="Rating 5 Description"></textarea>
+            <textarea class="form-control" rows="1" ng-model="description3" placeholder="5 Star Description"></textarea>
           </div>
+          <!-- Button to add rubric items in a todo list format -->
           <a class="a-spc" href="" ng-click="addRubricItemArray(blankRubric.ratedItems)" ng-model-instant>
             <div class="col-md-2 text-center">
               <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -168,8 +170,7 @@
           <div class="col-md-4"></div>
         </div>
       </div>
-      <!-- End add rubric items -->
-
+      <!-- Button to submit changes-->
       <div class="container t-padding">
         <div class="container">
           <div class="form-group">

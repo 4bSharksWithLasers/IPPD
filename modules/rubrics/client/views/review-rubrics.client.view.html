@@ -14,63 +14,39 @@
 
     <form name="completedRatingForm" class="form-horizontal" ng-submit="create(completedRatingForm.$valid)" novalidate>
       <fieldset>
+      <!-- Displays preview of completed review prior to final submission -->
       <div ng-show="previewRubricSubmission">
         <div class="container">
           <h3>Team Name: {{ forwarded_team }}</h3>
           <h3>Presentation Type: {{ forwarded_presentation }}</h3>
           <h3>Reviewer Email: {{ forwarded_email }}</h3>
           <h3>Rubric Items</h3>
-          <div ng-repeat="x in blankRubric.ratedItems">
-            {{x.itemCategory}} : {{rating[$index]}}
-          </div>
+          <div ng-repeat="x in blankRubric.ratedItems">{{ x.itemCategory }} : {{ rating[$index] }}</div>
           <h3>Issues Identified</h3>
-          {{issuesIdentified}}
+          {{ issuesIdentified }}
           <h3>Recommended Actions</h3>
-          <div ng-repeat="item in recommendations track by $index">
-            {{item.recommendation}} : {{item.urgency?'urgent':'not urgent'}}
-          </div>
+          <div ng-repeat="item in recommendations track by $index">{{ item.recommendation }} : {{ item.urgency?'urgent':'not urgent' }}</div>
         </div>
       </div>
-
+      <!-- Displays choices made on the registration and presentationSelection pages -->
       <div ng-show="!previewRubricSubmission">
         <div class="container">
           <div class="container r-padding">
-            <div class="form-group"> <!-- show-errors>-->
-              <h3>Team Name: {{ forwarded_team }}</h3>
-              <!--<select name="team" ng-options="team.name for team in teamDropdowns | orderBy: 'name'" data-toggle="dropdown" ng-model="team"id="team" class="form-control input-lg" placeholder="Team Name" required> </select>
-              <div ng-messages="completedRatingForm.team.$error" role="alert">
-                <p class="help-block error-text" ng-message="required">Team name selection is required.</p>-->
-            </div>
-
-            <!--Presentation Type: {{blankRubric.presentationType}}-->
-
-            <div class="form-group"> <!--show-errors>-->
-              <h3>Presentation Type: {{ forwarded_presentation }}</h3>
-              <!--<select name="presentationType" ng-options="p.presentationType for p in blankRubrics" data-toggle="dropdown" ng-model="presentationType" id="presentationType" class="form-control input-lg" placeholder="Presentation Type" required></select>
-              <div ng-messages="completedRatingForm.presentationType.$error" role="alert">
-                <p class="help-block error-text" ng-message="required">Presentation Type is required.</p>-->
-            </div>
-
-
-            <div class="form-group"> <!--show-errors>-->
-              <h3>Reviewer Email: {{ forwarded_email }}</h3>
-              <!--<input name="email" type="text" ng-model="email" id="email" class="form-control input-lg" placeholder="Email" required></input>
-              <div ng-messages="completedRatingForm.email.$error" role="alert">
-                <p class="help-block error-text" ng-message="required">Email is required.</p>-->
-            </div>
+            <div class="form-group"><h3>Team Name: {{ forwarded_team }}</h3></div>
+            <div class="form-group"><h3>Presentation Type: {{ forwarded_presentation }}</h3></div>
+            <div class="form-group"><h3>Reviewer Email: {{ forwarded_email }}</h3></div>
           </div>
         </div>
-
+        <!-- Displays rubric items -->
         <div class="container t-padding">
           <h3>Rubric</h3>
           <div ng-repeat="x in blankRubric.ratedItems" class="panel panel-default">
             <a href="" class="a-spc">
               <div class="panel-heading">
                 <div class="row">
-                  <div class = "col-xs-5" ng-click="showDescription=!showDescription">
-                    {{x.itemCategory}}
-                  </div>
-
+                  <!-- Rubric item title -->
+                  <div class = "col-xs-5" ng-click="showDescription=!showDescription">{{ x.itemCategory }}</div>
+                  <!-- Clickable stars for choosing the rating of the rubric item -->
                   <div class="col-xs-7" >
                       <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorFive }}" ng-click="changeFive($index, x.itemCategory)" aria-hidden="true"></span>
                       <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorFour }}" ng-click="changeFour($index, x.itemCategory)" aria-hidden="true"></span>
@@ -85,9 +61,8 @@
             <div ng-show="showDescription">
               <div class="panel-body"  ng-init="initializeArrays($index)">
                 <div class="row">
-                  <div class="col-xs-7">
-                    <em>{{x.description1}}</em>
-                  </div>
+                  <!-- Description of what is required to earn 5 stars on a rubric item -->
+                  <div class="col-xs-7"><em>{{ x.description1 }}</em></div>
                   <div class="col-xs-5">
                     <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
                     <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
@@ -100,9 +75,8 @@
 
               <div class="panel-body">
                 <div class="row">
-                  <div class="col-xs-7">
-                    <em>{{x.description2}}</em>
-                  </div>
+                  <!-- Description of what is required to earn 3 stars on a rubric item -->
+                  <div class="col-xs-7"><em>{{ x.description2 }}</em></div>
                   <div class="col-xs-5">
                     <span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
                     <span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
@@ -115,9 +89,8 @@
 
               <div class="panel-body">
                 <div class="row">
-                  <div class="col-xs-7">
-                    <em>{{x.description3}}</em>
-                  </div>
+                  <!-- Description of what is required to earn 1 star on a rubric item -->
+                  <div class="col-xs-7"><em>{{ x.description3 }}</em></div>
                   <div class="col-xs-5">
                     <span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
                     <span class="glyphicon glyphicon-star-empty pull-right" aria-hidden="true"></span>
@@ -131,6 +104,7 @@
           </div>
         </div>
 
+        <!-- Empty text box for listing identified issues -->
         <div class="container">
           <div class="container r-padding">
               <div class ="form-group t-padding">
@@ -139,19 +113,16 @@
             </div>
           </div>
         </div>
-
+        <!-- Item by item list of recommended actions to take -->
         <div class="container t-padding">
           <div class="row">
             <div class="col-xs-9">
               <h3>Recommendations</h3>
             </div>
           </div>
-
+          <!-- Display recommendations added to list -->
           <div class="row" ng-repeat="item in recommendations track by $index" ng-show="showRecommendation">
-            <div class="col-xs-10" ng-hide="editing">
-              <h4> {{ item.recommendation }} </h4>
-            </div>
-
+            <div class="col-xs-10" ng-hide="editing"><h4> {{ item.recommendation }} </h4></div>
             <div ng-show="editing">
               <form>
                 <div class="col-xs-10 b-padding-row">
@@ -169,9 +140,7 @@
               </div>
             </a>
 
-            <div class="col-xs-10" ng-if="editItemCheck($index)">
-              <h4>Please enter text or remove recommendation.</h4>
-            </div>
+            <div class="col-xs-10" ng-if="editItemCheck($index)"><h4>Please enter text or remove recommendation.</h4></div>
 
             <div class="col-xs-1 text-center">
               <a class="a-spc" href="" ng-click="rmvRecommendation(item)">
@@ -199,15 +168,13 @@
                   <span class="glyphicon glyphicon-plus" title="Add item to recommendations" aria-hidden="true"></span>
                 </div>
               </a>
-              <div class="col-xs-8" ng-show="recommendationError">
-                <h4>Please enter text before adding a recommendation.</h4>
-              </div>
+              <div class="col-xs-8" ng-show="recommendationError"><h4>Please enter text before adding a recommendation.</h4></div>
             </form>
           </div>
         </div>
       </div>
 
-
+        <!-- Submit button visible on rubric preview view -->
         <div class="container" ng-show="previewRubricSubmission">
           <div class="container t-padding">
               <input type="submit" class="btn btn-lg btn-default">
@@ -221,9 +188,11 @@
     </form>
 
     <div class="container t-padding">
+      <!-- Edit button visible on rubric preview view -->
       <div ng-show="previewRubricSubmission">
         <button ng-click="togglePreviewSubmission()" class="btn btn-lg btn-default">Edit Submission</button>
       </div>
+      <!-- Preview button visible on rubric view -->
       <div ng-show="!previewRubricSubmission">
         <button ng-click="togglePreviewSubmission()" class="btn btn-lg btn-default">Preview Submission</button>
       </div>
