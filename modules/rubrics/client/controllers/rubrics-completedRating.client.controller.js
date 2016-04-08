@@ -21,17 +21,21 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
 
       if(!isValid){
         $scope.$broadcast('show-errors-check-validity', 'presentationSelectionForm');
-
+        console.log('invalid teamSelection form');
         return false;
       }
       //save the presentation type and team name.
       $scope.selectedTeam = this.team.name;
+      $scope.forwarded_id = $stateParams.theId;
+
+      console.log('in selectPresentation ' + $scope.forwarded_presentation);
 
       if($scope.forwarded_presentation === null || $scope.forwarded_presentation === undefined) {
         $scope.selectedPresentationType = this.presentationType.presentationType;
         $state.go('review', { blankRubricId: $scope.presentationType._id, team: $scope.selectedTeam, presentation: $scope.selectedPresentationType, email: $scope.forwarded_email });
       }
       else {
+        console.log($scope.forwarded_id);
         $scope.selectedPresentationType = $scope.forwarded_presentation;
         $state.go('review', { blankRubricId: $scope.forwarded_id, team: $scope.selectedTeam, presentation: $scope.forwarded_presentation, email: $scope.forwarded_email });
       }

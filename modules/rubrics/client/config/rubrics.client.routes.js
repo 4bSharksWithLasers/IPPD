@@ -19,6 +19,7 @@ angular.module('rubrics').config(['$stateProvider',
           team: null,
           presentation: null,
           email: null,
+          blankRubricId: null
         },
         templateUrl: 'modules/rubrics/client/views/review-rubrics.client.view.html'
       })
