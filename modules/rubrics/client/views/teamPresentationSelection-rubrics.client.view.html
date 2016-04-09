@@ -10,6 +10,15 @@
   </header>
 
   <div class="container">
+    <div ng-show="error" class="text-danger">
+      <strong ng-bind="error"></strong>
+     </div>
+    <div ng-show="success" class="text-success">
+      <strong ng-bind="success"></strong>
+    </div>
+  </div>
+
+  <div class="container">
     <form name="presentationSelectionForm" class="form-horizontal" ng-submit="selectPresentationType(presentationSelectionForm.$valid)" novalidate>
       <fieldset>
         <!-- Dropdown selection field for Team Names-->
@@ -21,7 +30,6 @@
           </div>
         </div>
         <!-- Dropdown selection field for Presentation Types. Not visible if a Presentation ID is forwarded from a prefiously submitted review -->
-        {{forwarded_presentation===null}}
         <div class="form-group" ng-show="{{forwarded_presentation===null}}" show-errors>
           <h3>Presentation Type</h3>
           <select name="presentationType" ng-options="p.presentationType for p in blankRubrics" data-toggle="dropdown" type="button" ng-model="presentationType" id="presentationType" class="btn btn-default btn-lg btn-block dropdown-toggle" placeholder="Presentation Type" ng-required="{{forwarded_presentation===null}}"></select>

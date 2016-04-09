@@ -32,23 +32,8 @@
         </div>
       </div>
     </div>
-
-    <div class="container t-padding">
-      <div class="input-group" id="searchBar">
-        <span class="input-group-addon input-lg" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
-        <input type="text" class="form-control input-lg" placeholder="Search" ng-model="query">
-      </div>
-    </div>
     <!-- Success Messages -->
     <div class="container">
-      <div id="alert" class="alert alert-success" ng-show="showTeamAdded">
-        <button class="close" data-hide="alert" aria-label="close" ng-click="showTeamAdded=!showTeamAdded">&times;</button>
-        <h4><strong>Team successfully added!</strong></h4>
-      </div>
-      <div id="alert" class="alert alert-success" ng-show="showTeamDeleted">
-        <button class="close" data-hide="alert" aria-label="close" ng-click="showTeamDeleted=!showTeamDeleted">&times;</button>
-        <h4><strong>Team successfully deleted!</strong></h4>
-      </div>
       <div ng-show="error" class="text-danger">
         <strong ng-bind="error"></strong>
       </div>
@@ -57,6 +42,12 @@
       </div>
     </div>
     <!-- End Messages -->
+    <div class="container t-padding">
+      <div class="input-group" id="searchBar">
+        <span class="input-group-addon input-lg" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
+        <input type="text" class="form-control input-lg" placeholder="Search" ng-model="query">
+      </div>
+    </div>
     <div class="container t-padding">
       <div class="panel panel-default">
         <div class="panel-heading">

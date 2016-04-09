@@ -216,7 +216,7 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
 
       // Redirect after save
       completedRating.$save(function (response) {
-        $state.go('selectPresentation', { presentation: $scope.forwarded_presentation, email: $scope.forwarded_email, theId: $scope.forwarded_id });
+        $state.go('selectPresentation', { presentation: $scope.forwarded_presentation, email: $scope.forwarded_email, theId: $scope.forwarded_id, successMessage: 'Review successfully saved!' });
 
         // Clear form fields
         $scope.issuesIdentified = '';
@@ -224,6 +224,11 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
         $scope.error = errorResponse.data.message;
       });
     };
+
+    /* Bind the success message to the scope if it exists as part of the current state */
+    if($stateParams.successMessage) {
+      $scope.success = $stateParams.successMessage;
+    }
 
     // Remove existing completedRating
     $scope.remove = function (completedRating) {

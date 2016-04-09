@@ -28,7 +28,8 @@ angular.module('rubrics').config(['$stateProvider',
         params: {
           email: null,
           presentation: null,
-          theId: null
+          theId: null, 
+          successMessage: null
         },
         templateUrl: 'modules/rubrics/client/views/teamPresentationSelection-rubrics.client.view.html'
       })
@@ -43,6 +44,9 @@ angular.module('rubrics').config(['$stateProvider',
       .state('blankRubrics.list',{
         url: '',
         templateUrl: 'modules/rubrics/client/views/listBlankRubrics-rubrics.client.view.html',
+        params:{
+          successMessage: null
+        }, 
         data:{
           roles:['admin']
         }

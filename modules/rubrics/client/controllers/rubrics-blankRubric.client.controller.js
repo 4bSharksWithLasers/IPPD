@@ -1,8 +1,8 @@
 'use strict';
 
 // BlankRubric controller
-angular.module('rubrics').controller('BlankRubricController', ['$scope', '$stateParams', '$location', 'Authentication', 'BlankRubrics',
-  function ($scope, $stateParams, $location, Authentication, BlankRubrics) {
+angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state', '$stateParams', '$location', 'Authentication', 'BlankRubrics',
+  function ($scope, $state, $stateParams, $location, Authentication, BlankRubrics) {
     $scope.authentication = Authentication;
 
     // array to store user input for rubric items and their descriptions
@@ -149,7 +149,7 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
 
         // Redirect after save
         blankRubric.$save(function (response) {
-          $location.path('/blankRubrics');
+          $state.go('blankRubrics.list', {successMessage: 'Rubric successfully saved!'});
 
           // Clear form fields
           $scope.presentationType = '';
@@ -162,6 +162,11 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
         });
       });
     };
+
+    /* Bind the success message to the scope if it exists as part of the current state */
+    if($stateParams.successMessage) {
+      $scope.success = $stateParams.successMessage;
+    }
 
     // function to 'refresh' the blankRubrics part of the admin panel, so that when one is added/delete, the list is appropriately updated
     $scope.updateBlankRubrics = function(){
@@ -184,12 +189,17 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
             }
           }
         }
+        else{
+          return false; 
+        }
         if($scope.splicing === false)
           $scope.updateBlankRubrics();
-        $location.path('/blankRubrics');
+        $state.go('blankRubrics.list', {successMessage: 'Rubric successfully deleted!'});
+
       } else {
         $scope.blankRubric.$remove(function () {
-          $location.path('/blankRubrics');
+          
+        $state.go('blankRubrics.list', {successMessage: 'Rubric successfully deleted!'});
         });
       }
     };
@@ -207,18 +217,20 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
       var blankRubric = $scope.blankRubric;
 
       $scope.find();
+      $scope.count = 0; 
       $scope.blankRubrics.$promise.then(function(data){
         for(var i = 0; i < $scope.blankRubrics.length; i++){
-          if($scope.blankRubrics[i].presentationType === $scope.blankRubric.presentationType){
-            console.log('duplicate name encountered');
-            confirm('A rubric already exists with this name. Please choose another presentation type.');
-            return false; 
+          if($scope.blankRubrics[i].presentationType === $scope.blankRubric.presentationType && $scope.blankRubrics[i]._id !== $scope.blankRubric._id){
+              console.log('duplicate name encountered');
+              confirm('A rubric already exists with this name. Please choose another presentation type.');
+              return false; 
           }
         }
+        
         blankRubric.$update(function () {
           $location.path('blankRubrics/' + blankRubric._id);
           //redirect after update
-          $location.path('/blankRubrics');
+        $state.go('blankRubrics.list', {successMessage: 'Rubric successfully updated!'});
         }, function (errorResponse) {
           $scope.error = errorResponse.data.message;
         });

@@ -16,6 +16,9 @@ angular.module('admin').config(['$stateProvider',
       .state('teams.list', {
         url: '',
         templateUrl: 'modules/admin/client/views/listTeams-admin.client.view.html',
+        params:{
+          successMessage: null
+        }, 
         data:{
           roles:['admin']
         }
@@ -59,6 +62,9 @@ angular.module('admin').config(['$stateProvider',
       .state('affiliations.list', {
         url: '',
         templateUrl: 'modules/admin/client/views/listAffiliations-admin.client.view.html',
+        params:{
+          successMessage: null
+        }, 
         data:{
           roles:['admin']
         }

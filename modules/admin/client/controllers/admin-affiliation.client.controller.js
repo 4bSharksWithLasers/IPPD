@@ -1,8 +1,8 @@
 'use strict';
 
 // Affiliation controller
-angular.module('admin').controller('AffiliationController', ['$scope', '$stateParams', '$location', 'Authentication', 'Affiliations',
-  function ($scope, $stateParams, $location, Authentication, Affiliations) {
+angular.module('admin').controller('AffiliationController', ['$scope', '$state', '$stateParams', '$location', 'Authentication', 'Affiliations',
+  function ($scope, $state, $stateParams, $location, Authentication, Affiliations) {
     $scope.authentication = Authentication;
     // variable to store array of affiliations
     $scope.affiliations = null;
@@ -39,7 +39,7 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$statePa
 
         // Redirect after save
         affiliation.$save(function (response) {
-          $location.path('/affiliations');
+          $state.go('affiliations.list', {successMessage: 'Affiliation successfully saved!'});
 
           // Clear form fields
           $scope.affiliation = '';
@@ -69,13 +69,16 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$statePa
             }
           }
         }
+        else{
+          return false; 
+        }
         if($scope.splicing === false)
           $scope.updateAffiliations();
         //redirect path after deletion
-        $location.path('/affiliations');
+        $state.go('affiliations.list', {successMessage: 'Affiliation successfully deleted!'});
       } else {
         $scope.affiliation.$remove(function () {
-          $location.path('affiliation');
+          $state.go('affiliations.list', {successMessage: 'Affiliation successfully deleted!'});
         });
       }
     };
@@ -97,7 +100,7 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$statePa
       $scope.find(); 
       $scope.affiliations.$promise.then(function(data){
         for(var i = 0; i < $scope.affiliations.length; i++){
-          if($scope.affiliations[i].theAffiliation === $scope.affiliation.theAffiliation){
+          if($scope.affiliations[i].theAffiliation === $scope.affiliation.theAffiliation && $scope.affiliations[i]._id !== $scope.affiliation._id){
             console.log('duplicate name encountered');
             confirm('An affiliation already exists with this name. Please choose another presentation type.');
             return false; 
@@ -106,13 +109,18 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$statePa
         affiliation.$update(function () {
           $location.path('affiliation/' + affiliation._id);
           //redirect path after deletion
-          $location.path('/affiliations');
+          $state.go('affiliations.list', {successMessage: 'Affiliation successfully updated!'});
         }, function (errorResponse) {
           $scope.error = errorResponse.data.message;
         });
       });
 
     };
+
+     /* Bind the success message to the scope if it exists as part of the current state */
+    if($stateParams.successMessage) {
+      $scope.success = $stateParams.successMessage;
+    }
 
     // Find a list of affiliations
     $scope.find = function () {

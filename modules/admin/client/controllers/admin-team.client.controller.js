@@ -1,12 +1,9 @@
 'use strict';
 
 // Team controller
-angular.module('admin').controller('TeamController', ['$scope', '$stateParams', '$location', 'Authentication', 'Teams',
-  function ($scope, $stateParams, $location, Authentication, Teams) {
+angular.module('admin').controller('TeamController', ['$scope', '$state', '$stateParams', '$location', 'Authentication', 'Teams',
+  function ($scope, $state, $stateParams, $location, Authentication, Teams) {
     $scope.authentication = Authentication;
-    //variables for success messages
-    $scope.showTeamAdded = false; 
-    $scope.showTeamDeleted = false;
     //variable to hold array of teams 
     $scope.teams = null;  
 
@@ -43,9 +40,7 @@ angular.module('admin').controller('TeamController', ['$scope', '$stateParams', 
 
         // Redirect after save
         team.$save(function (response) {
-          $location.path('/teams');
-
-          $scope.showTeamAdded = true;
+          $state.go('teams.list', {successMessage: 'Team successfully saved!'});
 
           // Clear form fields
           $scope.name = '';
@@ -89,16 +84,18 @@ angular.module('admin').controller('TeamController', ['$scope', '$stateParams', 
               $scope.teams.splice(i, 1);
             }
           }
-          $scope.showTeamDeleted = true; 
           if($scope.splicing === false)
             $scope.updateTeams();
           //redirect path after deletion
-          $location.path('/teams');
-          
+          $state.go('teams.list', {successMessage: 'Team successfully deleted!'});
+        }
+        else{
+          return false; 
         }
       } else { 
         $scope.team.$remove(function () {
-          $location.path('team');
+          $state.go('teams.list', {successMessage: 'Team successfully deleted!'});
+
         });
       }
     };
@@ -118,7 +115,7 @@ angular.module('admin').controller('TeamController', ['$scope', '$stateParams', 
       $scope.find();
       $scope.teams.$promise.then(function(data){
         for(var i = 0; i < $scope.teams.length; i++){
-          if($scope.teams[i].name === $scope.team.name){
+          if($scope.teams[i].name === $scope.team.name && $scope.teams[i]._id !== $scope.team._id){
             console.log('duplicate name encountered');
             confirm('A team already exists with this name. Please choose another presentation type.');
             return false; 
@@ -127,13 +124,18 @@ angular.module('admin').controller('TeamController', ['$scope', '$stateParams', 
         team.$update(function () {
           $location.path('team/' + team._id);
           //redirect path after deletion
-          $location.path('/teams');
+          $state.go('teams.list', {successMessage: 'Team successfully updated!'});
         }, function (errorResponse) {
           $scope.error = errorResponse.data.message;
         });
       });
       
     };
+
+     /* Bind the success message to the scope if it exists as part of the current state */
+    if($stateParams.successMessage) {
+      $scope.success = $stateParams.successMessage;
+    }
 
     // Find a list of teams
     $scope.find = function () {
