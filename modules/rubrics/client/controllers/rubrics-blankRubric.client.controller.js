@@ -16,6 +16,8 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
     // varaible to indicate whether the first rubric item has been added
     var first = true;
 
+    $scope.msg = true;
+
     // function (for addBlankRubric view) to make sure that it a rubric item is edited, the user cannot submit a blank field to crash the app.
     // if the field is blank, the check button to submit changes is disabled
     $scope.editItemCheck = function($index){
@@ -194,10 +196,12 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
         }
         if($scope.splicing === false)
           $scope.updateBlankRubrics();
+          $scope.msg = true;
         $state.go('blankRubrics.list', { successMessage: 'Rubric successfully deleted!' });
 
       } else {
         $scope.blankRubric.$remove(function () {
+          $scope.msg = true;
           $state.go('blankRubrics.list', { successMessage: 'Rubric successfully deleted!' });
         });
       }

@@ -6,7 +6,7 @@ angular.module('admin').controller('TeamController', ['$scope', '$state', '$stat
     $scope.authentication = Authentication;
     //variable to hold array of teams
     $scope.teams = null;
-
+    $scope.msg = true;
 
     // Create new Team
     $scope.create = function (isValid) {
@@ -88,6 +88,7 @@ angular.module('admin').controller('TeamController', ['$scope', '$state', '$stat
             $scope.updateTeams();
           //redirect path after deletion
           $state.go('teams.list', { successMessage: 'Team successfully deleted!' });
+          $scope.msg = true;
         }
         else{
           return false;
@@ -95,7 +96,7 @@ angular.module('admin').controller('TeamController', ['$scope', '$state', '$stat
       } else {
         $scope.team.$remove(function () {
           $state.go('teams.list', { successMessage: 'Team successfully deleted!' });
-
+          $scope.msg = true;
         });
       }
     };
