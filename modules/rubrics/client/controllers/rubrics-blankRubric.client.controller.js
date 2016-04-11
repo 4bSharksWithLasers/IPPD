@@ -10,33 +10,33 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
     // variable used to show the rubric items that have been added to the rubric
     $scope.showRubricItem = false;
     // variable to track if a specific rubric item is being edited
-    $scope.editing = false; 
+    $scope.editing = false;
     // variable to track if there is an error with the entered rubric item (if the user deletes all text)
-    $scope.rubricItemError = false;  
+    $scope.rubricItemError = false;
     // varaible to indicate whether the first rubric item has been added
     var first = true;
 
-    // function (for addBlankRubric view) to make sure that it a rubric item is edited, the user cannot submit a blank field to crash the app. 
+    // function (for addBlankRubric view) to make sure that it a rubric item is edited, the user cannot submit a blank field to crash the app.
     // if the field is blank, the check button to submit changes is disabled
     $scope.editItemCheck = function($index){
       if($scope.rubricItemsArray[$index].itemCategory === '' || $scope.rubricItemsArray[$index].description1 === '' || $scope.rubricItemsArray[$index].description2 === '' || $scope.rubricItemsArray[$index].description3 === '' || $scope.rubricItemsArray[$index].itemCategory === undefined || $scope.rubricItemsArray[$index].description1 === undefined || $scope.rubricItemsArray[$index].description2 === undefined || $scope.rubricItemsArray[$index].description3 === undefined){
-        return true; 
+        return true;
       }
       else{
-        $scope.editing = false; 
-        return false; 
+        $scope.editing = false;
+        return false;
       }
     };
 
-    // function (for editBlankRubric view) to make sure that it a rubric item is edited, the user cannot submit a blank field to crash the app. 
+    // function (for editBlankRubric view) to make sure that it a rubric item is edited, the user cannot submit a blank field to crash the app.
     // if the field is blank, the check button to submit changes is disabled
     $scope.editItemCheckArray = function(item, rubricArray){
       if(rubricArray[rubricArray.indexOf(item)].itemCategory === '' || rubricArray[rubricArray.indexOf(item)].description1 === '' || rubricArray[rubricArray.indexOf(item)].description2 === '' || rubricArray[rubricArray.indexOf(item)].description3 === '' || rubricArray[rubricArray.indexOf(item)].itemCategory === undefined || rubricArray[rubricArray.indexOf(item)].description1 === undefined || rubricArray[rubricArray.indexOf(item)].description2 === undefined || rubricArray[rubricArray.indexOf(item)].description3 === undefined){
-        return true; 
+        return true;
       }
       else{
-        $scope.editing = false; 
-        return false; 
+        $scope.editing = false;
+        return false;
       }
     };
 
@@ -45,10 +45,10 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
       // prevents a blank field from being entered
       if($scope.itemCategory === '' || $scope.description1 === '' || $scope.description2 === '' || $scope.description3 === '' || $scope.itemCategory === undefined || $scope.description1 === undefined || $scope.description2 === undefined || $scope.description3 === undefined){
         console.log('invalid item category');
-        $scope.rubricItemError = true; 
+        $scope.rubricItemError = true;
       }
       else{
-        $scope.rubricItemError = false; 
+        $scope.rubricItemError = false;
         if(first===false){
           $scope.rubricItemsArray.push({ itemCategory:$scope.itemCategory, description1:$scope.description1, description2:$scope.description2, description3:$scope.description3 });
         }
@@ -63,7 +63,7 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
         $scope.description2 = '';
         $scope.description3 = '';
       }
-      
+
     };
 
     // function to remove a rubric item from the array (for addBlankRubric view)
@@ -79,10 +79,10 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
       // prevents a blank field from being entered
       if($scope.itemCategory === '' || $scope.description1 === '' || $scope.description2 === '' || $scope.description3 === '' || $scope.itemCategory === undefined || $scope.description1 === undefined || $scope.description2 === undefined || $scope.description3 === undefined){
         console.log('invalid item category');
-        $scope.rubricItemError = true; 
+        $scope.rubricItemError = true;
       }
       else{
-        $scope.rubricItemError = false; 
+        $scope.rubricItemError = false;
         if(first===false){
           rubricArray.push({ itemCategory:$scope.itemCategory, description1:$scope.description1, description2:$scope.description2, description3:$scope.description3 });
         }
@@ -96,7 +96,7 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
         $scope.description2 = '';
         $scope.description3 = '';
       }
-      
+
     };
 
     // function to remove a rubric item from the array (for editBlankRubric view)
@@ -112,12 +112,12 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
     // varaible to store array of blankRubrics
     $scope.blankRubrics = null;
 
-    // Create new blankRubric if form data is valid and if the name is not a duplicate 
+    // Create new blankRubric if form data is valid and if the name is not a duplicate
     $scope.create = function (isValid) {
       $scope.error = null;
-      // save the data from the form 
+      // save the data from the form
       $scope.presentationTypeToSave = this.presentationType;
-      $scope.instructionsToSave = this.instructions; 
+      $scope.instructionsToSave = this.instructions;
 
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'blankRubricForm');
@@ -136,11 +136,11 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
           if($scope.blankRubrics[i].presentationType === $scope.presentationTypeToSave){
             console.log('duplicate name encountered');
             confirm('A rubric already exists with this name. Please choose another presentation type.');
-            return false; 
+            return false;
           }
         }
 
-        // Create new blankRubric object if the name is a duplicate 
+        // Create new blankRubric object if the name is a duplicate
         var blankRubric = new BlankRubrics({
           presentationType: $scope.presentationTypeToSave,
           instructions: $scope.instructionsToSave,
@@ -149,7 +149,7 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
 
         // Redirect after save
         blankRubric.$save(function (response) {
-          $state.go('blankRubrics.list', {successMessage: 'Rubric successfully saved!'});
+          $state.go('blankRubrics.list', { successMessage: 'Rubric successfully saved!' });
 
           // Clear form fields
           $scope.presentationType = '';
@@ -175,9 +175,9 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
       });
     };
 
-    // Remove existing blankRubric after user confirms 
+    // Remove existing blankRubric after user confirms
     $scope.remove = function (blankRubric) {
-      $scope.splicing = false; 
+      $scope.splicing = false;
       if (blankRubric) {
         if(confirm('Press OK to confirm deletion.')){
           blankRubric.$remove();
@@ -190,16 +190,15 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
           }
         }
         else{
-          return false; 
+          return false;
         }
         if($scope.splicing === false)
           $scope.updateBlankRubrics();
-        $state.go('blankRubrics.list', {successMessage: 'Rubric successfully deleted!'});
+        $state.go('blankRubrics.list', { successMessage: 'Rubric successfully deleted!' });
 
       } else {
         $scope.blankRubric.$remove(function () {
-          
-        $state.go('blankRubrics.list', {successMessage: 'Rubric successfully deleted!'});
+          $state.go('blankRubrics.list', { successMessage: 'Rubric successfully deleted!' });
         });
       }
     };
@@ -207,7 +206,7 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
     // Update existing blankRubric only if the name isn't a duplicate
     $scope.update = function (isValid) {
       $scope.error = null;
-          
+
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'blankRubricForm');
 
@@ -217,25 +216,25 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
       var blankRubric = $scope.blankRubric;
 
       $scope.find();
-      $scope.count = 0; 
+      $scope.count = 0;
       $scope.blankRubrics.$promise.then(function(data){
         for(var i = 0; i < $scope.blankRubrics.length; i++){
           if($scope.blankRubrics[i].presentationType === $scope.blankRubric.presentationType && $scope.blankRubrics[i]._id !== $scope.blankRubric._id){
-              console.log('duplicate name encountered');
-              confirm('A rubric already exists with this name. Please choose another presentation type.');
-              return false; 
+            console.log('duplicate name encountered');
+            confirm('A rubric already exists with this name. Please choose another presentation type.');
+            return false;
           }
         }
-        
+
         blankRubric.$update(function () {
           $location.path('blankRubrics/' + blankRubric._id);
           //redirect after update
-        $state.go('blankRubrics.list', {successMessage: 'Rubric successfully updated!'});
+          $state.go('blankRubrics.list', { successMessage: 'Rubric successfully updated!' });
         }, function (errorResponse) {
           $scope.error = errorResponse.data.message;
         });
       });
- 
+
     };
 
     // Find a list of blankRubrics

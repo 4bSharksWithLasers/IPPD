@@ -9,11 +9,11 @@
   	</div>
   </header>
 
-  <div class="container">
-    <div ng-show="error" class="text-danger">
+  <div class="t-padding" ng-show="msg" ng-click="msg=!msg">
+    <div ng-show="error" class="container alert alert-danger">
       <strong ng-bind="error"></strong>
      </div>
-    <div ng-show="success" class="text-success">
+    <div ng-show="success" class="container alert alert-success">
       <strong ng-bind="success"></strong>
     </div>
   </div>

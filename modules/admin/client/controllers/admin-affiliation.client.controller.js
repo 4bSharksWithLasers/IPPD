@@ -7,15 +7,15 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$state',
     // variable to store array of affiliations
     $scope.affiliations = null;
 
-    // Create new Affiliation. only creates a new one if the form is valid and if it is not a duplicate entry 
+    // Create new Affiliation. only creates a new one if the form is valid and if it is not a duplicate entry
     $scope.create = function (isValid) {
       $scope.error = null;
       // saves the information from the from
-      $scope.affiliationToSave = this.affiliation; 
+      $scope.affiliationToSave = this.affiliation;
 
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'affiliationForm');
-        
+
         return false;
       }
       // uses the find() function to grab list of affiliations, to check if duplicate
@@ -29,7 +29,7 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$state',
           if($scope.affiliations[i].theAffiliation === $scope.affiliationToSave){
             console.log('duplicate name encountered');
             confirm('An affiliation already exists with this name. Please choose another name.');
-            return false; 
+            return false;
           }
         }
         // Create new affiliation object if not a duplicate
@@ -39,7 +39,7 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$state',
 
         // Redirect after save
         affiliation.$save(function (response) {
-          $state.go('affiliations.list', {successMessage: 'Affiliation successfully saved!'});
+          $state.go('affiliations.list', { successMessage: 'Affiliation successfully saved!' });
 
           // Clear form fields
           $scope.affiliation = '';
@@ -56,7 +56,7 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$state',
       });
     };
 
-    // Remove existing affiliation after user confirms the action 
+    // Remove existing affiliation after user confirms the action
     $scope.remove = function (affiliation) {
       $scope.splicing = false;
       if (affiliation) {
@@ -70,15 +70,15 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$state',
           }
         }
         else{
-          return false; 
+          return false;
         }
         if($scope.splicing === false)
           $scope.updateAffiliations();
         //redirect path after deletion
-        $state.go('affiliations.list', {successMessage: 'Affiliation successfully deleted!'});
+        $state.go('affiliations.list', { successMessage: 'Affiliation successfully deleted!' });
       } else {
         $scope.affiliation.$remove(function () {
-          $state.go('affiliations.list', {successMessage: 'Affiliation successfully deleted!'});
+          $state.go('affiliations.list', { successMessage: 'Affiliation successfully deleted!' });
         });
       }
     };
@@ -97,19 +97,19 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$state',
 
       console.log(affiliation.theAffiliation);
 
-      $scope.find(); 
+      $scope.find();
       $scope.affiliations.$promise.then(function(data){
         for(var i = 0; i < $scope.affiliations.length; i++){
           if($scope.affiliations[i].theAffiliation === $scope.affiliation.theAffiliation && $scope.affiliations[i]._id !== $scope.affiliation._id){
             console.log('duplicate name encountered');
             confirm('An affiliation already exists with this name. Please choose another presentation type.');
-            return false; 
+            return false;
           }
         }
         affiliation.$update(function () {
           $location.path('affiliation/' + affiliation._id);
           //redirect path after deletion
-          $state.go('affiliations.list', {successMessage: 'Affiliation successfully updated!'});
+          $state.go('affiliations.list', { successMessage: 'Affiliation successfully updated!' });
         }, function (errorResponse) {
           $scope.error = errorResponse.data.message;
         });

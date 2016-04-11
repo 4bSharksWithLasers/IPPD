@@ -16,7 +16,7 @@
           <!-- Display text field for email input -->
           <div class="form-group" show-errors>
   				  <h3> E-mail </h3>
-            <input name="email" type="email" ng-model="email" id="email" class="form-control input-lg" placeholder="Email" required>
+            <input name="email" type="email" ng-model="email" id="email" class="form-control input-lg" placeholder="Email" autocomplete='off' autofocus required>
             <div ng-messages="registrantForm.email.$error" role="alert">
               <p class="help-block error-text" ng-message="required">E-mail required</p>
               <p class="help-block error-text" ng-message="email">Email address is invalid.</p>

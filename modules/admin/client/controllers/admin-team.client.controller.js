@@ -4,23 +4,23 @@
 angular.module('admin').controller('TeamController', ['$scope', '$state', '$stateParams', '$location', 'Authentication', 'Teams',
   function ($scope, $state, $stateParams, $location, Authentication, Teams) {
     $scope.authentication = Authentication;
-    //variable to hold array of teams 
-    $scope.teams = null;  
+    //variable to hold array of teams
+    $scope.teams = null;
 
 
     // Create new Team
     $scope.create = function (isValid) {
       $scope.error = null;
       // save the form data, for use if the form is valid and if the entry is not a duplicate
-      $scope.teamToSave = this.name; 
+      $scope.teamToSave = this.name;
 
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'teamForm');
-        
+
         return false;
       }
       // uses the find() function and then checks through to make sure no duplicate entries can be saved
-      $scope.find(); 
+      $scope.find();
       $scope.teams.$promise.then(function(data){
         console.log(data);
         console.log($scope.teams.length);
@@ -30,7 +30,7 @@ angular.module('admin').controller('TeamController', ['$scope', '$state', '$stat
           if($scope.teams[i].name === $scope.teamToSave){
             console.log('duplicate name encountered');
             confirm('A team already exists with this name. Please choose another name.');
-            return false; 
+            return false;
           }
         }
         // Create new team object if there is not a duplicate
@@ -40,7 +40,7 @@ angular.module('admin').controller('TeamController', ['$scope', '$state', '$stat
 
         // Redirect after save
         team.$save(function (response) {
-          $state.go('teams.list', {successMessage: 'Team successfully saved!'});
+          $state.go('teams.list', { successMessage: 'Team successfully saved!' });
 
           // Clear form fields
           $scope.name = '';
@@ -54,7 +54,7 @@ angular.module('admin').controller('TeamController', ['$scope', '$state', '$stat
     $scope.removeAll = function(){
       if(confirm('Press OK to confirm deletion.')){
         console.log($scope.teams.length);
-        
+
         for(var i=0; i < $scope.teams.length; i++){
           console.log($scope.teams[i]);
           $scope.teams[i].$remove();
@@ -72,7 +72,7 @@ angular.module('admin').controller('TeamController', ['$scope', '$state', '$stat
 
     // Remove existing team. must confirm via message
     $scope.remove = function (team) {
-      $scope.splicing = false; 
+      $scope.splicing = false;
       if (team) {
         if(confirm('Press OK to confirm deletion.')){
           team.$remove();
@@ -80,21 +80,21 @@ angular.module('admin').controller('TeamController', ['$scope', '$state', '$stat
             console.log('in splice for loop');
             if ($scope.teams[i] === team) {
               console.log('splicing');
-              $scope.splicing = true; 
+              $scope.splicing = true;
               $scope.teams.splice(i, 1);
             }
           }
           if($scope.splicing === false)
             $scope.updateTeams();
           //redirect path after deletion
-          $state.go('teams.list', {successMessage: 'Team successfully deleted!'});
+          $state.go('teams.list', { successMessage: 'Team successfully deleted!' });
         }
         else{
-          return false; 
+          return false;
         }
-      } else { 
+      } else {
         $scope.team.$remove(function () {
-          $state.go('teams.list', {successMessage: 'Team successfully deleted!'});
+          $state.go('teams.list', { successMessage: 'Team successfully deleted!' });
 
         });
       }
@@ -118,18 +118,18 @@ angular.module('admin').controller('TeamController', ['$scope', '$state', '$stat
           if($scope.teams[i].name === $scope.team.name && $scope.teams[i]._id !== $scope.team._id){
             console.log('duplicate name encountered');
             confirm('A team already exists with this name. Please choose another presentation type.');
-            return false; 
+            return false;
           }
         }
         team.$update(function () {
           $location.path('team/' + team._id);
           //redirect path after deletion
-          $state.go('teams.list', {successMessage: 'Team successfully updated!'});
+          $state.go('teams.list', { successMessage: 'Team successfully updated!' });
         }, function (errorResponse) {
           $scope.error = errorResponse.data.message;
         });
       });
-      
+
     };
 
      /* Bind the success message to the scope if it exists as part of the current state */

@@ -6,11 +6,14 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
     $scope.authentication = Authentication;
 
     // varaibles to forward information from registration page and selectPresentation page to review page, and back
-    console.log("Team: ", $stateParams.team, "Presentation: ", $stateParams.presentation, "Email: ", $stateParams.email, "PresID: ", $stateParams.theId);
+    console.log('Team: ', $stateParams.team, 'Presentation: ', $stateParams.presentation, 'Email: ', $stateParams.email, 'PresID: ', $stateParams.theId);
     $scope.forwarded_team = $stateParams.team;
     $scope.forwarded_presentation = $stateParams.presentation;
     $scope.forwarded_email = $stateParams.email;
     $scope.forwarded_id = $stateParams.blankRubricId;
+
+    //
+    $scope.msg = true;
 
     // variable to indicate whether the review page is in 'preview' mode, meaning not in an editing state, the view before the review will be submitted
     $scope.previewRubricSubmission = false;
