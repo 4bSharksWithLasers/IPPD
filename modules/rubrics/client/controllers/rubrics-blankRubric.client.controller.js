@@ -196,7 +196,7 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
         }
         if($scope.splicing === false)
           $scope.updateBlankRubrics();
-          $scope.msg = true;
+        $scope.msg = true;
         $state.go('blankRubrics.list', { successMessage: 'Rubric successfully deleted!' });
 
       } else {
