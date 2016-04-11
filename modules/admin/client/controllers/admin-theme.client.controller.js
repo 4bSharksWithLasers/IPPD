@@ -3,7 +3,7 @@
 // Theme controller
 angular.module('admin').controller('ThemeController', function($scope) {
   $scope.myStyle = {};
-  $scope.origLogo = "../../../../modules/core/client/img/brand/IPPD_COLOR.png";
+  $scope.origLogo = '../../../../modules/core/client/img/brand/IPPD_COLOR.png';
   $scope.changeColor = function () {
     $scope.myStyle={ 'background-color': '#' + $scope.colorChoice };
   };
@@ -20,7 +20,7 @@ angular.module('admin').controller('ThemeController', function($scope) {
     reader.readAsDataURL(element.files[0]);
   };
   $scope.resetLogo = function() {
-      $scope.image_source = $scope.origLogo;
-      $scope.$apply();
+    $scope.image_source = $scope.origLogo;
+    $scope.$apply();
   };  
 });
