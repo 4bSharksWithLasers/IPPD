@@ -7,6 +7,7 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$state',
     // variable to store array of affiliations
     $scope.affiliations = null;
 
+    $scope.msg = true;
     // Create new Affiliation. only creates a new one if the form is valid and if it is not a duplicate entry
     $scope.create = function (isValid) {
       $scope.error = null;
@@ -75,9 +76,11 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$state',
         if($scope.splicing === false)
           $scope.updateAffiliations();
         //redirect path after deletion
+        $scope.msg = true;
         $state.go('affiliations.list', { successMessage: 'Affiliation successfully deleted!' });
       } else {
         $scope.affiliation.$remove(function () {
+          $scope.msg = true;
           $state.go('affiliations.list', { successMessage: 'Affiliation successfully deleted!' });
         });
       }

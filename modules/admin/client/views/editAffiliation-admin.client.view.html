@@ -18,7 +18,7 @@
       <div class="container t-padding">
         <div class="form-group" show-errors>
           <h3>Affiliation</h3>
-          <input name="affiliation" type="text" ng-model="affiliation.theAffiliation" id="affiliation" class="form-control input-lg" placeholder="{{affiliation}}" required></input>
+          <input name="affiliation" type="text" ng-model="affiliation.theAffiliation" id="affiliation" class="form-control input-lg" placeholder="{{affiliation}}" autocomplete="off" autofocus required></input>
           <div ng-messages="affiliationForm.theAffiliation.$error" role="alert">
             <p class="error-text text-danger" ng-message="required">Affiliation is required.</p>
           </div>

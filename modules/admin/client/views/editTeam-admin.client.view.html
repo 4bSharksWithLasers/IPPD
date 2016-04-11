@@ -18,7 +18,7 @@
       <div class="container t-padding">
         <div class="form-group" show-errors>
           <h3>Team Name</h3>
-          <input name="name" type="text" ng-model="team.name" id="name" class="form-control input-lg" placeholder="{{ name }}" required>
+          <input name="name" type="text" ng-model="team.name" id="name" class="form-control input-lg" placeholder="{{ name }}" autocomplete="off" autofocus required>
           <div ng-messages="teamForm.name.$error" role="alert">
             <p class="error-text text-danger" ng-message="required">Team name is required.</p>
           </div>

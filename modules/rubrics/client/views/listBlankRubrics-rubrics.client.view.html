@@ -19,6 +19,17 @@
   </header>
 
   <main ng-controller="BlankRubricController" ng-init="find()">
+    <!-- Success Messages -->
+    <div class="t-padding" ng-show="msg" ng-click="msg=!msg">
+      <div ng-show="error" class="container alert alert-danger">
+        <strong ng-bind="error"></strong>
+      </div>
+      <div ng-show="success" class="container alert alert-success">
+        <strong ng-bind="success"></strong>
+      </div>
+    </div>
+    <!-- End Messages -->
+
     <div class="container t-padding">
       <div class="row">
         <div class="col-md-4">
@@ -38,19 +49,10 @@
     <div class="container t-padding">
       <div class="input-group" id="searchBar">
         <span class="input-group-addon input-lg" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
-        <input type="text" class="form-control input-lg" placeholder="Search" ng-model="query">
+        <input type="text" class="form-control input-lg" placeholder="Search" ng-model="query" autocomplete="off" autofocus>
       </div>
     </div>
-    <!-- Success Messages -->
-    <div class="container">
-      <div ng-show="error" class="text-danger">
-        <strong ng-bind="error"></strong>
-      </div>
-      <div ng-show="success" class="text-success">
-        <strong ng-bind="success"></strong>
-      </div>
-    </div>
-    <!-- End Messages -->
+
     <div class="container t-padding">
       <div class="panel panel-default">
         <div class="panel-heading">
