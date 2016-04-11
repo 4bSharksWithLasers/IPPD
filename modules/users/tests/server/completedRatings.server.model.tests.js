@@ -29,7 +29,7 @@ describe('Completed Ratings Unit Model Tests', function(done){
   describe('Saving completed Ratings to the database', function(done){
 
     this.timeout(10000);
-    
+
     it('Should save to the db when team, presentation type, and email are provided', function(done){
       new CompletedRating({
         team: completedRating.team,

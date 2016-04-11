@@ -1,16 +1,63 @@
 'use strict';
-
+//toclean ---> methods with comments to remove
 var should = require('should'),
   request = require('supertest'),
   path = require('path'),
   mongoose = require('mongoose'),
+  Registrant = mongoose.model('Registrant'),
+  Team = mongoose.model('Team'),
+  Affiliation = mongoose.model('Affiliation'),
+  CompletedRating = mongoose.model('CompletedRating'),
+  BlankRubric = mongoose.model('BlankRubric'),
   User = mongoose.model('User'),
   express = require(path.resolve('./config/lib/express'));
 
 /**
  * Globals
  */
-var app, agent, credentials, user, _user, admin;
+var app, agent, credentials, user, _user, admin, team, t_id, registrant, reg_id, affiliation, aff_id, blankRubric, br_id, cr_id, completedRating;
+
+affiliation = {
+  theAffiliation : 'UnitAffiliation'
+};
+
+registrant = {
+  email: 'unit@unitemail.com',
+  affiliation: 'unitAffiliation',
+  teamName: 'unit team'
+};
+
+team = {
+  name: 'UnitTeam'
+};
+
+blankRubric = {
+  presentationType: 'unitPresentTest',
+  instructions: 'unitTestInstructions',
+  ratedItems:[{
+    itemCategory: 'unitItemCategory test',
+    description1: 'unitDescription1',
+    description2: 'unitDescription2',
+    description3: 'unitDescription3'
+  }]
+
+};
+
+completedRating = {
+  team: 'unitCompletedRatingTeam',
+  presentationType: 'unitPresentTest',
+  email: 'unitCompletedRatingEmailTest',
+  ratedItems: [{
+    rubricItem: 'unitItemTest',
+    rating: 3
+  }],
+  issuesIdentified: 'unitTestIssue',
+  recommendedActions: [{
+    recommendation: 'unitTestRecommendation',
+    urgency: false
+  }]
+
+};
 
 /**
  * User routes tests
@@ -54,12 +101,261 @@ describe('User CRUD tests', function () {
     });
   });
 
+  it('Admin should be able to add teams', function(done){
+    user.roles = ['user','admin'];
+    user.save(function (err) {
+      should.not.exist(err);
+      agent.post('/api/auth/signin')
+        .send(credentials)
+        .expect(200)
+        .end(function (signinErr, signinRes) {
+          // Handle signin error
+          if (signinErr) {
+            return done(signinErr);
+          }
+
+          // Request list of users
+          agent.post('/api/teams')
+            .send(team)
+            .expect(200)
+            .end(function (err, res) {
+              // Handle signpu error
+              if (err) {
+                return done(err);
+              }
+
+              res.body.name.should.equal(team.name);
+              return done();
+            });
+        });
+    });
+
+  });
+
+  it('User should not be able to add teams if not Admin', function(done){
+    agent.post('/api/auth/signin')
+      .send(credentials)
+      .expect(200)
+      .end(function (signinErr, signinRes) {
+        // Handle signin error
+        if (signinErr) {
+          return done(signinErr);
+        }
+
+        // Request list of users
+        agent.post('/api/teams')
+          .send(team)
+          .expect(403)
+          .end(function (err, res) {
+            // Handle signpu error
+            if (err) {
+              return done(err);
+            }
+            return done();
+            /*
+            res.body.name.should.equal(team.name);
+            return done();
+            */
+          });
+      });
+  });
+
+  it('User should not be able to delete Teams if not Admin', function(done){
+    var team_ = new Team(team);
+
+    // Save a user to the test db and create new article
+    team_.save(function (err) {
+      should.not.exist(err);
+      agent.post('/api/auth/signin')
+        .send(credentials)
+        .expect(200)
+        .end(function (signinErr, signinRes) {
+          // Handle signin error
+          if (signinErr) {
+            return done(signinErr);
+          }
+
+          // Request list of users
+          agent.delete('/api/teams/' + team_._id)
+            //.send(userUpdate)
+            .expect(403)
+            .end(function (userInfoErr, userInfoRes) {
+              if (userInfoErr) {
+                return done(userInfoErr);
+              }
+
+              // Call the assertion callback
+              return done();
+            });
+        });
+
+    });
+
+  });
+
+  it('User should not be able to delete affiliations if not Admin', function(done){
+    var aff = new Affiliation(affiliation);
+
+    // Save a user to the test db and create new article
+    aff.save(function (err) {
+      should.not.exist(err);
+      agent.post('/api/auth/signin')
+        .send(credentials)
+        .expect(200)
+        .end(function (signinErr, signinRes) {
+          // Handle signin error
+          if (signinErr) {
+            return done(signinErr);
+          }
+
+          // Request list of users
+          agent.delete('/api/affiliations/' + aff._id)
+            //.send(userUpdate)
+            .expect(403)
+            .end(function (userInfoErr, userInfoRes) {
+              if (userInfoErr) {
+                return done(userInfoErr);
+              }
+
+              // Call the assertion callback
+              return done();
+            });
+        });
+    });
+
+  });
+
+  it('User should not be able to delete Blank Rubrics if not Admin', function(done){
+    var br = new BlankRubric(blankRubric);
+
+    // Save a user to the test db and create new article
+    br.save(function (err) {
+      should.not.exist(err);
+      agent.post('/api/auth/signin')
+        .send(credentials)
+        .expect(200)
+        .end(function (signinErr, signinRes) {
+          // Handle signin error
+          if (signinErr) {
+            return done(signinErr);
+          }
+
+
+          // Request list of users
+          agent.delete('/api/blankRubrics/' + br._id)
+            //.send(userUpdate)
+            .expect(403)
+            .end(function (userInfoErr, userInfoRes) {
+              if (userInfoErr) {
+                return done(userInfoErr);
+              }
+
+              // Call the assertion callback
+              return done();
+            });
+        });
+    });
+
+  });
+
+  it('User should not be able to delete CompletedRatings if Admin', function(done){
+    var cr = new CompletedRating(completedRating);
+    cr.save(function(err){
+      should.not.exist(err);
+      agent.post('/api/auth/signin')
+        .send(credentials)
+        .expect(200)
+        .end(function (signinErr, signinRes) {
+          // Handle signin error
+          if (signinErr) {
+            return done(signinErr);
+          }
+
+          // Request list of users
+          agent.post('/api/teams')
+            .send(team)
+            .expect(403)
+            .end(function (err, res) {
+              // Handle signpu error
+              if (err) {
+                return done(err);
+              }
+              return done();
+              /*
+              res.body.name.should.equal(team.name);
+              return done();
+              */
+            });
+        });
+    });
+
+  });
+/*
+  it('Admin should be able to update teams', function(done){
+
+  });
+
+  it('Admin should be able to remove teams', function(done){
+
+  });
+  //toclean
+*/
+/*
+  it('Admin should be able to update affiliations', function(done){
+    var newAff = new Affiliation(affiliation);
+    //save Affiliation to db to test update
+    newAff.save(function (err) {
+      should.not.exist(err);
+      done();
+    });
+    user.roles = ['user','admin'];
+    user.save(function (err) {
+      should.not.exist(err);
+      agent.post('/api/auth/signin')
+        .send(credentials)
+        .expect(200)
+        .end(function (signinErr, signinRes) {
+          // Handle signin error
+          if (signinErr) {
+            return done(signinErr);
+          }
+          var affUpdate = {
+            theAffiliation: 'newAffUpdateUnit'
+          };
+          agent.put('/api/affiliations/' + newAff._id)
+            .send(newAff)
+            .expect(200)
+            .end(function (err, res) {
+              // Handle signpu error
+              if (err) {
+                return done(err);
+              }
+
+              res.body.theAffiliation.should.equal('newAffUpdateUnit');
+            //  res.body.codeAssociated.should.equal(affiliation.codeAssociated);
+            //  res.body.teamAssociated.should.equal(affiliation.teamAssociated);
+              return done();
+            });
+        });
+    });
+  });
+*/
+/*
+  it('Admin should be able to remove affiliation', function(done){
+
+  });
+
+  it('Admin should be able to add blank Rubrics', function(done){
+
+  });
+*/
+  //toclean
   it('should be able to register a new user', function (done) {
 
     _user.username = 'register_new_user';
     _user.email = 'register_new_user_@test.com';
 
-    agent.post('/api/registrants')
+    agent.post('/api/auth/signup')
       .send(_user)
       .expect(200)
       .end(function (signupErr, signupRes) {
@@ -901,4 +1197,17 @@ describe('User CRUD tests', function () {
   afterEach(function (done) {
     User.remove().exec(done);
   });
+
+  afterEach(function (done) {
+    Affiliation.remove().exec(done);
+  });
+
+  afterEach(function (done) {
+    Team.remove().exec(done);
+  });
+
+  afterEach(function (done) {
+    BlankRubric.remove().exec(done);
+  });
+
 });

@@ -55,4 +55,10 @@ describe('Registrants Model Unit Tests', function(done){
     }
   });
 
+  afterEach(function (done) {
+    Registrant.remove().exec(done);
+  });
+
+
+
 });
