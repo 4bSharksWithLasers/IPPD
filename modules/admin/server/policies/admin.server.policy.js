@@ -26,6 +26,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/affiliations/:affiliationId',
       permissions: '*'
+    }, {
+      resources: '/api/exportCSV',
+      permissions: '*'
     }]
   }, {
     roles: ['user'],

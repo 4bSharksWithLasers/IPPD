@@ -66,6 +66,21 @@ angular.module('rubrics').config(['$stateProvider',
         data:{
           roles:['admin']
         }
+      })
+      .state('completedRatings',{
+        abstract: true,
+        url: '/exportCSV',
+        template: '<ui-view/>',
+        data:{
+          roles:['admin']
+        }
+      })
+      .state('completedRatings.list',{
+        url: '',
+        templateUrl: 'modules/rubrics/client/views/listCompletedRubrics-rubrics.client.view.html',
+        data:{
+          roles:['admin']
+        }
       });
   }
 ]);
