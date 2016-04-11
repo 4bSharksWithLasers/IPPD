@@ -18,43 +18,49 @@
   	</div>
   </header>
 
- 	<br><br>
+
 
 	<main ng-controller="ThemeController">	
 	
 			<div style="padding-left:1cm;border:2px">
-			<h2><b><u>Choose New Site Coloring:</u></b></h2>
-			Enter Color Code (hexadecimal, 3 or 6 digits) : &nbsp;&nbsp;&nbsp;
-			<input type="text" name="colorChoice" class="color" ng-model="colorChoice" ng-change="changeColor()" size="6" maxlength="6" style="color:black"><br>
-			<br>
-			<div ng-style="myStyle" style="text-align:center;border:solid;border-width:4px;width:400px;height:250px"><br><b>New Color Preview:</b><br><br></div>
-				<br>		
-		    <button class="btn btn-default btn-lg" type="submit">Save New Color</button>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<button class="btn btn-default btn-lg" type="submit" ng-click="myStyle={'background-color': '#eaeaea'}">Reset Color</button>
+			<h2><b><u>Edit Site Coloring:</u></b></h2>
+			
+				Enter Site's Header Color Code (hexadecimal, 3 or 6 digits) : &nbsp;&nbsp;
+				<input type="text" name="colorChoice" class="color" placeholder="ffffff" 
+				 ng-model="colorChoice" ng-change="changeColor()" size="6" maxlength="6" style="color:black">
+				<br><br>
+				<div ng-style="myStyle" style="text-align:center;border:solid;border-width:4px;width:400px;height:250px"><b style="color:black">Header Color Preview:</b></div>
+				<br>	
+			    <br>
+				Enter Site's Body Color Code (hexadecimal, 3 or 6 digits)   : &nbsp;&nbsp;
+				<input type="text" name="colorChoice2" class="color" placeholder="ffffff" 
+				 ng-model="colorChoice2" ng-change="changeColor2()" size="6" maxlength="6" style="color:black">
+				<br><br>
+				<div ng-style="myStyle2" style="text-align:center;border:solid;border-width:4px;width:400px;height:250px"><b>Body Color Preview:</b><br><br></div>
 			
 			</div>
    
-     				   <br><br><br>
+     				   <br><br>
 							
 					<div style="padding-left:1cm">
-	                <h2><b><u>Choose New Site Logo:</u></b></h2>
+	                <h2><b><u>Edit Site Logo:</u></b></h2>
 				    <form id="form1" runat="server">
 					
 					<input type="file" value="Upload Image"
 					id="trigger" onchange="angular.element(this).scope().setLogo(this)"
 					accept="image/*" style="color:white">
-					<div><br><b>New Logo Preview:</b><br><br></div>
-					<img ng-style="logo" style="align:center;border:solid;border-width:4px;" ng-src="{{image_source}}" height = "100px" width = "300px">
+					<div><br><b>New Logo Preview:</b><br></div>
+					<img ng-style="myStyle" style="align:center;border:solid;border-width:4px;" ng-src="{{image_source}}" height = "100px" width = "300px">
                     
 				
 					</form>
-										<br>					   
-				   <button class="btn btn-default btn-lg" type="submit" value="Save Changes">Save New Logo</button>
+					<br><br><br>					   
+				   <button class="btn btn-default btn-lg" type="submit" value="Save Changes">Save Changes</button>
 				   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			       <button class="btn btn-default btn-lg" type="submit" ng-click="resetLogo()">Reset Logo</button>
-			
+			       <button class="btn btn-default btn-lg" type="submit" ng-click="resetLogo()">Reset Site Theme (Logo and Coloring)</button>
 					</div>
+					
+					  <div class="form-group">
 	
 </section>
 
