@@ -10,11 +10,7 @@ var teamSchema = new Schema({
     type: String, 
     required: true,
     unique: true
-  }, 
-  code: {
-    type: Number, 
-    required: true
-  }, 
+  },  
   created_at: Date,
   updated_at: Date
 });

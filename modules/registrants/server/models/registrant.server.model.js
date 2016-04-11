@@ -9,7 +9,7 @@ var registrantSchema = new Schema({
   email: {
     type: String, 
     required: true,
-    unique: true
+    unique: false
   }, 
   affiliation: {
     type: String, 

@@ -12,8 +12,6 @@
         <img id="loader" ng-show="loading" src="/../../img/484.gif">
         <div ng-show="affiliation">
           <h2>Affiliation: {{affiliation.theAffiliation}}</h2>
-          <p>Has Team: {{affiliation.teamAssociated?'Yes':'No'}}</p>
-          <p>Has Team Code: {{affiliation.codeAssociated?'Yes':'No'}}</p>
         <div class="row">
           <div class="col-md-1">
             <a class="btn btn-primary btn-lg" ui-sref="affiliations.edit({ affiliationId: affiliation._id })">
