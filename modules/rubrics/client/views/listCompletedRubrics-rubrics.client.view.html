@@ -50,15 +50,16 @@
         </div>
         <div class="panel-body" ng-repeat="x in completedRatings | filter: query" ui-sref="completedRatings.view({ completedRatingsId: x._id })">
           <div class="row">
-            <a href="" class="a-spc">
-              <div class="col-md-10">Team Name: {{ x.team }} <br> Presentation Type: {{ x.presentationType }} <br> Reviewer Email: {{ x.email }}</div>
-            </a>
+            <!--<a href="" class="a-spc"> -->
+              <div class="col-md-10">Team Name: {{ x.team }} <br> Presentation Type: {{ x.presentationType }} <br> Reviewer Email: {{ x.email }} <br>
+                Recomended Actions: {{ x.recommendedActions }}</div>
+            <!--</a>-->
             <!-- Delete Completedrating listing -->
-        <!-- START COMMENT
+        <!-- START DELETE BUTTON
             <div class="col-md-2">
               <button class="btn btn-danger btn-lg btn-block" ng-confirm-click="Click to confirm deletion." ng-click="remove(x);" >
                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 
-        END COMMENT-->
+        END DELETE BUTTON-->
               </button>
             </div>
           </div>
