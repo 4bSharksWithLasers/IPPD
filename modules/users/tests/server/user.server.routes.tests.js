@@ -152,10 +152,7 @@ describe('User CRUD tests', function () {
               return done(err);
             }
             return done();
-            /*
-            res.body.name.should.equal(team.name);
-            return done();
-            */
+        
           });
       });
   });
@@ -196,7 +193,6 @@ describe('User CRUD tests', function () {
   it('User should not be able to delete affiliations if not Admin', function(done){
     var aff = new Affiliation(affiliation);
 
-    // Save a user to the test db and create new article
     aff.save(function (err) {
       should.not.exist(err);
       agent.post('/api/auth/signin')
@@ -208,7 +204,7 @@ describe('User CRUD tests', function () {
             return done(signinErr);
           }
 
-          // Request list of users
+
           agent.delete('/api/affiliations/' + aff._id)
             //.send(userUpdate)
             .expect(403)
@@ -228,7 +224,6 @@ describe('User CRUD tests', function () {
   it('User should not be able to delete Blank Rubrics if not Admin', function(done){
     var br = new BlankRubric(blankRubric);
 
-    // Save a user to the test db and create new article
     br.save(function (err) {
       should.not.exist(err);
       agent.post('/api/auth/signin')
@@ -241,7 +236,7 @@ describe('User CRUD tests', function () {
           }
 
 
-          // Request list of users
+
           agent.delete('/api/blankRubrics/' + br._id)
             //.send(userUpdate)
             .expect(403)
@@ -281,75 +276,12 @@ describe('User CRUD tests', function () {
                 return done(err);
               }
               return done();
-              /*
-              res.body.name.should.equal(team.name);
-              return done();
-              */
             });
         });
     });
 
   });
-/*
-  it('Admin should be able to update teams', function(done){
 
-  });
-
-  it('Admin should be able to remove teams', function(done){
-
-  });
-  //toclean
-*/
-/*
-  it('Admin should be able to update affiliations', function(done){
-    var newAff = new Affiliation(affiliation);
-    //save Affiliation to db to test update
-    newAff.save(function (err) {
-      should.not.exist(err);
-      done();
-    });
-    user.roles = ['user','admin'];
-    user.save(function (err) {
-      should.not.exist(err);
-      agent.post('/api/auth/signin')
-        .send(credentials)
-        .expect(200)
-        .end(function (signinErr, signinRes) {
-          // Handle signin error
-          if (signinErr) {
-            return done(signinErr);
-          }
-          var affUpdate = {
-            theAffiliation: 'newAffUpdateUnit'
-          };
-          agent.put('/api/affiliations/' + newAff._id)
-            .send(newAff)
-            .expect(200)
-            .end(function (err, res) {
-              // Handle signpu error
-              if (err) {
-                return done(err);
-              }
-
-              res.body.theAffiliation.should.equal('newAffUpdateUnit');
-            //  res.body.codeAssociated.should.equal(affiliation.codeAssociated);
-            //  res.body.teamAssociated.should.equal(affiliation.teamAssociated);
-              return done();
-            });
-        });
-    });
-  });
-*/
-/*
-  it('Admin should be able to remove affiliation', function(done){
-
-  });
-
-  it('Admin should be able to add blank Rubrics', function(done){
-
-  });
-*/
-  //toclean
   it('should be able to register a new user', function (done) {
 
     _user.username = 'register_new_user';
@@ -398,9 +330,9 @@ describe('User CRUD tests', function () {
             // NodeJS v4 changed the status code representation so we must check
             // before asserting, to be comptabile with all node versions.
             if (process.version.indexOf('v4') === 0) {
-              signoutRes.text.should.equal('Found. Redirecting to /');
-            } else {
               signoutRes.text.should.equal('Moved Temporarily. Redirecting to /');
+            } else {
+              signoutRes.text.should.equal('Found. Redirecting to /');
             }
 
             return done();
@@ -1210,4 +1142,57 @@ describe('User CRUD tests', function () {
     BlankRubric.remove().exec(done);
   });
 
+  //Populates db for e2e tests.
+
+  after(function(done){
+    affiliation = {
+      theAffiliation : 'e2eUnitAffiliation'
+    };
+    var aff = new Affiliation(affiliation);
+    aff.save(function(err){
+      should.not.exist(err);
+      done();
+    });
+  });
+
+  after(function(done){
+    var affiliation2 = {
+      theAffiliation : 'e2eUnitAffiliation2'
+    };
+    var aff = new Affiliation(affiliation2);
+    aff.save(function(err){
+      should.not.exist(err);
+      done();
+    });
+  });
+
+  after(function(done){
+    team = {
+      name: 'e2eUnitTeam1'
+    };
+    var t = new Team(team);
+    t.save(function(err){
+      should.not.exist(err);
+      done();
+    });
+  });
+
+  after(function(done){
+    var blankRubric = {
+      presentationType: 'e2eunitPresentTest',
+      instructions: 'e2eunitTestInstructions',
+      ratedItems:[{
+        itemCategory: 'e2eunitItemCategory test',
+        description1: 'e2eunitDescription1',
+        description2: 'e2eunitDescription2',
+        description3: 'e2eunitDescription3'
+      }]
+
+    };
+    var br = new BlankRubric(blankRubric);
+    br.save(function(err){
+      should.not.exist(err);
+      done();
+    });
+  });
 });
