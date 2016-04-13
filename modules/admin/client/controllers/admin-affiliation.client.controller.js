@@ -106,7 +106,7 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$state',
         for(var i = 0; i < $scope.affiliations.length; i++){
           if($scope.affiliations[i].theAffiliation === $scope.affiliation.theAffiliation && $scope.affiliations[i]._id !== $scope.affiliation._id){
             console.log('duplicate name encountered');
-            confirm('An affiliation already exists with this name. Please choose another presentation type.');
+            confirm('An affiliation already exists with this name. Please choose another name.');
             return false;
           }
         }

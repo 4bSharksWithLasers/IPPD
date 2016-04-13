@@ -119,7 +119,7 @@ angular.module('admin').controller('TeamController', ['$scope', '$state', '$stat
         for(var i = 0; i < $scope.teams.length; i++){
           if($scope.teams[i].name === $scope.team.name && $scope.teams[i]._id !== $scope.team._id){
             console.log('duplicate name encountered');
-            confirm('A team already exists with this name. Please choose another presentation type.');
+            confirm('A team already exists with this name. Please choose another name.');
             return false;
           }
         }
