@@ -194,6 +194,7 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
         else{
           return false;
         }
+        $scope.updateBlankRubrics();
         if($scope.splicing === false)
           $scope.updateBlankRubrics();
         $scope.msg = true;

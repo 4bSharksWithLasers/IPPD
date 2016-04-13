@@ -84,6 +84,7 @@ angular.module('admin').controller('TeamController', ['$scope', '$state', '$stat
               $scope.teams.splice(i, 1);
             }
           }
+          $scope.updateTeams();
           if($scope.splicing === false)
             $scope.updateTeams();
           //redirect path after deletion

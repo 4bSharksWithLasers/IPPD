@@ -73,6 +73,7 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$state',
         else{
           return false;
         }
+        $scope.updateAffiliations();
         if($scope.splicing === false)
           $scope.updateAffiliations();
         //redirect path after deletion
