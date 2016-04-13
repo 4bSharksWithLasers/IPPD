@@ -135,7 +135,7 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
         for(var i=0; i < $scope.blankRubrics.length; i++){
           console.log($scope.blankRubrics[i].presentationType);
           // if the blankRubric is a duplicate, present message and do not save blankRubric
-          if($scope.blankRubrics[i].presentationType === $scope.presentationTypeToSave){
+          if($scope.blankRubrics[i].presentationType.toUpperCase() === $scope.presentationTypeToSave.toUpperCase()){
             console.log('duplicate name encountered');
             confirm('A rubric already exists with this name. Please choose another presentation type.');
             return false;
@@ -224,7 +224,7 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
       $scope.count = 0;
       $scope.blankRubrics.$promise.then(function(data){
         for(var i = 0; i < $scope.blankRubrics.length; i++){
-          if($scope.blankRubrics[i].presentationType === $scope.blankRubric.presentationType && $scope.blankRubrics[i]._id !== $scope.blankRubric._id){
+          if($scope.blankRubrics[i].presentationType.toUpperCase() === $scope.blankRubric.presentationType.toUpperCase() && $scope.blankRubrics[i]._id !== $scope.blankRubric._id){
             console.log('duplicate name encountered');
             confirm('A rubric already exists with this name. Please choose another presentation type.');
             return false;
