@@ -1,3 +1,5 @@
+<main ng-controller="ThemeController">
+<div ng-style="myStyle2">
 <section>
   <header>
     <div class="container text-right tb-padding">
@@ -10,58 +12,53 @@
         </div>
       </div>
     </div>
-	<div>
-  	<div class="jumbotron">
+  	<div class="jumbotron" ng-style="myStyle">
   		<div class="container text-center" >
-  			<img src="modules/core/client/img/brand/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo">
+  			<img ng-src="{{image_source}}" class="logo" height="100px" width="300px" alt="IPPD Logo">
   			<p><em>Manage Theme</em></p>
   		</div>
   	</div>
-	</div>
   </header>
-
-
-
-	<main ng-controller="ThemeController">	
 	
+			<div ng-style="myStyle3">
 			<div style="padding-left:1cm;border:2px">
-			<h2><b><u>Edit Site Coloring:</u></b></h2>
-			
+			<h2><b><u>Edit Site Coloring:</u></b></h2>			
 				Choose a new header color : &nbsp;&nbsp;
 				<input type="color" ng-model="colorChoice" ng-change="changeColor()">
-				<br><br>
-				<div ng-style="myStyle" style="text-align:center;border:solid;border-width:4px;width:400px;height:250px"><b style="color:black">Header Color Preview:</b></div>
 				<br>	
 			    <br>
-				Choose a new body color   : &nbsp;&nbsp;
+				Choose a new body color : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="color" ng-model="colorChoice2" ng-change="changeColor2()" >
-				<br><br>
-				<div ng-style="myStyle2" style="text-align:center;border:solid;border-width:4px;width:400px;height:250px"><b>Body Color Preview:</b><br><br></div>
-			
-			</div>
-   
+				<br>	
+			    <br>
+				Choose a new font color : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="color" ng-model="colorChoice3" ng-change="changeColor3()" >
+				<br>	
+			    <br>
+				Header Color Value : {{colorChoice}}
+				<br>
+				Body Color Value: &nbsp;&nbsp; {{colorChoice2}}
+				<br>
+				Font Color Value: &nbsp;&nbsp; {{colorChoice3}}	
+				
      				   <br><br>
-							
-					<div style="padding-left:1cm">
-	                <h2><b><u>Edit Site Logo:</u></b></h2>
+		
+	        <h2><b><u>Edit Site Logo:</u></b></h2>
 				    <form id="form1" runat="server">
 					
 					<input type="file" value="Upload Image"
 					id="trigger" onchange="angular.element(this).scope().setLogo(this)"
 					accept="image/*" style="color:white">
-					<div><br><b>New Logo Preview:</b><br></div>
-					<img ng-style="myStyle" style="align:center;border:solid;border-width:4px;" ng-src="{{image_source}}" height = "100px" width = "300px">
-                    
 				
 					</form>
-					<br><br><br>					   
-				   <button class="btn btn-default btn-lg" type="submit" value="Save Changes">Save Changes</button>
-				   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<br><br><br>			
 			       <button class="btn btn-default btn-lg" type="submit" ng-click="resetLogo()">Reset Site Theme (Logo and Coloring)</button>
-					</div>
 					
-					  <div class="form-group">
-	
+					</div>				
+			</div>
+			
+			
 </section>
+</div>
 
 
