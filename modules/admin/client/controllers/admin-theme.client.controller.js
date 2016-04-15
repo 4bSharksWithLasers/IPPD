@@ -32,12 +32,12 @@ angular.module('admin').controller('ThemeController', function($scope) {
   };
   $scope.resetLogo = function() {
     $scope.image_source = $scope.origLogo;
-	$scope.colorChoice='#eaeaea';
-	$scope.colorChoice2='#2e2e2e';
-	$scope.colorChoice3='#FFFFFF';
+    $scope.colorChoice='#eaeaea';
+    $scope.colorChoice2='#2e2e2e';
+    $scope.colorChoice3='#FFFFFF';
     $scope.myStyle={ 'background-color': '#eaeaea' };
     $scope.myStyle2={ 'background-color': '#2e2e2e' };
-	$scope.myStyle3={ 'color': '#FFFFFF' };
+    $scope.myStyle3={ 'color': '#FFFFFF' };
     $scope.$apply();
   };  
 });
