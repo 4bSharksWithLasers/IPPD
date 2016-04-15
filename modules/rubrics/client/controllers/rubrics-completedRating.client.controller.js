@@ -206,6 +206,8 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
         return false;
       }
 
+
+
       // Create new completedRating object
       var completedRating = new CompletedRatings({
         team: $scope.forwarded_team,
@@ -216,16 +218,32 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
         recommendedActions: $scope.recommendations
       });
 
+      $scope.foundZero = 0; 
+      console.log($scope.foundZero);
+      console.log($scope.rateArr.length);
+      for(var i = 0; i < $scope.rateArr.length; i++){
+        if($scope.rateArr[i].rating===0){
+          console.log('found a zero rating entry');
+          $scope.foundZero = 1; 
+        }          
+      }
+      if($scope.foundZero === 1 || $scope.rateArr.length === 0){
+        if(confirm('A rating of zero has been entered. Press OK to submit a zero entry or press CANCEL to edit the review.')){
+          // Redirect after save
+          completedRating.$save(function (response) {
+            $state.go('selectPresentation', { presentation: $scope.forwarded_presentation, email: $scope.forwarded_email, theId: $scope.forwarded_id, successMessage: 'Review successfully saved!' });
 
-      // Redirect after save
-      completedRating.$save(function (response) {
-        $state.go('selectPresentation', { presentation: $scope.forwarded_presentation, email: $scope.forwarded_email, theId: $scope.forwarded_id, successMessage: 'Review successfully saved!' });
+            // Clear form fields
+            $scope.issuesIdentified = '';
+          }, function (errorResponse) {
+            $scope.error = errorResponse.data.message;
+          });
 
-        // Clear form fields
-        $scope.issuesIdentified = '';
-      }, function (errorResponse) {
-        $scope.error = errorResponse.data.message;
-      });
+        }
+      }
+
+
+      
     };
 
     /* Bind the success message to the scope if it exists as part of the current state */
