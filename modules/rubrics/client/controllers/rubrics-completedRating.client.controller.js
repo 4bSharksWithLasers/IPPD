@@ -242,15 +242,15 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
         }
       }
       else{
-          // Redirect after save
-          completedRating.$save(function (response) {
-            $state.go('selectPresentation', { presentation: $scope.forwarded_presentation, email: $scope.forwarded_email, theId: $scope.forwarded_id, successMessage: 'Review successfully saved!' });
+        // Redirect after save
+        completedRating.$save(function (response) {
+          $state.go('selectPresentation', { presentation: $scope.forwarded_presentation, email: $scope.forwarded_email, theId: $scope.forwarded_id, successMessage: 'Review successfully saved!' });
 
-            // Clear form fields
-            $scope.issuesIdentified = '';
-          }, function (errorResponse) {
-            $scope.error = errorResponse.data.message;
-          });
+          // Clear form fields
+          $scope.issuesIdentified = '';
+        }, function (errorResponse) {
+          $scope.error = errorResponse.data.message;
+        });
       }
 
 
