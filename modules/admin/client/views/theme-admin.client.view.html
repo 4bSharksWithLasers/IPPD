@@ -10,12 +10,14 @@
         </div>
       </div>
     </div>
+	<div>
   	<div class="jumbotron">
-  		<div class="container text-center">
+  		<div class="container text-center" >
   			<img src="modules/core/client/img/brand/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo">
   			<p><em>Manage Theme</em></p>
   		</div>
   	</div>
+	</div>
   </header>
 
 
@@ -25,16 +27,14 @@
 			<div style="padding-left:1cm;border:2px">
 			<h2><b><u>Edit Site Coloring:</u></b></h2>
 			
-				Enter Site's Header Color Code (hexadecimal, 3 or 6 digits) : &nbsp;&nbsp;
-				<input type="color" name="colorChoice" class="color" value="#eaeaea" 
-				 ng-model="colorChoice" ng-change="changeColor()">
+				Choose a new header color : &nbsp;&nbsp;
+				<input type="color" ng-model="colorChoice" ng-change="changeColor()">
 				<br><br>
 				<div ng-style="myStyle" style="text-align:center;border:solid;border-width:4px;width:400px;height:250px"><b style="color:black">Header Color Preview:</b></div>
 				<br>	
 			    <br>
-				Enter Site's Body Color Code (hexadecimal, 3 or 6 digits)   : &nbsp;&nbsp;
-				<input type="color" name="colorChoice2" class="color" value="#2e2e2e" 
-				 ng-model="colorChoice2" ng-change="changeColor2()" >
+				Choose a new body color   : &nbsp;&nbsp;
+				<input type="color" ng-model="colorChoice2" ng-change="changeColor2()" >
 				<br><br>
 				<div ng-style="myStyle2" style="text-align:center;border:solid;border-width:4px;width:400px;height:250px"><b>Body Color Preview:</b><br><br></div>
 			

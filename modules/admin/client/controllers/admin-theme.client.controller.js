@@ -3,6 +3,8 @@
 // Theme controller
 angular.module('admin').controller('ThemeController', function($scope) {
   $scope.myStyle = {};
+  $scope.colorChoice = "#eaeaea";
+  $scope.colorChoice2 = "#2e2e2e";
   $scope.origLogo = '../../../../modules/core/client/img/brand/IPPD_COLOR.png';
   $scope.image_source = '../../../../modules/core/client/img/brand/IPPD_COLOR.png';
   $scope.myStyle={ 'background-color': '#eaeaea' };
