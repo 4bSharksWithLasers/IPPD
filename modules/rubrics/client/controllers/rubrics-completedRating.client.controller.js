@@ -415,7 +415,7 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
       //appen anchor tag and remove it after automatic click
       document.body.appendChild(link);
       //Comment out click to see console.logs
-      //link.click();
+      link.click();
       document.body.removeChild(link);
 
     };
