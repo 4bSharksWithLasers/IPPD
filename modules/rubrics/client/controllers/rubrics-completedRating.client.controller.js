@@ -206,7 +206,10 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
         return false;
       }
 
-
+      if(this.issuesIdentified===undefined){
+        console.log('no issues found');
+        this.issuesIdentified = 'n/a';
+      }
 
       // Create new completedRating object
       var completedRating = new CompletedRatings({
