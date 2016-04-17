@@ -94,14 +94,6 @@ angular.module('admin').config(['$stateProvider',
       .state('adminLogin', {
         url:'/adminLogin', 
         templateUrl: 'modules/admin/client/views/adminLogin-admin.client.view.html'
-      })
-      .state('exportCSV', {
-        url:'/exportCSV', 
-        templateUrl: 'modules/rubrics/client/views/listCompletedRubrics-rubrics.client.view.html',
-        data:{
-          roles:['admin']
-        }
       });
-
   }
 ]);

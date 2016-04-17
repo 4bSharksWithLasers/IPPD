@@ -69,7 +69,7 @@ angular.module('rubrics').config(['$stateProvider',
       })
       .state('completedRatings',{
         abstract: true,
-        url: '/exportCSV',
+        url: '/completedRatings',
         template: '<ui-view/>',
         data:{
           roles:['admin']
@@ -77,7 +77,14 @@ angular.module('rubrics').config(['$stateProvider',
       })
       .state('completedRatings.list',{
         url: '',
-        templateUrl: 'modules/rubrics/client/views/listCompletedRubrics-rubrics.client.view.html',
+        templateUrl: 'modules/rubrics/client/views/listCompletedRatings-rubrics.client.view.html',
+        data:{
+          roles:['admin']
+        }
+      })
+      .state('completedRatings.view', {
+        url:'/:completedRatingId', 
+        templateUrl: 'modules/rubrics/client/views/viewCompletedRating-rubrics.client.view.html',
         data:{
           roles:['admin']
         }

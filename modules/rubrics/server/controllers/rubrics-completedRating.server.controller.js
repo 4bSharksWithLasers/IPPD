@@ -3,7 +3,9 @@
 var mongoose = require('mongoose'),
   CompletedRating = mongoose.model('CompletedRating'), 
   path = require('path'),
-  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
+  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
+  fs = require('fs'),
+  json2csv = require('json2csv');
 
 //CREATE a completed rating
 exports.create = function(req, res){
@@ -111,3 +113,4 @@ exports.completedRatingById = function(req, res, next, id){
     }
   });
 };
+
