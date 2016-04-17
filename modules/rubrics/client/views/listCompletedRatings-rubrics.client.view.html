@@ -1,0 +1,69 @@
+<section>
+  <header>
+    <div class="container text-right tb-padding">
+      <div class="row">
+        <div class="col-md-10"></div>
+        <div class="col-md-2">
+          <form role="form" action="/adminHome" method="get">
+            <button class="nav-btn" type="submit" value="Send">AdminHome</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  	<div class="jumbotron">
+  		<div class="container text-center">
+  			<img src="modules/core/client/img/brand/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo">
+  			<p><em>View Completed Ratings</em></p>
+  		</div>
+  	</div>
+  </header>
+
+  <main ng-controller="CompletedRatingController" ng-init="find()">
+    <div class="container t-padding">
+      <div class="input-group" id="searchBar">
+        <span class="input-group-addon input-lg" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
+        <input type="text" class="form-control input-lg" placeholder="Search" ng-model="query">
+      </div>
+    </div>
+    <!-- Success Messages -->
+    <div class="container"><!--
+      <div id="alert" class="alert alert-success" ng-show="showTeamAdded">
+        <button class="close" data-hide="alert" aria-label="close" ng-click="showTeamAdded=!showTeamAdded">&times;</button>
+        <h4><strong>Team successfully added!</strong></h4>
+      </div>
+      <div id="alert" class="alert alert-success" ng-show="showTeamDeleted">
+        <button class="close" data-hide="alert" aria-label="close" ng-click="showTeamDeleted=!showTeamDeleted">&times;</button>
+        <h4><strong>Team successfully deleted!</strong></h4>
+      </div>-->
+      <div ng-show="error" class="text-danger">
+        <strong ng-bind="error"></strong>
+      </div>
+      <div ng-show="success" class="text-success">
+        <strong ng-bind="success"></strong>
+      </div>
+    </div>
+    <!-- End Messages -->
+    <div class="container t-padding">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3>Completed Ratings</h3>
+          <!-- Export Completedrating listing -->
+            <div class="col-md-2">
+              <button class="btn btn-success btn-lg btn-block" ng-confirm-click="Click to export." ng-click="export()" > Export 
+                <span class="glyphicon glyphicon-share" aria-hidden="true"></span> 
+              </button>
+            </div>
+        </div>
+        <div class="panel-body" ng-repeat="x in completedRatings | filter: query" ui-sref="completedRatings.view({ completedRatingId: x._id })">
+          <div class="row">
+            <!--<a href="" class="a-spc">-->
+              <div class="col-md-10">Team Name: {{ x.team }} <br> Presentation Type: {{ x.presentationType }} <br> Reviewer Email: {{ x.email }} <br>
+                Recomended Actions: {{ x.recommendedActions }} </div>
+            <!--</a>-->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</section>
