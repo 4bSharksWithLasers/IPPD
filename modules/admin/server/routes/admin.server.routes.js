@@ -48,6 +48,4 @@ module.exports = function (app) {
   // Finish by binding the rubric middleware
   app.param('teamId', teams.teamById);
 
-  app.route('/api/exportCSV').all(adminPolicy.isAllowed)
-    .get(completedratings.list);
 };
