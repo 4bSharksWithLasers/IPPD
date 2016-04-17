@@ -5,9 +5,9 @@ var mongoose = require('mongoose'),
   path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
-//CREATE a affiliation
+//CREATE an affiliation
 exports.create = function(req, res){
-  //Instantiate a affiliation
+  //Instantiate an affiliation
   var affiliation = new Affiliation(req.body);
 
   //save the affiliation
@@ -25,13 +25,13 @@ exports.create = function(req, res){
   });
 };
 
-//READ a affiliation
+//READ an affiliation
 exports.read = function(req, res){
   //send back the user as json from the request
   res.json(req.affiliation);
 };
 
-//UPDATE a affiliation
+//UPDATE an affiliation
 exports.update = function(req, res){
   var affiliation = req.affiliation;
 
@@ -54,7 +54,7 @@ exports.update = function(req, res){
   });
 };
 
-//DELETE a affiliation
+//DELETE an affiliation
 exports.delete = function(req, res){
   var affiliation = req.affiliation; 
 
@@ -85,7 +85,7 @@ exports.list = function(req, res){
   });
 };
 
-//Find a affiliation by its ID and pass it to the next request handler
+//Find an affiliation by its ID and pass it to the next request handler
 exports.affiliationById = function(req, res, next, id){
 
   if (!mongoose.Types.ObjectId.isValid(id)) {

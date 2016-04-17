@@ -18,35 +18,9 @@
       <div class="container t-padding">
         <div class="form-group" show-errors>
           <h3>Affiliation</h3>
-          <input name="affiliation" type="text" ng-model="affiliation.theAffiliation" id="affiliation" class="form-control input-lg" placeholder="{{affiliation}}" required></input>
+          <input name="affiliation" type="text" ng-model="affiliation.theAffiliation" id="affiliation" class="form-control input-lg" placeholder="{{affiliation}}" autocomplete="off" autofocus required></input>
           <div ng-messages="affiliationForm.theAffiliation.$error" role="alert">
             <p class="error-text text-danger" ng-message="required">Affiliation is required.</p>
-          </div>
-        </div>
-        <div class="form-group" show-errors>
-          <div class="row">
-            <div class="col-md-3">
-              <h3>Has Team?</h3>
-            </div>
-            <div class="col-md-1">
-              <input name="teamAssociated" type="checkbox" ng-model="affiliation.teamAssociated" id="teamAssociated" class="form-control input-lg"></input>
-              <div ng-messages="affiliationForm.teamAssociated.$error" role="alert">
-                <!--<p class="error-text text-danger" ng-message="required">Team Code is required.</p>-->
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="form-group" show-errors>
-          <div class="row">
-            <div class="col-md-3">
-              <h3>Has Team Code?</h3>
-            </div>
-            <div class="col-md-1">
-              <input name="codeAssociated" type="checkbox" ng-model="affiliation.codeAssociated" id="codeAssociated" class="form-control input-lg"></input>
-              <div ng-messages="affiliationForm.codeAssociated.$error" role="alert">
-                <!--<p class="error-text text-danger" ng-message="required">Team Code is required.</p>-->
-              </div>
-            </div>
           </div>
         </div>
       </div>

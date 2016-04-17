@@ -9,10 +9,19 @@
   	</div>
   </header>
 
+  <div class="t-padding" ng-show="msg" ng-click="msg=!msg">
+    <div ng-show="error" class="container alert alert-danger">
+      <strong ng-bind="error"></strong>
+     </div>
+    <div ng-show="success" class="container alert alert-success">
+      <strong ng-bind="success"></strong>
+    </div>
+  </div>
+
   <div class="container">
     <form name="presentationSelectionForm" class="form-horizontal" ng-submit="selectPresentationType(presentationSelectionForm.$valid)" novalidate>
       <fieldset>
-
+        <!-- Dropdown selection field for Team Names-->
         <div class="form-group" show-errors>
           <h3>Team Name</h3>
           <select name="team" ng-options="team.name for team in teamDropdowns | orderBy: 'name'" data-toggle="dropdown" type="button" ng-model="team"id="team" class="btn btn-default btn-lg btn-block dropdown-toggle" placeholder="Team Name" required> </select>
@@ -20,19 +29,21 @@
             <p class="help-block error-text" ng-message="required">Team name selection is required.</p>
           </div>
         </div>
-
-        <div class="form-group" show-errors>
+        <!-- Dropdown selection field for Presentation Types. Not visible if a Presentation ID is forwarded from a prefiously submitted review -->
+        <div class="form-group" ng-show="{{forwarded_presentation===null}}" show-errors>
           <h3>Presentation Type</h3>
-          <select name="presentationType" ng-options="p.presentationType for p in blankRubrics" data-toggle="dropdown" type="button" ng-model="presentationType" id="presentationType" class="btn btn-default btn-lg btn-block dropdown-toggle" placeholder="Presentation Type" required></select>
+          <select name="presentationType" ng-options="p.presentationType for p in blankRubrics" data-toggle="dropdown" type="button" ng-model="presentationType" id="presentationType" class="btn btn-default btn-lg btn-block dropdown-toggle" placeholder="Presentation Type" ng-required="{{forwarded_presentation===null}}"></select>
           <div ng-messages="presentationSelectionForm.presentationType.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Presentation Type is required.</p>
           </div>
         </div>
-
+        <!-- Presentation Type forwarded from previously submitted review. Visible if a Presentation ID is forwarded from a prefiously submitted review -->
+        <div class="form-group" ng-hide="{{forwarded_presentation===null}}">
+          <h3>Presentation Type</h3>
+          <h4> {{ forwarded_presentation }} </h4>
+        </div>
         <div class="form-group t-padding">
-          <a ui-sref="review({blankRubricId:presentationType._id})">
-            <input type="submit" class="btn btn-lg btn-default">
-          </a>
+          <input type="submit" class="btn btn-lg btn-default">
         </div>
         <div ng-show="error" class="text-danger">
           <strong ng-bind="error"></strong>
