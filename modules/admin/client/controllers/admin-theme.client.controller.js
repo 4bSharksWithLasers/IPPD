@@ -1,7 +1,10 @@
 'use strict';
 
 // Theme controller
-angular.module('admin').controller('ThemeController', function($scope) {
+angular.module('admin').controller('ThemeController', ['$scope', '$state', '$stateParams', '$location', 'Authentication', 'Themes',
+  function ($scope, $state, $stateParams, $location, Authentication, Themes) {
+  $scope.authentication = Authentication;	  
+  $scope.themes = null;
   $scope.myStyle = {};
   $scope.colorChoice = '#eaeaea';
   $scope.colorChoice2 = '#2e2e2e';
@@ -40,4 +43,32 @@ angular.module('admin').controller('ThemeController', function($scope) {
     $scope.myStyle3={ 'color': '#FFFFFF' };
     $scope.$apply();
   };  
-});
+    // Update existing theme
+    $scope.update = function () {
+      $scope.error = null;
+
+      if (!isValid) {
+        $scope.$broadcast('show-errors-check-validity', 'themeForm');
+
+        return false;
+      }
+
+      var theme = $scope.theme;
+
+      $scope.find();
+      $scope.themes.$promise.then(function(data){
+        theme.$update(function () {
+          $location.path('theme/' + theme._id);
+          //redirect path after deletion
+          $state.go('themes.list', { successMessage: 'Theme successfully updated!' });
+        }, function (errorResponse) {
+          $scope.error = errorResponse.data.message;
+        });
+      });
+
+    };  
+      // Find a list of themes
+    $scope.find = function () {
+      $scope.themes = Themes.query();
+    };	
+}]);
