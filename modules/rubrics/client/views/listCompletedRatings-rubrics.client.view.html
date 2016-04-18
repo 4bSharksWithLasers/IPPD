@@ -49,16 +49,21 @@
           <h3>Completed Ratings</h3>
           <!-- Export Completedrating listing -->
             <div class="col-md-2">
-              <button class="btn btn-success btn-lg btn-block" ng-confirm-click="Click to export." ng-click="export()" > Export 
+              <button class="btn btn-success btn-lg btn-block" ng-confirm-click="Click to export." ng-click="export()" > Export CSV 
                 <span class="glyphicon glyphicon-share" aria-hidden="true"></span> 
               </button>
             </div>
         </div>
-        <div class="panel-body" ng-repeat="x in completedRatings | filter: query" ui-sref="completedRatings.view({ completedRatingId: x._id })">
+        <div class="panel-body" ng-repeat="x in completedRatings | filter: query"> 
           <div class="row">
             <!--<a href="" class="a-spc">-->
-              <div class="col-md-10">Team Name: {{ x.team }} <br> Presentation Type: {{ x.presentationType }} <br> Reviewer Email: {{ x.email }} <br>
-                Recomended Actions: {{ x.recommendedActions }} </div>
+              <div class="col-md-10">
+                Rating ID: {{ x._id }} <br>
+                Created at: {{ x.created_at }} <br>
+                Team Name: {{ x.team }} <br> 
+                Presentation Type: {{ x.presentationType }} <br>
+                Reviewer Email: {{ x.email }} <br>
+              </div>
             <!--</a>-->
 
           </div>
