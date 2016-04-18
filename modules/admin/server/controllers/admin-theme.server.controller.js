@@ -25,6 +25,23 @@ exports.create = function(req, res){
   });
 };
 
+//DELETE a theme
+exports.delete = function(req, res){
+  var theme = req.theme; 
+
+  //remove the article
+  theme.remove(function(err){
+    if(err){
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+      else{
+      res.end();
+    }
+  });
+};
+
 //READ a theme
 exports.read = function(req, res){
   //send back the theme as json from the request
@@ -54,6 +71,20 @@ exports.update = function(req, res){
   });
 };
 
+
+//Retrieve all themes, sorted alphabetically by theme
+exports.list = function(req, res){
+  Theme.find().sort('theme').exec(function(err, themes){
+    if(err){
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+      else{
+      res.json(themes);
+    }
+  });
+};
 
 //Find a theme by its ID and pass it to the next request handler
 exports.themeById = function(req, res, next, id){

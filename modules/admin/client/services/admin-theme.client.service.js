@@ -3,7 +3,7 @@
 //Team service used for communicating with the team REST endpoints
 angular.module('admin').factory('Themes', ['$resource',
   function ($resource) {
-    return $resource('api/themes/:themeId', {
+    return $resource('api/theme/:themeId', {
       themeId: '@_id'
     }, {
       update: {
