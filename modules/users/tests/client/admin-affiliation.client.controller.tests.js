@@ -1,22 +1,22 @@
-'use strict';
-
-describe('Affiliation Karma Tests', function(){
-  beforeEach(module('admin'));
-
-  var $controller;
-
-  beforeEach(inject(function(_$controller_){
-    // The injector unwraps the underscores (_) from around the parameter names when matching
-    $controller = _$controller_;
-  }));
-
-  describe('$scope.find()', function(){
-    it('Does what I tell it to', function(){
-      var $scope = {};
-      var controller = $controller('AffiliationController', { $scope: $scope });
-    });
-  });
-});
+// 'use strict';
+//
+// describe('Affiliation Karma Tests', function(){
+//   beforeEach(module('admin'));
+//
+//   var $controller;
+//
+//   beforeEach(inject(function(_$controller_){
+//     // The injector unwraps the underscores (_) from around the parameter names when matching
+//     $controller = _$controller_;
+//   }));
+//
+//   describe('$scope.find()', function(){
+//     it('Does what I tell it to', function(){
+//       var $scope = {};
+//       var controller = $controller('AffiliationController', { $scope: $scope });
+//     });
+//   });
+// });
 
 
 
