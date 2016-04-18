@@ -166,15 +166,7 @@ describe('Registrants E2E Tests:', function(){
     expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/selectPresentation'); //should be at selectPresentation
   });
 
-// describe('Admin E2E Testing', function(){
-//   //click Admin button
-//   it('Should go to adminHome', function(){
-//     browser.get('http://localhost:3001');
-//     element(by.css('#admin-button')).click();
-//     expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/adminHome'); //should route to adminHome
-//   });
-//
-// });
+
 //  it('Should m')
 
   /*
@@ -182,6 +174,159 @@ describe('Registrants E2E Tests:', function(){
 
   })
   */
+});
+
+describe('Admin E2E Testing', function(){
+  //click Admin button
+  it('Should go to Sign in page', function(){
+    browser.get('http://localhost:3001');
+    element(by.css('#admin-button')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/authentication/signin'); //should route to sign in
+  });
+
+  it('Should go to adminHome and back to start after signout', function(){
+    browser.get('http://localhost:3001/authentication/signin');
+    element(by.css('#username')).sendKeys('e2e');         //presaved username
+    element(by.css('#password')).sendKeys('y6ZaSEgq!!');  //presaved password
+    element(by.css('#signIn')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/adminHome');
+    element(by.buttonText('SignOut')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/');
+  });
+  it('Should go to manage teams', function(){
+    browser.get('http://localhost:3001/authentication/signin');
+    element(by.css('#username')).sendKeys('e2e');         //presaved username
+    element(by.css('#password')).sendKeys('y6ZaSEgq!!');  //presaved password
+    element(by.css('#signIn')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/adminHome');
+    element(by.buttonText('Manage Teams')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/teams'); //should route to adminTeamsPage
+
+    element(by.buttonText('Add Team')).click();  //
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/addTeam');
+    //Click with empty field. Should stay at current page.
+    element(by.css('#submitButton')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/addTeam');
+
+    //Send Team Name Should Go back to Teams Page
+    element(by.css('#name')).sendKeys('E2E Team');
+    element(by.css('#submitButton')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/teams');
+
+    element.all(by.repeater('x in teams | filter: query')).last().click();
+    //click on edit Team button
+    element(by.css('#editTeam-button')).click();
+    // element(by.css('#name')).sendKeys('');
+    // element(by.css('#submit-button')).click();
+    element(by.css('#name')).sendKeys(' New');
+    element(by.css('#submit-button')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/teams');
+    element(by.buttonText('AdminHome')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/adminHome');
+
+    //delete button.
+    //click submitButton
+    //click Delete Button.
+    //Try adding a team that already exists (Figure out way to click on dialog box)
+    // element(by.buttonText('Add Team')).click();
+    // element(by.css('#name')).sendKeys('E2E Team');
+    // element(by.css('#submitButton')).click();
+    // expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/addTeam');
+    // browser.switchTo().alert().dismiss();
+
+  });
+
+  it('Should Go To Manage Affiliations', function(){
+    //browser.get('http://localhost:3001/authentication/signin');
+    //element(by.css('#username')).sendKeys('e2e');         //presaved username
+    //element(by.css('#password')).sendKeys('y6ZaSEgq!!');  //presaved password
+    //element(by.css('#signIn')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/adminHome');
+    element(by.buttonText('Manage Affiliations')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/affiliations'); //should route to adminTeamsPage
+
+    element(by.css('#addAffiliation-button')).click();  //
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/addAffiliation');
+    //Click with empty field. Should stay at current page.
+    element(by.css('#submit-button')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/addAffiliation');
+
+    //Send Team Name Should Go back to Teams Page
+    element(by.css('#affiliation')).sendKeys('E2E Affiliation');
+    element(by.css('#submit-button')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/affiliations');
+
+    element.all(by.repeater('x in affiliations | filter: query')).last().click();
+    //click on edit Team button
+    element(by.css('#editAffiliation-button')).click();
+    // element(by.css('#name')).sendKeys('');
+    // element(by.css('#submit-button')).click();
+    element(by.css('#affiliation')).sendKeys(' New');
+    element(by.css('#editAffiliation-submit')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/affiliations');
+    element(by.buttonText('AdminHome')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/adminHome');
+  });
+
+  it('Should go to manage Rubrics', function(){
+    //browser.get('http://localhost:3001/authentication/signin');
+    //element(by.css('#username')).sendKeys('e2e');         //presaved username
+    //element(by.css('#password')).sendKeys('y6ZaSEgq!!');  //presaved password
+    //element(by.css('#signIn')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/adminHome');
+    element(by.buttonText('Manage Rubrics')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/blankRubrics'); //should route to adminTeamsPage
+
+    element(by.css('#addBlankRubric-button')).click();  //
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/addBlankRubric');
+    //Click with empty field. Should stay at current page.
+    element(by.css('#submit-button')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/addBlankRubric');
+
+    //Send BlankRubric Items (Repeat)
+    element(by.css('#presentationType')).sendKeys('E2E Presentation');
+    element(by.css('#instructions')).sendKeys('E2E Instructions');
+
+    //Adding Rubric Items and rating descriptions
+    element(by.css('#rubricItem-text')).sendKeys('Test Rubric 1');
+    element(by.css('#rating1description-text')).sendKeys('1 Star Description 1');
+    element(by.css('#rating3description-text')).sendKeys('3 Star Description 1');
+    element(by.css('#rating5description-text')).sendKeys('5 Star Description 1');
+    element(by.css('#addRubricItem-plus')).click();
+
+    element(by.css('#rubricItem-text')).sendKeys('Test Rubric 2');
+    element(by.css('#rating1description-text')).sendKeys('1 Star Description 2');
+    element(by.css('#rating3description-text')).sendKeys('3 Star Description 2');
+    element(by.css('#rating5description-text')).sendKeys('5 Star Description 2');
+    element(by.css('#addRubricItem-plus')).click();
+
+    element(by.css('#rubricItem-text')).sendKeys('Test Rubric 3');
+    element(by.css('#rating1description-text')).sendKeys('1 Star Description 3');
+    element(by.css('#rating3description-text')).sendKeys('3 Star Description 3');
+    element(by.css('#rating5description-text')).sendKeys('5 Star Description 3');
+    element(by.css('#addRubricItem-plus')).click();
+
+
+    //Submit Form
+    element(by.css('#submit-button')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/blankRubrics');
+
+    element.all(by.repeater('x in blankRubrics | filter: query')).last().click();
+    //click on edit Team button
+    element(by.css('#editRubricForm-button')).click();
+    // element(by.css('#name')).sendKeys('');
+    // element(by.css('#submit-button')).click();
+    element(by.css('#name')).sendKeys(' New');
+    element(by.css('#instructions')).sendKeys(' New');
+    element(by.css('#editBlankRubric-pencil')).click();
+    element(by.css('#editBlankRubric-ok')).click();
+
+    element(by.css('#editBlankRubric-submit')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/blankRubrics');
+    element(by.buttonText('AdminHome')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/adminHome');
+  });
+
 });
 
 //

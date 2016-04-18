@@ -152,7 +152,7 @@ describe('User CRUD tests', function () {
               return done(err);
             }
             return done();
-        
+
           });
       });
   });
@@ -1143,6 +1143,8 @@ describe('User CRUD tests', function () {
   });
 
   //Populates db for e2e tests.
+  //It's a little hacky. But this is the easiest way to
+  //automate populating the test database.
 
   after(function(done){
     affiliation = {
@@ -1172,6 +1174,35 @@ describe('User CRUD tests', function () {
     };
     var t = new Team(team);
     t.save(function(err){
+      should.not.exist(err);
+      done();
+    });
+  });
+
+  after(function(done){
+    team = {
+      name: 'e2eUnitTeam2'
+    };
+    var t = new Team(team);
+    t.save(function(err){
+      should.not.exist(err);
+      done();
+    });
+  });
+
+  after(function(done){
+    var newTestUser = {
+      firstName: 'E2E',
+      lastName: 'UnitTest',
+      displayName: 'E2E UnitTest',
+      email: 'e2e@unitTest.com',
+      username: 'e2e',
+      password: 'y6ZaSEgq!!',
+      provider: 'local'
+    };
+    var userTest = new User(newTestUser);
+    userTest.roles = ['admin'];
+    userTest.save(function(err){
       should.not.exist(err);
       done();
     });

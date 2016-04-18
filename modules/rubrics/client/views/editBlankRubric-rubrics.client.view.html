@@ -97,7 +97,7 @@
                 <div class="col-md-7"><p> 5 Star: {{ item.description3 }} </p></div>
                 <a class="a-spc" href="">
                   <div class="col-md-2 text-center">
-                    <span class="glyphicon glyphicon-pencil" aria-hidden="true" ng-click="editing=true"></span>
+                    <span id = "editBlankRubric-pencil"  class="glyphicon glyphicon-pencil" aria-hidden="true" ng-click="editing=true"></span>
                   </div>
                 </a>
                 <div class="col-md-2"></div>
@@ -112,7 +112,7 @@
                   </div>
                   <a class="a-spc" href="" ng-click="editing=false" ng-show="!editItemCheckArray(item, blankRubric.ratedItems)">
                     <div class="col-md-2 text-center">
-                      <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                      <span id = "editBlankRubric-ok" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                     </div>
                   <a class="a-spc" href="" ng-show="editing" ng-click="rmvRubricItemArray(item, blankRubric.ratedItems)" ng-model-instant>
                     <div class="col-md-2 text-center">
@@ -174,7 +174,7 @@
       <div class="container t-padding">
         <div class="container">
           <div class="form-group">
-            <input type="submit" class="btn btn-default btn-lg">
+            <input id = "editBlankRubric-submit" type="submit" class="btn btn-default btn-lg">
           </div>
           <div ng-show="error" class="text-danger">
             <strong ng-bind="error"></strong>
