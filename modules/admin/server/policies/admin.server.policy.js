@@ -21,9 +21,15 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/affiliations',
       permissions: '*'
     }, {
+      resources: '/api/theme',
+      permissions: '*'
+    }, {		
       resources: '/api/teams/:teamId',
       permissions: '*'
     }, {
+      resources: '/api/theme/:themeId',
+      permissions: '*'
+    },{
       resources: '/api/affiliations/:affiliationId',
       permissions: '*'
     }]
@@ -41,6 +47,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/affiliations/:affiliationId',
       permissions: ''
+    }, {
+      resources: '/authentication/postsignup',
+      permissions: '*'
     }]
   }, {
     roles: ['guest'],
