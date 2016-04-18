@@ -21,12 +21,15 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/affiliations',
       permissions: '*'
     }, {
-      resources: '/api/themes',
+      resources: '/api/theme',
       permissions: '*'
     }, {		
       resources: '/api/teams/:teamId',
       permissions: '*'
     }, {
+      resources: '/api/theme/:themeId',
+      permissions: '*'
+    },{
       resources: '/api/affiliations/:affiliationId',
       permissions: '*'
     }]
