@@ -376,7 +376,35 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
         var dataCounter = 0;
         for (var j in arrData[i]) {
           if (dataCounter <= 10){
-            r += '"' + arrData[i][j] + '",';
+            console.log('arrData[' + i + '][' + j + '] = ' + arrData[i][j]);
+            var tempData = '';
+            var testforobject = '';
+            testforobject += arrData[i][j][0];
+            if (testforobject === '[object Object]') {
+              //console.log('object = true');
+              for (var k = 0; k < arrData[i][j].length; k++) {
+                var tempDataCounter = 0;
+                for (var m in arrData[i][j][k]) {
+                  //console.log('arrData[' + i + '][' + j + '][' + k + '][' + m + '] = ' + arrData[i][j][k][m]);
+                  if (tempDataCounter < 2) {
+                    tempData += arrData[i][j][k][m];
+                    if (tempDataCounter === 0){
+                      tempData += ': ';
+                    }
+                    if (tempDataCounter === 1) {
+                      tempData += '; ';
+                    }
+                    tempDataCounter++;
+                  }
+                }
+              }
+              //console.log('tempData = ' + tempData);
+            } else {
+              tempData = arrData[i][j];
+            }
+            console.log('tempData = ' + tempData);
+            r += '"' + tempData + '",';
+
           }
           dataCounter++;
         }
