@@ -47,6 +47,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/affiliations/:affiliationId',
       permissions: ''
+    }, {
+      resources: '/authentication/postsignup',
+      permissions: '*'
     }]
   }, {
     roles: ['guest'],

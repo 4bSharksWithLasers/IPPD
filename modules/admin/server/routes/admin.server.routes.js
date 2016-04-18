@@ -6,6 +6,7 @@
 var adminPolicy = require('../policies/admin.server.policy'),
   teams = require('../controllers/admin-team.server.controller'), 
   affiliations = require('../controllers/admin-affiliation.server.controller'),
+  completedratings = require('../../../rubrics/server/controllers/rubrics-completedRating.server.controller.js'),
   themes = require('../controllers/admin-theme.server.controller');
 
 module.exports = function (app) {
@@ -60,4 +61,5 @@ module.exports = function (app) {
     .delete(themes.delete);
   // Finish by binding the rubric middleware
   app.param('themeId', themes.themeById);
+
 };

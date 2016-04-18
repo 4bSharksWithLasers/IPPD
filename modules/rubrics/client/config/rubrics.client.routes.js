@@ -71,6 +71,28 @@ angular.module('rubrics').config(['$stateProvider',
         data:{
           roles:['admin']
         }
+      })
+      .state('completedRatings',{
+        abstract: true,
+        url: '/completedRatings',
+        template: '<ui-view/>',
+        data:{
+          roles:['admin']
+        }
+      })
+      .state('completedRatings.list',{
+        url: '',
+        templateUrl: 'modules/rubrics/client/views/listCompletedRatings-rubrics.client.view.html',
+        data:{
+          roles:['admin']
+        }
+      })
+      .state('completedRatings.view', {
+        url:'/:completedRatingId', 
+        templateUrl: 'modules/rubrics/client/views/viewCompletedRating-rubrics.client.view.html',
+        data:{
+          roles:['admin']
+        }
       });
   }
 ]);
