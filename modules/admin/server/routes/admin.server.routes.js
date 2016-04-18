@@ -5,7 +5,8 @@
  */
 var adminPolicy = require('../policies/admin.server.policy'),
   teams = require('../controllers/admin-team.server.controller'), 
-  affiliations = require('../controllers/admin-affiliation.server.controller');
+  affiliations = require('../controllers/admin-affiliation.server.controller'),
+  csss = require('../controllers/admin-css.server.controller');
 
 module.exports = function (app) {
   // admin collection routes
@@ -46,4 +47,11 @@ module.exports = function (app) {
     .delete(teams.delete);
   // Finish by binding the rubric middleware
   app.param('teamId', teams.teamById);
+
+  app.route('/api/csss/:cssId').all(adminPolicy.isAllowed)
+    .get(csss.read)
+    .put(csss.update)
+    .delete(csss.delete);
+  // Finish by binding the rubric middleware
+  app.param('cssId', csss.cssById);
 };
