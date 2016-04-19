@@ -25,14 +25,14 @@
           <!-- Display dropdwon field propagated from database with available affiliation choices -->
           <div class="form-group" show-errors>
     				<h3> Affiliation </h3>
-            <select name="affiliation" ng-options="a.theAffiliation for a in affiliationDropdowns | orderBy: 'theAffiliation'" ng-model="affiliation" id="affiliation" class="form-control input-lg" required></select>
+            <select name="affiliation" id = "register-affiliation" ng-options="a.theAffiliation for a in affiliationDropdowns | orderBy: 'theAffiliation'" ng-model="affiliation" id="affiliation" class="form-control input-lg" required></select>
             <div ng-messages="registrantForm.affiliation.$error" role="alert">
               <p class="help-block error-text" ng-message="required">Affiliation required</p>
             </div>
           </div>
           <!-- Button for submission of information -->
           <div class="form-group t-padding">
-            <input type="submit" class="btn btn-default btn-lg">
+            <input type="submit" id="register-submit" class="btn btn-default btn-lg">
           </div>
           <div ng-show="error" class="text-danger">
             <strong ng-bind="error"></strong>

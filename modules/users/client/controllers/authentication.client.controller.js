@@ -10,11 +10,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
 
     // If user is signed in then redirect back home
     if ($scope.authentication.user) {
-      if (Authentication.role === 'admin') {
-        $location.path('/adminHome');
-      } else {
-        $location.path('/authentication/postsignup');
-      }
+      $location.path('/adminHome');
     }
 
     $scope.signup = function (isValid) {
@@ -31,7 +27,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
         $scope.authentication.user = response;
 
         // And redirect to the previous or adminHome page
-        $state.go($state.previous.state.name || 'authentication/postsignup', $state.previous.params);
+        $state.go($state.previous.state.name || 'adminHome', $state.previous.params);
       }).error(function (response) {
         $scope.error = response.message;
       });

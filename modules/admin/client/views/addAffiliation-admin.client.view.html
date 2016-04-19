@@ -24,7 +24,7 @@
       <div class="container t-padding">
         <div class="form-group" show-errors>
           <h3>Affiliation Name</h3>
-          <input name="affiliation" type="text" ng-model="affiliation" id="affiliation" class="form-control input-lg" placeholder="Affiliation" autocomplete="off" autofocus required>
+          <input name="affiliation" type="text" ng-model="affiliation" id="affiliation" class="form-control input-lg" placeholder="Affiliation" required>
           <div ng-messages="affiliationForm.affiliation.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Affiliation is required.</p>
           </div>
@@ -33,7 +33,7 @@
 
       <div class="container t-padding">
         <div class="form-group">
-          <input type="submit" class="btn btn-default btn-lg">
+          <input id = "submit-button" type="submit" class="btn btn-default btn-lg">
         </div>
         <div ng-show="error" class="text-danger">
           <strong ng-bind="error"></strong>

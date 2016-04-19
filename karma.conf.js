@@ -7,7 +7,7 @@ var _ = require('lodash'),
   defaultAssets = require('./config/assets/default'),
   testAssets = require('./config/assets/test'),
   testConfig = require('./config/env/test'),
-  karmaReporters = ['progress'];
+  karmaReporters = ['spec', 'coverage'];
 
 if (testConfig.coverage) {
   karmaReporters.push('coverage');
@@ -68,7 +68,7 @@ module.exports = function (karmaConfig) {
 
     // Level of logging
     // Possible values: karmaConfig.LOG_DISABLE || karmaConfig.LOG_ERROR || karmaConfig.LOG_WARN || karmaConfig.LOG_INFO || karmaConfig.LOG_DEBUG
-    logLevel: karmaConfig.LOG_INFO,
+    logLevel: karmaConfig.LOG_DEBUG,
 
     // Enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
