@@ -6,7 +6,7 @@ angular.module('admin').controller('TeamController', ['$scope', '$state', '$stat
     $scope.authentication = Authentication;
     //variable to hold array of teams
     $scope.teams = null;
-
+    $scope.msg = true;
 
     // Create new Team
     $scope.create = function (isValid) {
@@ -27,7 +27,7 @@ angular.module('admin').controller('TeamController', ['$scope', '$state', '$stat
         for(var i=0; i < $scope.teams.length; i++){
           console.log($scope.teams[i].name);
           // if a duplicate team is found, present error message
-          if($scope.teams[i].name === $scope.teamToSave){
+          if($scope.teams[i].name.toUpperCase() === $scope.teamToSave.toUpperCase()){
             console.log('duplicate name encountered');
             confirm('A team already exists with this name. Please choose another name.');
             return false;
@@ -84,10 +84,12 @@ angular.module('admin').controller('TeamController', ['$scope', '$state', '$stat
               $scope.teams.splice(i, 1);
             }
           }
+          $scope.updateTeams();
           if($scope.splicing === false)
             $scope.updateTeams();
           //redirect path after deletion
           $state.go('teams.list', { successMessage: 'Team successfully deleted!' });
+          $scope.msg = true;
         }
         else{
           return false;
@@ -95,7 +97,7 @@ angular.module('admin').controller('TeamController', ['$scope', '$state', '$stat
       } else {
         $scope.team.$remove(function () {
           $state.go('teams.list', { successMessage: 'Team successfully deleted!' });
-
+          $scope.msg = true;
         });
       }
     };
@@ -115,9 +117,9 @@ angular.module('admin').controller('TeamController', ['$scope', '$state', '$stat
       $scope.find();
       $scope.teams.$promise.then(function(data){
         for(var i = 0; i < $scope.teams.length; i++){
-          if($scope.teams[i].name === $scope.team.name && $scope.teams[i]._id !== $scope.team._id){
+          if($scope.teams[i].name.toUpperCase() === $scope.team.name.toUpperCase() && $scope.teams[i]._id !== $scope.team._id){
             console.log('duplicate name encountered');
-            confirm('A team already exists with this name. Please choose another presentation type.');
+            confirm('A team already exists with this name. Please choose another name.');
             return false;
           }
         }

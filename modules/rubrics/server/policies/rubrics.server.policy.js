@@ -18,6 +18,9 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/completedRatings',
       permissions: '*'
     }, {
+      resources: '/api/completedRatings/:completedRatingId',
+      permissions: '*'
+    }, {
       resources: '/api/review',
       permissions: '*'
     }, {
@@ -31,6 +34,9 @@ exports.invokeRolesPolicies = function () {
     roles: ['user'],
     allows: [{
       resources: '/api/completedRatings',
+      permissions: ''
+    }, {
+      resources: '/api/completedRatings/:completedRatingId',
       permissions: ''
     }, {
       resources: '/api/review',
@@ -48,7 +54,7 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/completedRatings',
       permissions: 'post'
     }, {
-      resources: '/api/completedRatings/:ratingId',
+      resources: '/api/completedRatings/:completedRatingId',
       permissions: ''
     }, {
       resources: '/api/review',

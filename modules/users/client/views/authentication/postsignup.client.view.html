@@ -1,0 +1,35 @@
+<header>
+  <!-- Button to navigate to the admin section of the application -->
+  <div class="container text-right tb-padding">
+    <form role="form" action="/adminHome" method="get">
+  		<button class="nav-btn" type="submit" value="Send">Admin</button>
+  	</form>
+  </div>
+  <div class="jumbotron">
+    <div class="container text-center">
+  		<img src="modules/core/client/img/brand/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo">
+  		<p><em>Design Review Feedback</em></p>
+
+      <br>
+      <br>
+    	
+      <p>User Successfully Created!</p>
+      <p>Please contact an existing system administrator to upgrade your account to Admin privileges.</p>
+
+      <br>
+      <br>
+      <br>
+
+      <form role="form" action="/adminHome" method="get">
+            <button class="btn btn-default btn-lg" type="submit" value="Send">AdminHome</button>
+      </form>
+
+      <br>
+      
+      <form role="form" action="/api/auth/signout" method="get">
+          <button class="btn btn-default btn-lg" type="submit" value="Send">SignOut</button>
+      </form>
+      
+  	</div>
+  </div>
+</header>

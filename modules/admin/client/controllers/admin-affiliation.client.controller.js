@@ -7,6 +7,7 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$state',
     // variable to store array of affiliations
     $scope.affiliations = null;
 
+    $scope.msg = true;
     // Create new Affiliation. only creates a new one if the form is valid and if it is not a duplicate entry
     $scope.create = function (isValid) {
       $scope.error = null;
@@ -26,7 +27,7 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$state',
         for(var i=0; i < $scope.affiliations.length; i++){
           console.log($scope.affiliations[i].theAffiliation);
           // if the affiliation is a duplicate entry, present message and do not save
-          if($scope.affiliations[i].theAffiliation === $scope.affiliationToSave){
+          if($scope.affiliations[i].theAffiliation.toUpperCase() === $scope.affiliationToSave.toUpperCase()){
             console.log('duplicate name encountered');
             confirm('An affiliation already exists with this name. Please choose another name.');
             return false;
@@ -72,12 +73,15 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$state',
         else{
           return false;
         }
+        $scope.updateAffiliations();
         if($scope.splicing === false)
           $scope.updateAffiliations();
         //redirect path after deletion
+        $scope.msg = true;
         $state.go('affiliations.list', { successMessage: 'Affiliation successfully deleted!' });
       } else {
         $scope.affiliation.$remove(function () {
+          $scope.msg = true;
           $state.go('affiliations.list', { successMessage: 'Affiliation successfully deleted!' });
         });
       }
@@ -100,9 +104,9 @@ angular.module('admin').controller('AffiliationController', ['$scope', '$state',
       $scope.find();
       $scope.affiliations.$promise.then(function(data){
         for(var i = 0; i < $scope.affiliations.length; i++){
-          if($scope.affiliations[i].theAffiliation === $scope.affiliation.theAffiliation && $scope.affiliations[i]._id !== $scope.affiliation._id){
+          if($scope.affiliations[i].theAffiliation.toUpperCase() === $scope.affiliation.theAffiliation.toUpperCase() && $scope.affiliations[i]._id !== $scope.affiliation._id){
             console.log('duplicate name encountered');
-            confirm('An affiliation already exists with this name. Please choose another presentation type.');
+            confirm('An affiliation already exists with this name. Please choose another name.');
             return false;
           }
         }

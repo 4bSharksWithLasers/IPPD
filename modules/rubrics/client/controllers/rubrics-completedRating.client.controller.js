@@ -5,7 +5,7 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
   function ($scope, $state, $stateParams, $location, Authentication, CompletedRatings, Teams, BlankRubrics) {
     $scope.authentication = Authentication;
 
-    // varaibles to forward information from registration page and selectPresentation page to review page, and back
+     // varaibles to forward information from registration page and selectPresentation page to review page, and back
     console.log('Team: ', $stateParams.team, 'Presentation: ', $stateParams.presentation, 'Email: ', $stateParams.email, 'PresID: ', $stateParams.theId);
     $scope.forwarded_team = $stateParams.team;
     $scope.forwarded_presentation = $stateParams.presentation;
@@ -206,6 +206,11 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
         return false;
       }
 
+      if(this.issuesIdentified===undefined){
+        console.log('no issues found');
+        this.issuesIdentified = 'n/a';
+      }
+
       // Create new completedRating object
       var completedRating = new CompletedRatings({
         team: $scope.forwarded_team,
@@ -216,16 +221,34 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
         recommendedActions: $scope.recommendations
       });
 
+      $scope.foundZero = 0; 
+      console.log($scope.foundZero);
+      console.log($scope.rateArr.length);
+      for(var i = 0; i < $scope.rateArr.length; i++){
+        if($scope.rateArr[i].rating===0){
+          console.log('found a zero rating entry');
+          $scope.foundZero = 1; 
+        }          
+      }
+      if($scope.foundZero === 1 || $scope.rateArr.length === 0){
+        if(confirm('A rating of zero has been entered. Please give a numerical rating from 1-5 stars.')){
 
-      // Redirect after save
-      completedRating.$save(function (response) {
-        $state.go('selectPresentation', { presentation: $scope.forwarded_presentation, email: $scope.forwarded_email, theId: $scope.forwarded_id, successMessage: 'Review successfully saved!' });
+        }
+      }
+      else{
+        // Redirect after save
+        completedRating.$save(function (response) {
+          $state.go('selectPresentation', { presentation: $scope.forwarded_presentation, email: $scope.forwarded_email, theId: $scope.forwarded_id, successMessage: 'Review successfully saved!' });
 
-        // Clear form fields
-        $scope.issuesIdentified = '';
-      }, function (errorResponse) {
-        $scope.error = errorResponse.data.message;
-      });
+          // Clear form fields
+          $scope.issuesIdentified = '';
+        }, function (errorResponse) {
+          $scope.error = errorResponse.data.message;
+        });
+      }
+
+
+      
     };
 
     /* Bind the success message to the scope if it exists as part of the current state */
@@ -294,5 +317,126 @@ angular.module('rubrics').controller('CompletedRatingController', ['$scope', '$s
       // console.log($scope.success);
     }
 
+    //Export completedRatings to  CSV
+    $scope.export = function () {
+      console.log('exporting CSV');
+
+      var data = $scope.completedRatings;
+      console.log(data);
+      var ReportTitle = 'Completed Ratings';
+      var ShowLabel = true;
+
+      $scope.JSONToCSVConvertor(data, ReportTitle, ShowLabel);
+    };
+
+    $scope.JSONToCSVConvertor = function(JSONData, ReportTitle, ShowLabel) {
+
+      var arrData = typeof JSONData !== 'object' ? JSON.parse(JSONData) : JSONData;
+
+      var CSV ='';
+
+      //Set title in first row or line
+
+      CSV += ReportTitle + '\r\n\n';
+
+      //This condition will generate the Label/Header
+      if (ShowLabel) {
+        var row = '';
+
+        //This loop will extract the label from 1st index on array
+        var labelcounter = 0;
+        for (var index in arrData[0]) {
+          if (labelcounter <= 10) {
+            //Now convert each value to string and comma-seprated
+            row += index + ',';
+          }
+          labelcounter++;
+        }
+
+        row = row.slice(0, -1);
+
+        //append Label row with line break
+        CSV += row + '\r\n';
+      }
+
+      //1st loop is to extract each row
+      for (var i = 0; i < arrData.length; i++){
+        var r = '';
+
+        //2nd loop will extract each column and convert it in string comma-seprated
+        var dataCounter = 0;
+        for (var j in arrData[i]) {
+          if (dataCounter <= 10){
+            console.log('arrData[' + i + '][' + j + '] = ' + arrData[i][j]);
+            var tempData = '';
+            var testforobject = '';
+            testforobject += arrData[i][j][0];
+            if (testforobject === '[object Object]') {
+              //console.log('object = true');
+              for (var k = 0; k < arrData[i][j].length; k++) {
+                var tempDataCounter = 0;
+                for (var m in arrData[i][j][k]) {
+                  //console.log('arrData[' + i + '][' + j + '][' + k + '][' + m + '] = ' + arrData[i][j][k][m]);
+                  if (tempDataCounter < 2) {
+                    tempData += arrData[i][j][k][m];
+                    if (tempDataCounter === 0){
+                      tempData += ': ';
+                    }
+                    if (tempDataCounter === 1) {
+                      tempData += '; ';
+                    }
+                    tempDataCounter++;
+                  }
+                }
+              }
+              //console.log('tempData = ' + tempData);
+            } else {
+              tempData = arrData[i][j];
+            }
+            console.log('tempData = ' + tempData);
+            r += '"' + tempData + '",';
+
+          }
+          dataCounter++;
+        }
+
+        r.slice(0, r.length - 1);
+
+        //add a line break after each row
+        CSV += r + '\r\n';
+      }
+
+      if (CSV === '') {
+        alert('Invalid data');
+        return;
+      }
+
+      //Generate a file name
+      var fileName = 'Completed_Ratings';
+      //this will remove the blank-spaces from the title and replace it with an underscore
+      fileName += fileName.replace(/ /g,'_');
+
+      //Initialize file format you want csv or xls
+      var uri = 'data:text/csv;charset=utf-8,' + window.escape(CSV);
+
+      // Note: can use either>> window.open(uri);
+      // but this will not work in some browsers
+      // or you will not get the correct file extension
+
+      //this trick will generate a temp <a /> tag
+      var link = document.createElement('a');
+      link.href = uri;
+
+      //set the visibility to hidden so it will not effect the web-layout
+      link.style = 'visibility:hidden';
+      link.download = fileName + '.csv';
+
+      //appen anchor tag and remove it after automatic click
+      document.body.appendChild(link);
+      //Comment out click to see console.logs
+      link.click();
+      document.body.removeChild(link);
+
+    };
   }
 ]);

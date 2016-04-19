@@ -19,7 +19,7 @@
         <div class="container t-padding">
           <div class="form-group" show-errors>
             <h3>Presentation Type</h3>
-            <input name="presentationType" type="text" ng-model="blankRubric.presentationType" id="name" class="form-control input-lg" placeholder="{{presentationType}}" required></input>
+            <input name="presentationType" type="text" ng-model="blankRubric.presentationType" id="name" class="form-control input-lg" placeholder="{{presentationType}}" autocomplete="off" autofocus required></input>
             <div ng-messages="blankRubricForm.presentationType.$error" role="alert">
               <p class="error-text text-danger" ng-message="required">Presentation Type is required.</p>
             </div>
@@ -29,7 +29,7 @@
         <div class="container">
           <div class="form-group" show-errors>
             <h3>Instructions</h3>
-            <input name="instructions" type="text" ng-model="blankRubric.instructions" id="instructions" class="form-control input-lg" placeholder="{{instructions}}" required></input>
+            <input name="instructions" type="text" ng-model="blankRubric.instructions" id="instructions" class="form-control input-lg" placeholder="{{instructions}}" autocomplete="off" required></input>
             <div ng-messages="blankRubricForm.instructions.$error" role="alert">
               <p class="error-text text-danger" ng-message="required">Instructions are required.</p>
             </div>
@@ -66,7 +66,7 @@
               <div class="container">
                 <div class="row" ng-show="editing">
                   <div class="col-md-8  form-group" show-errors>
-                    <textarea name="item.description1" rows="1" type="text" ng-model="item.description1" id="item.description1" class="form-control" placeholder="1 Star: {{item.description1}}" required></textarea>
+                    <textarea name="item.description1" rows="1" type="text" ng-model="item.description1" id="item.description1" class="form-control" placeholder="1 Star: {{item.description1}}" autocomplete="off" required></textarea>
                     <div ng-messages="blankRubricForm.item.description1.$error" role="alert">
                       <p class="help-block error-text" ng-message="required">Description is required.</p>
                     </div>
@@ -83,7 +83,7 @@
               <div class="container">
                 <div class="row" ng-show="editing">
                   <div class="col-md-8 form-group" show-errors>
-                    <textarea name="item.description2" rows="1" type="text" ng-model="item.description2" id="item.description2" class="form-control" placeholder="3 Star: {{item.description2}}" required></textarea>
+                    <textarea name="item.description2" rows="1" type="text" ng-model="item.description2" id="item.description2" class="form-control" placeholder="3 Star: {{item.description2}}" autocomplete="off" required></textarea>
                     <div ng-messages="blankRubricForm.item.description2.$error" role="alert">
                       <p class="help-block error-text" ng-message="required">Description is required.</p>
                     </div>
@@ -105,7 +105,7 @@
               <div class="container">
                 <div class="row" ng-show="editing">
                   <div class="col-md-8 form-group" show-errors>
-                    <textarea name="item.description3" rows="1" type="text" ng-model="item.description3" id="item.description3" class="form-control" placeholder="5 Star: {{item.description3}}" required></textarea>
+                    <textarea name="item.description3" rows="1" type="text" ng-model="item.description3" id="item.description3" class="form-control" placeholder="5 Star: {{item.description3}}" autocomplete="off" required></textarea>
                     <div ng-messages="blankRubricForm.item.description3.$error" role="alert">
                       <p class="help-block error-text" ng-message="required">Description is required.</p>
                     </div>
@@ -135,25 +135,25 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 t-padding-row">
-            <textarea class="form-control" rows="1" ng-model="itemCategory" placeholder="Rubric Item"></textarea>
+            <textarea class="form-control" rows="1" ng-model="itemCategory" placeholder="Rubric Item" autocomplete="off"></textarea>
           </div>
           <div class="col-md-4"></div>
         </div>
         <div class="row">
           <div class="col-md-8 t-padding-row">
-            <textarea class="form-control" rows="1" ng-model="description1" placeholder="1 Star Description"></textarea>
+            <textarea class="form-control" rows="1" ng-model="description1" placeholder="1 Star Description" autocomplete="off"></textarea>
           </div>
           <div class="col-md-4"></div>
         </div>
         <div class="row">
           <div class="col-md-8 t-padding-row">
-            <textarea class="form-control" rows="1" ng-model="description2" placeholder="3 Star Description"></textarea>
+            <textarea class="form-control" rows="1" ng-model="description2" placeholder="3 Star Description" autocomplete="off"></textarea>
           </div>
           <div class="col-md-4"></div>
         </div>
         <div class="row">
           <div class="col-md-8 t-padding-row">
-            <textarea class="form-control" rows="1" ng-model="description3" placeholder="5 Star Description"></textarea>
+            <textarea class="form-control" rows="1" ng-model="description3" placeholder="5 Star Description" autocomplete="off"></textarea>
           </div>
           <!-- Button to add rubric items in a todo list format -->
           <a class="a-spc" href="" ng-click="addRubricItemArray(blankRubric.ratedItems)" ng-model-instant>
