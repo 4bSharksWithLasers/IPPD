@@ -24,7 +24,7 @@
       <div class="container t-padding">
         <div class="form-group" show-errors>
           <h3>Team Name</h3>
-          <input name="name" type="text" ng-model="name" id="name" class="form-control input-lg" placeholder="Team Name" required>
+          <input name="name" type="text" ng-model="name" id="name" class="form-control input-lg" placeholder="Team Name" autocomplete="off" autofocus required>
           <div ng-messages="teamForm.name.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Team name is required.</p>
           </div>
@@ -33,7 +33,7 @@
 
       <div class="container t-padding">
         <div class="form-group">
-          <input id = "submitButton" type="submit" class="btn btn-default btn-lg">
+          <input type="submit" class="btn btn-default btn-lg">
         </div>
         <div ng-show="error" class="text-danger">
           <strong ng-bind="error"></strong>

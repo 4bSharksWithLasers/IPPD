@@ -1,63 +1,16 @@
 'use strict';
-//toclean ---> methods with comments to remove
+
 var should = require('should'),
   request = require('supertest'),
   path = require('path'),
   mongoose = require('mongoose'),
-  Registrant = mongoose.model('Registrant'),
-  Team = mongoose.model('Team'),
-  Affiliation = mongoose.model('Affiliation'),
-  CompletedRating = mongoose.model('CompletedRating'),
-  BlankRubric = mongoose.model('BlankRubric'),
   User = mongoose.model('User'),
   express = require(path.resolve('./config/lib/express'));
 
 /**
  * Globals
  */
-var app, agent, credentials, user, _user, admin, team, t_id, registrant, reg_id, affiliation, aff_id, blankRubric, br_id, cr_id, completedRating;
-
-affiliation = {
-  theAffiliation : 'UnitAffiliation'
-};
-
-registrant = {
-  email: 'unit@unitemail.com',
-  affiliation: 'unitAffiliation',
-  teamName: 'unit team'
-};
-
-team = {
-  name: 'UnitTeam'
-};
-
-blankRubric = {
-  presentationType: 'unitPresentTest',
-  instructions: 'unitTestInstructions',
-  ratedItems:[{
-    itemCategory: 'unitItemCategory test',
-    description1: 'unitDescription1',
-    description2: 'unitDescription2',
-    description3: 'unitDescription3'
-  }]
-
-};
-
-completedRating = {
-  team: 'unitCompletedRatingTeam',
-  presentationType: 'unitPresentTest',
-  email: 'unitCompletedRatingEmailTest',
-  ratedItems: [{
-    rubricItem: 'unitItemTest',
-    rating: 3
-  }],
-  issuesIdentified: 'unitTestIssue',
-  recommendedActions: [{
-    recommendation: 'unitTestRecommendation',
-    urgency: false
-  }]
-
-};
+var app, agent, credentials, user, _user, admin;
 
 /**
  * User routes tests
@@ -101,193 +54,12 @@ describe('User CRUD tests', function () {
     });
   });
 
-  it('Admin should be able to add teams', function(done){
-    user.roles = ['user','admin'];
-    user.save(function (err) {
-      should.not.exist(err);
-      agent.post('/api/auth/signin')
-        .send(credentials)
-        .expect(200)
-        .end(function (signinErr, signinRes) {
-          // Handle signin error
-          if (signinErr) {
-            return done(signinErr);
-          }
-
-          // Request list of users
-          agent.post('/api/teams')
-            .send(team)
-            .expect(200)
-            .end(function (err, res) {
-              // Handle signpu error
-              if (err) {
-                return done(err);
-              }
-
-              res.body.name.should.equal(team.name);
-              return done();
-            });
-        });
-    });
-
-  });
-
-  it('User should not be able to add teams if not Admin', function(done){
-    agent.post('/api/auth/signin')
-      .send(credentials)
-      .expect(200)
-      .end(function (signinErr, signinRes) {
-        // Handle signin error
-        if (signinErr) {
-          return done(signinErr);
-        }
-
-        // Request list of users
-        agent.post('/api/teams')
-          .send(team)
-          .expect(403)
-          .end(function (err, res) {
-            // Handle signpu error
-            if (err) {
-              return done(err);
-            }
-            return done();
-
-          });
-      });
-  });
-
-  it('User should not be able to delete Teams if not Admin', function(done){
-    var team_ = new Team(team);
-
-    // Save a user to the test db and create new article
-    team_.save(function (err) {
-      should.not.exist(err);
-      agent.post('/api/auth/signin')
-        .send(credentials)
-        .expect(200)
-        .end(function (signinErr, signinRes) {
-          // Handle signin error
-          if (signinErr) {
-            return done(signinErr);
-          }
-
-          // Request list of users
-          agent.delete('/api/teams/' + team_._id)
-            //.send(userUpdate)
-            .expect(403)
-            .end(function (userInfoErr, userInfoRes) {
-              if (userInfoErr) {
-                return done(userInfoErr);
-              }
-
-              // Call the assertion callback
-              return done();
-            });
-        });
-
-    });
-
-  });
-
-  it('User should not be able to delete affiliations if not Admin', function(done){
-    var aff = new Affiliation(affiliation);
-
-    aff.save(function (err) {
-      should.not.exist(err);
-      agent.post('/api/auth/signin')
-        .send(credentials)
-        .expect(200)
-        .end(function (signinErr, signinRes) {
-          // Handle signin error
-          if (signinErr) {
-            return done(signinErr);
-          }
-
-
-          agent.delete('/api/affiliations/' + aff._id)
-            //.send(userUpdate)
-            .expect(403)
-            .end(function (userInfoErr, userInfoRes) {
-              if (userInfoErr) {
-                return done(userInfoErr);
-              }
-
-              // Call the assertion callback
-              return done();
-            });
-        });
-    });
-
-  });
-
-  it('User should not be able to delete Blank Rubrics if not Admin', function(done){
-    var br = new BlankRubric(blankRubric);
-
-    br.save(function (err) {
-      should.not.exist(err);
-      agent.post('/api/auth/signin')
-        .send(credentials)
-        .expect(200)
-        .end(function (signinErr, signinRes) {
-          // Handle signin error
-          if (signinErr) {
-            return done(signinErr);
-          }
-
-
-
-          agent.delete('/api/blankRubrics/' + br._id)
-            //.send(userUpdate)
-            .expect(403)
-            .end(function (userInfoErr, userInfoRes) {
-              if (userInfoErr) {
-                return done(userInfoErr);
-              }
-
-              // Call the assertion callback
-              return done();
-            });
-        });
-    });
-
-  });
-
-  it('User should not be able to delete CompletedRatings if Admin', function(done){
-    var cr = new CompletedRating(completedRating);
-    cr.save(function(err){
-      should.not.exist(err);
-      agent.post('/api/auth/signin')
-        .send(credentials)
-        .expect(200)
-        .end(function (signinErr, signinRes) {
-          // Handle signin error
-          if (signinErr) {
-            return done(signinErr);
-          }
-
-          // Request list of users
-          agent.post('/api/teams')
-            .send(team)
-            .expect(403)
-            .end(function (err, res) {
-              // Handle signpu error
-              if (err) {
-                return done(err);
-              }
-              return done();
-            });
-        });
-    });
-
-  });
-
   it('should be able to register a new user', function (done) {
 
     _user.username = 'register_new_user';
     _user.email = 'register_new_user_@test.com';
 
-    agent.post('/api/auth/signup')
+    agent.post('/api/registrants')
       .send(_user)
       .expect(200)
       .end(function (signupErr, signupRes) {
@@ -330,9 +102,9 @@ describe('User CRUD tests', function () {
             // NodeJS v4 changed the status code representation so we must check
             // before asserting, to be comptabile with all node versions.
             if (process.version.indexOf('v4') === 0) {
-              signoutRes.text.should.equal('Moved Temporarily. Redirecting to /');
-            } else {
               signoutRes.text.should.equal('Found. Redirecting to /');
+            } else {
+              signoutRes.text.should.equal('Moved Temporarily. Redirecting to /');
             }
 
             return done();
@@ -1128,102 +900,5 @@ describe('User CRUD tests', function () {
 
   afterEach(function (done) {
     User.remove().exec(done);
-  });
-
-  afterEach(function (done) {
-    Affiliation.remove().exec(done);
-  });
-
-  afterEach(function (done) {
-    Team.remove().exec(done);
-  });
-
-  afterEach(function (done) {
-    BlankRubric.remove().exec(done);
-  });
-
-  //Populates db for e2e tests.
-  //It's a little hacky. But this is the easiest way to
-  //automate populating the test database.
-
-  after(function(done){
-    affiliation = {
-      theAffiliation : 'e2eUnitAffiliation'
-    };
-    var aff = new Affiliation(affiliation);
-    aff.save(function(err){
-      should.not.exist(err);
-      done();
-    });
-  });
-
-  after(function(done){
-    var affiliation2 = {
-      theAffiliation : 'e2eUnitAffiliation2'
-    };
-    var aff = new Affiliation(affiliation2);
-    aff.save(function(err){
-      should.not.exist(err);
-      done();
-    });
-  });
-
-  after(function(done){
-    team = {
-      name: 'e2eUnitTeam1'
-    };
-    var t = new Team(team);
-    t.save(function(err){
-      should.not.exist(err);
-      done();
-    });
-  });
-
-  after(function(done){
-    team = {
-      name: 'e2eUnitTeam2'
-    };
-    var t = new Team(team);
-    t.save(function(err){
-      should.not.exist(err);
-      done();
-    });
-  });
-
-  after(function(done){
-    var newTestUser = {
-      firstName: 'E2E',
-      lastName: 'UnitTest',
-      displayName: 'E2E UnitTest',
-      email: 'e2e@unitTest.com',
-      username: 'e2e',
-      password: 'y6ZaSEgq!!',
-      provider: 'local'
-    };
-    var userTest = new User(newTestUser);
-    userTest.roles = ['admin'];
-    userTest.save(function(err){
-      should.not.exist(err);
-      done();
-    });
-  });
-
-  after(function(done){
-    var blankRubric = {
-      presentationType: 'e2eunitPresentTest',
-      instructions: 'e2eunitTestInstructions',
-      ratedItems:[{
-        itemCategory: 'e2eunitItemCategory test',
-        description1: 'e2eunitDescription1',
-        description2: 'e2eunitDescription2',
-        description3: 'e2eunitDescription3'
-      }]
-
-    };
-    var br = new BlankRubric(blankRubric);
-    br.save(function(err){
-      should.not.exist(err);
-      done();
-    });
   });
 });

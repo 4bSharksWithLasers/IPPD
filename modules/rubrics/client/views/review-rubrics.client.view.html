@@ -45,12 +45,12 @@
               <div class="panel-heading">
                 <div class="row">
                   <!-- Rubric item title -->
-                  <div id = "showDescription-click" class = "col-xs-5" ng-click="showDescription=!showDescription">{{ x.itemCategory }}</div>
+                  <div class = "col-xs-5" ng-click="showDescription=!showDescription">{{ x.itemCategory }}</div>
                   <!-- Clickable stars for choosing the rating of the rubric item -->
                   <div class="col-xs-7" >
                       <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorFive }}" ng-click="changeFive($index, x.itemCategory)" aria-hidden="true"></span>
                       <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorFour }}" ng-click="changeFour($index, x.itemCategory)" aria-hidden="true"></span>
-                      <span id ="threeStar-click" class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorThree }}" ng-click="changeThree($index, x.itemCategory)" aria-hidden="true"></span>
+                      <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorThree }}" ng-click="changeThree($index, x.itemCategory)" aria-hidden="true"></span>
                       <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorTwo }}" ng-click="changeTwo($index, x.itemCategory)" aria-hidden="true"></span>
                       <span class="glyphicon glyphicon-star rating pull-right" style="color: {{ star[$index].colorOne }}" ng-click="changeOne($index, x.itemCategory)" aria-hidden="true"></span>
                   </div>
@@ -134,7 +134,7 @@
 
             <a class="a-spc" href="">
               <div class="col-xs-1 text-center">
-                <span id = "editItem-button" class="glyphicon glyphicon-pencil" title="Edit this item" aria-hidden="true" ng-show="!editing" ng-click="editing=true"></span>
+                <span class="glyphicon glyphicon-pencil" title="Edit this item" aria-hidden="true" ng-show="!editing" ng-click="editing=true"></span>
                 <div ng-show="editing">
                   <span class="glyphicon glyphicon-ok" title="Accept this change" aria-hidden="true" ng-show="!editItemCheck($index)" ng-click="editing = false"></span>
                 </div>
@@ -146,13 +146,13 @@
             <div class="col-xs-1 text-center">
               <a class="a-spc" href="" ng-click="rmvRecommendation(item)">
                 <div>
-                  <span id="removeItem-button" class="glyphicon glyphicon-minus" title="Remove this item" aria-hidden="true" ng-show="editing"></span>
+                  <span class="glyphicon glyphicon-minus" title="Remove this item" aria-hidden="true" ng-show="editing"></span>
                 </div>
               </a>
               <a class="a-spc" href="" ng-click="setUrgent($index)">
                 <div ng-show="!editing">
-                  <span id= "clicktourgent-button" class="glyphicon glyphicon-unchecked" title="Click if this item is urgent" aria-hidden="true" ng-show="!item.urgency"></span>
-                  <span id= "unclicktourgent-button" class="glyphicon glyphicon-check" title="Click if this item is not urgent" aria-hidden="true" ng-show="item.urgency"></span>
+                  <span class="glyphicon glyphicon-unchecked" title="Click if this item is urgent" aria-hidden="true" ng-show="!item.urgency"></span>
+                  <span class="glyphicon glyphicon-check" title="Click if this item is not urgent" aria-hidden="true" ng-show="item.urgency"></span>
                 </div>
               </a>
             </div>
@@ -161,12 +161,12 @@
           <div class="row">
             <form>
               <div class="col-xs-10">
-                <textarea id="recommendationText-area" class="form-control" rows="1" ng-model="recommendationText"></textarea>
+                <textarea class="form-control" rows="1" ng-model="recommendationText"></textarea>
               </div>
               <div class="col-xs-1"></div>
               <a class="a-spc" href="" ng-click="addRecommendation($index)" ng-model-instant>
                 <div class="col-xs-1 text-center">
-                  <span id="addRecommendation-button" class="glyphicon glyphicon-plus" title="Add item to recommendations" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-plus" title="Add item to recommendations" aria-hidden="true"></span>
                 </div>
               </a>
               <div class="col-xs-8" ng-show="recommendationError"><h4>Please enter text before adding a recommendation.</h4></div>
@@ -178,7 +178,7 @@
         <!-- Submit button visible on rubric preview view -->
         <div ng-show="previewRubricSubmission">
           <div class="container t-padding">
-              <input id ="rubricSubmit-button" type="submit" class="btn btn-lg btn-default">
+              <input type="submit" class="btn btn-lg btn-default">
             <div ng-show="error" class="text-danger">
               <strong ng-bind="error"></strong>
             </div>
@@ -191,11 +191,11 @@
     <div class="container t-padding">
       <!-- Edit button visible on rubric preview view -->
       <div ng-show="previewRubricSubmission">
-        <button id="editSubmission-button" ng-click="togglePreviewSubmission()" class="btn btn-lg btn-default">Edit Submission</button>
+        <button ng-click="togglePreviewSubmission()" class="btn btn-lg btn-default">Edit Submission</button>
       </div>
       <!-- Preview button visible on rubric view -->
       <div ng-show="!previewRubricSubmission">
-        <button id ="previewSubmission-button" ng-click="togglePreviewSubmission()" class="btn btn-lg btn-default">Preview Submission</button>
+        <button ng-click="togglePreviewSubmission()" class="btn btn-lg btn-default">Preview Submission</button>
       </div>
     </div>
   </main>

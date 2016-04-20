@@ -57,7 +57,7 @@
 
           // Test scope value
           expect(scope.authentication.user).toEqual('Fred');
-          expect($location.url()).toEqual('/authentication/signin');
+          expect($location.url()).toEqual('/');
         });
 
         it('should be redirected to previous state after successful login',
@@ -129,7 +129,7 @@
           // test scope value
           expect(scope.authentication.user).toBe('Fred');
           expect(scope.error).toEqual(null);
-          expect($location.url()).toBe('/authentication/signin');
+          expect($location.url()).toBe('/');
         });
 
         it('should fail to register with duplicate Username', function () {
@@ -166,7 +166,7 @@
       }));
 
       it('should be redirected to home', function () {
-        expect($location.path).toHaveBeenCalledWith('/adminHome');
+        expect($location.path).toHaveBeenCalledWith('/');
       });
     });
   });
