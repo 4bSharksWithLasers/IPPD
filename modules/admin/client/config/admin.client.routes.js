@@ -101,5 +101,6 @@ angular.module('admin').config(['$stateProvider',
         url:'/adminLogin', 
         templateUrl: 'modules/admin/client/views/adminLogin-admin.client.view.html'
       });
+
   }
 ]);

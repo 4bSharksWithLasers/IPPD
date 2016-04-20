@@ -16,8 +16,6 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
     // varaible to indicate whether the first rubric item has been added
     var first = true;
 
-    $scope.msg = true;
-
     // function (for addBlankRubric view) to make sure that it a rubric item is edited, the user cannot submit a blank field to crash the app.
     // if the field is blank, the check button to submit changes is disabled
     $scope.editItemCheck = function($index){
@@ -135,7 +133,7 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
         for(var i=0; i < $scope.blankRubrics.length; i++){
           console.log($scope.blankRubrics[i].presentationType);
           // if the blankRubric is a duplicate, present message and do not save blankRubric
-          if($scope.blankRubrics[i].presentationType.toUpperCase() === $scope.presentationTypeToSave.toUpperCase()){
+          if($scope.blankRubrics[i].presentationType === $scope.presentationTypeToSave){
             console.log('duplicate name encountered');
             confirm('A rubric already exists with this name. Please choose another presentation type.');
             return false;
@@ -194,15 +192,12 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
         else{
           return false;
         }
-        $scope.updateBlankRubrics();
         if($scope.splicing === false)
           $scope.updateBlankRubrics();
-        $scope.msg = true;
         $state.go('blankRubrics.list', { successMessage: 'Rubric successfully deleted!' });
 
       } else {
         $scope.blankRubric.$remove(function () {
-          $scope.msg = true;
           $state.go('blankRubrics.list', { successMessage: 'Rubric successfully deleted!' });
         });
       }
@@ -224,7 +219,7 @@ angular.module('rubrics').controller('BlankRubricController', ['$scope', '$state
       $scope.count = 0;
       $scope.blankRubrics.$promise.then(function(data){
         for(var i = 0; i < $scope.blankRubrics.length; i++){
-          if($scope.blankRubrics[i].presentationType.toUpperCase() === $scope.blankRubric.presentationType.toUpperCase() && $scope.blankRubrics[i]._id !== $scope.blankRubric._id){
+          if($scope.blankRubrics[i].presentationType === $scope.blankRubric.presentationType && $scope.blankRubrics[i]._id !== $scope.blankRubric._id){
             console.log('duplicate name encountered');
             confirm('A rubric already exists with this name. Please choose another presentation type.');
             return false;

@@ -8,10 +8,6 @@ angular.module('rubrics').factory('CompletedRatings', ['$resource',
     }, {
       update: {
         method: 'PUT'
-      },
-      query: {
-        method:'GET',
-        isArray: true
       }
     });
   }

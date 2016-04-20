@@ -13,13 +13,6 @@ module.exports = function (app) {
     .get(completedRatings.list)
     .post(completedRatings.create);
 
-  app.route('/api/completedRatings/:completedRatingId').all(rubricsPolicy.isAllowed)
-    .get(completedRatings.read)
-    .put(completedRatings.update)
-    .delete(completedRatings.delete);
-  // Finish by binding the rubric middleware
-  app.param('completedRatingId', completedRatings.completedRatingById);
-
   //Route back to register page after registration is complete.
   app.route('/api/review').all(rubricsPolicy.isAllowed)
     .put(completedRatings.create);
