@@ -1,81 +1,4 @@
-<<<<<<< HEAD
 <section>
-  
-  <header>
-    <div class="container text-right tb-padding">
-      <div class="row">
-        <div class="col-md-10"></div>
-        <div class="col-md-2">
-          <form role="form" action="/admin/users" method="get">
-          <button class="nav-btn" type="submit" value="Send">Manage Admins</button>
-        </form>
-          <form role="form" action="/adminHome" method="get">
-            <button class="nav-btn" type="submit" value="Send">AdminHome</button>
-          </form>
-        </div>
-      </div>
-    </div>
-    <div class="jumbotron">
-      <div class="container text-center">
-        <img src="modules/core/client/img/brand/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo">
-        <p><em>Profile Settings</em></p>
-      </div>
-    </div>
-  </header>
-
-  <div class="page-header">
-    <div class="row">
-      <div class="col-md-6">
-        <h1 ng-bind="user.username"></h1>
-      </div>
-      <div class="col-md-4">
-        <a class="btn btn-primary" ui-sref="admin.user-edit({userId: user._id})">
-          <i class="glyphicon glyphicon-edit"></i>
-        </a>
-        <a class="btn btn-primary" ng-click="remove();" ng-if="user._id !== authentication.user._id">
-          <i class="glyphicon glyphicon-trash"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-8">
-      <div class="row">
-        <div class="col-md-3"><strong>First Name</strong></div>
-        <div class="col-md-6" ng-bind="user.firstName"></div>
-      </div>
-      <hr/>
-      <div class="row">
-        <div class="col-md-3"><strong>Last Name</strong></div>
-        <div class="col-md-6" ng-bind="user.lastName"></div>
-      </div>
-      <hr/>
-      <div class="row">
-        <div class="col-md-3"><strong>Email</strong></div>
-        <div class="col-md-6" ng-bind="user.email"></div>
-      </div>
-      <hr/>
-      <div class="row">
-        <div class="col-md-3"><strong>Provider</strong></div>
-        <div class="col-md-6" ng-bind="user.provider"></div>
-      </div>
-      <hr/>
-      <div class="row">
-        <div class="col-md-3"><strong>Created</strong></div>
-        <div class="col-md-6" ng-bind="user.created"></div>
-      </div>
-      <hr/>
-      <div class="row">
-        <div class="col-md-3"><strong>Roles</strong></div>
-        <div class="col-md-6" ng-bind="user.roles"></div>
-      </div>
-    </div>
-  </div>
-</section>
-=======
-<section>
-<<<<<<< HEAD
   
   <header>
     <div class="container text-right tb-padding">
@@ -104,8 +27,6 @@
     </div>
   </header>
 
-=======
->>>>>>> 407e6c0844e126e4c28a90c9920a366fdd841b9f
   <div class="page-header">
     <div class="row">
       <div class="col-md-6">
@@ -155,9 +76,4 @@
       </div>
     </div>
   </div>
-<<<<<<< HEAD
 </section>
-=======
-</section>
->>>>>>> 31be844c3aaa2c4cc56a4bb7dc09e1e032f8858d
->>>>>>> 407e6c0844e126e4c28a90c9920a366fdd841b9f
