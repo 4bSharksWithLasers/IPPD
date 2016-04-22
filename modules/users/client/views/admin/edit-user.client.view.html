@@ -1,18 +1,14 @@
+<<<<<<< HEAD
 <section>
   
   <header>
     <div class="container text-right tb-padding">
       <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-2"></div>
-        <div class="col-md-2"></div>
-        <div class="col-md-2"></div>
+        <div class="col-md-10"></div>
         <div class="col-md-2">
           <form role="form" action="/admin/users" method="get">
-            <button class="nav-btn" type="submit" value="Send">Manage Admins</button>
-          </form>
-        </div>
-        <div class="col-md-2">
+          <button class="nav-btn" type="submit" value="Send">Manage Admins</button>
+        </form>
           <form role="form" action="/adminHome" method="get">
             <button class="nav-btn" type="submit" value="Send">AdminHome</button>
           </form>
@@ -66,3 +62,80 @@
     </form>
   </div>
 </section>
+=======
+<section>
+<<<<<<< HEAD
+  
+  <header>
+    <div class="container text-right tb-padding">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2">
+          <form role="form" action="/admin/users" method="get">
+            <button class="nav-btn" type="submit" value="Send">Manage Admins</button>
+          </form>
+        </div>
+        <div class="col-md-2">
+          <form role="form" action="/adminHome" method="get">
+            <button class="nav-btn" type="submit" value="Send">AdminHome</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="jumbotron">
+      <div class="container text-center">
+        <img src="modules/core/client/img/brand/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo">
+        <p><em>Profile Settings</em></p>
+      </div>
+    </div>
+  </header>
+
+=======
+>>>>>>> 407e6c0844e126e4c28a90c9920a366fdd841b9f
+  <div class="page-header">
+    <h1>User <span ng-bind="user.username"></span></h1>
+  </div>
+  <div class="col-md-12">
+    <form name="userForm" ng-submit="update(userForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="firstName" class="form-control" ng-model="user.firstName" placeholder="First Name" required />
+          <div ng-messages="userForm.firstName.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">First name is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="lastName" class="form-control" ng-model="user.lastName" placeholder="Last Name" required />
+          <div ng-messages="userForm.lastName.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Last name is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="roles">Roles</label>
+          <div class="controls">
+            <input class="form-control" type="text" name="roles" ng-model="user.roles" id="roles" ng-list required />
+            <div ng-messages="userForm.roles.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">At least one role is required.</p>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Update" class="btn btn-default">
+        </div>
+        <div ng-show="error" class="text-danger">
+          <strong ng-bind="error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+<<<<<<< HEAD
+</section>
+=======
+</section>
+>>>>>>> 31be844c3aaa2c4cc56a4bb7dc09e1e032f8858d
+>>>>>>> 407e6c0844e126e4c28a90c9920a366fdd841b9f

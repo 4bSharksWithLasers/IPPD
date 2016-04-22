@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 407e6c0844e126e4c28a90c9920a366fdd841b9f
 /*  ----------------------------------------------------------------------------
 
 																					 Copyright 2016 4BSharksWithLasers
@@ -217,3 +221,227 @@ input::-moz-focus-inner {
 																					 Copyright 2016 4BSharksWithLasers
 
 ----------------------------------------------------------------------------  */
+<<<<<<< HEAD
+=======
+=======
+/*  ----------------------------------------------------------------------------
+
+																					 Copyright 2016 4BSharksWithLasers
+
+----------------------------------------------------------------------------  */
+
+/*******************************************************************************
+
+Color Chart
+
+Dk-Dk Gray    #0a0a0a  // modal backdrop
+Dk Gray       #2e2e2e  // background
+Md Gray       #676767  //
+Lt Gray       #9a9a9a  //
+White         #ffffff  // general text
+Orange        #e77e00  // active button
+Blue          #0069e7  // active button text
+
+
+*******************************************************************************/
+
+/* tag styling   */
+body {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	color: #eaeaea;
+	background-color: #2e2e2e;
+  font-family: Georgia, serif;
+	padding-bottom: 6em;
+}
+
+footer {
+	position: absolute;
+	bottom: 2.5%;
+	left: 0;
+	right: 0;
+}
+
+a {
+	font-size: 1.5em;
+	color: #eaeaea;
+	text-decoration: none !important;
+}
+
+a:focus,
+a:hover {
+	color: #e77e00;
+	border-bottom: 2px solid transparent;
+	border-bottom-color: #e77e00;
+	padding-bottom: 8px;
+}
+
+hr {
+	border: solid thin #2e2e2e;
+	opacity: 0.45;
+}
+
+.jumbotron p {
+	font-size: 2em !important;
+}
+
+h3 + p {
+	font-size: 1.25em !important;
+}
+
+.a-spc:focus,
+.a-spc:hover {
+	color: #eaeaea;
+	border: none;
+	padding: none;
+}
+
+.rating:hover {
+	color: yellow;
+}
+
+.jumbotron {
+	color: #2e2e2e;
+	background-color: #eaeaea;
+}
+
+.t-padding {
+	padding-top: 3em;
+}
+
+.t-padding-row {
+  padding-top: .25em;
+}
+
+.b-padding-row {
+  padding-bottom: .25em;
+}
+.tb-padding {
+	padding-top: 3em;
+	padding-bottom: 3em;
+}
+
+.r-padding {
+  padding-right: 3em;
+}
+
+.border {
+	border-bottom: solid thin #676767;
+}
+
+.logo {
+	margin: 0 auto;
+	display: block;
+	padding: 0 0 0 1em;
+}
+
+.panel {
+	margin: .67em 0 0;
+}
+
+.panel-heading {
+  background-color: #676767 !important;
+}
+
+.panel-default {
+	color: #eaeaea;
+  background-color: #676767;
+  border-color: #9a9a9a;
+  box-shadow: 0px 0px 3px 3px #676767;
+  padding: 0px !important;
+}
+
+.panel-body {
+	color: #2e2e2e;
+	background-color: #eaeaea;
+	font-size: 1.25em;
+}
+
+.panel-body .a-spc {
+	color: #2e2e2e;
+	background-color: #eaeaea;
+	font-size: 1.25em;
+}
+
+.panel-body + .panel-body {
+	border-top: thin solid #676767;
+}
+
+.nav-btn {
+	background-color: transparent;
+	border: none;
+	font-size: 1.75em;
+	color: #eaeaea;
+	border-bottom: 2px solid transparent;
+	padding-bottom: 4px;
+}
+
+.nav-btn:focus,
+.nav-btn:hover {
+	color: #e77e00;
+	border-bottom: 2px solid;
+	border-bottom-color: #e77e00;
+}
+
+/* alter bootstrap btn styling */
+.btn-default {
+  color: #2e2e2e;
+  background-color: #eaeaea;
+  border-color: #9a9a9a;
+  box-shadow: 0px 0px 3px 3px #676767;
+}
+/*
+.btn-default.hover,
+.btn-default:hover,
+.btn-default.focus,
+.btn-default:focus,
+.btn-default.visited,
+.btn-default:visited,
+.btn-default.active,
+.btn-default:active {
+  color: #0069e7 !important;
+  background-color: #e77e00 !important;
+}
+*/
+.btn-spc.focus,
+.btn-spc:focus {
+  color: #ffffff !important;
+  background-color: #676767 !important;
+}
+
+.btn-spc.hover,
+.btn-spc:hover {
+  color: #0069e7 !important;
+  background-color: #e77e00 !important;
+}
+
+/* because dotted outlines are dumb */
+a,
+a:active,
+a:focus,
+button,
+button:focus,
+button:active,
+.btn,
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn.focus:active,
+.btn.active.focus {
+    outline: none;
+    outline: 0;
+}
+
+input::-moz-focus-inner {
+    border: 0;
+}
+
+/*  ----------------------------------------------------------------------------
+
+																					 Copyright 2016 4BSharksWithLasers
+
+----------------------------------------------------------------------------  */
+>>>>>>> 31be844c3aaa2c4cc56a4bb7dc09e1e032f8858d
+>>>>>>> 407e6c0844e126e4c28a90c9920a366fdd841b9f

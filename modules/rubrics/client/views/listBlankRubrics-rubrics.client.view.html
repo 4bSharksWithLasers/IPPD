@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 407e6c0844e126e4c28a90c9920a366fdd841b9f
 <section>
   <header>
     <div class="container text-right tb-padding">
@@ -75,3 +79,83 @@
     </div>
   </main>
 </section>
+<<<<<<< HEAD
+=======
+=======
+<section>
+  <header>
+    <div class="container text-right tb-padding">
+      <div class="row">
+        <div class="col-md-10"></div>
+        <div class="col-md-2">
+          <form role="form" action="/adminHome" method="get">
+            <button class="nav-btn" type="submit" value="Send">AdminHome</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  	<div class="jumbotron">
+  		<div class="container text-center">
+  			<img src="modules/core/client/img/brand/IPPD_COLOR.png" class="logo" height="100px" width="300px" alt="IPPD Logo">
+  			<p><em>Manage Blank Rubrics</em></p>
+  		</div>
+  	</div>
+  </header>
+
+  <main ng-controller="BlankRubricController" ng-init="find()">
+    <div class="container t-padding">
+      <div class="row">
+        <div class="col-md-4">
+          <form role="form" action="/addBlankRubric" method="get">
+            <button class="btn btn-default btn-lg btn-block" type="submit" value="Send">Add Blank Rubric</button>
+          </form>
+        </div>
+        <div class="col-md-4"></div>
+        <!--<div class="col-md-4">
+          <button class="btn btn-danger btn-lg btn-block" ng-click="removeAll()">Delete All</button>
+        </div>-->
+      </div>
+    </div>
+
+
+
+    <div class="container t-padding">
+      <div class="input-group" id="searchBar">
+        <span class="input-group-addon input-lg" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
+        <input type="text" class="form-control input-lg" placeholder="Search" ng-model="query">
+      </div>
+    </div>
+    <!-- Success Messages -->
+    <div class="container">
+      <div ng-show="error" class="text-danger">
+        <strong ng-bind="error"></strong>
+      </div>
+      <div ng-show="success" class="text-success">
+        <strong ng-bind="success"></strong>
+      </div>
+    </div>
+    <!-- End Messages -->
+    <div class="container t-padding">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3>Presentation Type</h3>
+        </div>
+        <div class="panel-body" ng-repeat="x in blankRubrics | filter: query" ui-sref="blankRubrics.view({ blankRubricId: x._id })">
+          <div class="row">
+            <a href="" class="a-spc">
+              <div class="col-md-10"> {{ x.presentationType }} </div>
+            </a>
+            <!-- Delete rubric listing -->
+            <div class="col-md-2">
+              <button class="btn btn-danger btn-lg btn-block" ng-confirm-click="Click to confirm deletion." ng-click="remove(x);" >
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</section>
+>>>>>>> 31be844c3aaa2c4cc56a4bb7dc09e1e032f8858d
+>>>>>>> 407e6c0844e126e4c28a90c9920a366fdd841b9f
