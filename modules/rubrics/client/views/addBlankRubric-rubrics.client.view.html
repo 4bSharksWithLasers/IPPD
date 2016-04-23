@@ -135,29 +135,29 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 t-padding-row">
-            <textarea class="form-control" rows="1" ng-model="itemCategory" placeholder="Rubric Item" autocomplete="off"></textarea>
+            <textarea id= "rubricItem-text" class="form-control" rows="1" ng-model="itemCategory" placeholder="Rubric Item" autocomplete="off"></textarea>
           </div>
           <div class="col-md-4"></div>
         </div>
         <div class="row">
           <div class="col-md-8 t-padding-row">
-            <textarea class="form-control" rows="1" ng-model="description1" placeholder="Rating 1 Description" autocomplete="off"></textarea>
+            <textarea id = "rating1description-text" class="form-control" rows="1" ng-model="description1" placeholder="Rating 1 Description" autocomplete="off"></textarea>
           </div>
           <div class="col-md-4"></div>
         </div>
         <div class="row">
           <div class="col-md-8 t-padding-row">
-            <textarea class="form-control" rows="1" ng-model="description2" placeholder="Rating 3 Description" autocomplete="off"></textarea>
+            <textarea id= "rating3description-text" class="form-control" rows="1" ng-model="description2" placeholder="Rating 3 Description" autocomplete="off"></textarea>
           </div>
           <div class="col-md-4"></div>
         </div>
         <div class="row">
           <div class="col-md-8 t-padding-row">
-            <textarea class="form-control" rows="1" ng-model="description3" placeholder="Rating 5 Description" autocomplete="off"></textarea>
+            <textarea id= "rating5description-text" class="form-control" rows="1" ng-model="description3" placeholder="Rating 5 Description" autocomplete="off"></textarea>
           </div>
           <a class="a-spc" href="" ng-click="addRubricItem()" ng-model-instant>
             <div class="col-md-2 text-center">
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              <span id="addRubricItem-plus" class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             </div>
           </a>
           <div class="col-md-2"></div>
@@ -175,7 +175,7 @@
         <div class="container">
 
           <div class="form-group">
-            <input type="submit" class="btn btn-default btn-lg">
+            <input id = "submit-button" type="submit" class="btn btn-default btn-lg">
           </div>
           <div ng-show="error" class="text-danger">
             <strong ng-bind="error"></strong>

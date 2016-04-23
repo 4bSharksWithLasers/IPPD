@@ -2,7 +2,8 @@
 
 // Protractor configuration
 var config = {
-  specs: ['modules/*/tests/e2e/*.js']
+  specs: ['modules/*/tests/e2e/*.js'],
+  jasmineNodeOpts: {defaultTimeoutInterval: 100000}
 };
 
 if (process.env.TRAVIS) {
